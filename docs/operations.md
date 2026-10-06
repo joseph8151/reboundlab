@@ -104,7 +104,8 @@
 - [ ] 환불 기준 시간 확정 → `site/build.py`의 TERMS, 홈 FAQ에 반영
 - [ ] 자료 보관 기간 확정 → `site/build.py`의 PRIVACY에 반영
 - [ ] 개인정보처리방침과 이용약관 전문가 검토
-- [ ] 신청서 접수 연결 (현재는 전송되지 않음)
+- [x] 신청서 접수 연결 (Cloudflare D1, 아래 5장)
+- [ ] Cloudflare 프로덕션 브랜치, `ADMIN_PASSWORD` 시크릿, 주소 설정 (아래 5장)
 - [ ] 도메인 확정 → `site/build.py`의 `DOMAIN` 변경 후 `python3 build.py`
 
 ---
