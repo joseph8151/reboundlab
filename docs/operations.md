@@ -134,3 +134,10 @@
 **페이지를 고친 뒤**
 - 아티클이나 약관을 고쳤다면 `python3 site/build.py`를 실행한 뒤 커밋합니다.
 - 푸시하면 Cloudflare가 자동으로 다시 배포합니다.
+
+**새 신청 이메일 알림 (Formspree)**
+1. formspree.io에 가입하고 **New Form**을 만듭니다. 알림 받을 이메일을 넣습니다.
+2. 폼 주소 `https://formspree.io/f/abcdwxyz`에서 마지막 부분(`abcdwxyz`)이 폼 ID입니다.
+3. Cloudflare `reboundlab` → Settings → Variables and Secrets에 `FORMSPREE_FORM_ID`를 추가하고 폼 ID를 넣습니다.
+4. 신청이 들어오면 D1에 저장된 뒤, 같은 내용이 이메일로 옵니다. 알림이 실패해도 신청은 `/admin`에 남아 있습니다.
+5. 첫 신청이 들어오면 Formspree에서 확인 메일이 올 수 있습니다. 확인을 눌러야 이후 알림이 옵니다.

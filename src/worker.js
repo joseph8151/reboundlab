@@ -1,5 +1,5 @@
 // Afterline Worker
-// - /api/apply : 상담 신청서 접수 (D1 저장)
+// - /api/apply : 상담 신청서 접수 (D1 저장, FORMSPREE_FORM_ID가 있으면 이메일 알림)
 // - /admin     : 신청 목록 확인과 상태 변경 (비밀번호: ADMIN_PASSWORD 시크릿)
 // - 그 밖의 경로: site/ 정적 파일
 
@@ -9,9 +9,9 @@ const SERVICE = ["이별 직후 상담", "카톡 분석 상담", "재회 전략 
 const STATUS = ["접수", "입금 대기", "일정 확정", "상담 완료", "취소"];
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/apply") return apply(request, env);
+    if (url.pathname === "/api/apply") return apply(request, env, ctx);
     if (url.pathname === "/admin" || url.pathname.startsWith("/admin/")) return admin(request, env, url);
     return env.ASSETS.fetch(request);
   },
@@ -24,7 +24,7 @@ function json(body, status = 200) {
   });
 }
 
-async function apply(request, env) {
+async function apply(request, env, ctx) {
   if (request.method !== "POST") return json({ ok: false, error: "method" }, 405);
   let d;
   try {
@@ -48,6 +48,25 @@ async function apply(request, env) {
   await env.DB.prepare(
     "INSERT INTO applications (phone, breakup, state, service, memo) VALUES (?, ?, ?, ?, ?)"
   ).bind(phone, d.when, d.state, d.service, memo || null).run();
+
+  // 새 신청 이메일 알림. 실패해도 접수는 이미 저장되어 있습니다.
+  const formId = env.FORMSPREE_FORM_ID;
+  if (formId && /^[A-Za-z0-9]+$/.test(formId)) {
+    ctx.waitUntil(
+      fetch(`https://formspree.io/f/${formId}`, {
+        method: "POST",
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `[Afterline] 새 상담 신청 · ${d.service}`,
+          전화번호: formatPhone(phone),
+          원하는_상담: d.service,
+          이별_시점: d.when,
+          연락_상태: d.state,
+          메모: memo || "(없음)",
+        }),
+      }).catch(() => {})
+    );
+  }
 
   return json({ ok: true });
 }
