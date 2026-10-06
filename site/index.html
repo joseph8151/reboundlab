@@ -464,6 +464,7 @@
             <input type="text" id="f-contact" name="contact" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" pattern="[0-9\-\s]{9,15}" required>
             <p class="hint">상담은 전화로 진행하는 것을 권장합니다. 카카오톡 ID 등 다른 연락처는 받지 않습니다.</p>
           </div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="f-website">웹사이트</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
           <label class="consent"><input type="checkbox" id="f-consent" name="consent" required><span>상담 진행을 위한 개인정보 수집과 이용에 동의합니다. <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침 보기</a></span></label>
           <p class="form-error" id="form-error" hidden>빈 항목을 채우고, 전화번호는 숫자로 적어 주세요.</p>
           <button class="btn btn-primary" type="submit">접수하기</button>
@@ -471,7 +472,6 @@
         <div class="done" id="done" hidden tabindex="-1">
           <h3>접수되었습니다.</h3>
           <p>[ ] 안에 남겨 주신 번호로 금액과 입금 계좌를 문자로 안내드립니다. 입금이 확인되면 통화 일정을 확정합니다.</p>
-          <p class="hint">이 페이지는 시안이라 실제로 전송되지는 않습니다.</p>
         </div>
       </div>
     </div>
@@ -553,9 +553,25 @@
     e.preventDefault();
     if (!form.checkValidity()) { err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return; }
     err.hidden = true;
-    form.hidden = true;
-    done.hidden = false;
-    done.focus();
+    var data = {
+      when: form.when.value,
+      state: (form.querySelector('input[name="state"]:checked') || {}).value,
+      service: form.service.value,
+      memo: form.memo.value,
+      contact: form.contact.value,
+      consent: form.consent.checked,
+      website: form.website.value
+    };
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = '접수 중…';
+    fetch('/api/apply', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(); }); })
+      .then(function () { form.hidden = true; done.hidden = false; done.focus(); })
+      .catch(function () {
+        err.textContent = '접수하지 못했습니다. 입력 내용을 확인한 뒤 다시 눌러 주세요.';
+        err.hidden = false;
+      })
+      .finally(function () { btn.disabled = false; btn.textContent = '접수하기'; });
   });
 })();
 </script>

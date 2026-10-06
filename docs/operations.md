@@ -106,3 +106,30 @@
 - [ ] 개인정보처리방침과 이용약관 전문가 검토
 - [ ] 신청서 접수 연결 (현재는 전송되지 않음)
 - [ ] 도메인 확정 → `site/build.py`의 `DOMAIN` 변경 후 `python3 build.py`
+
+---
+
+## 5. 배포와 신청 관리 (Cloudflare)
+
+사이트와 신청서 접수는 Cloudflare Worker `reboundlab` 하나로 돌아갑니다.
+
+| 구성 | 위치 |
+|---|---|
+| 정적 페이지 | `site/` |
+| 신청 접수, 관리자 화면 | `src/worker.js` |
+| 배포 설정 | `wrangler.jsonc` |
+| 데이터베이스 | D1 `afterline` (표: `applications`, 정의: `migrations/`) |
+
+**처음 한 번 할 일 (Cloudflare 대시보드)**
+1. Workers & Pages → `reboundlab` → Settings → Build에서 **프로덕션 브랜치**를 배포할 브랜치로 맞춥니다.
+2. Settings → Variables and Secrets에서 **시크릿** `ADMIN_PASSWORD`를 추가합니다. 관리자 화면 비밀번호입니다.
+3. Settings → Domains & Routes에서 `workers.dev`를 켜거나, 커스텀 도메인을 연결합니다.
+
+**신청 확인**
+- `https://[사이트 주소]/admin` 에 접속합니다. 아이디는 아무거나, 비밀번호는 `ADMIN_PASSWORD`입니다.
+- 상태를 `접수 → 입금 대기 → 일정 확정 → 상담 완료` 순서로 바꿔 가며 관리합니다. 취소는 `취소`로 둡니다.
+- 시간은 UTC로 표시됩니다. 한국 시간은 +9시간입니다.
+
+**페이지를 고친 뒤**
+- 아티클이나 약관을 고쳤다면 `python3 site/build.py`를 실행한 뒤 커밋합니다.
+- 푸시하면 Cloudflare가 자동으로 다시 배포합니다.
