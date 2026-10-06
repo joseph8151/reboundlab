@@ -2,7 +2,7 @@
 
 `python3 build.py`를 실행하면 아래 파일을 다시 만듭니다.
 - articles/*.html, articles/index.html  (원고: articles_data.py)
-- privacy.html, terms.html
+- privacy.html, terms.html, 404.html
 - sitemap.xml, robots.txt
 
 index.html은 직접 편집하는 파일이라 여기서 만들지 않습니다.
@@ -324,6 +324,27 @@ TERMS = [
 ]
 
 
+def not_found_page():
+    # 어느 경로에서 열려도 깨지지 않도록 절대 경로("/")를 씁니다.
+    body = """
+<main>
+  <section class="article-head page-plain">
+    <div class="wrap">
+      <p class="label">404</p>
+      <h1>찾으시는 페이지가 없습니다.</h1>
+      <p class="lead">주소가 바뀌었거나 삭제된 페이지입니다. 아래에서 다시 시작해 주세요.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/index.html#apply">상담 시작하기</a>
+        <a class="btn btn-ghost" href="/articles/index.html">아티클 보기</a>
+      </div>
+    </div>
+  </section>
+</main>
+"""
+    page = head("페이지를 찾을 수 없습니다 | Afterline", "요청하신 페이지를 찾을 수 없습니다.", "/", "404.html") + body + foot("/")
+    return page.replace(f'<link rel="canonical" href="{DOMAIN}/404.html">', '<meta name="robots" content="noindex">')
+
+
 def sitemap():
     urls = ["index.html", "articles/index.html", "privacy.html", "terms.html"] + [f'articles/{a["slug"]}.html' for a in ARTICLES]
     rows = "\n".join(f"  <url><loc>{DOMAIN}/{u}</loc></url>" for u in urls)
@@ -343,6 +364,7 @@ if __name__ == "__main__":
     (ROOT / "terms.html").write_text(doc_page(
         "terms.html", "이용약관 및 환불 규정",
         "상담 신청부터 결제, 일정 변경, 환불까지의 기준입니다.", TERMS, note), encoding="utf-8")
+    (ROOT / "404.html").write_text(not_found_page(), encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {DOMAIN}/sitemap.xml\n", encoding="utf-8")
-    print(f"wrote {len(ARTICLES)} articles, article index, privacy, terms, sitemap, robots")
+    print(f"wrote {len(ARTICLES)} articles, article index, privacy, terms, 404, sitemap, robots")

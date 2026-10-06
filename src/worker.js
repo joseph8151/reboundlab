@@ -94,6 +94,13 @@ function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+// D1의 UTC 시각("YYYY-MM-DD HH:MM:SS")을 한국 시간으로
+function toKst(utc) {
+  const t = new Date(utc.replace(" ", "T") + "Z");
+  if (isNaN(t)) return utc;
+  return new Date(t.getTime() + 9 * 3600e3).toISOString().slice(0, 16).replace("T", " ");
+}
+
 function formatPhone(p) {
   if (p.length === 11) return `${p.slice(0, 3)}-${p.slice(3, 7)}-${p.slice(7)}`;
   if (p.length === 10) return `${p.slice(0, 3)}-${p.slice(3, 6)}-${p.slice(6)}`;
@@ -131,7 +138,7 @@ async function admin(request, env, url) {
   const rows = results.map((r) => `
       <tr>
         <td class="num">${r.id}</td>
-        <td class="num">${esc(r.created_at)}</td>
+        <td class="num">${esc(toKst(r.created_at))}</td>
         <td class="phone">${esc(formatPhone(r.phone))}</td>
         <td>${esc(r.service)}<br><span class="muted">${esc(r.breakup)} · ${esc(r.state)}</span></td>
         <td class="memo">${esc(r.memo || "")}</td>
@@ -171,7 +178,7 @@ async function admin(request, env, url) {
 </style></head>
 <body>
   <h1>신청 목록</h1>
-  <p class="muted">최근 300건 · 시간은 UTC 기준(한국 시간 +9시간)</p>
+  <p class="muted">최근 300건 · 한국 시간</p>
   <nav aria-label="상태별 보기">${tabs}</nav>
   <div class="table"><table>
     <thead><tr><th>#</th><th>접수</th><th>전화번호</th><th>상담 / 상황</th><th>메모</th><th>상태</th></tr></thead>
