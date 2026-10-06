@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Afterline</title>
-<meta name="description" content="재회상담 전문 Afterline. 감정이 아니라, 이별 이후의 흐름을 봅니다. 마지막 대화와 연락 흐름을 확인하고 다음 행동을 정합니다.">
-<link rel="canonical" href="https://afterline.example/">
+<title>AFTERLINE · Relationship Advisory</title>
+<meta name="description" content="연락할지, 기다릴지, 정리할지. AFTERLINE은 이별 이후 관계의 흐름을 보고 다음 행동을 함께 정하는 프라이빗 관계 컨설팅입니다.">
+<link rel="canonical" href="https://afterline.site/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Afterline">
-<meta property="og:title" content="Afterline · 재회상담 전문">
-<meta property="og:description" content="연락할지, 기다릴지, 정리할지. 감정이 아니라, 이별 이후의 흐름을 봅니다.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231E2A44'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23ECEFEB'%3EA%3C/text%3E%3C/svg%3E">
+<meta property="og:site_name" content="AFTERLINE">
+<meta property="og:title" content="AFTERLINE · Relationship Advisory">
+<meta property="og:description" content="이별 이후에는 감정보다 먼저 확인해야 할 것이 있습니다. 마지막 대화와 연락의 흐름을 보고, 지금 필요한 다음 행동을 정리합니다.">
+<meta property="og:image" content="https://afterline.site/images/window-evening.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317202B'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' letter-spacing='2' fill='%23F6F3EE'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">
 {
@@ -62,7 +64,7 @@
   },
   {
    "@type": "Question",
-   "name": "재회상담은 한 번으로 끝나나요?",
+   "name": "상담은 한 번으로 끝나나요?",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "한 번의 상담에서 다음 행동 하나를 정하는 것이 기본입니다. 상대 반응이 생기거나 상황이 바뀌면, 후속 상담에서 다시 봅니다."
@@ -78,7 +80,7 @@
   },
   {
    "@type": "Question",
-   "name": "헤어진 지 오래돼도 상담 가능한가요?",
+   "name": "헤어진 지 오래돼도 상담할 수 있나요?",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "가능합니다. 기간보다 마지막 대화와 그 이후의 변화를 봅니다."
@@ -106,322 +108,333 @@
 </head>
 <body>
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="wrap">
-    <a class="wordmark" href="#top">Afterline</a>
+    <a class="wordmark" href="#top" aria-label="AFTERLINE 홈">AFTERLINE</a>
     <nav class="nav" aria-label="주요 메뉴">
-      <a href="#services">상담 안내</a>
-      <a href="#process">진행 방식</a>
-      <a href="#cases">상담 예시</a>
-      <a href="articles/index.html">아티클</a>
+      <a href="#services">Consultation</a>
+      <a href="#approach">Approach</a>
+      <a href="#cases">Cases</a>
+      <a href="column/index.html">Column</a>
+      <a href="#faq">FAQ</a>
       <a class="btn btn-primary" href="#apply">상담 시작하기</a>
     </nav>
-    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">메뉴</button>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
   </div>
-  <nav class="mobile-nav wrap" id="mobile-nav" hidden aria-label="모바일 메뉴">
-    <ul>
-      <li><a href="#services">상담 안내</a></li>
-      <li><a href="#process">진행 방식</a></li>
-      <li><a href="#cases">상담 예시</a></li>
-      <li><a href="#faq">자주 묻는 질문</a></li>
-      <li><a href="#articles">아티클</a></li>
-    </ul>
+  <nav class="mobile-nav" id="mobile-nav" hidden aria-label="모바일 메뉴">
+    <div class="wrap">
+      <ul>
+        <li><a href="#services">Consultation <span>상담 서비스</span></a></li>
+        <li><a href="#approach">Approach <span>분석 기준</span></a></li>
+        <li><a href="#cases">Cases <span>상담 사례</span></a></li>
+        <li><a href="column/index.html">Column <span>칼럼</span></a></li>
+        <li><a href="#faq">FAQ <span>자주 묻는 질문</span></a></li>
+        <li><a href="#apply">Contact <span>상담 시작하기</span></a></li>
+      </ul>
+    </div>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- 1. HERO -->
+  <!-- 01 Hero -->
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
-      <p class="label">재회상담 전문</p>
-      <h1 id="hero-title"><span>연락할지,</span> <span>기다릴지,</span> <span>정리할지.</span></h1>
-      <p class="lead">감정이 아니라, 이별 이후의 흐름을 봅니다.<span>마지막 대화와 연락 흐름을 확인하고, 다음 행동을 정합니다.</span></p>
-      <div class="cta-row" id="hero-cta">
-        <a class="btn btn-primary" href="#apply">상담 시작하기</a>
-        <a class="btn btn-ghost" href="#situation">내 상황 먼저 보기</a>
+      <div class="hero-text">
+        <div class="hero-brand">
+          <span class="wordmark" aria-hidden="true">AFTERLINE</span>
+          <span class="eyebrow plain">Relationship Advisory</span>
+        </div>
+        <h1 id="hero-title"><span>연락할지,</span> <span>기다릴지,</span> <span>정리할지.</span></h1>
+        <p class="sub"><strong>이별 이후에는 감정보다 먼저 확인해야 할 것이 있습니다.</strong>마지막 대화와 연락의 흐름을 보고, 지금 필요한 다음 행동을 정리합니다.</p>
+        <div class="cta-row" id="hero-cta">
+          <a class="btn btn-primary" href="#apply">상담 시작하기 <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#situations">내 상황 먼저 보기</a>
+        </div>
+        <p class="note">재회를 보장하지 않습니다.<br>관계의 현재 상태를 함께 확인합니다.</p>
+      </div>
+      <figure class="photo">
+        <img src="images/window-evening.jpg" width="1280" height="1600" alt="저녁빛이 드는 창가, 테이블 위에 엎어 둔 스마트폰과 잔 하나" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 Brand Statement -->
+  <section class="section statement" aria-label="브랜드 철학">
+    <div class="wrap">
+      <blockquote class="reveal">다시 만나는 것보다,<br>다시 만날 수 있는 관계인지 먼저 봅니다.</blockquote>
+      <div class="body reveal">
+        <p>이별 직후의 차단과 반복 연락 이후의 차단은 같은 의미가 아닙니다. 한 달의 공백기도 마지막 대화가 어떻게 끝났는지에 따라 다르게 봐야 합니다.</p>
+        <p>AFTERLINE은 하나의 행동만 떼어 판단하지 않습니다. 두 사람이 어떻게 멀어졌고, 지금 관계가 어디에 있는지를 먼저 봅니다.</p>
       </div>
     </div>
   </section>
 
-  <!-- 2. SITUATION -->
-  <section id="situation" aria-labelledby="situation-title">
-    <div class="wrap sec">
-      <p class="sec-name">상황</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="situation-title">이런 상황이라면</h2>
-          <p class="lead">지금과 가장 가까운 상황을 골라 주세요.</p>
+  <!-- 03 Situations -->
+  <section class="section" id="situations" aria-labelledby="situations-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Situations</span>
+        <h2 id="situations-title">이런 상황이라면</h2>
+      </div>
+      <ol class="toc">
+        <li><a href="#svc-breakup"><span class="n">01</span><h3>헤어진 직후</h3><span class="arr" aria-hidden="true">→</span><p>연락하고 싶지만 지금 연락하는 것이 맞는지 모르겠습니다.</p></a></li>
+        <li><a href="#svc-conversation"><span class="n">02</span><h3>차단 이후</h3><span class="arr" aria-hidden="true">→</span><p>차단 자체보다 그전에 어떤 대화가 있었는지 확인이 필요합니다.</p></a></li>
+        <li><a href="#svc-reconnect"><span class="n">03</span><h3>공백기</h3><span class="arr" aria-hidden="true">→</span><p>얼마나 기다려야 하는지보다 무엇이 달라져야 하는지 먼저 봅니다.</p></a></li>
+        <li><a href="#svc-conversation"><span class="n">04</span><h3>마지막 대화</h3><span class="arr" aria-hidden="true">→</span><p>마지막 카톡의 한 문장보다 대화가 끝난 흐름을 봅니다.</p></a></li>
+        <li><a href="#svc-reconnect"><span class="n">05</span><h3>답장은 오는 관계</h3><span class="arr" aria-hidden="true">→</span><p>답장은 오지만 관계가 다시 움직이고 있는지는 별개의 문제입니다.</p></a></li>
+        <li><a href="#svc-reset"><span class="n">06</span><h3>재회 이후</h3><span class="arr" aria-hidden="true">→</span><p>다시 만났지만 이전과 같은 갈등이 반복됩니다.</p></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 04 Approach -->
+  <section class="section" id="approach" aria-labelledby="approach-title">
+    <div class="wrap split">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Approach</span>
+        <h2 id="approach-title">하나의 신호로<br>관계를 판단하지 않습니다.</h2>
+        <div class="approach-body">
+          <p>스토리를 봤다는 이유만으로 미련이 있다고 말하지 않습니다.<br>차단이 풀렸다는 이유만으로 연락할 때라고 판단하지 않습니다.</p>
+          <p><strong>AFTERLINE은 아래의 흐름을 함께 확인합니다.</strong></p>
         </div>
-        <div class="cards">
-          <a class="card" href="#svc-a"><h3>헤어진 직후</h3><p>연락하고 싶지만, 지금 해도 되는지 모르겠습니다.</p><span class="to">이별 직후 상담 →</span></a>
-          <a class="card" href="#svc-b"><h3>차단 이후</h3><p>차단을 어떻게 받아들여야 할지 정리가 필요합니다.</p><span class="to">카톡 분석 상담 →</span></a>
-          <a class="card" href="#svc-c"><h3>공백기</h3><p>얼마나 더 기다려야 하는지 판단이 서지 않습니다.</p><span class="to">재회 전략 상담 →</span></a>
-          <a class="card" href="#svc-b"><h3>마지막 카톡</h3><p>마지막 메시지를 어떻게 읽어야 할지 모르겠습니다.</p><span class="to">카톡 분석 상담 →</span></a>
-          <a class="card" href="#svc-c"><h3>답장만 오는 관계</h3><p>답장은 오지만, 먼저 오는 연락은 없습니다.</p><span class="to">재회 전략 상담 →</span></a>
-          <a class="card" href="#svc-d"><h3>재회 이후</h3><p>다시 만났지만, 같은 문제가 반복됩니다.</p><span class="to">재회 후 상담 →</span></a>
-        </div>
+      </div>
+      <ol class="factors">
+        <li><span class="n">01</span><b>이별 원인</b><span>누가, 어떤 이유로 끝을 말했는지</span></li>
+        <li><span class="n">02</span><b>마지막 대화</b><span>대화가 어떤 말과 분위기로 끝났는지</span></li>
+        <li><span class="n">03</span><b>차단 시점</b><span>이별 직후였는지, 반복 연락 뒤였는지</span></li>
+        <li><span class="n">04</span><b>연락 흐름</b><span>이별 후 누가, 얼마나, 어떤 간격으로 연락했는지</span></li>
+        <li><span class="n">05</span><b>상대의 실제 반응</b><span>답장의 길이와 간격, 먼저 온 연락이 있었는지</span></li>
+        <li><span class="n">06</span><b>반복되는 관계 패턴</b><span>갈등이 시작되고 끝나는 방식</span></li>
+        <li><span class="n">07</span><b>이별 이후의 변화</b><span>두 사람의 환경과 태도에서 실제로 달라진 것</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 05 The Timeline -->
+  <section class="section" id="timeline" aria-labelledby="timeline-title">
+    <div class="wrap timeline-grid">
+      <div class="timeline-intro">
+        <span class="eyebrow">Method</span>
+        <h2 id="timeline-title">The Timeline</h2>
+        <p class="muted">관계는 한 장면보다 흐름에서 더 많은 것을 보여줍니다.</p>
+        <figure class="photo"><img src="images/curtain-light.jpg" width="1280" height="1600" alt="늦은 오후 빛이 스며드는 커튼" loading="lazy"></figure>
+      </div>
+      <ol class="timeline">
+        <li class="reveal"><span class="step">Relationship</span><span class="ko">관계의 기본 패턴</span><p>평소 어떻게 연락하고, 어떻게 다투고, 어떻게 회복했는지.</p></li>
+        <li class="reveal"><span class="step">Break Point</span><span class="ko">이별을 만든 사건</span><p>마지막 계기와 그 이전부터 쌓여 온 문제를 나눠 봅니다.</p></li>
+        <li class="reveal"><span class="step">Last Conversation</span><span class="ko">마지막 대화</span><p>누가, 어떤 말로 대화를 끝냈는지.</p></li>
+        <li class="reveal"><span class="step">After Breakup</span><span class="ko">이별 직후 행동</span><p>연락, 차단, 사과처럼 이별 직후 양쪽이 한 일.</p></li>
+        <li class="reveal"><span class="step">Current Contact</span><span class="ko">현재 연락 상태</span><p>지금 연락이 오가는지, 누가 먼저인지, 어떤 온도인지.</p></li>
+        <li class="reveal"><span class="step">Next Move</span><span class="ko">다음 행동</span><p>연락, 기다림, 정리, 재접촉 가운데 지금 맞는 하나.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 Consultation Services -->
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Consultation</span>
+        <h2 id="services-title">상황에 맞는 상담을<br>네 가지로 나눕니다.</h2>
+        <p>가격은 상담 상품별로 따로 안내합니다.</p>
+      </div>
+      <div class="services">
+        <article class="service" id="svc-breakup">
+          <div><p class="en-name">Breakup Review</p><p class="ko-name">이별 직후 상담</p></div>
+          <p class="lede">지금 연락하는 것이 맞는지부터 정리합니다.</p>
+          <ul><li>이별 직후 행동</li><li>연락 여부</li><li>하지 않아야 할 행동</li><li>첫 1~2주 방향</li></ul>
+          <div class="service-foot"><span>상담 상품별 별도 안내</span><a class="link-u" href="#apply" data-service="이별 직후 상담">상담 시작하기</a></div>
+        </article>
+        <article class="service" id="svc-conversation">
+          <div><p class="en-name">Conversation Review</p><p class="ko-name">마지막 대화 분석</p></div>
+          <p class="lede">한 문장보다 대화가 어떻게 끝났는지를 봅니다.</p>
+          <ul><li>마지막 대화</li><li>차단 전후 흐름</li><li>답장 변화</li><li>현재 연락 상태</li></ul>
+          <div class="service-foot"><span>상담 상품별 별도 안내</span><a class="link-u" href="#apply" data-service="마지막 대화 분석">상담 시작하기</a></div>
+        </article>
+        <article class="service" id="svc-reconnect">
+          <div><p class="en-name">Reconnection Strategy</p><p class="ko-name">재접촉 전략 상담</p></div>
+          <p class="lede">연락이 필요한 상황이라면 시점과 방법을 정리합니다.</p>
+          <ul><li>공백기</li><li>연락 시점</li><li>첫 연락의 방향</li><li>만남 제안 여부</li><li>상대 반응 이후의 다음 행동</li></ul>
+          <p class="no">상대를 흔드는 메시지, 심리 기술, 밀당, 메시지 대필은 서비스하지 않습니다.</p>
+          <div class="service-foot"><span>상담 상품별 별도 안내</span><a class="link-u" href="#apply" data-service="재접촉 전략 상담">상담 시작하기</a></div>
+        </article>
+        <article class="service" id="svc-reset">
+          <div><p class="en-name">Relationship Reset</p><p class="ko-name">재회 후 관계 상담</p></div>
+          <p class="lede">다시 만난 뒤 같은 이유로 다시 헤어지지 않도록 관계를 점검합니다.</p>
+          <ul><li>반복되는 갈등</li><li>신뢰 회복</li><li>경계 설정</li><li>연락과 대화 방식</li></ul>
+          <div class="service-foot"><span>상담 상품별 별도 안내</span><a class="link-u" href="#apply" data-service="재회 후 관계 상담">상담 시작하기</a></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 3. APPROACH -->
-  <section id="approach" aria-labelledby="approach-title">
-    <div class="wrap sec">
-      <p class="sec-name">기준</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="approach-title">차단 여부 하나로<br>판단하지 않습니다.</h2>
-          <p class="lead">재회 가능성을 숫자로 말하지 않습니다. 지금 관계가 어디에 있는지, 일곱 가지로 봅니다.</p>
-        </div>
-        <dl class="factors">
-          <div><dt>이별 원인</dt><dd>누가, 어떤 이유로 끝을 말했는지</dd></div>
-          <div><dt>마지막 대화</dt><dd>대화가 어떤 말로 끝났는지</dd></div>
-          <div><dt>차단 시점</dt><dd>언제, 어떤 일 직후였는지</dd></div>
-          <div><dt>연락 흐름</dt><dd>이별 후 누가, 얼마나 연락했는지</dd></div>
-          <div><dt>상대 반응</dt><dd>답장의 길이, 간격, 말투</dd></div>
-          <div><dt>관계 패턴</dt><dd>갈등이 반복된 방식</dd></div>
-          <div><dt>현재 상황 변화</dt><dd>이별 이후 달라진 환경과 일정</dd></div>
-        </dl>
-        <div class="compare">
-          <p class="compare-title">같은 차단, 다른 의미</p>
-          <div class="compare-grid">
-            <div>
-              <strong>이별 직후의 차단</strong>
-              <p>다툼 끝에 대화를 멈춘 행동일 수 있습니다.</p>
-              <p class="next">마지막 대화부터 다시 봅니다.</p>
-            </div>
-            <div>
-              <strong>반복 연락 뒤의 차단</strong>
-              <p>연락을 멈춰 달라는 뜻일 수 있습니다.</p>
-              <p class="next">연락을 멈추는 것이 먼저입니다.</p>
-            </div>
-          </div>
-          <p class="compare-foot">같은 차단이어도, 다음 행동은 같지 않습니다.</p>
-        </div>
+  <!-- 07 Our Principles -->
+  <section class="section principles-sec" id="principles" aria-labelledby="principles-title">
+    <div class="wrap split">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Our Principles</span>
+        <h2 id="principles-title">AFTERLINE이<br>하지 않는 것</h2>
+        <p>상담의 결과보다 먼저 지키는 기준입니다.</p>
       </div>
+      <ol class="principles">
+        <li><span class="n">01</span><p>재회를 약속하지 않습니다.</p></li>
+        <li><span class="n">02</span><p>상대의 마음을 단정하지 않습니다.</p></li>
+        <li><span class="n">03</span><p>차단을 우회하는 방법을 안내하지 않습니다.</p></li>
+        <li><span class="n">04</span><p>불필요한 연락을 권하지 않습니다.</p></li>
+        <li><span class="n">05</span><p>불안을 이용해 반복 상담을 권하지 않습니다.</p></li>
+        <li><span class="n">06</span><p>확인할 수 있는 말과 행동을 중심으로 판단합니다.</p></li>
+        <li class="last"><span class="n">07</span><p>필요하다면 재회를 시도하지 않는 쪽도 선택지로 둡니다.</p></li>
+      </ol>
     </div>
   </section>
 
-  <!-- photo 1 -->
+  <!-- photo band -->
   <div class="photo-band" aria-hidden="true">
     <div class="wrap">
-      <figure class="photo" style="padding-block: var(--section) 0;"><div class="photo-box"><span>사진 자리 · 저녁 창가, 사람 없이 빛만 있는 장면</span></div></figure>
+      <figure class="photo"><img src="images/corridor.jpg" width="1600" height="1040" alt="" loading="lazy"></figure>
     </div>
   </div>
 
-  <!-- 4. SERVICES -->
-  <section id="services" aria-labelledby="services-title">
-    <div class="wrap sec">
-      <p class="sec-name">상담 안내</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="services-title">상황에 따라<br>네 가지로 나눕니다.</h2>
-          <p class="lead">가격은 상담 상품별로 따로 안내합니다.</p>
-        </div>
-        <div class="services">
-          <article class="service" id="svc-a">
-            <div class="service-name"><span class="tag">A</span><h3>이별 직후 상담</h3><p>처음 2주를 정리합니다.</p></div>
-            <div>
-              <ul>
-                <li>지금 연락해도 되는지 판단합니다.</li>
-                <li>하지 않아야 할 행동을 정합니다.</li>
-                <li>첫 1~2주의 행동을 정리합니다.</li>
-              </ul>
-              <div class="service-foot"><span>가격 · 상담 상품별 별도 안내</span><a class="textlink" href="#apply" data-service="이별 직후 상담">상담 시작하기</a></div>
-            </div>
-          </article>
-          <article class="service" id="svc-b">
-            <div class="service-name"><span class="tag">B</span><h3>카톡 분석 상담</h3><p>대화가 어디서 멈췄는지 봅니다.</p></div>
-            <div>
-              <ul>
-                <li>마지막 대화와 차단 전후 흐름을 확인합니다.</li>
-                <li>답장의 길이, 간격, 말투 변화를 봅니다.</li>
-                <li>다음 연락이 맞는 상황인지 판단합니다.</li>
-              </ul>
-              <div class="service-foot"><span>가격 · 상담 상품별 별도 안내</span><a class="textlink" href="#apply" data-service="카톡 분석 상담">상담 시작하기</a></div>
-            </div>
-          </article>
-          <article class="service" id="svc-c">
-            <div class="service-name"><span class="tag">C</span><h3>재회 전략 상담</h3><p>연락이 맞는 상황일 때, 시점과 방식을 정합니다.</p></div>
-            <div>
-              <ul>
-                <li>공백기와 연락 시점을 정리합니다.</li>
-                <li>첫 메시지와 만남 제안의 방향을 잡습니다.</li>
-                <li>상대 반응에 따라 다음 행동을 준비합니다.</li>
-              </ul>
-              <p class="note" style="margin-top:12px">메시지 대필이나 반응을 끌어내는 기법은 다루지 않습니다.</p>
-              <div class="service-foot"><span>가격 · 상담 상품별 별도 안내</span><a class="textlink" href="#apply" data-service="재회 전략 상담">상담 시작하기</a></div>
-            </div>
-          </article>
-          <article class="service" id="svc-d">
-            <div class="service-name"><span class="tag">D</span><h3>재회 후 상담</h3><p>같은 이유로 다시 헤어지지 않도록 합니다.</p></div>
-            <div>
-              <ul>
-                <li>반복되는 갈등의 순서를 점검합니다.</li>
-                <li>신뢰를 다시 쌓는 행동을 정합니다.</li>
-                <li>서로의 경계와 대화 방식을 정리합니다.</li>
-              </ul>
-              <div class="service-foot"><span>가격 · 상담 상품별 별도 안내</span><a class="textlink" href="#apply" data-service="재회 후 상담">상담 시작하기</a></div>
-            </div>
-          </article>
-        </div>
+  <!-- 08 Cases -->
+  <section class="section" id="cases" aria-labelledby="cases-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Cases</span>
+        <h2 id="cases-title">결과보다 무엇을 먼저<br>확인했는지 기록합니다.</h2>
+        <p>개인정보를 담지 않은 익명 사례입니다.</p>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <p class="no">Case 01</p>
+          <h3>3년 연애 후 이별<small>마지막 대화 이후 차단</small></h3>
+          <dl>
+            <div><dt>확인한 것</dt><dd>차단 자체보다 마지막 대화에서 상대가 반복해서 말한 이별 이유를 먼저 확인했습니다.</dd></div>
+            <div><dt>상담 방향</dt><dd>추가 연락보다 이별 원인 가운데 실제로 달라질 수 있는 부분이 있는지 먼저 정리했습니다.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="no">Case 02</p>
+          <h3>반복된 이별과 재회<small>세 번째 이별 이후</small></h3>
+          <dl>
+            <div><dt>확인한 것</dt><dd>세 번의 이별이 모두 같은 문제에서 시작됐습니다.</dd></div>
+            <div><dt>상담 방향</dt><dd>연락 시점보다 같은 문제가 네 번째에도 반복될 가능성을 먼저 확인했습니다.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <p class="no">Case 03</p>
+          <h3>차단 해제 이후 연락 없음<small>스토리 열람은 계속되는 상황</small></h3>
+          <dl>
+            <div><dt>확인한 것</dt><dd>스토리 열람이나 차단 해제 자체를 재회의 신호로 해석하지 않았습니다.</dd></div>
+            <div><dt>상담 방향</dt><dd>마지막 대화와 이후의 공백을 기준으로 연락 여부를 판단했습니다.</dd></div>
+          </dl>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- 5. PROCESS -->
-  <section id="process" aria-labelledby="process-title">
-    <div class="wrap sec">
-      <p class="sec-name">진행 방식</p>
-      <div class="sec-body">
-        <h2 id="process-title">여섯 단계로 진행합니다.</h2>
-        <div class="process-grid">
-          <div style="display:grid; gap:24px; min-width:0">
-            <ol class="steps">
-              <li><span class="n">01</span><h3>상황 접수</h3><p>이별 시점, 현재 상황, 전화번호를 신청서에 적습니다.</p></li>
-              <li><span class="n">02</span><h3>입금과 일정 확정</h3><p>문자로 금액과 입금 계좌를 안내합니다. 입금이 확인되면 통화 일정을 확정합니다.</p></li>
-              <li><span class="n">03</span><h3>마지막 대화 확인</h3><p>필요한 대화만 공유합니다. 범위는 직접 정하십니다.</p></li>
-              <li><span class="n">04</span><h3>관계 흐름 분석</h3><p>이별 전후의 흐름을 시간 순서로 정리합니다.</p></li>
-              <li><span class="n">05</span><h3>행동 방향 제안</h3><p>연락, 대기, 정리 중 하나와 그 방식을 정합니다.</p></li>
-              <li><span class="n">06</span><h3>필요 시 후속 상담</h3><p>상황이 바뀌면 다시 점검합니다.</p></li>
-            </ol>
-            <p class="aside-note"><strong style="color:var(--fg);font-weight:600">전화 상담을 권장합니다.</strong> 말로 나누면 대화의 흐름과 맥락을 더 빨리 함께 확인할 수 있습니다. 약속한 시간에 [상담 전용 번호]로 전화드립니다. 1회 [ ]분입니다.</p>
-          </div>
-          <figure class="photo" aria-hidden="true"><div class="photo-box"><span>사진 자리 · 테이블 위에 엎어 둔 스마트폰과 커피잔</span></div></figure>
+  <!-- 09 Column -->
+  <section class="section" id="column" aria-labelledby="column-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Afterline Column</span>
+        <h2 id="column-title">이별 이후 자주 마주치는<br>장면을 하나씩 기록합니다.</h2>
+      </div>
+      <div class="col-feature">
+        <article class="col-lead">
+          <a href="column/block-lifted-no-contact.html">
+            <figure class="photo"><img src="images/city-night.jpg" width="1600" height="1000" alt="흐릿한 야간 도시의 불빛" loading="lazy"></figure>
+            <span class="col-cat">차단 이후</span>
+            <h3>차단이 풀렸는데 연락은 없습니다. 무엇이 달라진 걸까요</h3>
+            <p>차단 해제는 무언가 달라졌다는 표시처럼 보입니다. 하지만 무엇이 달라졌는지는 해제만으로 알 수 없습니다.</p>
+          </a>
+        </article>
+        <div class="col-side">
+          <a href="column/sns-story.html">
+            <span class="col-cat">SNS와 신호</span>
+            <h3>스토리를 계속 보는 행동은 판단 근거가 될 수 있을까요</h3>
+            <p>의미가 없어서가 아니라, 그 의미를 확인할 방법이 없기 때문에 판단에서 뺍니다.</p>
+          </a>
+          <a href="column/third-reunion.html">
+            <span class="col-cat">반복되는 관계</span>
+            <h3>세 번째 재회라면 연락 시점보다 먼저 봐야 할 것</h3>
+            <p>세 번의 이별을 나란히 놓으면, 시점보다 먼저 보이는 것이 있습니다.</p>
+          </a>
         </div>
       </div>
+      <div class="col-more"><a class="btn btn-ghost" href="column/index.html">Column 전체 보기 <span class="arr" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-  <!-- 6. PRINCIPLES -->
-  <section id="principles" aria-labelledby="principles-title">
-    <div class="wrap sec">
-      <p class="sec-name">원칙</p>
-      <div class="sec-body">
-        <h2 id="principles-title">Afterline의 원칙</h2>
-        <div class="principles">
-          <div class="principle"><h3>상대의 심리를 단정하지 않습니다.</h3><p>확인할 수 있는 말과 행동만 근거로 삼습니다.</p></div>
-          <div class="principle"><h3>재회를 보장하지 않습니다.</h3><p>약속하는 것은 결과가 아니라 판단의 근거입니다.</p></div>
-          <div class="principle"><h3>불필요한 연락을 권하지 않습니다.</h3><p>기다리거나 정리하는 쪽이 맞다면 그렇게 말씀드립니다.</p></div>
-          <div class="principle"><h3>차단과 거절의 뜻을 존중합니다.</h3><p>차단을 우회하는 방법은 안내하지 않습니다.</p></div>
-          <div class="principle"><h3>상담 내용은 비공개로 다룹니다.</h3><p>공유하신 대화는 상담 외의 목적으로 쓰지 않습니다. 보관 기간은 [ ]입니다.</p></div>
-          <div class="principle"><h3>감정보다 행동과 상황을 봅니다.</h3><p>속마음을 추측하지 않고, 흐름으로 판단합니다.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. CASES -->
-  <section id="cases" aria-labelledby="cases-title">
-    <div class="wrap sec">
-      <p class="sec-name">상담 예시</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="cases-title">무엇을 먼저 봤는지</h2>
-          <p class="lead">아래는 가상의 익명 사례입니다. 결과가 아니라, 무엇을 먼저 봤는지를 적었습니다.</p>
-        </div>
-        <div class="cases">
-          <article class="case">
-            <div><p class="case-tag">사례 1</p><h3>3년 연애 후 이별, 마지막 대화 이후 차단</h3></div>
-            <dl>
-              <div><dt>상황</dt><dd>3년 연애 끝에 이별 이야기가 오갔습니다. 마지막으로 길게 대화한 다음 날 차단되었습니다.</dd></div>
-              <div><dt>확인한 포인트</dt><dd>차단 전에 반복 연락은 없었습니다. 마지막 대화에서 상대가 이별 이유를 구체적으로 말했습니다.</dd></div>
-              <div><dt>상담 방향</dt><dd>지금은 연락하지 않기로 했습니다. 상대가 말한 이유 가운데 실제로 달라질 수 있는 것이 있는지부터 정리했습니다.</dd></div>
-            </dl>
-          </article>
-          <article class="case">
-            <div><p class="case-tag">사례 2</p><h3>반복 이별 후 상대가 연락을 끊은 경우</h3></div>
-            <dl>
-              <div><dt>상황</dt><dd>1년 반 동안 세 번 헤어지고 다시 만났습니다. 네 번째 이별 뒤로는 상대가 어떤 연락에도 답하지 않습니다.</dd></div>
-              <div><dt>확인한 포인트</dt><dd>세 번의 이별이 모두 같은 문제로 시작됐습니다. 다시 만날 때마다 그 문제를 다루지 않고 넘어갔습니다.</dd></div>
-              <div><dt>상담 방향</dt><dd>연락 시점보다 반복된 원인을 먼저 정리했습니다. 원인을 바꿀 방법이 없다면, 재회를 미루는 것도 선택지로 두었습니다.</dd></div>
-            </dl>
-          </article>
-          <article class="case">
-            <div><p class="case-tag">사례 3</p><h3>차단 해제 후 연락은 없지만 스토리는 보는 경우</h3></div>
-            <dl>
-              <div><dt>상황</dt><dd>이별 두 달 뒤 차단이 풀렸습니다. 연락은 없지만, 상대가 스토리를 계속 봅니다.</dd></div>
-              <div><dt>확인한 포인트</dt><dd>스토리 열람은 판단 근거에서 뺐습니다. 대신 차단 전 마지막 대화와 그 뒤의 공백을 봤습니다.</dd></div>
-              <div><dt>상담 방향</dt><dd>차단 해제를 연락 신호로 보지 않기로 했습니다. 마지막 대화가 다툼 없이 끝났는지 확인하고, 연락 여부는 2주 뒤 다시 보기로 했습니다.</dd></div>
-            </dl>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. FAQ -->
-  <section id="faq" aria-labelledby="faq-title">
-    <div class="wrap sec">
-      <p class="sec-name">자주 묻는 질문</p>
-      <div class="sec-body">
+  <!-- 10 FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap split">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">FAQ</span>
         <h2 id="faq-title">자주 묻는 질문</h2>
-        <div class="faq" id="faq-list">
-          <details><summary>차단당했는데 재회 가능성이 있나요?</summary><p class="answer">차단은 가능성에 대한 답이 아니라, 지금은 연락을 받지 않겠다는 표시입니다. 같은 차단도 언제, 어떤 흐름에서 일어났는지에 따라 다음 행동이 달라집니다. 가능성을 숫자로 말하지 않고, 그 흐름을 함께 봅니다.</p></details>
-          <details><summary>공백기는 얼마나 가져야 하나요?</summary><p class="answer">공백기는 기간이 아니라 마지막 대화로 정합니다. 다툼으로 끝난 대화와 차분하게 끝난 대화는, 같은 한 달이라도 의미가 다릅니다.</p></details>
-          <details><summary>먼저 연락하면 안 되나요?</summary><p class="answer">먼저 연락하는 것 자체가 문제는 아닙니다. 다만 이별 원인과 마지막 대화를 보기 전이라면, 연락보다 판단이 먼저입니다.</p></details>
-          <details><summary>상대가 스토리를 보면 미련이 있다는 뜻인가요?</summary><p class="answer">스토리 열람은 미련의 증거로 보지 않습니다. 습관이나 화면 넘김처럼 다른 이유가 많아, 판단 근거에서 제외합니다.</p></details>
-          <details class="faq-more"><summary>상담은 전화로 하나요?</summary><p class="answer">전화 상담을 권장합니다. 글보다 말로 나눌 때 흐름과 맥락을 더 빨리 함께 확인할 수 있습니다.</p></details>
-          <details class="faq-more"><summary>재회상담은 한 번으로 끝나나요?</summary><p class="answer">한 번의 상담에서 다음 행동 하나를 정하는 것이 기본입니다. 상대 반응이 생기거나 상황이 바뀌면, 후속 상담에서 다시 봅니다.</p></details>
-          <details class="faq-more"><summary>카톡 캡처도 봐주나요?</summary><p class="answer">네, 필요한 부분만 보내 주시면 됩니다. 이름, 연락처, 사진은 가리셔도 상담에 지장이 없습니다.</p></details>
-          <details class="faq-more"><summary>헤어진 지 오래돼도 상담 가능한가요?</summary><p class="answer">가능합니다. 기간보다 마지막 대화와 그 이후의 변화를 봅니다.</p></details>
-          <details class="faq-more"><summary>남성도 상담을 받나요?</summary><p class="answer">네. 성별에 따라 상담을 나누지 않고, 누구든 같은 기준으로 대화와 흐름을 봅니다.</p></details>
-          <details class="faq-more"><summary>가격과 결제는 어떻게 되나요?</summary><p class="answer">가격은 상담 상품별로 따로 안내합니다. 결제는 상담 전 계좌이체로 받으며, 입금이 확인되면 일정을 확정합니다. 현금영수증이 필요하시면 입금 시 말씀해 주세요.</p></details>
-          <details class="faq-more"><summary>어떤 번호로 전화가 오나요?</summary><p class="answer">약속한 시간에 [상담 전용 번호]로 전화드립니다. 일정 확정 문자에도 같은 번호를 적어 드리니, 미리 저장해 두시면 됩니다.</p></details>
-          <details class="faq-more"><summary>일정을 바꾸거나 취소할 수 있나요?</summary><p class="answer">상담 [ ]시간 전까지는 일정 변경과 전액 환불이 가능합니다. 그 이후의 기준은 [환불 규정]을 따릅니다.</p></details>
-        </div>
-        <div><button class="btn btn-ghost" id="faq-toggle" type="button" aria-expanded="false" aria-controls="faq-list">전체 질문 보기</button></div>
+      </div>
+      <div class="faq" id="faq-list">
+        <details><summary>차단당했는데 재회 가능성이 있나요?</summary><p class="answer">차단은 가능성에 대한 답이 아니라, 지금은 연락을 받지 않겠다는 표시입니다. 같은 차단도 언제, 어떤 흐름에서 일어났는지에 따라 다음 행동이 달라집니다. 가능성을 숫자로 말하지 않고, 그 흐름을 함께 봅니다.</p></details>
+        <details><summary>공백기는 얼마나 가져야 하나요?</summary><p class="answer">공백기는 기간이 아니라 마지막 대화로 정합니다. 다툼으로 끝난 대화와 차분하게 끝난 대화는, 같은 한 달이라도 의미가 다릅니다.</p></details>
+        <details><summary>먼저 연락하면 안 되나요?</summary><p class="answer">먼저 연락하는 것 자체가 문제는 아닙니다. 다만 이별 원인과 마지막 대화를 보기 전이라면, 연락보다 판단이 먼저입니다.</p></details>
+        <details><summary>상대가 스토리를 보면 미련이 있다는 뜻인가요?</summary><p class="answer">스토리 열람은 미련의 증거로 보지 않습니다. 습관이나 화면 넘김처럼 다른 이유가 많아, 판단 근거에서 제외합니다.</p></details>
+        <details><summary>상담은 전화로 하나요?</summary><p class="answer">전화 상담을 권장합니다. 글보다 말로 나눌 때 흐름과 맥락을 더 빨리 함께 확인할 수 있습니다.</p></details>
+        <details><summary>상담은 한 번으로 끝나나요?</summary><p class="answer">한 번의 상담에서 다음 행동 하나를 정하는 것이 기본입니다. 상대 반응이 생기거나 상황이 바뀌면, 후속 상담에서 다시 봅니다.</p></details>
+        <details><summary>카톡 캡처도 봐주나요?</summary><p class="answer">네, 필요한 부분만 보내 주시면 됩니다. 이름, 연락처, 사진은 가리셔도 상담에 지장이 없습니다.</p></details>
+        <details><summary>헤어진 지 오래돼도 상담할 수 있나요?</summary><p class="answer">가능합니다. 기간보다 마지막 대화와 그 이후의 변화를 봅니다.</p></details>
+        <details><summary>남성도 상담을 받나요?</summary><p class="answer">네. 성별에 따라 상담을 나누지 않고, 누구든 같은 기준으로 대화와 흐름을 봅니다.</p></details>
+        <details><summary>가격과 결제는 어떻게 되나요?</summary><p class="answer">가격은 상담 상품별로 따로 안내합니다. 결제는 상담 전 계좌이체로 받으며, 입금이 확인되면 일정을 확정합니다. 현금영수증이 필요하시면 입금 시 말씀해 주세요.</p></details>
+        <details><summary>어떤 번호로 전화가 오나요?</summary><p class="answer">약속한 시간에 [상담 전용 번호]로 전화드립니다. 일정 확정 문자에도 같은 번호를 적어 드리니, 미리 저장해 두시면 됩니다.</p></details>
+        <details><summary>일정을 바꾸거나 취소할 수 있나요?</summary><p class="answer">상담 [ ]시간 전까지는 일정 변경과 전액 환불이 가능합니다. 그 이후의 기준은 <a class="link-u" href="terms.html">이용약관 및 환불 규정</a>을 따릅니다.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- 9. ARTICLES -->
-  <section id="articles" aria-labelledby="articles-title">
-    <div class="wrap sec">
-      <p class="sec-name">아티클</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="articles-title">이별 이후의 장면들</h2>
-          <p class="lead">자주 마주치는 장면을 하나씩 정리합니다.</p>
+  <!-- 11 A Quiet Decision -->
+  <section class="quiet" aria-label="A Quiet Decision">
+    <div class="wrap">
+      <span class="eyebrow">A Quiet Decision</span>
+      <blockquote class="reveal">때로는 연락하는 것보다<br>연락하지 않기로 결정하는 것이 더 어렵습니다.</blockquote>
+      <p class="reveal">AFTERLINE은 재회를 권하기 위해 상담하지 않습니다.<br>현재 관계를 보고 다음 행동을 정하기 위해 상담합니다.</p>
+    </div>
+  </section>
+
+  <!-- 12 Consultation CTA -->
+  <section class="section cta-sec" id="consult" aria-labelledby="consult-title">
+    <div class="wrap">
+      <div class="cta-head">
+        <span class="eyebrow">Private Consultation</span>
+        <h2 id="consult-title">지금 필요한 다음 행동을<br>함께 정리합니다.</h2>
+        <p>연락을 서두르기 전에 마지막 대화와 현재 관계의 흐름부터 확인합니다.</p>
+        <div class="cta-row" id="consult-cta">
+          <a class="btn btn-primary" href="#apply">상담 시작하기 <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#process">상담 방식 보기</a>
         </div>
-        <ul class="articles">
-          <li><a href="articles/after-block-next-step.html"><span class="cat">차단 후 재회</span><span class="t">차단 후 재회, 차단이 풀린 날보다 그다음 행동을 봐야 합니다</span></a></li>
-          <li><a href="articles/last-message-take-care.html"><span class="cat">이별 후 연락</span><span class="t">이별 후 연락, 마지막 카톡이 '잘 지내'였을 때</span></a></li>
-          <li><a href="articles/gap-last-conversation.html"><span class="cat">재회 공백기</span><span class="t">재회 공백기, 한 달보다 중요한 건 마지막 대화입니다</span></a></li>
-        </ul>
-        <div><a class="btn btn-ghost" href="articles/index.html">아티클 전체 보기</a></div>
-        <ul class="cat-list" aria-label="아티클 카테고리">
-          <li><a href="articles/index.html#after-block">차단 후 재회</a></li><li><a href="articles/index.html#contact">이별 후 연락</a></li><li><a href="articles/index.html#gap">재회 공백기</a></li><li><a href="articles/index.html#ex-boyfriend">전남친 재회</a></li><li><a href="articles/index.html#ex-girlfriend">전여친 재회</a></li><li><a href="articles/index.html#message">카톡 분석</a></li><li><a href="articles/index.html#after-reunion">재회 후 관계</a></li><li><a href="articles/index.html#first-days">이별 직후 대응</a></li>
-        </ul>
+        <p class="small">상담 내용은 비공개로 다룹니다.</p>
+      </div>
+      <div id="process">
+        <ol class="process">
+          <li><span class="n">01</span><b>상황 접수</b><span>이별 시점, 현재 상황, 전화번호를 남깁니다.</span></li>
+          <li><span class="n">02</span><b>입금과 일정 확정</b><span>문자로 금액과 계좌를 안내하고, 입금 확인 후 통화 일정을 정합니다.</span></li>
+          <li><span class="n">03</span><b>마지막 대화 확인</b><span>필요한 대화만 공유합니다. 범위는 직접 정하십니다.</span></li>
+          <li><span class="n">04</span><b>관계 흐름 분석</b><span>이별 전후의 흐름을 시간 순서로 정리합니다.</span></li>
+          <li><span class="n">05</span><b>다음 행동</b><span>연락, 기다림, 정리, 재접촉 가운데 하나와 그 방식을 정합니다.</span></li>
+          <li><span class="n">06</span><b>필요 시 후속</b><span>상황이 바뀌면 다시 점검합니다.</span></li>
+        </ol>
+        <p class="process-note">전화 상담을 권장합니다. 약속한 시간에 [상담 전용 번호]로 전화드리며, 1회 [ ]분입니다.</p>
       </div>
     </div>
   </section>
 
-  <!-- photo 3 -->
-  <div class="photo-band" aria-hidden="true">
-    <div class="wrap">
-      <figure class="photo" style="padding-block: var(--section) 0;"><div class="photo-box"><span>사진 자리 · 저녁 카페에 혼자 앉은 뒷모습, 얼굴은 보이지 않게</span></div></figure>
-    </div>
-  </div>
-
-  <!-- 10. FINAL CTA -->
-  <section class="final" id="start" aria-label="상담 시작">
-    <div class="wrap">
-      <p class="big">지금 필요한 건 더 많은 연락이 아니라, 다음 행동을 정하는 일일 수 있습니다.</p>
-      <div id="final-cta"><a class="btn btn-primary" href="#apply">상담 시작하기</a></div>
-    </div>
-  </section>
-
-  <!-- APPLY -->
+  <!-- Form -->
   <section class="apply" id="apply" aria-labelledby="apply-title">
-    <div class="wrap sec">
-      <p class="sec-name">상담 신청</p>
-      <div class="sec-body">
-        <div class="sec-head">
-          <h2 id="apply-title">상담 신청</h2>
-          <p class="lead">다섯 가지만 적어 주세요. 대화 내용은 상담 단계에서 필요한 부분만 확인합니다.</p>
-        </div>
+    <div class="wrap apply-grid">
+      <div class="apply-intro">
+        <span class="eyebrow">Request</span>
+        <h2 id="apply-title">상담 신청</h2>
+        <p>몇 가지만 남겨 주세요. 대화 내용은 상담 단계에서 필요한 부분만 확인합니다.</p>
+      </div>
+      <div>
         <form class="form" id="apply-form" novalidate>
           <div class="field">
             <label for="f-when">이별 시점</label>
@@ -436,11 +449,11 @@
           </div>
           <fieldset class="field">
             <legend>현재 연락 상태</legend>
-            <div class="choices two">
-              <label class="choice"><input type="radio" id="f-state-1" name="state" value="연락 중" required>연락 중</label>
-              <label class="choice"><input type="radio" id="f-state-2" name="state" value="답장 없음">답장 없음</label>
-              <label class="choice"><input type="radio" id="f-state-3" name="state" value="차단">차단</label>
-              <label class="choice"><input type="radio" id="f-state-4" name="state" value="재회 후">재회 후</label>
+            <div class="choices">
+              <label class="choice"><input type="radio" id="f-state-1" name="state" value="연락 중" required><span>연락 중</span></label>
+              <label class="choice"><input type="radio" id="f-state-2" name="state" value="답장 없음"><span>답장 없음</span></label>
+              <label class="choice"><input type="radio" id="f-state-3" name="state" value="차단"><span>차단</span></label>
+              <label class="choice"><input type="radio" id="f-state-4" name="state" value="재회 후"><span>재회 후</span></label>
             </div>
           </fieldset>
           <div class="field">
@@ -448,28 +461,29 @@
             <select id="f-service" name="service" required>
               <option value="">선택해 주세요</option>
               <option>이별 직후 상담</option>
-              <option>카톡 분석 상담</option>
-              <option>재회 전략 상담</option>
-              <option>재회 후 상담</option>
+              <option>마지막 대화 분석</option>
+              <option>재접촉 전략 상담</option>
+              <option>재회 후 관계 상담</option>
               <option>잘 모르겠음</option>
             </select>
           </div>
           <div class="field">
-            <label for="f-memo">상황 메모 <span class="hint">(선택)</span></label>
+            <label for="f-memo">상황 메모 <span>(선택)</span></label>
             <textarea id="f-memo" name="memo" placeholder="예: 3주 전 이별, 마지막 카톡 이후 답장 없음"></textarea>
-            <p class="hint">이름, 연락처 같은 상대의 정보는 적지 않으셔도 됩니다.</p>
+            <p class="hint">상대의 이름이나 연락처는 작성하지 않으셔도 됩니다.</p>
           </div>
           <div class="field">
-            <label for="f-contact">전화번호</label>
+            <label for="f-contact">연락처</label>
             <input type="text" id="f-contact" name="contact" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" pattern="[0-9\-\s]{9,15}" required>
-            <p class="hint">상담은 전화로 진행하는 것을 권장합니다. 카카오톡 ID 등 다른 연락처는 받지 않습니다.</p>
+            <p class="hint">전화번호만 받습니다. 상담은 전화로 진행하는 것을 권장합니다.</p>
           </div>
-          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="f-website">웹사이트</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
-          <label class="consent"><input type="checkbox" id="f-consent" name="consent" required><span>상담 진행을 위한 개인정보 수집과 이용에 동의합니다. <a href="privacy.html" target="_blank" rel="noopener">개인정보처리방침 보기</a></span></label>
+          <div class="hp" aria-hidden="true"><label for="f-website">웹사이트</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+          <label class="consent"><input type="checkbox" id="f-consent" name="consent" required><span>상담 진행을 위한 개인정보 수집과 이용에 동의합니다. <a class="link-u" href="privacy.html" target="_blank" rel="noopener">개인정보처리방침</a></span></label>
           <p class="form-error" id="form-error" hidden>빈 항목을 채우고, 전화번호는 숫자로 적어 주세요.</p>
-          <button class="btn btn-primary" type="submit">접수하기</button>
+          <button class="btn btn-primary" type="submit">상담 접수하기 <span class="arr" aria-hidden="true">→</span></button>
         </form>
         <div class="done" id="done" hidden tabindex="-1">
+          <span class="eyebrow">Received</span>
           <h3>접수되었습니다.</h3>
           <p>[ ] 안에 남겨 주신 번호로 금액과 입금 계좌를 문자로 안내드립니다. 입금이 확인되면 통화 일정을 확정합니다.</p>
         </div>
@@ -481,77 +495,87 @@
 
 <footer>
   <div class="wrap">
-    <a class="wordmark" href="#top">Afterline</a>
-    <p>이별 이후의 흐름을 봅니다.</p>
-    <ul>
-      <li><a href="#services">상담 안내</a></li>
-      <li><a href="articles/index.html">아티클</a></li>
-      <li><a href="privacy.html">개인정보처리방침</a></li>
-      <li><a href="terms.html">이용약관 및 환불 규정</a></li>
-    </ul>
-    <p>[상호] · [대표자] · [사업자등록번호] · [통신판매업 신고번호] · [문의 연락처]</p>
-    <p>Afterline은 재회를 보장하지 않으며, 상대의 차단과 거절 의사를 존중합니다.</p>
+    <div class="top">
+      <div>
+        <a class="wordmark" href="#top">AFTERLINE</a>
+        <p class="tag">Relationship Advisory</p>
+      </div>
+      <ul>
+        <li><a href="#services">Consultation</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="column/index.html">Column</a></li>
+        <li><a href="privacy.html">개인정보처리방침</a></li>
+        <li><a href="terms.html">이용약관 및 환불 규정</a></li>
+      </ul>
+    </div>
+    <div class="legal">
+      <p>AFTERLINE은 재회를 보장하지 않으며, 상대의 차단과 거절 의사를 존중합니다.</p>
+      <p>[상호] · [대표자] · [사업자등록번호] · [통신판매업 신고번호] · [문의 연락처]</p>
+    </div>
   </div>
 </footer>
 
 <div class="bottom-bar" id="bottom-bar">
-  <a class="btn btn-primary" href="#apply">상담 시작하기</a>
+  <a href="#apply">상담 시작하기 <span class="arr" aria-hidden="true">→</span></a>
 </div>
 
 <script>
 (function () {
-  // 모바일 메뉴
-  var menuBtn = document.getElementById('menu-btn');
-  var mobileNav = document.getElementById('mobile-nav');
-  menuBtn.addEventListener('click', function () {
-    var open = mobileNav.hidden;
-    mobileNav.hidden = !open;
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.textContent = open ? '닫기' : '메뉴';
-  });
-  mobileNav.addEventListener('click', function (e) {
-    if (e.target.closest('a')) { mobileNav.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = '메뉴'; }
-  });
+  document.documentElement.classList.add('js');
 
-  // FAQ 전체 보기
-  var faqList = document.getElementById('faq-list');
-  var faqToggle = document.getElementById('faq-toggle');
-  faqToggle.addEventListener('click', function () {
-    var all = faqList.classList.toggle('show-all');
-    faqToggle.setAttribute('aria-expanded', String(all));
-    faqToggle.textContent = all ? '질문 접기' : '전체 질문 보기';
-  });
-  // FAQ는 한 번에 하나만 펼침
-  faqList.addEventListener('toggle', function (e) {
+  // 메뉴
+  var menuBtn = document.getElementById('menu-btn'), mobileNav = document.getElementById('mobile-nav');
+  function setMenu(open) { mobileNav.hidden = !open; menuBtn.setAttribute('aria-expanded', String(open)); menuBtn.textContent = open ? 'Close' : 'Menu'; }
+  menuBtn.addEventListener('click', function () { setMenu(mobileNav.hidden); });
+  mobileNav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+
+  // 헤더 선
+  var header = document.getElementById('site-header');
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // 아주 느린 fade-in: 첫 화면 밖에 있는 요소만
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pending'); io.observe(el); }
+    });
+  }
+
+  // FAQ: 하나씩
+  var faq = document.getElementById('faq-list');
+  faq.addEventListener('toggle', function (e) {
     if (!e.target.open) return;
-    faqList.querySelectorAll('details[open]').forEach(function (d) { if (d !== e.target) d.open = false; });
+    faq.querySelectorAll('details[open]').forEach(function (d) { if (d !== e.target) d.open = false; });
   }, true);
 
-  // 상품 카드에서 누른 상담을 신청서에 미리 선택
+  // 서비스에서 고른 상담을 미리 선택
   var serviceSelect = document.getElementById('f-service');
   document.querySelectorAll('[data-service]').forEach(function (a) {
     a.addEventListener('click', function () { serviceSelect.value = a.getAttribute('data-service'); });
   });
 
-  // 모바일 하단 버튼: 다른 CTA가 보이면 숨김
+  // 모바일 하단 버튼: 다른 상담 버튼이 보이면 숨김
   var bar = document.getElementById('bottom-bar');
-  var watched = ['hero-cta', 'final-cta', 'apply'].map(function (id) { return document.getElementById(id); });
   if ('IntersectionObserver' in window) {
-    var visible = new Set();
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { en.isIntersecting ? visible.add(en.target) : visible.delete(en.target); });
-      bar.classList.toggle('is-hidden', visible.size > 0);
+    var seen = new Set();
+    var bio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.isIntersecting ? seen.add(e.target) : seen.delete(e.target); });
+      bar.classList.toggle('is-hidden', seen.size > 0);
     });
-    watched.forEach(function (el) { io.observe(el); });
+    ['hero-cta', 'consult-cta', 'apply'].forEach(function (id) { bio.observe(document.getElementById(id)); });
   }
 
-  // 신청서 (시안: 전송하지 않음)
-  var form = document.getElementById('apply-form');
-  var err = document.getElementById('form-error');
-  var done = document.getElementById('done');
+  // 신청서
+  var form = document.getElementById('apply-form'), err = document.getElementById('form-error'), done = document.getElementById('done');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!form.checkValidity()) { err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return; }
+    if (!form.checkValidity()) {
+      err.textContent = '빈 항목을 채우고, 전화번호는 숫자로 적어 주세요.';
+      err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return;
+    }
     err.hidden = true;
     var data = {
       when: form.when.value,
@@ -563,15 +587,12 @@
       website: form.website.value
     };
     var btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true; btn.textContent = '접수 중…';
+    btn.disabled = true; btn.firstChild.textContent = '접수 중… ';
     fetch('/api/apply', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(); }); })
       .then(function () { form.hidden = true; done.hidden = false; done.focus(); })
-      .catch(function () {
-        err.textContent = '접수하지 못했습니다. 입력 내용을 확인한 뒤 다시 눌러 주세요.';
-        err.hidden = false;
-      })
-      .finally(function () { btn.disabled = false; btn.textContent = '접수하기'; });
+      .catch(function () { err.textContent = '접수하지 못했습니다. 입력 내용을 확인한 뒤 다시 눌러 주세요.'; err.hidden = false; })
+      .finally(function () { btn.disabled = false; btn.firstChild.textContent = '상담 접수하기 '; });
   });
 })();
 </script>

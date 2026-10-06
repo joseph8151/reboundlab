@@ -1,0 +1,7 @@
+# 이전 아티클 주소 → Column
+/articles/message-at-2am /column/long-message-next-day 301
+/articles/message-at-2am.html /column/long-message-next-day 301
+/articles/index.html /column/ 301
+/articles/ /column/ 301
+/articles /column/ 301
+/articles/* /column/:splat 301

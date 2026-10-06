@@ -5,7 +5,7 @@
 
 const BREAKUP = ["1주 이내", "1주~1개월", "1~3개월", "3개월 이상", "재회 후 상담 (해당 없음)"];
 const STATE = ["연락 중", "답장 없음", "차단", "재회 후"];
-const SERVICE = ["이별 직후 상담", "카톡 분석 상담", "재회 전략 상담", "재회 후 상담", "잘 모르겠음"];
+const SERVICE = ["이별 직후 상담", "마지막 대화 분석", "재접촉 전략 상담", "재회 후 관계 상담", "잘 모르겠음"];
 const STATUS = ["접수", "입금 대기", "일정 확정", "상담 완료", "취소"];
 
 export default {
@@ -57,7 +57,7 @@ async function apply(request, env, ctx) {
         method: "POST",
         headers: { "content-type": "application/json", accept: "application/json" },
         body: JSON.stringify({
-          _subject: `[Afterline] 새 상담 신청 · ${d.service}`,
+          _subject: `[AFTERLINE] 새 상담 신청 · ${d.service}`,
           전화번호: formatPhone(phone),
           원하는_상담: d.service,
           이별_시점: d.when,

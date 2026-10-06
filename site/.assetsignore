@@ -1,4 +1,6 @@
 build.py
 articles_data.py
+columns_data.py
+legal_data.py
 __pycache__
 .assetsignore

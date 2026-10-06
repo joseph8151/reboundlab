@@ -132,7 +132,7 @@
 - 시간은 한국 시간으로 표시됩니다.
 
 **페이지를 고친 뒤**
-- 아티클이나 약관을 고쳤다면 `python3 site/build.py`를 실행한 뒤 커밋합니다.
+- Column이나 약관을 고쳤다면 `python3 site/build.py`를 실행한 뒤 커밋합니다. 원고는 `site/columns_data.py`, `site/legal_data.py`에 있습니다.
 - 푸시하면 Cloudflare가 자동으로 다시 배포합니다.
 
 **새 신청 이메일 알림 (Formspree)**
