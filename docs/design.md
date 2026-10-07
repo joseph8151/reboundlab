@@ -2,7 +2,7 @@
 
 - 분위기: 부티크 호텔, 퍼스널 컨설팅, 독립 매거진. 조용하고 절제된 에디토리얼.
 - 컬러: Ivory `#F6F3EE` 배경 · Text `#222222` · Secondary `#65615B` · Deep Navy `#17202B`(버튼, A Quiet Decision) · Warm Charcoal `#292824`(푸터) · Accent `#8A7563`(번호, 라벨. 5% 이하)
-- 글꼴: 영문 브랜드·라벨·숫자 Cormorant Garamond · 한글 제목 Noto Serif KR 300 · 본문 Pretendard
+- 글꼴: 영문 브랜드·라벨·숫자 Cormorant Garamond · 한글 제목 Hahmlet(가는 굵기) · 본문 Pretendard. 세 글꼴 모두 `site/fonts/`에 직접 포함(SIL OFL). Pretendard는 KS X 1001 한글 2,350자와 사이트에 쓰인 글자로 줄인 파일입니다.
 - 워드마크: AFTERLINE, letter-spacing 0.32em
 - 카드 없음. 얇은 선과 여백으로 구분. 아이콘 대신 번호와 화살표만.
 - 사진: 4장. 사람 얼굴, 커플, 하트, 장미, 핑크·보라 그라데이션 금지.

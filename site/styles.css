@@ -1,6 +1,7 @@
 /* AFTERLINE — Relationship Advisory
    Layout: 조용한 에디토리얼. 넓은 여백, 얇은 선, 큰 사진 몇 장. 카드 없음.
-   Type: 영문 디스플레이 Cormorant Garamond · 한글 제목 Noto Serif KR(300) · 본문 Pretendard */
+   Type: 영문 디스플레이 Cormorant Garamond · 한글 제목 Hahmlet(가는 굵기) · 본문 Pretendard
+   글꼴 파일은 fonts/에 직접 포함합니다. */
 
 :root {
   --bg: #F6F3EE;          /* warm ivory */
@@ -17,9 +18,9 @@
   --on-dark-muted: #A9A49B;
   --img: #D8D0C4;
 
-  --display: "Cormorant Garamond", "Noto Serif KR", Georgia, serif;
-  --serif: "Noto Serif KR", "Cormorant Garamond", "Nanum Myeongjo", serif;
-  --sans: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --display: "Cormorant Garamond", "Hahmlet", Georgia, serif;
+  --serif: "Hahmlet", "Cormorant Garamond", "Noto Serif KR", "Nanum Myeongjo", serif;
+  --sans: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
 
   --gutter: 20px;
   --max: 1240px;
@@ -64,7 +65,7 @@ p { margin: 0; }
 }
 .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
 
-h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 300; letter-spacing: -0.03em; line-height: 1.38; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 300; letter-spacing: -0.035em; line-height: 1.38; text-wrap: balance; }
 h3 { font-weight: 400; letter-spacing: -0.02em; }
 
 .eyebrow {
@@ -151,7 +152,7 @@ h3 { font-weight: 400; letter-spacing: -0.02em; }
 .hero-text { display: grid; gap: 30px; align-content: end; min-width: 0; }
 .hero-brand { display: grid; gap: 6px; }
 .hero-brand .wordmark { font-size: 15px; letter-spacing: 0.36em; }
-.hero h1 { font-size: 40px; line-height: 1.28; letter-spacing: -0.045em; }
+.hero h1 { font-size: 40px; line-height: 1.26; letter-spacing: -0.05em; font-weight: 250; }
 .hero h1 span { display: block; }
 @media (min-width: 600px) { .hero h1 { font-size: 56px; } }
 @media (min-width: 1200px) { .hero h1 { font-size: 76px; } }

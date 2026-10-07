@@ -21,10 +21,6 @@ CAT = dict(CATEGORIES)
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
            "%3Crect width='64' height='64' fill='%2317202B'/%3E%3Ctext x='32' y='44' text-anchor='middle' "
            "font-family='Georgia,serif' font-size='34' fill='%23F6F3EE'%3EA%3C/text%3E%3C/svg%3E")
-FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@300;400&display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">"""
 
 
 def head(title, desc, p, path, active="", image=None, robots=None):
@@ -44,7 +40,8 @@ def head(title, desc, p, path, active="", image=None, robots=None):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">{og_img}
 <link rel="icon" href="{FAVICON}">
-{FONTS}
+<link rel="preload" href="{p}fonts/pretendard-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{p}fonts/fonts.css">
 <link rel="stylesheet" href="{p}styles.css">
 </head>
 <body>
