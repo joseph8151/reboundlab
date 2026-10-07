@@ -470,3 +470,13 @@ footer .legal { display: grid; gap: 6px; padding-top: 28px; border-top: 1px soli
 .col-lead a { padding-top: 36px; border-top: 1px solid var(--fg); }
 .col-lead h3 { font-size: 30px; }
 @media (min-width: 960px) { .col-lead h3 { font-size: 42px; line-height: 1.4; } }
+
+/* ── 상담 신청서 단계 ───────────────────── */
+.form-lead { font-size: 14px; line-height: 1.8; color: var(--muted); padding-bottom: 8px; }
+.req-mark { color: var(--accent); margin-left: 2px; }
+.opt { color: var(--muted); font-size: 12px; letter-spacing: 0; }
+.form-section { display: grid; gap: 36px; padding-top: 28px; border-top: 1px solid var(--fg); }
+.form-step { display: flex; align-items: baseline; gap: 14px; font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: -0.02em; }
+.form-step span { font-family: var(--display); font-size: 16px; color: var(--accent); }
+.field .hint + .hint { margin-top: -6px; }
+.choices + .hint { margin-top: 2px; }

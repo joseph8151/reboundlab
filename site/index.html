@@ -428,48 +428,96 @@
       <div class="apply-intro">
         <span class="eyebrow">Request</span>
         <h2 id="apply-title">상담 신청</h2>
-        <p>몇 가지만 남겨 주세요. 대화 내용은 상담 단계에서 필요한 부분만 확인합니다.</p>
+        <p>관계, 지금의 연락, 원하는 상담 순서로 적어 주세요. 3분 정도 걸립니다. 대화 캡처는 상담 단계에서 필요한 부분만 확인합니다.</p>
       </div>
       <div>
         <form class="form" id="apply-form" novalidate>
-          <div class="field">
-            <label for="f-when">이별 시점</label>
-            <select id="f-when" name="when" required>
-              <option value="">선택해 주세요</option>
-              <option>1주 이내</option>
-              <option>1주~1개월</option>
-              <option>1~3개월</option>
-              <option>3개월 이상</option>
-              <option>재회 후 상담 (해당 없음)</option>
-            </select>
-          </div>
+          <p class="form-lead">자세히 적어 주실수록 상담 시간을 상황 판단에 더 쓸 수 있습니다. 모르는 항목은 비워 두셔도 됩니다. <span class="req-mark" aria-hidden="true">*</span> 표시는 꼭 필요한 항목입니다.</p>
+<!-- FORM:START (site/build.py가 src/form_fields.json으로 만듭니다. 직접 고치지 마세요) -->
+          <div class="form-section">
+            <p class="form-step"><span>01</span>관계</p>
           <fieldset class="field">
-            <legend>현재 연락 상태</legend>
-            <div class="choices">
-              <label class="choice"><input type="radio" id="f-state-1" name="state" value="연락 중" required><span>연락 중</span></label>
-              <label class="choice"><input type="radio" id="f-state-2" name="state" value="답장 없음"><span>답장 없음</span></label>
-              <label class="choice"><input type="radio" id="f-state-3" name="state" value="차단"><span>차단</span></label>
-              <label class="choice"><input type="radio" id="f-state-4" name="state" value="재회 후"><span>재회 후</span></label>
-            </div>
+            <legend>연애 기간 <span class="req-mark" aria-hidden="true">*</span></legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-duration-1" name="duration" value="3개월 미만" required><span>3개월 미만</span></label><label class="choice"><input type="radio" id="f-duration-2" name="duration" value="3개월~1년"><span>3개월~1년</span></label><label class="choice"><input type="radio" id="f-duration-3" name="duration" value="1~3년"><span>1~3년</span></label><label class="choice"><input type="radio" id="f-duration-4" name="duration" value="3년 이상"><span>3년 이상</span></label></div>
           </fieldset>
           <div class="field">
-            <label for="f-service">원하는 상담</label>
-            <select id="f-service" name="service" required>
-              <option value="">선택해 주세요</option>
-              <option>이별 직후 상담</option>
-              <option>마지막 대화 분석</option>
-              <option>재접촉 전략 상담</option>
-              <option>재회 후 관계 상담</option>
-              <option>잘 모르겠음</option>
-            </select>
+            <label for="f-when">이별 시점 <span class="req-mark" aria-hidden="true">*</span></label>
+            <select id="f-when" name="when" required><option value="">선택해 주세요</option><option>1주 이내</option><option>1주~1개월</option><option>1~3개월</option><option>3개월 이상</option><option>재회 후 상담 (해당 없음)</option></select>
+          </div>
+          <fieldset class="field">
+            <legend>이별을 먼저 말한 사람 <span class="req-mark" aria-hidden="true">*</span></legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-initiator-1" name="initiator" value="상대" required><span>상대</span></label><label class="choice"><input type="radio" id="f-initiator-2" name="initiator" value="나"><span>나</span></label><label class="choice"><input type="radio" id="f-initiator-3" name="initiator" value="함께 정함"><span>함께 정함</span></label><label class="choice"><input type="radio" id="f-initiator-4" name="initiator" value="분명하지 않음"><span>분명하지 않음</span></label></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>이번 이별은 몇 번째인가요</legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-times-1" name="times" value="처음"><span>처음</span></label><label class="choice"><input type="radio" id="f-times-2" name="times" value="두 번째"><span>두 번째</span></label><label class="choice"><input type="radio" id="f-times-3" name="times" value="세 번 이상"><span>세 번 이상</span></label></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>이별의 주된 이유</legend>
+            <div class="choices"><label class="choice"><input type="checkbox" id="f-reasons-1" name="reasons" value="연락 문제"><span>연락 문제</span></label><label class="choice"><input type="checkbox" id="f-reasons-2" name="reasons" value="성격·가치관 차이"><span>성격·가치관 차이</span></label><label class="choice"><input type="checkbox" id="f-reasons-3" name="reasons" value="신뢰 문제"><span>신뢰 문제</span></label><label class="choice"><input type="checkbox" id="f-reasons-4" name="reasons" value="시간·거리"><span>시간·거리</span></label><label class="choice"><input type="checkbox" id="f-reasons-5" name="reasons" value="가족·주변 문제"><span>가족·주변 문제</span></label><label class="choice"><input type="checkbox" id="f-reasons-6" name="reasons" value="다른 사람"><span>다른 사람</span></label><label class="choice"><input type="checkbox" id="f-reasons-7" name="reasons" value="잘 모르겠음"><span>잘 모르겠음</span></label></div><p class="hint">해당하는 것을 모두 골라 주세요.</p>
+          </fieldset>
+          </div>
+          <div class="form-section">
+            <p class="form-step"><span>02</span>지금의 연락</p>
+          <fieldset class="field">
+            <legend>현재 연락 상태 <span class="req-mark" aria-hidden="true">*</span></legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-state-1" name="state" value="연락 중" required><span>연락 중</span></label><label class="choice"><input type="radio" id="f-state-2" name="state" value="답장 없음"><span>답장 없음</span></label><label class="choice"><input type="radio" id="f-state-3" name="state" value="차단"><span>차단</span></label><label class="choice"><input type="radio" id="f-state-4" name="state" value="차단 후 해제"><span>차단 후 해제</span></label><label class="choice"><input type="radio" id="f-state-5" name="state" value="재회 후"><span>재회 후</span></label></div>
+          </fieldset>
+          <fieldset class="field" data-show-name="state" data-show-values="차단|차단 후 해제" hidden>
+            <legend>차단된 곳</legend>
+            <div class="choices"><label class="choice"><input type="checkbox" id="f-blocked-1" name="blocked" value="카카오톡"><span>카카오톡</span></label><label class="choice"><input type="checkbox" id="f-blocked-2" name="blocked" value="전화·문자"><span>전화·문자</span></label><label class="choice"><input type="checkbox" id="f-blocked-3" name="blocked" value="인스타그램"><span>인스타그램</span></label><label class="choice"><input type="checkbox" id="f-blocked-4" name="blocked" value="기타 SNS"><span>기타 SNS</span></label></div>
+          </fieldset>
+          <div class="field">
+            <label for="f-lastContact">마지막으로 연락이 오간 시점</label>
+            <select id="f-lastContact" name="lastContact"><option value="">선택해 주세요</option><option>1주 이내</option><option>1~4주</option><option>1~3개월</option><option>3개월 이상</option></select>
+          </div>
+          <fieldset class="field">
+            <legend>마지막 메시지를 보낸 사람</legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-lastBy-1" name="lastBy" value="나"><span>나</span></label><label class="choice"><input type="radio" id="f-lastBy-2" name="lastBy" value="상대"><span>상대</span></label><label class="choice"><input type="radio" id="f-lastBy-3" name="lastBy" value="잘 기억나지 않음"><span>잘 기억나지 않음</span></label></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>이별 후 내가 먼저 보낸 연락</legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-sent-1" name="sent" value="없음"><span>없음</span></label><label class="choice"><input type="radio" id="f-sent-2" name="sent" value="1~2번"><span>1~2번</span></label><label class="choice"><input type="radio" id="f-sent-3" name="sent" value="3~5번"><span>3~5번</span></label><label class="choice"><input type="radio" id="f-sent-4" name="sent" value="6번 이상"><span>6번 이상</span></label></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>상대의 최근 반응</legend>
+            <div class="choices"><label class="choice"><input type="checkbox" id="f-reaction-1" name="reaction" value="답장이 온다"><span>답장이 온다</span></label><label class="choice"><input type="checkbox" id="f-reaction-2" name="reaction" value="먼저 연락이 온다"><span>먼저 연락이 온다</span></label><label class="choice"><input type="checkbox" id="f-reaction-3" name="reaction" value="SNS를 본다"><span>SNS를 본다</span></label><label class="choice"><input type="checkbox" id="f-reaction-4" name="reaction" value="반응이 없다"><span>반응이 없다</span></label><label class="choice"><input type="checkbox" id="f-reaction-5" name="reaction" value="잘 모르겠음"><span>잘 모르겠음</span></label></div><p class="hint">작은 신호도 함께 보지만, 하나만으로 판단하지는 않습니다.</p>
+          </fieldset>
+          <div class="field">
+            <label for="f-lastTalk">기억나는 마지막 대화 <span class="opt">(선택)</span></label>
+            <textarea id="f-lastTalk" name="lastTalk" placeholder="예: 상대가 &#x27;시간이 필요해&#x27;라고 했고, 나는 &#x27;알겠어&#x27;라고 답했다" maxlength="600"></textarea><p class="hint">정확하지 않아도 괜찮습니다. 기억나는 몇 마디면 충분합니다.</p>
+          </div>
+          </div>
+          <div class="form-section">
+            <p class="form-step"><span>03</span>상담</p>
+          <fieldset class="field">
+            <legend>지금 가장 고민되는 것 <span class="req-mark" aria-hidden="true">*</span></legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-concern-1" name="concern" value="연락할지" required><span>연락할지</span></label><label class="choice"><input type="radio" id="f-concern-2" name="concern" value="기다릴지"><span>기다릴지</span></label><label class="choice"><input type="radio" id="f-concern-3" name="concern" value="정리할지"><span>정리할지</span></label><label class="choice"><input type="radio" id="f-concern-4" name="concern" value="다시 만남을 시도할지"><span>다시 만남을 시도할지</span></label><label class="choice"><input type="radio" id="f-concern-5" name="concern" value="재회 후 관계"><span>재회 후 관계</span></label></div>
+          </fieldset>
+          <div class="field">
+            <label for="f-service">원하는 상담 <span class="req-mark" aria-hidden="true">*</span></label>
+            <select id="f-service" name="service" required><option value="">선택해 주세요</option><option>이별 직후 상담</option><option>마지막 대화 분석</option><option>재접촉 전략 상담</option><option>재회 후 관계 상담</option><option>잘 모르겠음</option></select>
+          </div>
+          <fieldset class="field">
+            <legend>상담 때 대화 캡처를 공유할 수 있나요</legend>
+            <div class="choices"><label class="choice"><input type="radio" id="f-captures-1" name="captures" value="가능"><span>가능</span></label><label class="choice"><input type="radio" id="f-captures-2" name="captures" value="일부만 가능"><span>일부만 가능</span></label><label class="choice"><input type="radio" id="f-captures-3" name="captures" value="어려움"><span>어려움</span></label></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>통화하기 편한 시간</legend>
+            <div class="choices"><label class="choice"><input type="checkbox" id="f-slots-1" name="slots" value="평일 낮"><span>평일 낮</span></label><label class="choice"><input type="checkbox" id="f-slots-2" name="slots" value="평일 저녁"><span>평일 저녁</span></label><label class="choice"><input type="checkbox" id="f-slots-3" name="slots" value="주말 낮"><span>주말 낮</span></label><label class="choice"><input type="checkbox" id="f-slots-4" name="slots" value="주말 저녁"><span>주말 저녁</span></label></div>
+          </fieldset>
+          <div class="field">
+            <label for="f-memo">그 밖에 알려 주실 상황 <span class="opt">(선택)</span></label>
+            <textarea id="f-memo" name="memo" placeholder="예: 다툼 다음 날 차단됐고, 그 전에 사흘 동안 여러 번 연락했다" maxlength="1000"></textarea><p class="hint">상대의 이름이나 연락처는 작성하지 않으셔도 됩니다.</p>
           </div>
           <div class="field">
-            <label for="f-memo">상황 메모 <span>(선택)</span></label>
-            <textarea id="f-memo" name="memo" placeholder="예: 3주 전 이별, 마지막 카톡 이후 답장 없음"></textarea>
-            <p class="hint">상대의 이름이나 연락처는 작성하지 않으셔도 됩니다.</p>
+            <label for="f-nickname">부르실 호칭 <span class="opt">(선택)</span></label>
+            <input type="text" id="f-nickname" name="nickname" placeholder="예: 김OO님, 또는 원하시는 호칭" maxlength="20">
           </div>
+          </div>
+<!-- FORM:END -->
           <div class="field">
-            <label for="f-contact">연락처</label>
+            <label for="f-contact">연락처 <span class="req-mark" aria-hidden="true">*</span></label>
             <input type="text" id="f-contact" name="contact" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" pattern="[0-9\-\s]{9,15}" required>
             <p class="hint">전화번호만 받습니다. 상담은 전화로 진행하는 것을 권장합니다.</p>
           </div>
@@ -564,6 +612,19 @@
     ['hero-cta', 'consult-cta', 'apply'].forEach(function (id) { bio.observe(document.getElementById(id)); });
   }
 
+  // 조건부 항목 (예: 차단된 곳은 차단일 때만)
+  var applyForm = document.getElementById('apply-form');
+  function syncConditional() {
+    applyForm.querySelectorAll('[data-show-name]').forEach(function (box) {
+      var name = box.getAttribute('data-show-name'), allowed = box.getAttribute('data-show-values').split('|');
+      var picked = applyForm.querySelector('input[name="' + name + '"]:checked');
+      var on = !!picked && allowed.indexOf(picked.value) > -1;
+      box.hidden = !on;
+      box.querySelectorAll('input').forEach(function (i) { i.disabled = !on; });
+    });
+  }
+  applyForm.addEventListener('change', syncConditional); syncConditional();
+
   // 신청서
   var form = document.getElementById('apply-form'), err = document.getElementById('form-error'), done = document.getElementById('done');
   form.addEventListener('submit', function (e) {
@@ -573,15 +634,14 @@
       err.hidden = false; var bad = form.querySelector(':invalid'); if (bad) bad.focus(); return;
     }
     err.hidden = true;
-    var data = {
-      when: form.when.value,
-      state: (form.querySelector('input[name="state"]:checked') || {}).value,
-      service: form.service.value,
-      memo: form.memo.value,
-      contact: form.contact.value,
-      consent: form.consent.checked,
-      website: form.website.value
-    };
+    var data = {};
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || el.disabled || el.type === 'submit') return;
+      if (el.name === 'consent') { data.consent = el.checked; return; }
+      if (el.type === 'checkbox') { (data[el.name] = data[el.name] || []); if (el.checked) data[el.name].push(el.value); return; }
+      if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; return; }
+      data[el.name] = el.value;
+    });
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true; btn.firstChild.textContent = '접수 중… ';
     fetch('/api/apply', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) })

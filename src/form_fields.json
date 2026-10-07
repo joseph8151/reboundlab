@@ -1,0 +1,59 @@
+{
+  "_comment": "상담 신청서 항목. site/build.py가 신청서 화면을, src/worker.js가 서버 검증을 이 파일로 만듭니다. 선택지를 바꾸면 python3 site/build.py 후 커밋합니다.",
+  "sections": [
+    {
+      "title": "관계",
+      "fields": [
+        { "name": "duration", "label": "연애 기간", "type": "radio", "required": true,
+          "options": ["3개월 미만", "3개월~1년", "1~3년", "3년 이상"] },
+        { "name": "when", "label": "이별 시점", "type": "select", "required": true,
+          "options": ["1주 이내", "1주~1개월", "1~3개월", "3개월 이상", "재회 후 상담 (해당 없음)"] },
+        { "name": "initiator", "label": "이별을 먼저 말한 사람", "type": "radio", "required": true,
+          "options": ["상대", "나", "함께 정함", "분명하지 않음"] },
+        { "name": "times", "label": "이번 이별은 몇 번째인가요", "type": "radio",
+          "options": ["처음", "두 번째", "세 번 이상"] },
+        { "name": "reasons", "label": "이별의 주된 이유", "type": "checkbox", "hint": "해당하는 것을 모두 골라 주세요.",
+          "options": ["연락 문제", "성격·가치관 차이", "신뢰 문제", "시간·거리", "가족·주변 문제", "다른 사람", "잘 모르겠음"] }
+      ]
+    },
+    {
+      "title": "지금의 연락",
+      "fields": [
+        { "name": "state", "label": "현재 연락 상태", "type": "radio", "required": true,
+          "options": ["연락 중", "답장 없음", "차단", "차단 후 해제", "재회 후"] },
+        { "name": "blocked", "label": "차단된 곳", "type": "checkbox", "showIf": { "state": ["차단", "차단 후 해제"] },
+          "options": ["카카오톡", "전화·문자", "인스타그램", "기타 SNS"] },
+        { "name": "lastContact", "label": "마지막으로 연락이 오간 시점", "type": "select",
+          "options": ["1주 이내", "1~4주", "1~3개월", "3개월 이상"] },
+        { "name": "lastBy", "label": "마지막 메시지를 보낸 사람", "type": "radio",
+          "options": ["나", "상대", "잘 기억나지 않음"] },
+        { "name": "sent", "label": "이별 후 내가 먼저 보낸 연락", "type": "radio",
+          "options": ["없음", "1~2번", "3~5번", "6번 이상"] },
+        { "name": "reaction", "label": "상대의 최근 반응", "type": "checkbox",
+          "hint": "작은 신호도 함께 보지만, 하나만으로 판단하지는 않습니다.",
+          "options": ["답장이 온다", "먼저 연락이 온다", "SNS를 본다", "반응이 없다", "잘 모르겠음"] },
+        { "name": "lastTalk", "label": "기억나는 마지막 대화", "type": "textarea", "max": 600,
+          "placeholder": "예: 상대가 '시간이 필요해'라고 했고, 나는 '알겠어'라고 답했다",
+          "hint": "정확하지 않아도 괜찮습니다. 기억나는 몇 마디면 충분합니다." }
+      ]
+    },
+    {
+      "title": "상담",
+      "fields": [
+        { "name": "concern", "label": "지금 가장 고민되는 것", "type": "radio", "required": true,
+          "options": ["연락할지", "기다릴지", "정리할지", "다시 만남을 시도할지", "재회 후 관계"] },
+        { "name": "service", "label": "원하는 상담", "type": "select", "required": true,
+          "options": ["이별 직후 상담", "마지막 대화 분석", "재접촉 전략 상담", "재회 후 관계 상담", "잘 모르겠음"] },
+        { "name": "captures", "label": "상담 때 대화 캡처를 공유할 수 있나요", "type": "radio",
+          "options": ["가능", "일부만 가능", "어려움"] },
+        { "name": "slots", "label": "통화하기 편한 시간", "type": "checkbox",
+          "options": ["평일 낮", "평일 저녁", "주말 낮", "주말 저녁"] },
+        { "name": "memo", "label": "그 밖에 알려 주실 상황", "type": "textarea", "max": 1000,
+          "placeholder": "예: 다툼 다음 날 차단됐고, 그 전에 사흘 동안 여러 번 연락했다",
+          "hint": "상대의 이름이나 연락처는 작성하지 않으셔도 됩니다." },
+        { "name": "nickname", "label": "부르실 호칭", "type": "text", "max": 20,
+          "placeholder": "예: 김OO님, 또는 원하시는 호칭" }
+      ]
+    }
+  ]
+}

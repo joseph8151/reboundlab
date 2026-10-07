@@ -120,6 +120,7 @@
 | 신청 접수, 관리자 화면 | `src/worker.js` |
 | 배포 설정 | `wrangler.jsonc` |
 | 데이터베이스 | D1 `afterline` (표: `applications`, 정의: `migrations/`) |
+| 신청서 항목 | `src/form_fields.json` (화면과 서버 검증이 함께 씀) |
 
 **처음 한 번 할 일 (Cloudflare 대시보드)**
 1. Workers & Pages → `reboundlab` → Settings → Build에서 **프로덕션 브랜치**를 배포할 브랜치로 맞춥니다.
@@ -141,3 +142,8 @@
 3. 폼 ID는 `wrangler.jsonc`의 `vars.FORMSPREE_FORM_ID`에 들어 있습니다(현재 `moejjwqa`). 폼을 바꾸면 이 값을 고친 뒤 푸시합니다.
 4. 신청이 들어오면 D1에 저장된 뒤, 같은 내용이 이메일로 옵니다. 알림이 실패해도 신청은 `/admin`에 남아 있습니다.
 5. 첫 신청이 들어오면 Formspree에서 확인 메일이 올 수 있습니다. 확인을 눌러야 이후 알림이 옵니다.
+
+**신청서 항목 바꾸기**
+1. `src/form_fields.json`에서 항목이나 선택지를 고칩니다.
+2. `python3 site/build.py`를 실행하면 `site/index.html`의 신청서가 다시 만들어집니다.
+3. 커밋하고 푸시하면 화면과 서버 검증이 함께 바뀝니다. 새 항목은 `details` 열(JSON)에 저장되므로 데이터베이스를 고칠 필요가 없습니다.

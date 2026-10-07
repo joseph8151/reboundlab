@@ -4,9 +4,12 @@
 - column/index.html, column/*.html   (원고: columns_data.py, articles_data.py)
 - privacy.html, terms.html, 404.html (원고: legal_data.py)
 - sitemap.xml, robots.txt, _redirects
+- index.html의 상담 신청서 항목 (FORM:START~FORM:END 사이, 원본: src/form_fields.json)
 
-index.html은 직접 편집하는 파일이라 여기서 만들지 않습니다.
+index.html의 나머지 부분은 직접 편집합니다.
 """
+import json
+import re
 import shutil
 from html import escape
 from pathlib import Path
@@ -299,6 +302,59 @@ def sitemap():
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}\n</urlset>\n'
 
 
+FORM_SPEC = ROOT.parent / "src" / "form_fields.json"
+REQ = ' <span class="req-mark" aria-hidden="true">*</span>'
+
+
+def form_field(f):
+    name, label, kind = f["name"], escape(f["label"]), f["type"]
+    req = f.get("required", False)
+    hint = f'<p class="hint">{escape(f["hint"])}</p>' if f.get("hint") else ""
+    mark = REQ if req else ""
+    cond = ""
+    if f.get("showIf"):
+        (key, vals), = f["showIf"].items()
+        cond = f' data-show-name="{key}" data-show-values="{escape("|".join(vals))}" hidden'
+    if kind in ("radio", "checkbox"):
+        items = []
+        for i, o in enumerate(f["options"], 1):
+            r = " required" if (req and kind == "radio" and i == 1) else ""
+            items.append(f'<label class="choice"><input type="{kind}" id="f-{name}-{i}" name="{name}" value="{escape(o)}"{r}><span>{escape(o)}</span></label>')
+        return (f'          <fieldset class="field"{cond}>\n            <legend>{label}{mark}</legend>\n'
+                f'            <div class="choices">{"".join(items)}</div>{hint}\n          </fieldset>')
+    if kind == "select":
+        opts = '<option value="">선택해 주세요</option>' + "".join(f"<option>{escape(o)}</option>" for o in f["options"])
+        r = " required" if req else ""
+        return (f'          <div class="field"{cond}>\n            <label for="f-{name}">{label}{mark}</label>\n'
+                f'            <select id="f-{name}" name="{name}"{r}>{opts}</select>{hint}\n          </div>')
+    ph = f' placeholder="{escape(f["placeholder"])}"' if f.get("placeholder") else ""
+    mx = f' maxlength="{f["max"]}"' if f.get("max") else ""
+    opt = "" if req else ' <span class="opt">(선택)</span>'
+    if kind == "textarea":
+        ctrl = f'<textarea id="f-{name}" name="{name}"{ph}{mx}></textarea>'
+    else:
+        ctrl = f'<input type="text" id="f-{name}" name="{name}"{ph}{mx}>'
+    return (f'          <div class="field"{cond}>\n            <label for="f-{name}">{label}{mark}{opt}</label>\n'
+            f'            {ctrl}{hint}\n          </div>')
+
+
+def form_html():
+    spec = json.loads(FORM_SPEC.read_text(encoding="utf-8"))
+    out = []
+    for n, sec in enumerate(spec["sections"], 1):
+        fields = "\n".join(form_field(f) for f in sec["fields"])
+        out.append(f'          <div class="form-section">\n            <p class="form-step"><span>{n:02d}</span>{escape(sec["title"])}</p>\n{fields}\n          </div>')
+    return "\n".join(out)
+
+
+def inject_form():
+    page = ROOT / "index.html"
+    s = page.read_text(encoding="utf-8")
+    s = re.sub(r"(<!-- FORM:START[^>]*-->\n).*?(<!-- FORM:END -->)",
+               lambda m: m.group(1) + form_html() + "\n" + m.group(2), s, flags=re.S)
+    page.write_text(s, encoding="utf-8")
+
+
 REDIRECTS = """# 이전 아티클 주소 → Column
 /articles/message-at-2am /column/long-message-next-day 301
 /articles/message-at-2am.html /column/long-message-next-day 301
@@ -323,4 +379,5 @@ if __name__ == "__main__":
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /admin\nSitemap: {DOMAIN}/sitemap.xml\n", encoding="utf-8")
     (ROOT / "_redirects").write_text(REDIRECTS, encoding="utf-8")
-    print(f"wrote {len(COLUMNS)} columns, column index, privacy, terms, 404, sitemap, robots, _redirects")
+    inject_form()
+    print(f"wrote {len(COLUMNS)} columns, column index, privacy, terms, 404, sitemap, robots, _redirects, form")
