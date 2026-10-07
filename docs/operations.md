@@ -138,6 +138,6 @@
 **새 신청 이메일 알림 (Formspree)**
 1. formspree.io에 가입하고 **New Form**을 만듭니다. 알림 받을 이메일을 넣습니다.
 2. 폼 주소 `https://formspree.io/f/abcdwxyz`에서 마지막 부분(`abcdwxyz`)이 폼 ID입니다.
-3. Cloudflare `reboundlab` → Settings → Variables and Secrets에 `FORMSPREE_FORM_ID`를 추가하고 폼 ID를 넣습니다.
+3. 폼 ID는 `wrangler.jsonc`의 `vars.FORMSPREE_FORM_ID`에 들어 있습니다(현재 `moejjwqa`). 폼을 바꾸면 이 값을 고친 뒤 푸시합니다.
 4. 신청이 들어오면 D1에 저장된 뒤, 같은 내용이 이메일로 옵니다. 알림이 실패해도 신청은 `/admin`에 남아 있습니다.
 5. 첫 신청이 들어오면 Formspree에서 확인 메일이 올 수 있습니다. 확인을 눌러야 이후 알림이 옵니다.

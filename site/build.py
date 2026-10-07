@@ -244,7 +244,7 @@ def column_index():
 </main>
 """
     return head("Column | AFTERLINE", "이별 이후 자주 마주치는 장면을 하나씩 기록하는 AFTERLINE의 칼럼입니다.",
-                "../", "column/index.html", "column", "images/city-night.jpg") + html + foot("../", FILTER_JS)
+                "../", "column/index.html", "column", "images/hero.webp") + html + foot("../", FILTER_JS)
 
 
 def doc_page(path, title, lead, sections):

@@ -17,5 +17,11 @@
       "migrations_dir": "migrations"
     }
   ],
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // 대시보드에서 넣은 변수를 배포 때 지우지 않습니다.
+  "keep_vars": true,
+  "vars": {
+    // 새 신청 이메일 알림 (Formspree 폼 ID, 공개되어도 되는 값)
+    "FORMSPREE_FORM_ID": "moejjwqa"
+  }
 }
