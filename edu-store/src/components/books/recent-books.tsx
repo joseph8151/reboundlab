@@ -6,7 +6,7 @@ import { BookCover } from "./book-cover";
 import { shelfActions, useShelf } from "@/lib/shelf";
 import type { Product } from "@/lib/types";
 
-type Mini = Pick<Product, "slug" | "title" | "series" | "area" | "course" | "levels" | "kind" | "curriculum" | "examYear" | "coverUrl">;
+type Mini = Pick<Product, "slug" | "title" | "series" | "area" | "course" | "levels" | "kind" | "curriculum" | "examYear" | "coverUrl" | "collection">;
 
 /** 최근 본 교재: 서버에서 목록을 받아 두고, 이 브라우저에서 본 순서대로 보여 줍니다. */
 export function RecentBooks({ catalog, excludeSlug }: { catalog: Mini[]; excludeSlug?: string }) {

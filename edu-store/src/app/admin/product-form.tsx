@@ -18,14 +18,14 @@ export type ProductInit = {
   examYear: string; pageCount: string; questionCount: string; price: string; salePrice: string;
   toc: string; goals: string; targets: string; includes: string; keywords: string; edition: string; revisionNotes: string;
   releaseDate: string; status: string; featuredRank: string; seoTitle: string; seoDescription: string; answerMode: string;
-  deliveryType: string; weakTags: string[]; previewPdfUrl: string; coverUrl: string; previewImages: string[];
+  deliveryType: string; collection: string; method: string; weakTags: string[]; previewPdfUrl: string; coverUrl: string; previewImages: string[];
 };
 
 export const EMPTY_PRODUCT: ProductInit = {
   title: "", slug: "", sku: "", series: "", summary: "", description: "", track: "csat", area: "korean", course: "", grades: [], kind: "concept",
   difficulty: "", curriculum: "", examYear: "", pageCount: "", questionCount: "", price: "", salePrice: "", toc: "", goals: "", targets: "", includes: "",
   keywords: "", edition: "", revisionNotes: "", releaseDate: "", status: "on_sale", featuredRank: "", seoTitle: "", seoDescription: "", answerMode: "none",
-  deliveryType: "custom", weakTags: [], previewPdfUrl: "", coverUrl: "", previewImages: [],
+  deliveryType: "custom", collection: "", method: "", weakTags: [], previewPdfUrl: "", coverUrl: "", previewImages: [],
 };
 
 function Field({ label, hint, children, className }: { label: string; hint?: string; children: React.ReactNode; className?: string }) {
@@ -59,7 +59,7 @@ export function ProductForm({ init }: { init: ProductInit }) {
     };
     try {
       const body: Record<string, unknown> = {};
-      for (const k of ["title", "slug", "sku", "series", "summary", "description", "track", "area", "course", "kind", "difficulty", "curriculum", "examYear", "pageCount", "questionCount", "price", "salePrice", "toc", "goals", "targets", "includes", "keywords", "edition", "revisionNotes", "releaseDate", "status", "featuredRank", "seoTitle", "seoDescription", "answerMode", "deliveryType"]) body[k] = f.get(k);
+      for (const k of ["title", "slug", "sku", "series", "summary", "description", "track", "area", "course", "kind", "difficulty", "curriculum", "examYear", "pageCount", "questionCount", "price", "salePrice", "toc", "goals", "targets", "includes", "keywords", "edition", "revisionNotes", "releaseDate", "status", "featuredRank", "seoTitle", "seoDescription", "answerMode", "deliveryType", "collection", "method"]) body[k] = f.get(k);
       body.grades = f.getAll("grades");
       body.weakTags = f.getAll("weakTags");
 
@@ -124,6 +124,10 @@ export function ProductForm({ init }: { init: ProductInit }) {
       <Group title="구성">
         <Field label="페이지 수"><Input name="pageCount" type="number" min={0} defaultValue={init.pageCount} /></Field>
         <Field label="문제 수"><Input name="questionCount" type="number" min={0} defaultValue={init.questionCount} /></Field>
+        <Field label="컬렉션 (신규 카테고리)" hint="자기주도학습·공부법·플래너·학부모 가이드 상품만 선택합니다.">
+          <NativeSelect name="collection" defaultValue={init.collection}><option value="">없음 (수능·내신·모의고사 등)</option><option value="self-study">자기주도학습</option><option value="study-method">공부법·학습 전략</option><option value="study-planner">학습 플래너·시험 관리</option><option value="parent-guide">학부모 가이드</option></NativeSelect>
+        </Field>
+        <Field label="학습 방법 안내"><Textarea name="method" rows={3} defaultValue={init.method} /></Field>
         <Field label="학습 목표" hint="한 줄에 하나씩"><Textarea name="goals" rows={4} defaultValue={init.goals} /></Field>
         <Field label="이런 학습자에게" hint="한 줄에 하나씩"><Textarea name="targets" rows={4} defaultValue={init.targets} /></Field>
         <Field label="상세 목차" hint="한 줄에 하나씩" className="sm:col-span-2"><Textarea name="toc" rows={6} defaultValue={init.toc} /></Field>

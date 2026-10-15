@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { BookCover } from "@/components/books/book-cover";
 import { JsonLd } from "@/components/books/json-ld";
 import { ConsultLink, DeliveryTag, Price, ShelfItem } from "@/components/books/parts";
+import { collectionLabel } from "@/lib/catalog-guides";
 import { RecentBooks, RecentTracker } from "@/components/books/recent-books";
 import {
   ANSWER_MODES, areaLabel, curriculumLabel, difficultyLabel, kindLabel, levelsText, trackLabel,
@@ -52,7 +53,7 @@ export default async function BookPage({ params }: { params: Params }) {
     ["상품 코드", p.sku || null],
   ];
 
-  const category = p.track === "csat" ? { name: "수능", path: "/category/suneung" } : p.levels.some((l) => l.startsWith("middle")) ? { name: "중등 내신", path: "/category/middle-school" } : { name: "고등 내신", path: "/category/high-school" };
+  const category = p.collection ? { name: collectionLabel(p.collection), path: `/category/${p.collection}` } : p.track === "csat" ? { name: "수능", path: "/category/suneung" } : p.levels.some((l) => l.startsWith("middle")) ? { name: "중등 내신", path: "/category/middle-school" } : { name: "고등 내신", path: "/category/high-school" };
 
   return (
     <div className="pb-28 lg:pb-0">
@@ -128,6 +129,30 @@ export default async function BookPage({ params }: { params: Params }) {
             ) : null}
           </Block>}
 
+          {p.includes.length > 0 && (
+            <Block title="주요 구성">
+              <ul className="max-w-2xl divide-y divide-border border-y border-border text-[15px]">
+                {p.includes.map((t, i) => <li key={t} className="grid grid-cols-[40px_1fr] py-3"><span className="font-display text-[15px] text-dusty-rose">{String(i + 1).padStart(2, "0")}</span>{t}</li>)}
+              </ul>
+              <p className="mt-3 max-w-2xl text-[12px] leading-relaxed text-muted-foreground">구성 방향이며, 쪽수와 세부 목차는 원고가 확정되면 상담에서 안내해 드립니다.</p>
+            </Block>
+          )}
+
+          {p.method && <Block title="학습 방법"><p className="max-w-2xl text-[15px] leading-[1.9]">{p.method}</p></Block>}
+
+          <Block title="PDF 제공 범위">
+            <div className="max-w-2xl space-y-2 text-[14px] leading-relaxed">
+              {p.deliveryType === "custom" ? (
+                <>
+                  <p>이 교재는 <strong>주문 제작 상담 가능</strong> 상품입니다. PDF 원고가 완성된 상품처럼 즉시 전달되지 않으며, 제작 가능 여부와 예상 납품 일정, 실제 제공 범위는 상담에서 안내해 드립니다.</p>
+                  <p className="text-muted-foreground">현재 확정된 쪽수와 문항 수는 없습니다. 정답·해설 제공 여부도 상담에서 확정해 안내합니다.</p>
+                </>
+              ) : (
+                <p>완성된 PDF 교재입니다. 입금이 확인되면 상담에서 안내드린 방법으로 전달해 드립니다.{p.hasAnswerFile ? " 정답 및 해설 PDF가 함께 제공됩니다." : ""}</p>
+              )}
+            </div>
+          </Block>
+
           {p.toc.length > 0 && <Block title="상세 목차">
             {p.toc.length ? (
               <ol className="max-w-2xl divide-y divide-border border-y border-border text-[15px]">
@@ -182,7 +207,7 @@ export default async function BookPage({ params }: { params: Params }) {
         </section>
       )}
 
-      <RecentBooks catalog={catalog.map(({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl }) => ({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl }))} excludeSlug={p.slug} />
+      <RecentBooks catalog={catalog.map(({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl, collection }) => ({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl, collection }))} excludeSlug={p.slug} />
 
       {/* 모바일 상담 바 */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background lg:hidden">

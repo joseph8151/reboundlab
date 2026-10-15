@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { Search, X } from "lucide-react";
 import { Wordmark } from "@/components/brand/wordmark";
-import { NAV, SUBJECT_LINKS } from "@/lib/nav";
+import { NAV, SUBJECT_LINKS, TOOLS_NAV } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
 export function HeaderClient() {
@@ -63,6 +63,14 @@ export function HeaderClient() {
           ))}
         </ul>
       </nav>
+      <nav aria-label="교재 찾기 도구" className="hidden border-t border-border bg-muted/60 md:block">
+        <ul className="container-page flex items-center gap-6 overflow-x-auto py-2 text-[13px]">
+          <li className="shrink-0 font-display text-[12px] tracking-[0.2em] text-dusty-rose">FIND</li>
+          {TOOLS_NAV.map((n) => (
+            <li key={n.href} className="shrink-0"><Link href={n.href} className={cn("transition-colors hover:text-primary", pathname.startsWith(n.href) ? "font-semibold text-primary" : "text-muted-foreground")}>{n.label}</Link></li>
+          ))}
+        </ul>
+      </nav>
 
       {open && (
         <div id="mobile-panel" role="dialog" aria-modal="true" aria-label="메뉴" className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background md:hidden">
@@ -83,7 +91,13 @@ export function HeaderClient() {
             ))}
           </ul>
           <div className="px-5 pt-6">
-            <p className="text-[12px] font-semibold tracking-wide text-muted-foreground">과목별</p>
+            <p className="text-[12px] font-semibold tracking-wide text-primary">교재 찾기 · 학습 도구</p>
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
+              {TOOLS_NAV.map((s) => <li key={s.href}><Link href={s.href} className="underline decoration-border underline-offset-4">{s.label}</Link></li>)}
+            </ul>
+          </div>
+          <div className="px-5 pt-6">
+            <p className="text-[12px] font-semibold tracking-wide text-primary">과목별</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[15px]">
               {SUBJECT_LINKS.map((s) => <li key={s.href}><Link href={s.href} className="underline decoration-border underline-offset-4">{s.label}</Link></li>)}
             </ul>

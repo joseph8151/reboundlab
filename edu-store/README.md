@@ -15,6 +15,10 @@ Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Supabase(선택) · 
 - PDF가 완성되지 않은 교재는 **‘주문 제작 상담 가능’**(`delivery_type = custom`)으로 표시하고, 제작 가능 여부와 납품 시점은 상담에서 안내합니다.
 - 계좌번호는 사이트에 공개하지 않고 상담 시 개별 안내합니다. 상담 접수 내역은 Formspree에서 관리하며 사이트에는 별도 상담 DB가 없습니다.
 
+## 신규 컬렉션 (자기주도학습·공부법·플래너·학부모 가이드)
+
+`src/lib/catalog-guides.ts`에 개별 교재 40종과 패키지 4종이 있습니다(`/category/self-study`, `study-method`, `study-planner`, `parent-guide`). 가격은 확정 최종가이며 코드에서 다시 곱하지 않습니다. 모두 PDF가 아직 제작되지 않아 ‘주문 제작 상담 가능’이고, 쪽수·문항 수·목차는 원고 확정 전까지 비워 둡니다. PDF가 완성되면 관리자에서 납품 형태를 ‘PDF 완성본’으로 바꾸세요.
+
 ## 주요 기능
 
 | 경로 | 기능 |

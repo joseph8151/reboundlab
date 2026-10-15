@@ -105,6 +105,11 @@ alter table public.products add column if not exists delivery_type text not null
 alter table public.products drop constraint if exists products_delivery_type_check;
 alter table public.products add constraint products_delivery_type_check check (delivery_type in ('custom','ready'));
 alter table public.products add column if not exists weak_tags text[] not null default '{}';
+-- 신규 컬렉션(self-study / study-method / study-planner / parent-guide)과 학습 방법 안내
+alter table public.products add column if not exists collection text;
+alter table public.products drop constraint if exists products_collection_check;
+alter table public.products add constraint products_collection_check check (collection is null or collection in ('self-study','study-method','study-planner','parent-guide'));
+alter table public.products add column if not exists study_method text;
 
 alter table public.products drop constraint if exists products_sale_below_price;
 alter table public.products add constraint products_sale_below_price check (sale_price is null or (price is not null and sale_price < price));
@@ -270,7 +275,7 @@ create policy "본인 학습 기록 수정" on public.study_progress for update 
 revoke select on public.products from anon, authenticated;
 grant select (id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty,
               curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets,
-              includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, has_answer_file, edition,
+              includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, collection, study_method, has_answer_file, edition,
               revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords,
               created_at, updated_at, is_published)
   on public.products to anon, authenticated;

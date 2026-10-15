@@ -26,6 +26,8 @@ export type ProductFilters = {
   /** 취약 유형 태그(WEAK_TAGS id) */
   tag?: string;
   /** 학습 목적(성적대) 분류: foundation / middle / upper / top */
+  /** 컬렉션 id. "none"이면 컬렉션이 없는 기존 교재만. */
+  collection?: string;
   band?: "foundation" | "middle" | "upper" | "top";
   scope?: "csat" | "high-school" | "middle-school";
   course?: string;
@@ -37,7 +39,7 @@ export const PAGE_SIZE = 24;
 
 // ── 상품 목록 로드 ─────────────────────────────────────────
 const COLUMNS =
-  "id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty, curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets, includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, has_answer_file, edition, revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords, created_at, updated_at";
+  "id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty, curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets, includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, collection, study_method, has_answer_file, edition, revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords, created_at, updated_at";
 
 /** Supabase 미연결 시 사이트에 표시되는 상품: 모두 판매 중(상담 구매)이며 PDF 미완성 교재는 주문 제작 상담입니다. */
 function seedToRow(p: SeedProduct, index: number): ProductRow {
@@ -65,8 +67,8 @@ function seedToRow(p: SeedProduct, index: number): ProductRow {
     cover_url: null,
     toc: [],
     goals: p.goals ?? [],
-    targets: [],
-    includes: [],
+    targets: p.targets ?? [],
+    includes: p.includes ?? [],
     preview_pdf_url: null,
     sample_images: [],
     answer_mode: "none",
@@ -74,6 +76,8 @@ function seedToRow(p: SeedProduct, index: number): ProductRow {
     has_file: false,
     delivery_type: p.deliveryType ?? "custom",
     weak_tags: p.weakTags ?? [],
+    collection: p.collection ?? null,
+    study_method: p.method ?? null,
     edition: null,
     revision_notes: [],
     release_date: null,
@@ -170,6 +174,7 @@ export function applyFilters(list: Product[], input: ProductFilters): Product[] 
     if (f.examYear && p.examYear !== f.examYear) return false;
     if (f.course && p.course !== f.course) return false;
     if (f.tag && !p.weakTags.includes(f.tag)) return false;
+    if (f.collection === "none" ? p.collection !== null : f.collection ? p.collection !== f.collection : false) return false;
     if (f.band && !bandMatches(p, f.band)) return false;
     if (band) {
       const price = effectivePrice(p);

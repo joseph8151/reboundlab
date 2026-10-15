@@ -41,6 +41,8 @@ export type Product = {
   consultable: boolean;
   deliveryType: DeliveryType;
   weakTags: string[];
+  collection: string | null;
+  method: string;
   /** 정답·해설 파일이 별도로 등록되어 있는지 */
   hasAnswerFile: boolean;
   createdAt: string;
@@ -79,6 +81,8 @@ export type ProductRow = {
   has_file: boolean;
   delivery_type: DeliveryType | null;
   weak_tags: string[] | null;
+  collection: string | null;
+  study_method: string | null;
   edition: string | null;
   revision_notes: string[];
   release_date: string | null;
@@ -176,6 +180,8 @@ export function rowToProduct(r: ProductRow): Product {
     consultable,
     deliveryType: r.delivery_type ?? (r.has_file ? "ready" : "custom"),
     weakTags: r.weak_tags ?? [],
+    collection: r.collection ?? null,
+    method: r.study_method ?? "",
     hasAnswerFile: Boolean(r.has_answer_file),
     createdAt: r.created_at,
     updatedAt: r.updated_at,

@@ -5,6 +5,7 @@
  * 출시일·교육과정·학년도·쪽수는 확정되지 않았으므로 비워 둡니다. 임의로 채우지 마세요.
  */
 import type { AreaId, DeliveryType, DifficultyId, KindId, LevelId, TrackId } from "./catalog";
+import { GUIDE_PACKAGES, GUIDE_PRODUCTS } from "./catalog-guides";
 
 export type SeedProduct = {
   slug: string;
@@ -25,6 +26,12 @@ export type SeedProduct = {
   priceOriginal?: number;
   deliveryType?: DeliveryType;
   weakTags?: string[];
+  /** 신규 컬렉션(self-study / study-method / study-planner / parent-guide). 기존 수능·내신 교재는 비어 있습니다. */
+  collection?: string;
+  /** 학습 방법 안내 */
+  method?: string;
+  includes?: string[];
+  targets?: string[];
   goals?: string[];
   keywords?: string[];
   featuredRank?: number;
@@ -284,7 +291,7 @@ export const PLANNED_PRODUCTS: SeedProduct[] = [
 ];
 
 // ── 3. 패키지(묶음): 구성 교재는 위 목록의 교재로만 구성합니다 ──
-export const PLANNED_PACKAGES: { slug: string; title: string; track: TrackId; price: number; summary: string; items: string[]; weakTags: string[] }[] = [
+const BASE_PACKAGES: { slug: string; title: string; track: TrackId; price: number; summary: string; items: string[]; weakTags: string[] }[] = [
   { slug: "csat-english-blank-order-package", title: "수능 영어 빈칸·순서 집중 패키지", track: "csat", price: 49800, weakTags: ["eng-blank", "eng-order", "eng-insert"],
     summary: "빈칸 추론과 순서·삽입, 두 가지 약점 유형을 한 번에 훈련하는 구성입니다.",
     items: ["csat-english-blank-inference-100", "csat-english-order-insertion-100", "csat-english-long-reading"] },
@@ -304,6 +311,8 @@ export const PLANNED_PACKAGES: { slug: string; title: string; track: TrackId; pr
     summary: "수능 국어·수학·영어 실전 모의고사와 파이널 모의고사를 묶은 실전 대비 구성입니다.",
     items: ["csat-korean-mock-exam", "csat-math-mock-exam", "csat-english-mock-exam", "mock-final-mock-exam"] },
 ];
+
+export const PLANNED_PACKAGES = [...BASE_PACKAGES, ...(GUIDE_PACKAGES as unknown as typeof BASE_PACKAGES)];
 
 /** 상품 코드는 (과정, 과목)별 일련번호로 겹치지 않게 부여합니다. 우선 출시 6종은 001~ 번대를 씁니다. */
 function assignSkus(list: SeedProduct[]): SeedProduct[] {
@@ -391,4 +400,4 @@ function finalize(list: SeedProduct[]): SeedProduct[] {
   }));
 }
 
-export const SEED_PRODUCTS: SeedProduct[] = finalize([...PRIORITY_PRODUCTS, ...assignSkus(PLANNED_PRODUCTS)]);
+export const SEED_PRODUCTS: SeedProduct[] = finalize([...PRIORITY_PRODUCTS, ...assignSkus(PLANNED_PRODUCTS), ...GUIDE_PRODUCTS]);

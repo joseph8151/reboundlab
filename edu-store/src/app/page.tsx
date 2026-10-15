@@ -24,9 +24,14 @@ export default async function HomePage() {
   const high = pick(scope({ scope: "high-school" }), 4);
   const middle = pick(scope({ scope: "middle-school" }), 5);
   const mocks = pick(scope({ kind: "mock" }), 7);
+  const col = (id: string) => pick(scope({ collection: id }), 4);
+  const selfStudy = col("self-study");
+  const methods = col("study-method");
+  const planners = col("study-planner");
+  const parents = col("parent-guide");
   const faqs = FAQ_ITEMS.slice(0, 6);
   const tools = STUDY_TOOLS.filter((t) => ["/study/words", "/study/speed-reading", "/study/structures", "/study/wrong-notes", "/study/time", "/study/habit"].includes(t.href));
-  const packages = bundles.filter((b) => b.consultable).slice(0, 6);
+  const packages = bundles.filter((b) => b.consultable);
 
   return (
     <>
@@ -127,11 +132,54 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. 실전 모의고사 */}
+      {/* 자기주도학습 */}
+      <section className="container-page py-20 md:py-28" aria-labelledby="self-study">
+        <SectionHead no="04" eyebrow="SELF STUDY" title="혼자 공부하는 힘을 기르다." href="/category/self-study" />
+        <div id="self-study" className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
+          {selfStudy.map((p) => <ShelfItem key={p.id} product={p} />)}
+        </div>
+      </section>
+
+      {/* 공부법·학습 전략 */}
+      <section className="bg-muted py-20 md:py-28" aria-labelledby="method">
+        <div className="container-page grid gap-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="md:sticky md:top-40 md:self-start">
+            <SectionHead no="05" eyebrow="STUDY METHOD" title="방법을 바꾸면 공부가 달라집니다." />
+            <p className="mt-5 text-[15px] leading-[1.85] text-foreground/80">오답노트, 복습, 암기, 집중, 시험 전략까지. 공부 시간을 늘리기 전에 공부 방법을 점검하는 시리즈입니다.</p>
+            <Link href="/category/study-method" className="mt-6 inline-block border-b border-primary pb-0.5 text-[13px] font-medium text-primary">공부법·학습 전략 전체 보기</Link>
+          </div>
+          <div id="method" className="grid grid-cols-2 gap-x-5 gap-y-10">
+            {methods.map((p) => <ShelfItem key={p.id} product={p} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* 학습 플래너 */}
+      <section className="bg-card py-20 md:py-28" aria-labelledby="planner">
+        <div className="container-page">
+          <SectionHead no="06" eyebrow="STUDY PLANNER" title="계획부터 실천까지, 매일의 공부를 기록하다." href="/category/study-planner" />
+          <div id="planner" className="mt-8 border-b border-border">{planners.map((p) => <BookRow key={p.id} product={p} />)}</div>
+        </div>
+      </section>
+
+      {/* 학부모 가이드 */}
+      <section className="bg-light-pink py-20 md:py-28" aria-labelledby="parent">
+        <div className="container-page">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <SectionHead no="07" eyebrow="PARENT GUIDE" title="자녀의 학습을 이해하고 지원하는 방법." />
+            <Link href="/category/parent-guide" className="shrink-0 border-b border-primary pb-0.5 text-[13px] font-medium text-primary">학부모 가이드 전체 보기</Link>
+          </div>
+          <div id="parent" className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
+            {parents.map((p) => <ShelfItem key={p.id} product={p} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* 실전 모의고사 */}
       <section className="bg-primary py-20 text-background md:py-28" aria-labelledby="mock">
         <div className="container-page grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-20">
           <div>
-            <SectionHead no="04" eyebrow="MOCK EXAM" title="실전의 시간과 형식으로" tone="light" />
+            <SectionHead no="08" eyebrow="MOCK EXAM" title="실전의 시간과 형식으로" tone="light" />
             <p className="mt-5 max-w-sm text-[15px] leading-[1.85] text-background/75">영역별 실전 모의고사와 학년별 전국연합·평가원 대비, 시험 직전 파이널 모의고사를 시리즈로 구성합니다.</p>
             <Link href="/category/mock" className="mt-7 inline-block border-b border-background/60 pb-0.5 text-[13px] font-medium">모의고사 전체 보기</Link>
           </div>
@@ -150,7 +198,7 @@ export default async function HomePage() {
 
       {/* 6. 과목별 교재 */}
       <section className="container-page py-20 md:py-28" aria-labelledby="by-subject">
-        <SectionHead no="05" eyebrow="과목" title="과목별 교재" />
+        <SectionHead no="09" eyebrow="과목" title="과목별 교재" />
         <ul id="by-subject" className="mt-10 grid grid-cols-5 gap-1.5 md:gap-2">
           {AREAS.filter((a) => a.id !== "common").map((a, i) => (
             <li key={a.id}>
@@ -166,7 +214,7 @@ export default async function HomePage() {
       {/* 7. 패키지 */}
       <section className="border-y border-border bg-card py-20 md:py-24" aria-labelledby="packages">
         <div className="container-page">
-          <SectionHead no="06" eyebrow="PACKAGES" title="약점에 맞춘 패키지" href="/packages" />
+          <SectionHead no="10" eyebrow="PACKAGES" title="약점에 맞춘 패키지" href="/packages" />
           <ul id="packages" className="mt-8 divide-y divide-border border-y border-border">
             {packages.map((b) => (
               <li key={b.id}>
@@ -183,7 +231,7 @@ export default async function HomePage() {
 
       {/* 8. 무료 학습 자료 */}
       <section className="bg-card" aria-labelledby="free"><div className="container-page py-20 md:py-28">
-        <SectionHead no="07" eyebrow="FREE TOOLS" title="무료 학습 자료와 도구" />
+        <SectionHead no="11" eyebrow="FREE TOOLS" title="무료 학습 자료와 도구" />
         <div id="free" className="mt-10 grid gap-14 md:grid-cols-2 md:gap-20">
           <div>
             <h3 className="border-b border-dusty-rose/50 pb-2 text-[13px] font-semibold tracking-[0.1em] text-primary">학습 설계</h3>
@@ -244,7 +292,7 @@ export default async function HomePage() {
       </section>
 
       <section className="container-page grid gap-10 py-20 md:grid-cols-[240px_1fr] md:gap-16 md:py-28" aria-labelledby="faq">
-        <SectionHead no="08" eyebrow="FAQ" title="자주 묻는 질문" className="md:block [&_h2]:text-[24px]" />
+        <SectionHead no="12" eyebrow="FAQ" title="자주 묻는 질문" className="md:block [&_h2]:text-[24px]" />
         <Accordion type="single" collapsible id="faq" className="border-t border-foreground/30">
           {faqs.map((f, i) => (
             <AccordionItem key={f.q} value={`f${i}`}><AccordionTrigger>{f.q}</AccordionTrigger><AccordionContent>{f.a}</AccordionContent></AccordionItem>

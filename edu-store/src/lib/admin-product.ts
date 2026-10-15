@@ -47,6 +47,8 @@ export function buildProductRow(b: Record<string, unknown>, partial: boolean) {
   if (has("curriculum")) { row.curriculum = b.curriculum ? (isOneOf(CURRICULA, b.curriculum) ? b.curriculum : (errors.push("교육과정 값이 올바르지 않습니다."), null)) : null; }
   if (has("status")) { if (!isOneOf(STATUSES, b.status)) errors.push("판매 상태를 선택하세요."); row.status = b.status; }
   if (has("deliveryType")) row.delivery_type = isOneOf(DELIVERY_TYPES, b.deliveryType) ? b.deliveryType : "custom";
+  if (has("collection")) row.collection = ["self-study", "study-method", "study-planner", "parent-guide"].includes(String(b.collection)) ? b.collection : null;
+  if (has("method")) row.study_method = text(b.method);
   if (has("weakTags")) row.weak_tags = Array.isArray(b.weakTags) ? b.weakTags.filter((t) => WEAK_TAGS.some((w) => w.id === t)) : [];
   if (has("answerMode")) { row.answer_mode = isOneOf(ANSWER_MODES, b.answerMode) ? b.answerMode : "none"; }
 
