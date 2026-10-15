@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ExternalLink, Mail } from "lucide-react";
-import { DemoNotice } from "@/components/demo-notice";
+import { Mail } from "lucide-react";
+import { ConsultForm } from "@/components/consult-form";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -40,21 +40,10 @@ const TRACKS = {
 
 type Track = keyof typeof TRACKS;
 
-/** 폼트리 주소가 https일 때만 내장합니다. */
-function safeUrl(raw: string) {
-  try {
-    const u = new URL(raw);
-    return u.protocol === "https:" ? u.toString() : null;
-  } catch {
-    return null;
-  }
-}
-
 export default async function ConsultPage({ searchParams }: { searchParams: Promise<{ track?: string }> }) {
   const { track: raw } = await searchParams;
   const track: Track = raw === "middle" ? "middle" : "suneung";
   const t = TRACKS[track];
-  const url = siteConfig.consult[track] ? safeUrl(siteConfig.consult[track]) : null;
 
   return (
     <div className="container-page max-w-3xl py-10 sm:py-14">
@@ -87,24 +76,7 @@ export default async function ConsultPage({ searchParams }: { searchParams: Prom
       </ul>
 
       <section className="mt-8" aria-label="상담 폼">
-        {url ? (
-          <>
-            <div className="overflow-hidden rounded-2xl border border-border">
-              <iframe key={track} src={url} title={`${t.label} 폼`} className="h-[820px] w-full" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" />
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              폼이 잘 보이지 않으면{" "}
-              <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-semibold text-primary underline">
-                새 창에서 열기 <ExternalLink className="size-3.5" />
-              </a>
-            </p>
-          </>
-        ) : (
-          <DemoNotice>
-            {t.label} 폼이 아직 연결되지 않았어요. 폼트리에서 만든 폼의 공유 주소를 환경 변수{" "}
-            <code>{track === "suneung" ? "NEXT_PUBLIC_FORMTREE_URL_SUNEUNG" : "NEXT_PUBLIC_FORMTREE_URL_MIDDLE"}</code>(또는 공통 <code>NEXT_PUBLIC_FORMTREE_URL</code>)에 넣고 다시 배포하면 이 자리에 폼이 나타납니다.
-          </DemoNotice>
-        )}
+        <ConsultForm key={track} track={track} trackLabel={t.label} endpoint={siteConfig.consultEndpoint} supportEmail={siteConfig.supportEmail} />
       </section>
 
       <div className="mt-10 rounded-2xl border border-border p-5 text-sm leading-relaxed">

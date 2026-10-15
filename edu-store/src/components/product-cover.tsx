@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/types";
 
 const PALETTE: Record<string, { bg: string; band: string; text: string }> = {
-  korean: { bg: "#EEF3FF", band: "#1F4FD1", text: "#14307F" },
-  math: { bg: "#EAF6FF", band: "#0B6BCB", text: "#0A3F78" },
-  english: { bg: "#EEF1F8", band: "#3B4A6B", text: "#1F2A44" },
-  inquiry: { bg: "#E8F7F3", band: "#0E8A6E", text: "#0B4D3F" },
-  common: { bg: "#F3F4F6", band: "#475467", text: "#1D2939" },
+  korean: { bg: "#FCEBF0", band: "#B8365E", text: "#5E1A33" },
+  math: { bg: "#FBF1D6", band: "#C79A2E", text: "#5E4410" },
+  english: { bg: "#F5ECF1", band: "#6B3F58", text: "#3B1E2D" },
+  inquiry: { bg: "#FDEFE2", band: "#D98A4E", text: "#6B3414" },
+  common: { bg: "#F5F0EE", band: "#8A7480", text: "#3A2F35" },
 };
 
 type Props = {

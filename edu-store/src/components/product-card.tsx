@@ -16,7 +16,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="flex flex-wrap gap-1.5">
           <Badge>{subjectLabel(product.subject)}</Badge>
           <Badge variant="muted">{product.grades.map(gradeLabel).join("·")}</Badge>
-          <Badge variant="outline">{typeLabel(product.type)}</Badge>
+          <Badge variant="gold">{typeLabel(product.type)}</Badge>
         </div>
         <h3 className="mt-3 text-[17px] font-bold leading-snug">
           <Link href={`/products/${product.slug}`} className="hover:text-primary">

@@ -78,7 +78,7 @@ export default async function HomePage() {
               <p className="inline-flex items-center gap-1.5 rounded-full bg-background px-3 py-1 text-[13px] font-semibold text-primary ring-1 ring-primary/15">
                 수능 · 내신 · 자기주도학습 PDF
               </p>
-              <SuneungDday className="rounded-full bg-primary px-3 py-1 text-[13px] font-bold text-primary-foreground" />
+              <SuneungDday className="rounded-full bg-gold px-3 py-1 text-[13px] font-bold text-foreground" />
             </div>
             <h1 className="mt-5 text-[32px] font-extrabold leading-[1.25] sm:text-5xl sm:leading-[1.2] lg:text-[44px]">
               필요한 만큼, 정확하게.
@@ -269,12 +269,12 @@ export default async function HomePage() {
       {/* 5. 이용 방법 */}
       <section className="bg-navy py-16 text-white sm:py-20">
         <div className="container-page">
-          <p className="text-sm font-semibold text-blue-300">이용 방법</p>
+          <p className="text-sm font-semibold text-gold">이용 방법</p>
           <h2 className="mt-2 text-2xl font-bold sm:text-[28px]">확인하고, 결제하고, 바로 공부하세요</h2>
           <ol className="mt-10 grid gap-6 md:grid-cols-3">
             {STEPS.map((s, i) => (
               <li key={s.title} className="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-                <span className="text-sm font-bold text-blue-300">STEP {i + 1}</span>
+                <span className="text-sm font-bold text-gold">STEP {i + 1}</span>
                 <h3 className="mt-2 text-lg font-bold">{s.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/70">{s.body}</p>
               </li>
@@ -332,7 +332,7 @@ export default async function HomePage() {
             <h2 className="mt-4 text-2xl font-bold sm:text-3xl">오늘 풀 한 세트부터 시작하세요</h2>
             <p className="mt-2 text-[15px] text-primary-foreground/80">과목과 학년만 고르면 필요한 자료를 바로 찾을 수 있습니다.</p>
           </div>
-          <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+          <Button asChild size="lg" variant="secondary" className="bg-gold text-foreground hover:bg-gold/90">
             <Link href="/products">
               자료 찾아보기 <ArrowRight />
             </Link>

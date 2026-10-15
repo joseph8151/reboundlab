@@ -2,35 +2,41 @@
 @import "tw-animate-css";
 
 /*
- * 컬러 팔레트
- *  Primary  #1F4FD1  신뢰감 있는 블루 (CTA, 링크)
- *  Navy     #0F1F3D  본문 제목, 푸터
- *  Sky      #EEF3FF  강조 배경, 배지
- *  Gray 50  #F6F7F9  섹션 배경
- *  Gray 200 #E3E6EB  테두리
- *  Gray 500 #667085  보조 텍스트
+ * 컬러 팔레트 — 로즈 핑크 + 샴페인 골드
+ *  Primary  #B8365E  로즈 핑크 (CTA, 링크)          · 흰 글자 5.6:1
+ *  Plum     #2D1B26  본문 제목, 푸터               · 짙은 자두색
+ *  Blush    #FCEBF0  강조 배경, 배지
+ *  Gold     #D4A93C  포인트 (D-day, 구분선, 추천)   · 플럼 글자 8.7:1
+ *  Gold soft #FBF1D6 골드 배지 배경
+ *  Ivory    #FFFCF7  페이지 배경 (따뜻한 아이보리)
+ *  Sand     #F8F3EE  섹션 배경
+ *  Line     #EDE3DC  테두리
+ *  Mauve    #7A6670  보조 텍스트
  *  Success  #0E9F6E  즉시 다운로드, 완료 상태
  */
 :root {
   --radius: 0.75rem;
-  --background: #ffffff;
-  --foreground: #0f1f3d;
+  --background: #fffcf7;
+  --foreground: #2d1b26;
   --card: #ffffff;
-  --card-foreground: #0f1f3d;
-  --primary: #1f4fd1;
+  --card-foreground: #2d1b26;
+  --primary: #b8365e;
   --primary-foreground: #ffffff;
-  --secondary: #eef3ff;
-  --secondary-foreground: #1a3fa8;
-  --muted: #f6f7f9;
-  --muted-foreground: #667085;
-  --accent: #eef3ff;
-  --accent-foreground: #1a3fa8;
+  --secondary: #fcebf0;
+  --secondary-foreground: #8a2347;
+  --muted: #f8f3ee;
+  --muted-foreground: #7a6670;
+  --accent: #fcebf0;
+  --accent-foreground: #8a2347;
+  --gold: #d4a93c;
+  --gold-soft: #fbf1d6;
+  --gold-foreground: #6b4e0c;
   --destructive: #d92d20;
   --success: #0e9f6e;
-  --border: #e3e6eb;
-  --input: #d0d5dd;
-  --ring: #1f4fd1;
-  --navy: #0f1f3d;
+  --border: #ede3dc;
+  --input: #dccfc7;
+  --ring: #b8365e;
+  --navy: #3b1e2d;
 }
 
 @theme inline {
@@ -54,6 +60,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-foreground: var(--gold-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

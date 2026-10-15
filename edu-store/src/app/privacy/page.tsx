@@ -62,7 +62,7 @@ export default function PrivacyPage() {
           <tr><td>㈜토스페이먼츠</td><td>결제 처리, 결제 정보 관리</td><td>대한민국</td></tr>
           <tr><td>Supabase, Inc.</td><td>회원 인증, 데이터베이스 및 파일 저장</td><td>[선택한 리전 국가 기재, 예: 대한민국(서울 리전)]</td></tr>
           <tr><td>Vercel Inc.</td><td>웹사이트 호스팅</td><td>미국 등</td></tr>
-          <tr><td>폼트리(Formtree)</td><td>상담 신청 폼 수집·저장</td><td>[폼트리 서비스 약관의 저장 국가 확인 후 기재]</td></tr>
+          <tr><td>Formspree, Inc.</td><td>상담 신청 내용 수신 및 이메일 전달</td><td>미국</td></tr>
           <tr><td>Anthropic, PBC</td><td>AI 지문 분석 (이용자가 입력한 지문 텍스트·사진 처리)</td><td>미국</td></tr>
         </tbody>
       </table>

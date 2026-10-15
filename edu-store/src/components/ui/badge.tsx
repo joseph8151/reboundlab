@@ -10,6 +10,7 @@ const badgeVariants = cva("inline-flex items-center gap-1 rounded-md px-2 py-0.5
       solid: "bg-primary text-primary-foreground",
       success: "bg-success/10 text-success",
       muted: "bg-muted text-muted-foreground",
+      gold: "bg-gold-soft text-gold-foreground",
     },
   },
   defaultVariants: { variant: "default" },

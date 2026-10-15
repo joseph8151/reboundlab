@@ -21,7 +21,7 @@ export default function StudyHubPage() {
     <>
       <section className="border-b border-border bg-gradient-to-b from-accent/70 to-background">
         <div className="container-page py-14 sm:py-20">
-          <SuneungDday className="inline-block rounded-full bg-primary px-3 py-1 text-[13px] font-bold text-primary-foreground" />
+          <SuneungDday className="inline-block rounded-full bg-gold px-3 py-1 text-[13px] font-bold text-foreground" />
           <h1 className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
             혼자 공부하는 힘을 기르는
             <br />

@@ -10,9 +10,8 @@
   },
   "observability": { "enabled": true },
 
-  // Cloudflare 대시보드의 배포 명령이 `npx wrangler deploy` 하나뿐이어도 되도록,
-  // 배포 직전에 Next.js를 Workers용으로 빌드합니다. (의존성 설치는 Cloudflare가 먼저 합니다.)
-  "build": { "command": "npx opennextjs-cloudflare build" },
+  // 빌드는 package.json의 postinstall(scripts/cf-build.mjs)이 Cloudflare 빌드 환경에서 자동으로 실행합니다.
+  // 수동 배포는 `npm run deploy:cf`를 쓰세요.
 
   // 대시보드에서 넣은 변수·시크릿을 배포 때 지우지 않습니다.
   "keep_vars": true
