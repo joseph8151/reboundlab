@@ -44,7 +44,7 @@ export function Schedule({ books }: { books: { slug: string; title: string; ques
     <div>
       <div className="grid gap-5 sm:grid-cols-2 print:hidden">
         <div className="sm:col-span-2"><Label htmlFor="sc-book" className={lab}>교재 (선택)</Label>
-          <select id="sc-book" value={book} onChange={(e) => { setBook(e.target.value); const b = books.find((x) => x.slug === e.target.value); if (b?.questionCount) setTotal(String(b.questionCount)); }} className="h-11 w-full rounded-lg border border-input bg-background px-3 text-[15px]">
+          <select id="sc-book" value={book} onChange={(e) => { setBook(e.target.value); const b = books.find((x) => x.slug === e.target.value); if (b?.questionCount) setTotal(String(b.questionCount)); }} className="h-11 w-full rounded-lg border border-input bg-card px-3 text-[15px]">
             <option value="">직접 입력</option>{books.map((b) => <option key={b.slug} value={b.slug}>{b.title}{b.questionCount ? ` (${b.questionCount}문항)` : ""}</option>)}
           </select></div>
         <div><Label htmlFor="sc-total" className={lab}>전체 분량 (문항·쪽·강 등)</Label><Input id="sc-total" type="number" min={1} max={5000} inputMode="numeric" value={total} onChange={(e) => setTotal(e.target.value)} disabled={units.length > 0} placeholder="예: 100" /></div>
@@ -52,7 +52,7 @@ export function Schedule({ books }: { books: { slug: string; title: string; ques
         <div><Label htmlFor="sc-start" className={lab}>시작일</Label><Input id="sc-start" type="date" value={start} onChange={(e) => setStart(e.target.value)} /></div>
         <div><Label htmlFor="sc-end" className={lab}>목표 완료일</Label><Input id="sc-end" type="date" value={end} min={start} onChange={(e) => setEnd(e.target.value)} /></div>
         <div className="sm:col-span-2"><Label htmlFor="sc-units" className={lab}>단원별 분량이 다르다면 단원을 한 줄에 하나씩 (선택)</Label>
-          <textarea id="sc-units" rows={4} value={unitText} onChange={(e) => setUnitText(e.target.value)} placeholder={"1단원\n2단원\n3단원"} className="w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-[15px]" />
+          <textarea id="sc-units" rows={4} value={unitText} onChange={(e) => setUnitText(e.target.value)} placeholder={"1단원\n2단원\n3단원"} className="w-full rounded-lg border border-input bg-card px-3.5 py-2.5 text-[15px]" />
           <p className="mt-1 text-[12px] text-muted-foreground">단원을 입력하면 단원 단위로 하루 분량을 배분합니다. 단원마다 분량이 다르면 학습일 수에 맞춰 단원을 나누어 담습니다.</p></div>
       </div>
       <button type="button" className="mt-6 inline-flex h-12 items-center bg-primary px-7 text-[15px] font-semibold text-primary-foreground print:hidden" onClick={() => setShown(true)}>일정 만들기</button>

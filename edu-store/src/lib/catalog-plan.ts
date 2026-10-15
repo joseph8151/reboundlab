@@ -47,7 +47,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["수능 영어 빈칸 추론", "수능 영어 문제집", "빈칸 추론 문제"],
     featuredRank: 1,
     seoTitle: "수능 영어 빈칸 추론 100제",
-    seoDescription: "수능 영어 빈칸 추론 유형만 100문항으로 구성한 훈련 교재. 근거 문장을 찾는 풀이 순서와 오답 배제 해설을 다룹니다. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "수능 영어 빈칸 추론 유형만 100문항으로 구성한 훈련 교재. 근거 문장을 찾는 풀이 순서와 오답 배제 해설을 다룹니다. 멜리사 에듀(MELISSA EDU) ",
   },
   {
     slug: "high1-common-math1-variant-300",
@@ -62,7 +62,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["고1 수학 문제집", "고1 공통수학1", "내신 변형문제", "고등 수학 유형별 문제"],
     featuredRank: 2,
     seoTitle: "고1 공통수학1 내신 변형문제 300",
-    seoDescription: "고1 공통수학1 대표 유형을 조건을 바꿔 다시 출제한 내신 변형문제 300문항. 원유형 표시로 복습 방향을 잡습니다. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "고1 공통수학1 대표 유형을 조건을 바꿔 다시 출제한 내신 변형문제 300문항. 원유형 표시로 복습 방향을 잡습니다. 멜리사 에듀(MELISSA EDU) ",
   },
   {
     slug: "csat-korean-reading-advanced-past-exam",
@@ -77,7 +77,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["수능 국어 독서", "수능 국어 문제집", "수능 기출문제집", "독서 고난도"],
     featuredRank: 3,
     seoTitle: "수능 국어 독서 고난도 기출 분석",
-    seoDescription: "수능 국어 독서 영역의 고난도 기출을 지문 구조와 선지 판단 근거로 분석하는 교재. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "수능 국어 독서 영역의 고난도 기출을 지문 구조와 선지 판단 근거로 분석하는 교재. 멜리사 에듀(MELISSA EDU) ",
   },
   {
     slug: "high-english-descriptive-writing-intensive",
@@ -92,7 +92,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["고등 영어 서술형 문제집", "고등학교 내신 문제집", "영어 서술형"],
     featuredRank: 4,
     seoTitle: "고등 영어 서술형 집중 문제집",
-    seoDescription: "고등학교 영어 내신 서술형을 어법 판단·문장 전환·영작으로 나누어 연습하는 문제집. 채점 기준 포함. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "고등학교 영어 내신 서술형을 어법 판단·문장 전환·영작으로 나누어 연습하는 문제집. 채점 기준 포함. 멜리사 에듀(MELISSA EDU) ",
   },
   {
     slug: "csat-english-order-insertion-100",
@@ -107,7 +107,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["수능 영어 순서", "수능 영어 문장 삽입", "수능 영어 문제집"],
     featuredRank: 5,
     seoTitle: "수능 영어 순서·삽입 실전 100제",
-    seoDescription: "수능 영어 글의 순서·문장 삽입을 실전 형식 100문항으로 훈련하는 교재. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "수능 영어 글의 순서·문장 삽입을 실전 형식 100문항으로 훈련하는 교재. 멜리사 에듀(MELISSA EDU) ",
   },
   {
     slug: "middle3-high-english-preview-grammar",
@@ -122,7 +122,7 @@ export const PRIORITY_PRODUCTS: SeedProduct[] = [
     keywords: ["중3 영어 문법", "고등 영어 선행", "중등 영어 문법 문제집"],
     featuredRank: 6,
     seoTitle: "중3 고등 영어 선행 문법",
-    seoDescription: "중학교 3학년이 고등 영어를 시작하기 전에 정리해야 할 핵심 문법을 단계별로 다지는 교재. 멜리사 에듀(MELISA EDU) ",
+    seoDescription: "중학교 3학년이 고등 영어를 시작하기 전에 정리해야 할 핵심 문법을 단계별로 다지는 교재. 멜리사 에듀(MELISSA EDU) ",
   },
 ];
 

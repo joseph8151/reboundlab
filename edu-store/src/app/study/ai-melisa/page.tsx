@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const FEATURES = ["핵심 내용", "글의 구조", "문장별 해석", "어휘", "문법·구문", "정답 근거"];
 
-export default function AiMelisaPage() {
+export default function AiMelissaPage() {
   // 고객 로그인이 없으므로 사이트 안 분석은 제공하지 않고 외부 GPT 링크로 안내합니다.
   const enabled = false as boolean;
   return (

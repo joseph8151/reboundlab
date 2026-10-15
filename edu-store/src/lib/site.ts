@@ -2,11 +2,11 @@ const env = (k: string) => (process.env[k] ?? "").trim();
 
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_BRAND_NAME || "멜리사 에듀",
-  nameEn: "MELISA EDU",
+  nameEn: "MELISSA EDU",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
   slogan: "공부의 기준을 다시 세우다.",
   description:
-    "수능부터 학교 내신까지. 학습의 깊이를 더하는 전문 교재를 PDF로 펴내는 교육 출판 브랜드, 멜리사 에듀(MELISA EDU)입니다.",
+    "수능부터 학교 내신까지. 학습의 깊이를 더하는 전문 교재를 PDF로 펴내는 교육 출판 브랜드, 멜리사 에듀(MELISSA EDU)입니다.",
   // 고객지원 이메일. 설정 전에는 화면에 표시하지 않고 상담 신청 페이지로 안내합니다.
   supportEmail: env("NEXT_PUBLIC_SUPPORT_EMAIL"),
   /** 문장 안에서 "OOO로 문의" 형태로 쓰는 연락 수단 */

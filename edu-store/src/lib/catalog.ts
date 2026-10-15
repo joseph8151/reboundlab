@@ -1,5 +1,5 @@
 /**
- * MELISA EDU 교재 분류 체계.
+ * MELISSA EDU 교재 분류 체계.
  * 상품 데이터(DB)에는 아래 id 값만 저장하고, 화면에 쓰는 이름·설명은 이 파일에서 관리합니다.
  */
 
@@ -34,13 +34,17 @@ export const TRACKS = [
 export type TrackId = (typeof TRACKS)[number]["id"];
 
 // ── 과목(영역) ─────────────────────────────────────────────
+/**
+ * 과목 색: 브랜드 통일을 위해 모두 와인·핑크 계열 안에서 포인트만 바꿉니다.
+ * color 표지 바탕 / ink 바탕 위 글자 / tint 보조 면 / accent 작은 포인트 / text 밝은 면 위 글자
+ */
 export const AREAS = [
-  { id: "korean", label: "국어", color: "#5b1f2c", tint: "#efe3e5" },
-  { id: "math", label: "수학", color: "#1b2a45", tint: "#e3e7ef" },
-  { id: "english", label: "영어", color: "#2d4a3e", tint: "#e2ebe5" },
-  { id: "social", label: "사회", color: "#6b5442", tint: "#eee8e1" },
-  { id: "science", label: "과학", color: "#44566f", tint: "#e5e9ef" },
-  { id: "common", label: "종합", color: "#3a3d3a", tint: "#e9e8e3" },
+  { id: "korean", label: "국어", color: "#6e2132", ink: "#faf6f2", tint: "#f3d5dc", accent: "#d88fa0", text: "#6e2132" },
+  { id: "math", label: "수학", color: "#4a1d28", ink: "#faf6f2", tint: "#e7d5b7", accent: "#e7d5b7", text: "#4a1d28" },
+  { id: "english", label: "영어", color: "#d88fa0", ink: "#3b1520", tint: "#fcf5f7", accent: "#6e2132", text: "#6e2132" },
+  { id: "social", label: "사회", color: "#c97b8d", ink: "#3b1520", tint: "#f7ece8", accent: "#d9a63a", text: "#6e2132" },
+  { id: "science", label: "과학", color: "#7b263b", ink: "#faf6f2", tint: "#f3d5dc", accent: "#f3d5dc", text: "#7b263b" },
+  { id: "common", label: "종합", color: "#8c5160", ink: "#faf6f2", tint: "#f7ece8", accent: "#e7d5b7", text: "#6e2132" },
 ] as const;
 export type AreaId = (typeof AREAS)[number]["id"];
 

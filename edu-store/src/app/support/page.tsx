@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "고객지원",
-  description: "멜리사 에듀(MELISA EDU) 교재의 상담·구매 방법, PDF 전달, 환불·교환, 오류 제보를 안내합니다.",
+  description: "멜리사 에듀(MELISSA EDU) 교재의 상담·구매 방법, PDF 전달, 환불·교환, 오류 제보를 안내합니다.",
   alternates: { canonical: "/support" },
 };
 

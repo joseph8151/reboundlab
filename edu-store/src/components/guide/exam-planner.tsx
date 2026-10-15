@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Disclaimer, RecList, lineBtn, primaryBtn } from "./ui";
-import { NativeSelect } from "@/components/ui/select";
+import { SelectBox } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { kindLabel, type KindId } from "@/lib/catalog";
@@ -74,8 +74,8 @@ export function ExamPlanner({ products }: { products: GuideProduct[] }) {
     <div>
       <div className="grid gap-5 sm:grid-cols-3">
         <div><Label htmlFor="exam-date" className="mb-1.5 block text-[13px] font-semibold">시험 날짜</Label><Input id="exam-date" type="date" value={date} onChange={(e) => setDate(e.target.value)} /></div>
-        <div><Label htmlFor="exam-grade" className="mb-1.5 block text-[13px] font-semibold">학년 (선택)</Label><NativeSelect><select id="exam-grade" value={grade} onChange={(e) => setGrade(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">전체 학년</option>{GRADE_CHOICES.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}</select></NativeSelect></div>
-        <div><Label htmlFor="exam-subject" className="mb-1.5 block text-[13px] font-semibold">과목 (선택)</Label><NativeSelect><select id="exam-subject" value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]">{SUBJECTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}</select></NativeSelect></div>
+        <div><Label htmlFor="exam-grade" className="mb-1.5 block text-[13px] font-semibold">학년 (선택)</Label><SelectBox><select id="exam-grade" value={grade} onChange={(e) => setGrade(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">전체 학년</option>{GRADE_CHOICES.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}</select></SelectBox></div>
+        <div><Label htmlFor="exam-subject" className="mb-1.5 block text-[13px] font-semibold">과목 (선택)</Label><SelectBox><select id="exam-subject" value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]">{SUBJECTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}</select></SelectBox></div>
       </div>
 
       {date && left !== null && left < 0 && <p className="mt-6 text-[15px] text-destructive">이미 지난 날짜입니다. 다음 시험 날짜를 선택해 주세요.</p>}

@@ -37,7 +37,7 @@ export function SiteFooter() {
           <ul className={`mt-3 ${col}`}>
             <li><Link className={link} href="/diagnosis">3분 학습 진단</Link></li>
             <li><Link className={link} href="/exam">시험이 얼마 남지 않았다면</Link></li>
-            <li><Link className={link} href="/custom">MELISA CUSTOM BOOK</Link></li>
+            <li><Link className={link} href="/custom">MELISSA CUSTOM BOOK</Link></li>
             <li><Link className={link} href="/schedule">학습 일정 만들기</Link></li>
             <li><Link className={link} href="/study">무료 학습 도구</Link></li>
           </ul>

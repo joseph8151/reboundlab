@@ -34,7 +34,7 @@ export function HeaderClient() {
         <button type="button" className="-ml-2 px-2 py-2 text-[13px] font-medium md:hidden" aria-expanded={open} aria-controls="mobile-panel" onClick={() => setOpen(true)}>
           메뉴
         </button>
-        <Link href="/" aria-label="MELISA EDU 홈" className="max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
+        <Link href="/" aria-label="MELISSA EDU 홈" className="max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
           <Wordmark size="md" className="max-md:[&>span:first-child]:text-[18px]" />
         </Link>
 
@@ -43,7 +43,7 @@ export function HeaderClient() {
           <input name="q" type="search" aria-label="교재 검색" placeholder="교재명, 학년, 과목 검색" className="w-full bg-transparent text-[14px] outline-none placeholder:text-muted-foreground/80" />
         </form>
 
-        <Link href="/consult" data-consult-button className="hidden h-9 items-center bg-primary px-4 text-[13px] font-semibold text-primary-foreground hover:bg-primary/90 md:inline-flex">교재 상담 신청</Link>
+        <Link href="/consult" data-consult-button className="hidden h-9 items-center bg-primary px-4 text-[13px] font-semibold text-primary-foreground hover:bg-primary-hover md:inline-flex">교재 상담 신청</Link>
 
         <Link href="/consult" data-consult-button className="text-[13px] font-semibold md:hidden">상담 신청</Link>
       </div>
@@ -55,7 +55,7 @@ export function HeaderClient() {
               <Link
                 href={n.href}
                 aria-current={isActive(n.href) ? "page" : undefined}
-                className={cn("-mb-px inline-block border-b py-3 text-[14px] transition-colors", isActive(n.href) ? "border-foreground font-semibold" : "border-transparent text-muted-foreground hover:text-foreground")}
+                className={cn("-mb-px inline-block border-b py-3 text-[14px] transition-colors", isActive(n.href) ? "border-primary font-semibold text-primary" : "border-transparent text-muted-foreground hover:text-foreground")}
               >
                 {n.label}
               </Link>

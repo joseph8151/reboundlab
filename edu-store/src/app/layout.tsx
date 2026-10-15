@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false },
 };
 
-export const viewport: Viewport = { themeColor: "#F7F5F0", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#FAF6F2", width: "device-width", initialScale: 1 };
 
 const orgJsonLd = {
   "@context": "https://schema.org",

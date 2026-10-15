@@ -78,7 +78,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
         ) : (
           <div className="mt-6 max-w-xl">
             <p className="text-[15px] leading-relaxed text-muted-foreground">이 분류에는 아직 등록된 교재가 없습니다. 원하시는 과목·단원·유형을 알려 주시면 제작 가능 여부와 가격, 납품 일정을 상담으로 안내해 드립니다.</p>
-            <div className="mt-5 flex flex-wrap gap-3"><ConsultLink /><ConsultLink label="MELISA CUSTOM BOOK 구성 상담" variant="line" slug={undefined} className="hidden" /><Link href="/custom" className="inline-flex h-11 items-center border border-foreground/60 px-5 text-[14px] font-semibold hover:bg-foreground hover:text-background">나만의 구성 상담</Link></div>
+            <div className="mt-5 flex flex-wrap gap-3"><ConsultLink /><ConsultLink label="MELISSA CUSTOM BOOK 구성 상담" variant="line" slug={undefined} className="hidden" /><Link href="/custom" className="inline-flex h-11 items-center border border-dusty-rose/70 bg-card px-5 text-[14px] font-semibold text-secondary-foreground hover:bg-blush/50">나만의 구성 상담</Link></div>
           </div>
         )}
       </section>

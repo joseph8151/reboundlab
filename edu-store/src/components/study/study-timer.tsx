@@ -11,11 +11,11 @@ import { SyncNote } from "./sync-note";
 
 /** 범주형 팔레트 (색각 이상 대비 검증 완료). 과목 색은 순서가 아니라 과목에 고정됩니다. */
 export const STUDY_SUBJECTS = [
-  { id: "korean", label: "국어", color: "#2a78d6" },
-  { id: "math", label: "수학", color: "#eb6834" },
-  { id: "english", label: "영어", color: "#1baf7a" },
-  { id: "inquiry", label: "탐구", color: "#eda100" },
-  { id: "etc", label: "기타", color: "#e87ba4" },
+  { id: "korean", label: "국어", color: "#7b263b" },
+  { id: "math", label: "수학", color: "#4a1d28" },
+  { id: "english", label: "영어", color: "#d88fa0" },
+  { id: "inquiry", label: "탐구", color: "#d9a63a" },
+  { id: "etc", label: "기타", color: "#c9b79a" },
 ] as const;
 type SubjectId = (typeof STUDY_SUBJECTS)[number]["id"];
 

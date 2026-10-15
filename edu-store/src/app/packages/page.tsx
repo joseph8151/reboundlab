@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "패키지 · 교재 묶음 구성",
-  description: "수능 영어 독해, 수능 국어 문학·독서, 고1 내신, 중등 영어 문법·독해 등 여러 교재를 한 번에 상담·구매하는 멜리사 에듀(MELISA EDU) 패키지.",
+  description: "수능 영어 독해, 수능 국어 문학·독서, 고1 내신, 중등 영어 문법·독해 등 여러 교재를 한 번에 상담·구매하는 멜리사 에듀(MELISSA EDU) 패키지.",
   alternates: { canonical: "/packages" },
 };
 

@@ -91,7 +91,7 @@ export function HabitTracker() {
             </div>
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
               <span>달성 <strong>{done}</strong>일 ({Math.round((done / TOTAL) * 100)}%)</span>
-              <span className="flex items-center gap-1"><Flame className="size-4 text-[#eb6834]" /> 연속 <strong>{s}</strong>일</span>
+              <span className="flex items-center gap-1"><Flame className="size-4 text-[#d9a63a]" /> 연속 <strong>{s}</strong>일</span>
             </div>
             <div className="mt-4 grid grid-cols-11 gap-1.5 sm:gap-2">
               {Array.from({ length: TOTAL }).map((_, i) => {

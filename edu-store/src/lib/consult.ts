@@ -24,7 +24,7 @@ export type InquiryType = "book" | "parent" | "academy" | "custom" | "errata";
 export const CONSULT_TITLES: Record<InquiryType, { title: string; desc: string; submit: string }> = {
   book: { title: "교재 상담 및 구매 신청", desc: "구매를 원하시는 교재를 확인하신 후 연락처와 문의 내용을 남겨주세요. 담당자가 문자 또는 전화로 계좌이체 방법을 안내해 드립니다.", submit: CONSULT_COPY.submit },
   parent: { title: "우리 아이 교재 상담", desc: "보호자 연락처를 남겨주시면 자녀의 학년과 학습 고민에 맞는 교재를 문자 또는 전화로 안내해 드립니다.", submit: CONSULT_COPY.submit },
-  custom: { title: "MELISA CUSTOM BOOK 구성 상담", desc: "선택하신 구성을 바탕으로 제작 가능 여부, 가격, 납품 일정을 문자 또는 전화로 안내해 드립니다.", submit: "맞춤 구성 상담 신청하기" },
+  custom: { title: "MELISSA CUSTOM BOOK 구성 상담", desc: "선택하신 구성을 바탕으로 제작 가능 여부, 가격, 납품 일정을 문자 또는 전화로 안내해 드립니다.", submit: "맞춤 구성 상담 신청하기" },
   academy: { title: "학원 및 교육기관 교재 문의", desc: "교재 구성과 이용 규모를 남겨주시면 단체 이용 조건과 가격을 개별 상담으로 안내해 드립니다.", submit: "교재 문의 보내기" },
   errata: { title: "교재 오류 제보 · 해설 문의", desc: "교재명과 오류 내용을 남겨주시면 확인 후 안내해 드립니다. 접수된 내용은 확인 전에는 정오표로 게시되지 않습니다.", submit: "제보 보내기" },
 };

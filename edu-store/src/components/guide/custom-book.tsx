@@ -42,7 +42,7 @@ export function CustomBook() {
     setErr("");
     const spec = rows.map(([k, v]) => `${k}: ${v}`).join(" / ");
     saveDraft({
-      source: "MELISA CUSTOM BOOK", inquiryType: "custom", grade: gradeLabel, subject: subjectLabel, currentLevel: undefined, targetLevel: levelLabel || undefined,
+      source: "MELISSA CUSTOM BOOK", inquiryType: "custom", grade: gradeLabel, subject: subjectLabel, currentLevel: undefined, targetLevel: levelLabel || undefined,
       examDate: exam || undefined, weakTypes: weakLabels, customSpec: spec,
       message: `나만의 문제집 구성 상담을 요청합니다. 제작 가능 여부와 가격, 납품 일정을 안내해 주세요.\n${spec}`,
     });

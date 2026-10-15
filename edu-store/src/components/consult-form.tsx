@@ -6,7 +6,7 @@ import { CircleCheckBig, LoaderCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { NativeSelect } from "@/components/ui/select";
+import { SelectBox } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import {
   CONSULT_COPY, CONSULT_ENDPOINT, CONSULT_TITLES, clearDraft, formatPhone, isValidMobile, loadDraft, submitConsult,
@@ -169,13 +169,13 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
 
   if (state === "done") {
     return (
-      <div role="status" className="border border-border bg-sage p-6 sm:p-8">
+      <div role="status" className="border border-blush bg-blush/60 p-6 sm:p-8">
         <CircleCheckBig className="size-6 text-success" aria-hidden />
         <p className="mt-3 text-[19px] font-semibold leading-snug">교재 상담 신청이 접수되었습니다.</p>
         <p className="mt-2 text-[14px] leading-relaxed text-foreground/80">멜리사 에듀 담당자가 남겨주신 연락처로 교재 구성과 계좌이체 방법을 안내해 드리겠습니다.</p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a href="/books" className="inline-flex h-11 items-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground">다른 교재 둘러보기</a>
-          <a href="/" className="inline-flex h-11 items-center border border-foreground/60 px-5 text-[14px] font-semibold">홈페이지로 돌아가기</a>
+          <a href="/books" className="inline-flex h-11 items-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground hover:bg-primary-hover">다른 교재 둘러보기</a>
+          <a href="/" className="inline-flex h-11 items-center border border-dusty-rose/70 bg-card px-5 text-[14px] font-semibold text-secondary-foreground hover:bg-blush/50">홈페이지로 돌아가기</a>
         </div>
       </div>
     );
@@ -188,15 +188,15 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden className="absolute left-[-9999px] h-0 w-0 opacity-0" />
 
       {mode === "book" && chosen.length > 0 && (
-        <div className="border-y border-foreground/30 py-5">
+        <div className="border-y border-primary/30 py-5">
           <p className="text-[12px] font-semibold tracking-[0.1em] text-muted-foreground">관심 교재</p>
-          <p className="mt-1.5 text-[22px] font-bold leading-snug tracking-[-0.03em]">{chosen.map((o) => o.title).join(" · ")}</p>
-          <p className="mt-2 text-[17px] tabular-nums">판매가: <strong>{total !== null ? formatPrice(total) : "상담 시 안내"}</strong>{chosen.length > 1 && total !== null ? <span className="ml-2 text-[13px] text-muted-foreground">({chosen.length}권 합계)</span> : null}</p>
+          <p className="mt-1.5 text-[22px] font-bold leading-snug tracking-[-0.03em] text-secondary-foreground">{chosen.map((o) => o.title).join(" · ")}</p>
+          <p className="mt-2 text-[17px] tabular-nums">판매가: <strong className="text-primary">{total !== null ? formatPrice(total) : "상담 시 안내"}</strong>{chosen.length > 1 && total !== null ? <span className="ml-2 text-[13px] text-muted-foreground">({chosen.length}권 합계)</span> : null}</p>
         </div>
       )}
 
       {rows.length > 0 && (
-        <div className="border border-border bg-sage/60 p-4 text-[13px] leading-relaxed">
+        <div className="border border-blush bg-card p-4 text-[13px] leading-relaxed">
           <div className="flex items-start justify-between gap-3">
             <p className="font-semibold">{draft?.source}에서 입력하신 정보가 상담 신청에 함께 전달됩니다.</p>
             <button type="button" className="shrink-0 text-muted-foreground underline underline-offset-2" onClick={() => { clearDraft(); setDraft(null); }}>
@@ -262,19 +262,19 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
               )}
             </ul>
           )}
-          <NativeSelect>
+          <SelectBox>
             <select
               id="product-add"
               value=""
               onChange={(e) => e.target.value && setSlugs((cur) => (mode === "errata" ? [e.target.value] : [...cur, e.target.value]))}
-              className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="">{chosen.length ? "교재 추가 선택" : "교재를 선택해 주세요"}</option>
               {available.map((o) => (
                 <option key={o.slug} value={o.slug}>{o.kind === "package" ? "[패키지] " : ""}{o.title}{o.price !== null ? ` — ${formatPrice(o.price)}` : ""}</option>
               ))}
             </select>
-          </NativeSelect>
+          </SelectBox>
           {mode === "book" && chosen.length > 0 && (
             <p className="mt-1.5 text-[12px] text-muted-foreground">PDF가 아직 완성되지 않은 교재는 주문 제작 상담으로 진행되며, 제작 가능 여부와 납품 시점은 상담에서 안내해 드립니다.</p>
           )}
@@ -286,7 +286,7 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <Label htmlFor="subject" className={label}>과목</Label>
-              <NativeSelect><select id="subject" value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">선택</option>{SUBJECTS.map((s) => <option key={s}>{s}</option>)}</select></NativeSelect>
+              <SelectBox><select id="subject" value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">선택</option>{SUBJECTS.map((s) => <option key={s}>{s}</option>)}</select></SelectBox>
             </div>
             <div>
               <Label htmlFor="target_grade" className={label}>대상 학년</Label>
@@ -309,13 +309,13 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
       )}
 
       {(mode === "book" || mode === "parent" || mode === "custom") && (
-        <details className="border-y border-border py-3" open={Boolean(grade || subject || currentLevel || targetLevel || examDate) || mode === "parent"}>
+        <details className="border-y border-blush py-3" open={Boolean(grade || subject || currentLevel || targetLevel || examDate) || mode === "parent"}>
           <summary className="cursor-pointer text-[14px] font-semibold">학습 정보 (선택)</summary>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div><Label className={label}>{mode === "parent" ? "자녀 학년" : "학년"}</Label><NativeSelect><select value={grade} onChange={(e) => setGrade(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{GRADES.map((g) => <option key={g}>{g}</option>)}</select></NativeSelect></div>
-            <div><Label className={label}>과목</Label><NativeSelect><select value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{SUBJECTS.map((g) => <option key={g}>{g}</option>)}</select></NativeSelect></div>
-            <div><Label className={label}>현재 성적대</Label><NativeSelect><select value={currentLevel} onChange={(e) => setCurrentLevel(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{LEVELS.map((g) => <option key={g}>{g}</option>)}</select></NativeSelect></div>
-            <div><Label className={label}>목표 성적대</Label><NativeSelect><select value={targetLevel} onChange={(e) => setTargetLevel(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{LEVELS.map((g) => <option key={g}>{g}</option>)}</select></NativeSelect></div>
+            <div><Label className={label}>{mode === "parent" ? "자녀 학년" : "학년"}</Label><SelectBox><select value={grade} onChange={(e) => setGrade(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{GRADES.map((g) => <option key={g}>{g}</option>)}</select></SelectBox></div>
+            <div><Label className={label}>과목</Label><SelectBox><select value={subject} onChange={(e) => setSubject(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{SUBJECTS.map((g) => <option key={g}>{g}</option>)}</select></SelectBox></div>
+            <div><Label className={label}>현재 성적대</Label><SelectBox><select value={currentLevel} onChange={(e) => setCurrentLevel(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{LEVELS.map((g) => <option key={g}>{g}</option>)}</select></SelectBox></div>
+            <div><Label className={label}>목표 성적대</Label><SelectBox><select value={targetLevel} onChange={(e) => setTargetLevel(e.target.value)} className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px]"><option value="">선택 안 함</option>{LEVELS.map((g) => <option key={g}>{g}</option>)}</select></SelectBox></div>
             <div><Label className={label}>시험 예정일</Label><Input type="date" value={examDate} onChange={(e) => setExamDate(e.target.value)} /></div>
           </div>
           {mode === "parent" && <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">만 14세 미만 학생의 이름·연락처는 받지 않습니다. 보호자(학부모) 연락처만 남겨 주세요.</p>}
@@ -357,7 +357,7 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
         </span>
       </label>
 
-      <p className="text-[12px] leading-relaxed text-muted-foreground">상담 신청은 결제가 아닙니다. 교재 구성과 구매 절차를 안내받으신 후 계좌이체로 결제하실 수 있습니다.</p>
+      <p className="text-[12.5px] leading-relaxed text-muted-foreground"><span className="bg-[linear-gradient(transparent_62%,var(--gold-soft)_62%)] font-medium text-secondary-foreground">상담 신청은 결제가 아닙니다.</span> 교재 구성과 구매 절차를 안내받으신 후 계좌이체로 결제하실 수 있습니다.</p>
 
       {error && <p role="alert" className="border-l-2 border-destructive bg-destructive/5 px-3 py-2 text-[13px] text-destructive">{error}</p>}
       {!endpoint && <p role="alert" className="text-[13px] text-destructive">상담 접수 주소가 설정되지 않았습니다. 운영자 설정이 필요합니다.</p>}

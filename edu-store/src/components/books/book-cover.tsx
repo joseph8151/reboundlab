@@ -5,8 +5,8 @@ import type { Product } from "@/lib/types";
 
 type CoverData = Pick<Product, "slug" | "title" | "series" | "area" | "course" | "levels" | "kind" | "curriculum" | "examYear" | "coverUrl">;
 
-/** 중등 교재는 과목과 관계없이 소프트 세이지 계열로 통일합니다. */
-const MIDDLE = { color: "#566d5f", tint: "#e4e9e1" };
+/** 중등 교재는 과목과 관계없이 웜 베이지 핑크 바탕에 와인 글자로 통일합니다. */
+const MIDDLE = { color: "#f3d5dc", ink: "#6e2132", tint: "#faf6f2", accent: "#6e2132", text: "#6e2132" };
 
 function palette(p: CoverData) {
   const onlyMiddle = p.levels.length > 0 && p.levels.every((l) => l.startsWith("middle"));
@@ -30,7 +30,7 @@ function titleSize(title: string) {
  * 표지 이미지가 등록되면 그 이미지를 그대로 보여 줍니다.
  */
 export function BookCover({ product, className, priority = false, sizes = "(min-width: 768px) 25vw, 50vw" }: { product: CoverData; className?: string; priority?: boolean; sizes?: string }) {
-  const frame = "relative block aspect-[3/4] w-full overflow-hidden shadow-[0_1px_0_rgba(34,37,34,0.08),0_12px_20px_-14px_rgba(34,37,34,0.45)]";
+  const frame = "relative block aspect-[3/4] w-full overflow-hidden shadow-[0_1px_0_rgba(74,29,40,0.08),0_12px_20px_-14px_rgba(74,29,40,0.45)]";
   if (product.coverUrl) {
     return (
       <div className={cn(frame, "bg-muted", className)}>
@@ -39,7 +39,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
     );
   }
 
-  const { color, tint } = palette(product);
+  const { color, ink, tint, accent, text } = palette(product);
   const variant = layoutOf(product.slug);
   const level = levelsText(product.levels);
   const edition = [curriculumLabel(product.curriculum), product.examYear ? `${product.examYear}학년도` : ""].filter(Boolean).join(" · ");
@@ -53,7 +53,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
       role="img"
       aria-label={`${product.title} 표지`}
       className={cn(frame, "[container-type:inline-size]", className)}
-      style={{ background: variant === 1 ? "#f3f0e8" : color, color: variant === 1 ? "#222522" : "#f7f5f0" }}
+      style={{ background: variant === 1 ? "#faf6f2" : color, color: variant === 1 ? "#4a1d28" : ink }}
     >
       {/* 제본 느낌의 좌측 홈: 아주 옅게 */}
       <span className="pointer-events-none absolute inset-y-0 left-[3.5cqw] w-px bg-black/10" aria-hidden />
@@ -61,8 +61,8 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
       {variant === 0 && (
         <div className="absolute inset-0 flex flex-col justify-between p-[9cqw] pl-[11cqw]">
           <div>
-            <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melisa Edu</p>
-            <div className="mt-[3.5cqw] h-px w-[14cqw] bg-current opacity-50" />
+            <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melissa Edu</p>
+            <div className="mt-[3.5cqw] h-[0.6cqw] w-[14cqw]" style={{ background: accent }} />
             <p className="mt-[4cqw] text-[4.4cqw] font-medium opacity-90">{subject}</p>
           </div>
           <div>
@@ -79,10 +79,11 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
       {variant === 1 && (
         <>
           <span className="absolute inset-y-0 left-0 w-[16cqw]" style={{ background: color }} aria-hidden />
-          <span className={cn(label, "absolute bottom-[8cqw] left-[3.2cqw] text-[3.6cqw] text-[#f7f5f0] [writing-mode:vertical-rl] rotate-180")}>Melisa Edu</span>
+          <span className={cn(label, "absolute bottom-[8cqw] left-[3.2cqw] text-[3.6cqw] [writing-mode:vertical-rl] rotate-180")} style={{ color: ink }}>Melissa Edu</span>
           <div className="absolute inset-0 flex flex-col justify-between py-[9cqw] pl-[22cqw] pr-[8cqw]">
             <div>
-              <p className="text-[4.2cqw] font-semibold" style={{ color }}>{subject}</p>
+              <p className="text-[4.2cqw] font-semibold" style={{ color: text }}>{subject}</p>
+              <div className="mt-[3cqw] h-[0.6cqw] w-[10cqw]" style={{ background: accent === "#faf6f2" ? text : accent }} />
               <h3 className="mt-[5cqw] font-bold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs * 0.96}cqw` }}>{product.title}</h3>
             </div>
             <div className="text-[3.7cqw]">
@@ -95,14 +96,15 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
 
       {variant === 2 && (
         <>
-          <div className="absolute inset-x-0 top-0 h-[58%]" style={{ background: color }}>
+          <div className="absolute inset-x-0 top-0 h-[58%]" style={{ background: color, color: ink }}>
             <div className="flex h-full flex-col justify-between p-[9cqw] pl-[11cqw]">
-              <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melisa Edu</p>
+              <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melissa Edu</p>
               <h3 className="font-bold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-[42%] p-[9cqw] pl-[11cqw]" style={{ background: tint, color: "#222522" }}>
-            <p className="text-[4.4cqw] font-semibold" style={{ color }}>{subject}</p>
+          <div className="absolute inset-x-0 bottom-0 h-[42%] p-[9cqw] pl-[11cqw]" style={{ background: tint, color: "#4a1d28" }}>
+            <p className="text-[4.4cqw] font-semibold" style={{ color: text }}>{subject}</p>
+            <div className="mt-[2.5cqw] h-[0.6cqw] w-[10cqw]" style={{ background: accent }} />
             {product.series && <p className="mt-[2.5cqw] text-[3.8cqw]">{product.series}</p>}
             <p className="mt-[4cqw] text-[3.6cqw] opacity-75">{[level, edition].filter(Boolean).join("  |  ")}</p>
           </div>

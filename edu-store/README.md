@@ -1,4 +1,4 @@
-# MELISA EDU (멜리사 에듀)
+# MELISSA EDU (멜리사 에듀)
 
 수능·학교 내신 전문 교재를 PDF로 펴내는 교육 출판 브랜드의 **상담 판매** 사이트.
 Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Supabase(선택) · Formspree · Cloudflare Workers(OpenNext).
@@ -23,7 +23,7 @@ Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · Supabase(선택) · 
 | `/find?c=` | 학습 고민으로 교재 찾기(규칙 기반) |
 | `/diagnosis` | 3분 학습 진단(6단계) → 추천 교재 3권·예상 기간·합계 → 상담폼에 진단 정보 전달 |
 | `/exam` | 시험이 얼마 남지 않았다면: D-DAY 계산, 단계별 방향·교재, 매일 체크리스트, 시험 준비 체크리스트 |
-| `/custom` | MELISA CUSTOM BOOK 구성 상담(즉시 생성 아님) |
+| `/custom` | MELISSA CUSTOM BOOK 구성 상담(즉시 생성 아님) |
 | `/parents` | 우리 아이 교재 찾기(학부모용, 보호자 연락처 상담) |
 | `/academy` | 학원·교육기관 교재 문의(`inquiry_type=academy`) |
 | `/compare` | 교재 2~3권 비교 → 한 번에 상담 신청 |

@@ -7,7 +7,7 @@ function NativeSelect({ className, ...props }: React.ComponentProps<"select">) {
   return (
     <div className={cn("relative", className)}>
       <select
-        className="h-11 w-full appearance-none rounded-lg border border-input bg-background pl-3.5 pr-9 text-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="h-11 w-full appearance-none rounded-lg border border-input bg-card pl-3.5 pr-9 text-[15px] focus-visible:border-dusty-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         {...props}
       />
       <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -16,3 +16,15 @@ function NativeSelect({ className, ...props }: React.ComponentProps<"select">) {
 }
 
 export { NativeSelect };
+
+/** 직접 만든 <select>를 감싸 화살표만 붙입니다. */
+function SelectBox({ className, children }: { className?: string; children: React.ReactNode }) {
+  return (
+    <div className={cn("relative", className)}>
+      {children}
+      <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+    </div>
+  );
+}
+
+export { SelectBox };

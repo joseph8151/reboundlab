@@ -5,38 +5,43 @@
 @import "@fontsource/cormorant-garamond/latin-500-italic.css";
 
 /*
- * MELISA EDU 팔레트 — 아이보리를 넓게, 딥 포레스트 그린은 로고·버튼·주요 인터랙션에만 씁니다.
- *  Ivory      #F7F5F0  페이지 배경          · Charcoal  #222522  본문(14.2:1)
- *  Forest     #243C35  브랜드 포인트         · Sage      #E7EBE4  보조 배경
- *  Sandstone  #D9CCB8  베이지 포인트         · Line      #DDDCD5  구분선
- *  Slate text #5E635E  보조 텍스트(5.6:1)
+ * MELISSA EDU 팔레트 — 밝고 부드러운 아이보리·핑크 베이지 위에 와인색을 브랜드 중심으로 씁니다.
+ *  Deep Wine #6E2132 (로고·주요 버튼)   Burgundy #7B263B (호버)   Dark Wine #4A1D28 (진한 제목)
+ *  Rose Pink #D88FA0 · Dusty Rose #C97B8D (보조·포커스)   Soft Blush #F3D5DC (보조 면)
+ *  Warm Yellow #F2C94C · Muted Mustard #D9A63A  → 작은 강조에만. 넓은 면적에는 쓰지 않습니다.
+ *  Ivory #FAF6F2 · Warm Beige Pink #F7ECE8 · Soft Light Pink #FCF5F7 · Light Gold Beige #E7D5B7
  */
 :root {
   --radius: 0.25rem;
-  --background: #f7f5f0;
-  --foreground: #222522;
+  --background: #faf6f2;
+  --foreground: #222222;
   --card: #ffffff;
-  --card-foreground: #222522;
-  --primary: #243c35;
-  --primary-foreground: #f7f5f0;
-  --secondary: #e7ebe4;
-  --secondary-foreground: #243c35;
-  --muted: #efece4;
-  --muted-foreground: #5e635e;
-  --accent: #e7ebe4;
-  --accent-foreground: #243c35;
-  /* 기존 컴포넌트가 쓰는 gold 토큰은 샌드스톤 베이지로 대응합니다. */
-  --gold: #d9ccb8;
-  --gold-soft: #efe7d9;
-  --gold-foreground: #5b4a2e;
-  --destructive: #a63a2b;
+  --card-foreground: #222222;
+  --primary: #6e2132;
+  --primary-hover: #7b263b;
+  --primary-foreground: #ffffff;
+  --secondary: #f3d5dc;
+  --secondary-foreground: #4a1d28;
+  --muted: #f7ece8;
+  --muted-foreground: #6b6b6b;
+  --accent: #f7ece8;
+  --accent-foreground: #4a1d28;
+  --gold: #f2c94c;
+  --gold-soft: #faedbd;
+  --gold-foreground: #4a1d28;
+  --mustard: #d9a63a;
+  --rose: #d88fa0;
+  --dusty-rose: #c97b8d;
+  --blush: #f3d5dc;
+  --light-pink: #fcf5f7;
+  --destructive: #a3261f;
   --success: #2e7d5b;
-  --border: #ddddd5;
-  --input: #cfcdc4;
-  --ring: #243c35;
-  --navy: #243c35;
-  --sand: #d9ccb8;
-  --sage: #e7ebe4;
+  --border: #eadbd4;
+  --input: #dcc6c1;
+  --ring: #c97b8d;
+  --navy: #4a1d28;
+  --sand: #e7d5b7;
+  --sage: #f7ece8;
 }
 
 @theme inline {
@@ -48,6 +53,12 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-mustard: var(--mustard);
+  --color-rose: var(--rose);
+  --color-dusty-rose: var(--dusty-rose);
+  --color-blush: var(--blush);
+  --color-light-pink: var(--light-pink);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);

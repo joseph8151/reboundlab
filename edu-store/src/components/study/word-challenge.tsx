@@ -223,7 +223,7 @@ export function WordChallenge() {
     <div>
       <div className="grid gap-3 sm:grid-cols-3">
         <Stat label="통과한 Day" value={`${cleared} / 30`} />
-        <Stat label="연속 학습" value={`${streakOf(progress.activity)}일`} icon={<Flame className="size-4 text-[#eb6834]" />} />
+        <Stat label="연속 학습" value={`${streakOf(progress.activity)}일`} icon={<Flame className="size-4 text-[#d9a63a]" />} />
         <Stat label="오답 단어" value={`${progress.wrong.length}개`} />
       </div>
       <div className="mt-3 h-2 rounded-full bg-muted">

@@ -13,7 +13,7 @@ export function Price({ product, size = "md", className }: { product: Pick<Produ
   const discounted = product.price !== null && now < product.price;
   return (
     <span className={cn("inline-flex items-baseline gap-2 tabular-nums", className)}>
-      <span className={cn("font-semibold", sizeCls)}>{formatPrice(now)}</span>
+      <span className={cn("font-semibold text-primary", sizeCls)}>{formatPrice(now)}</span>
       {discounted && <span className="text-[12px] text-muted-foreground line-through">{formatPrice(product.price!)}</span>}
     </span>
   );
@@ -23,7 +23,7 @@ export function Price({ product, size = "md", className }: { product: Pick<Produ
 export function DeliveryTag({ type, className }: { type: Product["deliveryType"]; className?: string }) {
   if (type !== "custom") return null;
   return (
-    <span className={cn("inline-block border border-foreground/30 px-1.5 py-px text-[11px] font-medium tracking-wide text-foreground/80", className)}>
+    <span className={cn("inline-block border border-dusty-rose/70 bg-light-pink px-1.5 py-px text-[11px] font-medium tracking-wide text-secondary-foreground", className)}>
       {deliveryLabel(type)}
     </span>
   );
@@ -32,8 +32,14 @@ export function DeliveryTag({ type, className }: { type: Product["deliveryType"]
 /** 상담·구매 신청 버튼: 상담 페이지로 이동하며 해당 교재가 자동 선택됩니다. */
 export function ConsultLink({ slug, label = CONSULT_COPY.button, className, variant = "solid" }: { slug?: string; label?: string; className?: string; variant?: "solid" | "line" | "text" }) {
   const href = slug ? `/consult?product=${encodeURIComponent(slug)}` : "/consult";
-  const base = { solid: "inline-flex h-11 items-center justify-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground hover:bg-primary/90", line: "inline-flex h-10 items-center justify-center border border-foreground/60 px-4 text-[13px] font-semibold hover:bg-foreground hover:text-background", text: "text-[13px] font-semibold underline underline-offset-4" }[variant];
+  const base = { solid: "inline-flex h-11 items-center justify-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground hover:bg-primary-hover", line: "inline-flex h-10 items-center justify-center border border-dusty-rose/70 bg-card px-4 text-[13px] font-semibold text-secondary-foreground hover:bg-blush/60", text: "text-[13px] font-semibold text-primary underline decoration-dusty-rose underline-offset-4" }[variant];
   return <Link href={href} data-consult-button className={cn(base, className)}>{label}</Link>;
+}
+
+/** 추천 교재 라벨: 옐로우는 이런 작은 면에만 씁니다. */
+export function FeaturedTag({ rank, className }: { rank: number | null; className?: string }) {
+  if (rank === null) return null;
+  return <span className={cn("inline-block bg-gold px-1.5 py-px text-[10.5px] font-bold tracking-[0.04em] text-secondary-foreground", className)}>추천</span>;
 }
 
 export function metaLine(p: Product) {
@@ -49,11 +55,12 @@ export function ShelfItem({ product, priority, className }: { product: Product; 
       </Link>
       <div className="mt-3">
         <p className="text-[12px] text-muted-foreground">{metaLine(product)}</p>
-        <h3 className="mt-1 text-[15px] font-semibold leading-snug">
+        <h3 className="mt-1 text-[15px] font-semibold leading-snug text-secondary-foreground">
           <Link href={`/books/${product.slug}`} className="hover:underline">{product.title}</Link>
         </h3>
         <div className="mt-1.5 flex items-center gap-2">
           <Price product={product} size="sm" />
+          <FeaturedTag rank={product.featuredRank} />
           <DeliveryTag type={product.deliveryType} />
         </div>
         <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2 inline-block" />
@@ -71,7 +78,7 @@ export function BookRow({ product, className }: { product: Product; className?: 
       </Link>
       <div className="min-w-0">
         <p className="text-[12px] text-muted-foreground">{metaLine(product)}</p>
-        <h3 className="mt-1 text-[16px] font-semibold leading-snug">
+        <h3 className="mt-1 text-[16px] font-semibold leading-snug text-secondary-foreground">
           <Link href={`/books/${product.slug}`} className="hover:underline">{product.title}</Link>
         </h3>
         {product.summary && <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{product.summary}</p>}
@@ -79,6 +86,7 @@ export function BookRow({ product, className }: { product: Product; className?: 
       </div>
       <div className="col-start-2 flex items-center gap-3 sm:col-start-3 sm:flex-col sm:items-end sm:justify-start">
         <Price product={product} />
+        <FeaturedTag rank={product.featuredRank} />
         <DeliveryTag type={product.deliveryType} />
         <ConsultLink slug={product.slug} label="구매 상담 신청" variant="line" className="max-sm:ml-auto" />
       </div>

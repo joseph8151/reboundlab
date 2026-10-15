@@ -6,7 +6,7 @@ export const NAV = [
   { href: "/category/mock", label: "모의고사" },
   { href: "/packages", label: "패키지" },
   { href: "/diagnosis", label: "3분 학습 진단" },
-  { href: "/custom", label: "MELISA CUSTOM BOOK" },
+  { href: "/custom", label: "MELISSA CUSTOM BOOK" },
   { href: "/exam", label: "시험이 얼마 남지 않았다면" },
   { href: "/parents", label: "우리 아이 교재 찾기" },
   { href: "/study", label: "무료 학습 도구" },

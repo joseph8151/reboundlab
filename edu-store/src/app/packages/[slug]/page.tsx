@@ -13,7 +13,7 @@ type Params = Promise<{ slug: string }>;
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const b = await getBundleBySlug((await params).slug);
   if (!b) return { title: "패키지를 찾을 수 없습니다", robots: { index: false } };
-  const description = b.seoDescription || b.summary || `${b.title} — 멜리사 에듀(MELISA EDU) 패키지`;
+  const description = b.seoDescription || b.summary || `${b.title} — 멜리사 에듀(MELISSA EDU) 패키지`;
   return {
     title: b.seoTitle || b.title,
     description,
