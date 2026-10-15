@@ -11,13 +11,13 @@ import { SyncNote } from "./sync-note";
 const SECONDS_PER_WORD = 5;
 const PASS_RATIO = 0.8;
 
-type Progress = {
+export type WordProgress = {
   days: Record<number, { best: number; total: number; clearedAt?: string }>;
   wrong: string[];
   activity: string[]; // 학습한 날짜(연속 학습일 계산)
 };
 
-const EMPTY: Progress = { days: {}, wrong: [], activity: [] };
+const EMPTY: WordProgress = { days: {}, wrong: [], activity: [] };
 
 type Mode =
   | { kind: "home" }
@@ -39,7 +39,7 @@ function makeChoices(word: Word) {
   return shuffle([word.meaning, ...others]);
 }
 
-function streakOf(activity: string[]) {
+export function streakOf(activity: string[]) {
   const set = new Set(activity);
   let streak = 0;
   const d = new Date();
@@ -52,7 +52,7 @@ function streakOf(activity: string[]) {
 }
 
 export function WordChallenge() {
-  const { value: progress, setValue: setProgress, loaded, synced } = useStudyProgress<Progress>("word-challenge", EMPTY);
+  const { value: progress, setValue: setProgress, loaded, synced } = useStudyProgress<WordProgress>("word-challenge", EMPTY);
   const [mode, setMode] = useState<Mode>({ kind: "home" });
   const [now, setNow] = useState(Date.now());
 

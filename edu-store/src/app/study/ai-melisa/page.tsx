@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookA, Camera, ExternalLink, FileSearch, Languages, ListTree, MessageSquareText, SpellCheck, Target } from "lucide-react";
+import { AiAnalyzer } from "@/components/study/ai-analyzer";
 import { StudyHeader } from "@/components/study/study-header";
 import { Button } from "@/components/ui/button";
+import { AI_DAILY_LIMIT, isAiConfigured } from "@/lib/ai";
 import { siteConfig } from "@/lib/site";
+import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 const { aiTutor } = siteConfig;
 const description = `${aiTutor.name}는 ${aiTutor.author}이 만든 수능 영어 기출·모의고사 지문 분석 AI입니다. 지문 사진이나 텍스트를 넣으면 핵심 내용, 문장별 해석, 어휘, 문법, 글의 구조, 정답 근거까지 정리해 줍니다.`;
@@ -29,13 +32,23 @@ export default function AiMelisaPage() {
     <div className="container-page max-w-4xl py-10 sm:py-14">
       <StudyHeader eyebrow={aiTutor.name} title={`${aiTutor.name} · 수능 영어 지문 분석`} description={description} />
 
-      <div className="flex flex-col gap-4 rounded-3xl bg-primary p-6 text-primary-foreground sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <h2 className="text-xl font-bold">사이트에서 바로 분석하기</h2>
+      <p className="mb-4 mt-1 text-sm text-muted-foreground">지문을 붙여넣거나 사진을 찍어 올리면 아래 6가지 항목으로 정리해 드려요.</p>
+      <AiAnalyzer
+        enabled={isAiConfigured()}
+        dailyLimit={AI_DAILY_LIMIT}
+        loginRequired={isSupabaseConfigured()}
+        gptUrl={aiTutor.url}
+        tutorName={aiTutor.name}
+      />
+
+      <div className="mt-10 flex flex-col gap-4 rounded-3xl bg-primary p-6 text-primary-foreground sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
-          <p className="text-xl font-bold">공부하다 막히면, 지문을 그대로 보여 주세요</p>
-          <p className="mt-1 text-sm text-primary-foreground/80">ChatGPT에서 열립니다 · ChatGPT 계정이 필요해요</p>
+          <p className="text-xl font-bold">대화하면서 더 물어보고 싶다면</p>
+          <p className="mt-1 text-sm text-primary-foreground/80">{aiTutor.author}의 GPT에서 이어서 질문할 수 있어요 · ChatGPT 계정 필요</p>
         </div>
         <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-          <a href={aiTutor.url} target="_blank" rel="noopener noreferrer">{aiTutor.name} 열기 <ExternalLink /></a>
+          <a href={aiTutor.url} target="_blank" rel="noopener noreferrer">{aiTutor.name} GPT 열기 <ExternalLink /></a>
         </Button>
       </div>
 
@@ -69,7 +82,7 @@ export default function AiMelisaPage() {
         <p className="font-semibold text-foreground">이용 전 알아 두세요</p>
         <ul className="mt-2 space-y-1">
           <li>· AI 분석은 틀릴 수 있어요. 정답·해설은 반드시 공식 해설과 함께 확인하세요.</li>
-          <li>· {aiTutor.name}는 OpenAI의 ChatGPT에서 동작하며, 입력한 내용은 OpenAI 정책에 따라 처리됩니다. 개인정보는 입력하지 마세요.</li>
+          <li>· 사이트 안 분석은 Anthropic의 Claude로, GPT 버전은 OpenAI의 ChatGPT로 처리됩니다. 지문 외의 개인정보는 입력하지 마세요.</li>
           <li>· 분석 결과를 다른 사람에게 배포하거나 판매하는 것은 지문 저작권 문제로 삼가 주세요.</li>
         </ul>
       </div>

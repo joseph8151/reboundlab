@@ -19,12 +19,12 @@ export const STUDY_SUBJECTS = [
 ] as const;
 type SubjectId = (typeof STUDY_SUBJECTS)[number]["id"];
 
-type Session = { id: string; date: string; subject: SubjectId; minutes: number };
-type State = { sessions: Session[]; running: { subject: SubjectId; startedAt: number } | null };
+export type Session = { id: string; date: string; subject: SubjectId; minutes: number };
+export type StudyTimeState = { sessions: Session[]; running: { subject: SubjectId; startedAt: number } | null };
 
 const DAY_LABELS = ["월", "화", "수", "목", "금", "토", "일"];
 
-function mondayOf(key: string) {
+export function mondayOf(key: string) {
   const d = new Date(`${key}T00:00:00Z`);
   const dow = (d.getUTCDay() + 6) % 7;
   return addDays(key, -dow);
@@ -33,7 +33,7 @@ function mondayOf(key: string) {
 export const fmtMinutes = (m: number) => (m >= 60 ? `${Math.floor(m / 60)}시간${m % 60 ? ` ${m % 60}분` : ""}` : `${m}분`);
 
 export function StudyTimer() {
-  const { value: state, setValue: setState, synced } = useStudyProgress<State>("study-time", { sessions: [], running: null });
+  const { value: state, setValue: setState, synced } = useStudyProgress<StudyTimeState>("study-time", { sessions: [], running: null });
   const [subject, setSubject] = useState<SubjectId>("english");
   const [now, setNow] = useState(Date.now());
   const [weekStart, setWeekStart] = useState(() => mondayOf(todayKey()));

@@ -24,7 +24,7 @@ export const REASONS = [
   { id: "time", label: "시간 부족", tip: "유형별 제한 시간을 정해 타이머를 켜고 다시 풀어 보세요." },
 ] as const;
 
-type Note = {
+export type WrongNote = {
   id: string;
   createdAt: string;
   subject: string;
@@ -37,7 +37,7 @@ type Note = {
 };
 
 export function WrongNotes() {
-  const { value: notes, setValue: setNotes, synced } = useStudyProgress<Note[]>("wrong-notes", []);
+  const { value: notes, setValue: setNotes, synced } = useStudyProgress<WrongNote[]>("wrong-notes", []);
   const [filter, setFilter] = useState<string>("due");
   const today = todayKey();
 
@@ -53,13 +53,13 @@ export function WrongNotes() {
   function add(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const note: Note = {
+    const note: WrongNote = {
       id: crypto.randomUUID(),
       createdAt: today,
       subject: String(f.get("subject")),
       source: String(f.get("source") ?? "").trim().slice(0, 60),
       question: String(f.get("question") ?? "").trim().slice(0, 500),
-      reason: f.get("reason") as Note["reason"],
+      reason: f.get("reason") as WrongNote["reason"],
       lesson: String(f.get("lesson") ?? "").trim().slice(0, 300),
       stage: 0,
       nextReview: addDays(today, INTERVALS[0]),

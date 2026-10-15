@@ -151,3 +151,15 @@ create policy "본인 학습 기록 생성" on public.study_progress
 drop policy if exists "본인 학습 기록 수정" on public.study_progress;
 create policy "본인 학습 기록 수정" on public.study_progress
   for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- ---------------------------------------------------------------------
+-- AI 지문 분석 하루 사용량 (서버에서 service_role로만 읽고 씀)
+-- ---------------------------------------------------------------------
+create table if not exists public.ai_usage (
+  user_id uuid not null references auth.users (id) on delete cascade,
+  day     date not null,
+  count   integer not null default 0,
+  primary key (user_id, day)
+);
+
+alter table public.ai_usage enable row level security;

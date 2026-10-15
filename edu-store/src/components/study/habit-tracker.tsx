@@ -12,7 +12,7 @@ const TOTAL = 66;
 const MAX_HABITS = 3;
 const PRESETS = ["영단어 30일 챌린지 하루 1 Day", "영어 지문 2개 속독 훈련", "오답노트 20분 정리", "아침 6시 30분 기상", "순공 시간 4시간 채우기"];
 
-type Habit = { id: string; name: string; start: string; checks: string[] };
+export type Habit = { id: string; name: string; start: string; checks: string[] };
 
 const STAGES = [
   { from: 1, to: 22, name: "1단계 · 시작하기", desc: "의지로 버티는 구간. 시간과 장소를 고정해 '언제 할지' 고민하지 않게 만드세요." },
@@ -20,7 +20,7 @@ const STAGES = [
   { from: 45, to: 66, name: "3단계 · 자동화", desc: "생각하지 않아도 몸이 먼저 움직이기 시작합니다. 다음 습관을 하나 더 얹어 볼 시기예요." },
 ];
 
-function streak(checks: string[]) {
+export function habitStreak(checks: string[]) {
   const set = new Set(checks);
   let day = todayKey();
   if (!set.has(day)) day = addDays(day, -1);
@@ -73,7 +73,7 @@ export function HabitTracker() {
         const dayNo = Math.min(TOTAL, daysBetween(h.start, today) + 1);
         const done = h.checks.filter((d) => daysBetween(h.start, d) >= 0 && daysBetween(h.start, d) < TOTAL).length;
         const stage = STAGES.find((s) => dayNo >= s.from && dayNo <= s.to) ?? STAGES[2];
-        const s = streak(h.checks);
+        const s = habitStreak(h.checks);
         return (
           <section key={h.id} className="rounded-2xl border border-border p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">

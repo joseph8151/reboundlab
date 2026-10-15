@@ -6,6 +6,7 @@ export const STUDY_TOOLS = [
   { href: "/study/ai-melisa", title: "AI 멜리사 · 영어 지문 분석", short: "AI 멜리사", desc: "지문 사진이나 텍스트를 넣으면 핵심 내용, 문장별 해석, 어휘·문법, 글의 구조, 정답 근거까지 분석해 줍니다.", tag: "AI", icon: "sparkles" },
   { href: "/study/habit", title: "66일 공부 습관 만들기", short: "66일 습관", desc: "새 습관이 자리 잡는 데 평균 66일. 매일 체크하고 3단계로 나눠 흔들리는 구간을 버팁니다.", tag: "자기주도", icon: "flame" },
   { href: "/study/time", title: "순공 시간 분석기", short: "순공 시간", desc: "과목별 스톱워치로 실제 공부 시간만 기록하고, 주간 그래프로 과목 균형을 확인합니다.", tag: "자기주도", icon: "chart" },
+  { href: "/study/report", title: "주간 학습 리포트", short: "학습 리포트", desc: "모든 도구의 기록을 모아 한 주를 점검하고, 다음 주에 무엇을 바꿀지 코멘트로 알려 줍니다. 인쇄해서 보호자와 공유하세요.", tag: "자기주도", icon: "report" },
   { href: "/study/wrong-notes", title: "오답노트 & 복습 알림", short: "오답노트", desc: "틀린 이유를 5가지로 분류하고, 1·3·7·14일 간격으로 다시 풀 문제를 알려 줍니다.", tag: "자기주도", icon: "notebook" },
 ] as const;
 

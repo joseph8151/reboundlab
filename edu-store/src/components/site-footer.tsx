@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site";
 export function SiteFooter() {
   const b = siteConfig.business;
   return (
-    <footer className="mt-24 border-t border-border bg-muted">
+    <footer className="mt-24 border-t border-border bg-muted print:hidden">
       <div className="container-page grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="text-base font-bold">{siteConfig.name}</p>

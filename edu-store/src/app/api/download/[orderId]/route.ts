@@ -4,8 +4,11 @@ import { computeEntitlement } from "@/lib/orders";
 import { downloadPolicy } from "@/lib/site";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { STORAGE_BUCKETS } from "@/lib/supabase/env";
+import { getStampedPath, isWatermarkEnabled } from "@/lib/watermark";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const maxDuration = 60;
 
 /**
  * 안전한 다운로드.
@@ -44,10 +47,20 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
   if (expired) return fail("expired");
   if (remaining <= 0) return fail("limit");
 
+  let path = product.file_path;
+  if (isWatermarkEnabled()) {
+    try {
+      path = await getStampedPath({ filePath: product.file_path, orderUuid: order.id, orderId, email: user.email ?? user.id });
+    } catch (e) {
+      // 암호화·손상 등으로 워터마크를 못 넣으면 원본을 제공하고 로그만 남깁니다.
+      console.error("[download] 워터마크 실패, 원본 제공", (e as Error).message);
+    }
+  }
+
   const filename = `${order.product_title.replace(/[\\/:*?"<>|]/g, "")}.pdf`;
   const { data: signed, error } = await admin.storage
     .from(STORAGE_BUCKETS.files)
-    .createSignedUrl(product.file_path, downloadPolicy.urlTtlSeconds, { download: filename });
+    .createSignedUrl(path, downloadPolicy.urlTtlSeconds, { download: filename });
   if (error || !signed) {
     console.error("[download] 서명 URL 발급 실패", error?.message);
     return fail("storage");

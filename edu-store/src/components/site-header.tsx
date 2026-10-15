@@ -14,7 +14,7 @@ export const NAV_ITEMS = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+    <header className="sticky top-0 z-40 print:hidden border-b border-border/80 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2 font-bold" aria-label={`${siteConfig.name} 홈`}>
           <Logo />
