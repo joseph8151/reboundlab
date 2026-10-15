@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CircleCheckBig, Clock3, LoaderCircle, TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { shelfActions } from "@/lib/shelf";
 
 type State =
   | { status: "loading" }
@@ -34,6 +35,8 @@ export function ConfirmPayment() {
       .then(async (res) => {
         const body = await res.json();
         if (!res.ok) throw new Error(body.message ?? "결제 승인에 실패했습니다.");
+        // 결제한 교재는 장바구니에서 뺍니다.
+        (body.slugs as string[] | undefined)?.forEach((slug) => shelfActions.removeFromCart(slug));
         setState(body.waitingForDeposit ? { status: "waiting", title: body.productTitle } : { status: "done", title: body.productTitle });
       })
       .catch((e: Error) => setState({ status: "error", message: e.message }));

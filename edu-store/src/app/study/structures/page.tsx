@@ -25,7 +25,7 @@ export default function StructuresPage() {
 
       <nav className="-mx-1 mb-8 flex gap-2 overflow-x-auto px-1 pb-1" aria-label="구조 바로가기">
         {STRUCTURES.map((s) => (
-          <a key={s.id} href={`#${s.id}`} className="shrink-0 rounded-full border border-border px-3 py-1.5 text-sm hover:border-primary hover:text-primary">{s.no}. {s.name}</a>
+          <a key={s.id} href={`#${s.id}`} className="shrink-0 rounded-md border border-border px-3 py-1.5 text-sm hover:border-primary hover:text-primary">{s.no}. {s.name}</a>
         ))}
       </nav>
 

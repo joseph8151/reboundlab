@@ -1,121 +1,104 @@
--- 예시 상품 데이터 (scripts/generate-seed.mjs로 생성)
--- file_path는 비어 있습니다. 관리자 페이지에서 PDF를 업로드하거나, 직접 경로를 채워 주세요.
+-- 출시 예정 교재 목록 (scripts/generate-seed.mjs로 생성)
+-- 파일(PDF)이 연결되고 관리자에서 '판매 중'으로 바꾸기 전까지 구매할 수 없습니다.
+-- 출시일·교육과정·학년도·쪽수는 확정 전이라 비워 두었습니다.
 
 insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
+  (sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty, question_count, price, goals, keywords, featured_rank, seo_title, seo_description, status, is_published)
 values
-  ('suneung-korean-literature-past-exams', '수능 국어 문학 기출 분석 모음 (최근 5개년)', '최근 5개년 수능·평가원 모의평가 문학 지문을 갈래별로 묶고, 선지 판단 근거를 한 줄씩 정리했습니다.', '문학은 작품을 많이 아는 것보다, 선지가 지문의 어느 부분에 근거하는지 빠르게 찾는 연습이 중요합니다. 이 자료는 최근 5개년 수능과 6월·9월 평가원 모의평가 문학 세트를 현대시, 현대소설, 고전시가, 고전산문, 갈래 복합으로 나누어 수록했습니다.
+  ('ME-CSAT-ENG-001', 'csat-english-blank-inference-100', '수능 영어 빈칸 추론 100제', '수능 영어 유형별 훈련', '빈칸 추론 한 가지 유형만 100문항으로 묶어, 빈칸 문장의 성격과 근거 문장을 찾는 순서를 반복 훈련합니다.', '빈칸 추론은 해석이 되어도 정답을 놓치기 쉬운 유형입니다. 이 교재는 빈칸이 들어간 문장의 역할을 먼저 판단하고, 지문 안에서 그 문장을 뒷받침하는 근거를 찾는 과정을 문항마다 같은 순서로 연습하도록 구성합니다.
 
-각 세트마다 ''선지 근거 표''를 붙여 정답 선지와 오답 선지가 지문의 몇 번째 줄에 근거하는지 표시했습니다. 해설은 감상 위주가 아니라 ''이 선지가 왜 틀렸는가''에 집중해, 혼자 채점하고 복습할 때 바로 쓸 수 있도록 구성했습니다.
+해설은 정답 선지만 설명하지 않고, 근거 문장과 오답 선지가 배제되는 이유를 함께 다룹니다. 풀이 과정을 스스로 점검할 수 있도록 한 문항씩 끝까지 따라갈 수 있는 형식을 지향합니다.', 'csat', 'english', '독해', array['suneung']::text[], 'variant', 'advanced', 100, 25800, array['빈칸 문장의 역할(주제·재진술·대조)을 먼저 판단한다', '지문에서 근거 문장을 찾아 선지와 대응시킨다', '그럴듯한 오답이 배제되는 이유를 말로 설명한다']::text[], array['수능 영어 빈칸 추론', '수능 영어 문제집', '빈칸 추론 문제']::text[], 1, '수능 영어 빈칸 추론 100제', '수능 영어 빈칸 추론 유형만 100문항으로 구성한 훈련 교재. 근거 문장을 찾는 풀이 순서와 오답 배제 해설을 다룹니다. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-SCH-MAT-001', 'high1-common-math1-variant-300', '고1 공통수학1 내신 변형문제 300', '고등 수학 내신 변형문제', '공통수학1 대표 유형을 조건만 바꾸어 다시 출제한 변형문제 300문항으로, 학교 시험 직전 점검에 맞춥니다.', '내신 수학에서 점수 차이는 교재의 예제를 약간 바꾼 문제에서 벌어집니다. 이 교재는 공통수학1의 대표 유형을 정리하고, 같은 개념을 다른 조건과 표현으로 묻는 변형문제 300문항을 담도록 구성합니다.
 
-모든 문항에는 출처(학년도·시행월·문항 번호)를 표기했고, 정답과 해설은 두 명의 검수자가 각각 확인했습니다.', 'korean', array['high3']::text[], 'past-exam', 9900, 186,
-   array['이 자료 활용법: 세트당 18분 루틴', 'Part 1. 현대시 (14세트)', 'Part 2. 현대소설 (12세트)', 'Part 3. 고전시가 (11세트)', 'Part 4. 고전산문 (10세트)', 'Part 5. 갈래 복합 (9세트)', '부록. 자주 나오는 표현법·서술상 특징 용어 정리', '정답 및 선지 근거 표']::text[],
-   array['문학에서 시간은 오래 걸리는데 점수가 안정되지 않는 고3·N수생', '해설을 읽으면 이해되지만 혼자서는 선지를 판단하기 어려운 학생', '평가원 기출을 갈래별로 다시 정리하고 싶은 학생']::text[],
-   array['평가원 문학 기출 56세트 (출처 표기)', '세트별 선지 근거 표와 오답 해설', '표현법·서술상 특징 용어 정리 부록', '회독 체크용 학습 기록표']::text[],
-   array['[현대시 03] 2025학년도 9월 모의평가 (가)~(나)', '선지 ③ ''(가)는 대상과의 거리를 좁히며 화자의 정서를 심화한다.''', '→ 근거: 3연 2행 ''나는 그 곁에 오래 서 있었다'' — 거리가 좁혀지지 않고 유지됨.', '판단: 지문과 반대 방향의 진술이므로 적절하지 않음.']::text[],
-   true, true)
+각 문항에는 원래 어떤 유형에서 나온 문제인지를 표시해, 틀린 문제를 어느 개념으로 돌아가 복습해야 하는지 바로 알 수 있게 합니다.', 'school', 'math', '공통수학1', array['high1']::text[], 'variant', 'standard', 300, 29800, array['대표 유형의 풀이 구조를 정확히 익힌다', '조건이 바뀐 문제에서도 같은 개념을 적용한다', '틀린 문제의 원유형을 찾아 복습한다']::text[], array['고1 수학 문제집', '고1 공통수학1', '내신 변형문제', '고등 수학 유형별 문제']::text[], 2, '고1 공통수학1 내신 변형문제 300', '고1 공통수학1 대표 유형을 조건을 바꿔 다시 출제한 내신 변형문제 300문항. 원유형 표시로 복습 방향을 잡습니다. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-CSAT-KOR-001', 'csat-korean-reading-advanced-past-exam', '수능 국어 독서 고난도 기출 분석', '수능 국어 기출 분석', '독서 영역에서 정답률이 낮았던 고난도 기출을 골라, 지문 구조와 선지 판단 근거를 단계별로 분석합니다.', '독서 고난도 문항은 지문의 정보량보다 선지가 요구하는 판단의 종류가 다양해서 어렵습니다. 이 교재는 고난도 기출을 대상으로 지문을 문단별 핵심으로 정리하고, 선지가 지문의 어느 부분에 대응하는지를 표시하는 분석 방식을 다룹니다.
+
+문항 출처(학년도·시행월·문항 번호)는 모두 표기하는 것을 원칙으로 하며, 기출 문항의 수록 범위와 이용 허락은 출시 전에 별도로 확정합니다.', 'csat', 'korean', '독서', array['suneung']::text[], 'past-exam', 'advanced', null, 31800, array['지문을 문단별 핵심으로 요약하는 방식을 익힌다', '선지가 대응하는 지문 위치를 찾아 판단한다', '고난도 문항의 오답 패턴을 유형으로 정리한다']::text[], array['수능 국어 독서', '수능 국어 문제집', '수능 기출문제집', '독서 고난도']::text[], 3, '수능 국어 독서 고난도 기출 분석', '수능 국어 독서 영역의 고난도 기출을 지문 구조와 선지 판단 근거로 분석하는 교재. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-SCH-ENG-001', 'high-english-descriptive-writing-intensive', '고등 영어 서술형 집중 문제집', '고등 영어 내신', '고등학교 영어 내신 서술형을 어법 판단, 문장 전환, 영작 유형으로 나누어 연습하는 문제집입니다.', '서술형은 아는 문법을 정확한 문장으로 쓰는 단계에서 감점이 발생합니다. 이 교재는 서술형 문항을 어법 오류 수정, 문장 전환, 조건 영작으로 나누고, 유형마다 감점되기 쉬운 지점과 답안을 쓰는 틀을 함께 제시하도록 구성합니다.
+
+채점 기준을 문항에 붙여 두어, 부분 점수가 어디서 갈리는지 스스로 확인할 수 있게 합니다.', 'school', 'english', '영어 서술형', array['high1', 'high2', 'high3']::text[], 'variant', 'standard', null, 25800, array['서술형 문항을 유형별로 구분해 접근한다', '감점되기 쉬운 지점을 점검하며 답안을 쓴다', '조건 영작의 문장 틀을 익힌다']::text[], array['고등 영어 서술형 문제집', '고등학교 내신 문제집', '영어 서술형']::text[], 4, '고등 영어 서술형 집중 문제집', '고등학교 영어 내신 서술형을 어법 판단·문장 전환·영작으로 나누어 연습하는 문제집. 채점 기준 포함. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-CSAT-ENG-002', 'csat-english-order-insertion-100', '수능 영어 순서·삽입 실전 100제', '수능 영어 유형별 훈련', '글의 순서와 문장 삽입, 두 유형을 실전 형식 100문항으로 구성해 논리 흐름을 판단하는 연습에 집중합니다.', '순서와 문장 삽입은 지시어, 연결어, 관사 같은 단서를 어떤 순서로 확인하느냐에 따라 풀이 시간이 크게 달라집니다. 이 교재는 두 유형을 실전 형식으로 묶어 단서를 확인하는 순서를 반복 연습하도록 구성합니다.
+
+해설에서는 논리가 끊기는 지점과 정답 선지가 이어지는 근거를 문장 단위로 밝힙니다.', 'csat', 'english', '독해', array['suneung']::text[], 'variant', 'standard', 100, 23800, array['지시어·연결어·관사 단서를 순서대로 확인한다', '첫 문장 선택과 연결 검증으로 순서 문제를 푼다', '논리가 끊기는 지점을 찾아 문장을 삽입한다']::text[], array['수능 영어 순서', '수능 영어 문장 삽입', '수능 영어 문제집']::text[], 5, '수능 영어 순서·삽입 실전 100제', '수능 영어 글의 순서·문장 삽입을 실전 형식 100문항으로 훈련하는 교재. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-SCH-ENG-002', 'middle3-high-english-preview-grammar', '중3 고등 영어 선행 문법', '중등 영어', '중학교 3학년이 고등학교 영어를 시작하기 전에 꼭 정리해야 할 핵심 문법을 단계별로 다지는 교재입니다.', '고등학교 영어는 지문의 길이와 문장 구조가 달라지면서 중학교 문법을 정확히 알고 있는지가 곧바로 독해 속도로 나타납니다. 이 교재는 중3 학생이 고등 영어에서 반복해서 만나는 문법 항목을 순서대로 정리하고 확인 문제로 점검하도록 구성합니다.
+
+문법 설명은 용어를 최소화하고, 문장 안에서 어떻게 쓰이는지 보여 주는 방식을 따릅니다.', 'school', 'english', '영어 문법', array['middle3']::text[], 'concept', 'basic', null, 25800, array['고등 영어에서 자주 쓰이는 문법 항목을 정리한다', '문장 구조를 보고 해석의 순서를 정한다', '확인 문제로 이해한 내용을 점검한다']::text[], array['중3 영어 문법', '고등 영어 선행', '중등 영어 문법 문제집']::text[], 6, '중3 고등 영어 선행 문법', '중학교 3학년이 고등 영어를 시작하기 전에 정리해야 할 핵심 문법을 단계별로 다지는 교재. 멜리사 에듀(MELISA EDU) 출시 예정.', 'coming_soon', false),
+  ('ME-CSAT-KOR-011', 'csat-korean-reading-past-exam', '수능 국어 독서 기출 분석', '수능 국어 기출 분석', '', '', 'csat', 'korean', '독서', array['suneung']::text[], 'past-exam', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-012', 'csat-korean-literature-past-exam', '수능 국어 문학 기출 분석', '수능 국어 기출 분석', '', '', 'csat', 'korean', '문학', array['suneung']::text[], 'past-exam', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-013', 'csat-korean-speech-writing', '수능 국어 화법과 작문', '수능 국어 선택 영역', '', '', 'csat', 'korean', '화법과 작문', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-014', 'csat-korean-language-media', '수능 국어 언어와 매체', '수능 국어 선택 영역', '', '', 'csat', 'korean', '언어와 매체', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-015', 'csat-korean-reading-advanced-workbook', '수능 국어 독서 고난도 문제집', '수능 국어 고난도', '', '', 'csat', 'korean', '독서', array['suneung']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-016', 'csat-korean-literature-ebs-linked', '수능 국어 문학 EBS 연계 대비', '수능 국어 연계 대비', '', '', 'csat', 'korean', '문학', array['suneung']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-017', 'csat-korean-mock-exam', '수능 국어 실전 모의고사', '수능 국어 실전 모의고사', '', '', 'csat', 'korean', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-018', 'csat-korean-error-type-analysis', '수능 국어 오답 유형 분석', '수능 국어 오답 관리', '', '', 'csat', 'korean', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-019', 'csat-korean-grade1-advanced-workbook', '수능 국어 1등급 심화 문제집', '수능 국어 고난도', '', '', 'csat', 'korean', null, array['suneung']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-KOR-020', 'csat-korean-grade34-foundation', '수능 국어 3·4등급 기초 보완 교재', '수능 국어 기초 보완', '', '', 'csat', 'korean', null, array['suneung']::text[], 'concept', 'basic', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-011', 'csat-math-common-concept-summary', '수능 수학 공통 개념 총정리', '수능 수학 개념·유형', '', '', 'csat', 'math', '공통', array['suneung']::text[], 'concept', 'basic', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-012', 'csat-math-algebra', '수능 수학 대수', '수능 수학 개념·유형', '', '', 'csat', 'math', '대수', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-013', 'csat-math-calculus1', '수능 수학 미적분Ⅰ', '수능 수학 개념·유형', '', '', 'csat', 'math', '미적분Ⅰ', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-014', 'csat-math-probability-statistics', '수능 수학 확률과 통계', '수능 수학 개념·유형', '', '', 'csat', 'math', '확률과 통계', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-015', 'csat-math-calculus2', '수능 수학 미적분Ⅱ', '수능 수학 개념·유형', '', '', 'csat', 'math', '미적분Ⅱ', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-016', 'csat-math-geometry', '수능 수학 기하', '수능 수학 개념·유형', '', '', 'csat', 'math', '기하', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-017', 'csat-math-advanced-types', '수능 수학 고난도 유형', '수능 수학 고난도', '', '', 'csat', 'math', null, array['suneung']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-018', 'csat-math-semi-killer-training', '수능 수학 준킬러 집중 훈련', '수능 수학 고난도', '', '', 'csat', 'math', null, array['suneung']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-019', 'csat-math-mock-exam', '수능 수학 실전 모의고사', '수능 수학 실전 모의고사', '', '', 'csat', 'math', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-020', 'csat-math-calculation-error-prevention', '수능 수학 계산 실수 방지', '수능 수학 오답 관리', '', '', 'csat', 'math', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-MAT-021', 'csat-math-error-type-retraining', '수능 수학 오답 유형별 재훈련', '수능 수학 오답 관리', '', '', 'csat', 'math', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-011', 'csat-english-reading-basic', '수능 영어 독해 기본', '수능 영어 독해', '', '', 'csat', 'english', '독해', array['suneung']::text[], 'concept', 'basic', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-012', 'csat-english-order', '수능 영어 순서 배열', '수능 영어 유형별 훈련', '', '', 'csat', 'english', '독해', array['suneung']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-013', 'csat-english-insertion', '수능 영어 문장 삽입', '수능 영어 유형별 훈련', '', '', 'csat', 'english', '독해', array['suneung']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-014', 'csat-english-grammar', '수능 영어 어법', '수능 영어 유형별 훈련', '', '', 'csat', 'english', '어법', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-015', 'csat-english-vocabulary', '수능 영어 어휘', '수능 영어 어휘', '', '', 'csat', 'english', '어휘', array['suneung']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-016', 'csat-english-listening', '수능 영어 듣기', '수능 영어 유형별 훈련', '', '', 'csat', 'english', '듣기', array['suneung']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-017', 'csat-english-long-reading', '수능 영어 장문 독해', '수능 영어 유형별 훈련', '', '', 'csat', 'english', '독해', array['suneung']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-018', 'csat-english-grade1-practice', '수능 영어 1등급 실전 문제집', '수능 영어 고난도', '', '', 'csat', 'english', null, array['suneung']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-019', 'csat-english-mock-exam', '수능 영어 실전 모의고사', '수능 영어 실전 모의고사', '', '', 'csat', 'english', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-020', 'csat-english-essential-vocabulary-2000', '수능 영어 필수 어휘 2000', '수능 영어 어휘', '', '', 'csat', 'english', '어휘', array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-ENG-021', 'csat-english-error-intensive', '수능 영어 오답 집중 훈련', '수능 영어 오답 관리', '', '', 'csat', 'english', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-KOR-011', 'hs-high1-common-korean', '고1 공통국어 내신 대비', '고등 내신', '', '', 'school', 'korean', '공통국어', array['high1']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-ENG-011', 'hs-high1-common-english', '고1 공통영어 내신 대비', '고등 내신', '', '', 'school', 'english', '공통영어', array['high1']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-MAT-011', 'hs-math-midterm', '고등 수학 중간고사 대비', '고등 수학 내신 변형문제', '', '', 'school', 'math', null, array['high1', 'high2', 'high3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-MAT-012', 'hs-math-final', '고등 수학 기말고사 대비', '고등 수학 내신 변형문제', '', '', 'school', 'math', null, array['high1', 'high2', 'high3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-KOR-012', 'hs-korean-literature-by-work', '고등 국어 문학 작품별 분석', '고등 국어 내신', '', '', 'school', 'korean', '문학', array['high1', 'high2', 'high3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-011', 'hs-grade1-practice', '고등 내신 1등급 실전 문제', '고등 내신', '', '', 'school', 'common', null, array['high1', 'high2', 'high3']::text[], 'variant', 'advanced', null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-012', 'hs-performance-assessment', '고등학교 수행평가 준비 자료', '고등 내신', '', '', 'school', 'common', null, array['high1', 'high2', 'high3']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-013', 'hs-semester-concept-summary', '고등학교 학기별 개념 정리', '고등 내신', '', '', 'school', 'common', null, array['high1', 'high2', 'high3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-KOR-013', 'ms-korean-reading', '중등 국어 독해력', '중등 국어', '', '', 'school', 'korean', '독해', array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-KOR-014', 'ms-korean-grammar', '중등 국어 문법', '중등 국어', '', '', 'school', 'korean', '문법', array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-MAT-013', 'ms-math-concept', '중등 수학 개념', '중등 수학', '', '', 'school', 'math', null, array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-MAT-014', 'ms-math-by-type', '중등 수학 유형별 문제', '중등 수학', '', '', 'school', 'math', null, array['middle1', 'middle2', 'middle3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-ENG-012', 'ms-english-grammar', '중등 영어 문법', '중등 영어', '', '', 'school', 'english', '영어 문법', array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-ENG-013', 'ms-english-reading', '중등 영어 독해', '중등 영어', '', '', 'school', 'english', '독해', array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-ENG-014', 'ms-english-descriptive', '중등 영어 서술형', '중등 영어', '', '', 'school', 'english', '영어 서술형', array['middle1', 'middle2', 'middle3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-SCI-011', 'ms-science-core-concepts', '중등 과학 핵심 개념', '중등 과학·사회', '', '', 'school', 'science', null, array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-SOC-011', 'ms-social-core-concepts', '중등 사회 핵심 개념', '중등 과학·사회', '', '', 'school', 'social', null, array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-SOC-012', 'ms-history', '중등 역사', '중등 과학·사회', '', '', 'school', 'social', '역사', array['middle1', 'middle2', 'middle3']::text[], 'concept', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-014', 'ms-midterm', '중등 중간고사 대비', '중등 시험 대비', '', '', 'school', 'common', null, array['middle1', 'middle2', 'middle3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-015', 'ms-final', '중등 기말고사 대비', '중등 시험 대비', '', '', 'school', 'common', null, array['middle1', 'middle2', 'middle3']::text[], 'variant', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-016', 'mock-high1-nationwide', '고1 전국연합 대비', '모의고사 시리즈', '', '', 'school', 'common', null, array['high1']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-SCHO-COM-017', 'mock-high2-nationwide', '고2 전국연합 대비', '모의고사 시리즈', '', '', 'school', 'common', null, array['high2']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-COM-011', 'mock-high3-kice-mock-prep', '고3 평가원 모의평가 대비', '모의고사 시리즈', '', '', 'csat', 'common', null, array['high3']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-COM-012', 'mock-subject-mini-mock', '과목별 미니 모의고사', '모의고사 시리즈', '', '', 'csat', 'common', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-COM-013', 'mock-unit-diagnostic-test', '단원별 실력 진단 테스트', '모의고사 시리즈', '', '', 'csat', 'common', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-CSAT-COM-014', 'mock-final-mock-exam', '시험 직전 파이널 모의고사', '모의고사 시리즈', '', '', 'csat', 'common', null, array['suneung']::text[], 'mock', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-011', 'planner-csat-30day-planner', '30일 수능 공부 플래너', '학습 관리', '', '', 'common', 'common', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-012', 'planner-csat-100day-plan', '100일 수능 학습 계획표', '학습 관리', '', '', 'common', 'common', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-013', 'planner-csat-d100-management', '수능 D-100 학습 관리', '학습 관리', '', '', 'common', 'common', null, array['suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-014', 'planner-school-4week-planner', '내신 시험 4주 플래너', '학습 관리', '', '', 'common', 'common', null, array['middle1', 'middle2', 'middle3', 'high1', 'high2', 'high3']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-015', 'planner-wrong-answer-note', '오답노트 PDF', '학습 관리', '', '', 'common', 'common', null, array['middle1', 'middle2', 'middle3', 'high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-016', 'planner-subject-review-tracker', '과목별 회독 관리표', '학습 관리', '', '', 'common', 'common', null, array['high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-017', 'planner-english-vocabulary-notebook', '영어 단어 암기장', '학습 관리', '', '', 'common', 'common', null, array['middle1', 'middle2', 'middle3', 'high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-018', 'planner-korean-reading-analysis-note', '국어 독서 분석 노트', '학습 관리', '', '', 'common', 'common', null, array['high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-019', 'planner-math-formula-note', '수학 공식 정리 노트', '학습 관리', '', '', 'common', 'common', null, array['middle1', 'middle2', 'middle3', 'high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false),
+  ('ME-COMM-COM-020', 'planner-achievement-checklist', '학습 성취도 점검표', '학습 관리', '', '', 'common', 'common', null, array['middle1', 'middle2', 'middle3', 'high1', 'high2', 'high3', 'suneung']::text[], 'material', null, null, null, array[]::text[], array[]::text[], null, null, null, 'coming_soon', false)
 on conflict (slug) do nothing;
 
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
+insert into public.bundles (slug, title, summary, track, status)
 values
-  ('high1-common-math-variant-300', '고1 공통수학1 내신 변형문제 300', '교과서 대표 유형을 조건만 바꿔 다시 출제한 300문항. 개념은 같고 숫자와 상황이 다른 문제로 실전 감각을 확인합니다.', '내신 수학에서 점수가 갈리는 지점은 교과서 예제를 ''조금 바꾼'' 문제입니다. 이 자료는 2022 개정 교육과정 공통수학1의 다항식, 방정식과 부등식, 경우의 수, 행렬 단원에서 출제 빈도가 높은 대표 유형 60개를 고르고, 유형마다 조건을 바꾼 변형문제 5개씩을 수록했습니다.
-
-난이도는 기본(★)–표준(★★)–심화(★★★) 3단계로 표시했고, 모든 문항에 ''원래 유형이 무엇인지''를 함께 적어 두어 틀린 문제를 어디로 돌아가 복습해야 할지 바로 알 수 있습니다.
-
-해설은 풀이 과정을 생략하지 않고 단계별로 적었으며, 실수하기 쉬운 지점을 따로 표시했습니다.', 'math', array['high1']::text[], 'variant', 12900, 142,
-   array['Ⅰ. 다항식 — 다항식의 연산, 나머지정리, 인수분해', 'Ⅱ. 방정식과 부등식 — 복소수, 이차방정식, 이차함수, 여러 가지 방정식과 부등식', 'Ⅲ. 경우의 수 — 합의 법칙과 곱의 법칙, 순열과 조합', 'Ⅳ. 행렬 — 행렬과 그 연산', '단원별 서술형 대비 20문항', '정답 및 단계별 해설']::text[],
-   array['교과서·기본서는 풀었는데 내신 시험에서 처음 보는 문제처럼 느껴지는 고1', '시험 2~3주 전, 유형별로 빠르게 점검하고 싶은 학생', '자녀의 내신 대비 문제 양을 보충하고 싶은 학부모']::text[],
-   array['대표 유형 60개 × 변형문제 5개 = 300문항', '난이도 3단계 표시 및 원유형 태그', '서술형 대비 20문항과 채점 기준', '단계별 해설 및 실수 포인트']::text[],
-   array['[유형 17 – 변형 3] ★★', '이차방정식 x² − 2(k − 1)x + k² − 5 = 0 이 서로 다른 두 실근을 갖도록 하는', '정수 k 의 최댓값을 구하시오.', '원유형: 판별식을 이용한 실근 조건 (교과서 예제 변형)']::text[],
-   true, true)
+  ('csat-english-reading-intensive-package', '수능 영어 독해 집중 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'csat', 'coming_soon'),
+  ('csat-korean-literature-reading-package', '수능 국어 문학·독서 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'csat', 'coming_soon'),
+  ('csat-math-practice-package', '수능 수학 실전 대비 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'csat', 'coming_soon'),
+  ('high1-school-comprehensive-package', '고1 내신 종합 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'school', 'coming_soon'),
+  ('middle-english-grammar-reading-package', '중등 영어 문법·독해 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'school', 'coming_soon'),
+  ('csat-final-mock-package', '수능 파이널 모의고사 패키지', '구성 교재와 가격은 교재 출시 후 확정됩니다.', 'csat', 'coming_soon')
 on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('high2-english-reading-study-guide', '고2 영어 독해 스터디가이드: 빈칸·순서·삽입', '틀리기 쉬운 간접 쓰기 3유형을 ''단서 찾기 → 연결 → 검증'' 순서로 푸는 방법을 예제와 함께 정리했습니다.', '빈칸 추론, 글의 순서, 문장 삽입은 해석이 되어도 틀리는 유형입니다. 문장 사이의 연결 단서를 찾는 순서가 정해져 있지 않기 때문입니다.
-
-이 스터디가이드는 세 유형마다 ''단서 찾기 → 연결 → 검증'' 3단계 풀이 순서를 제시하고, 지시어·연결어·대명사·관사 등 연결 단서를 체크리스트로 정리했습니다. 각 단계는 고2 학력평가 수준의 예제로 바로 연습할 수 있고, 마지막에 유형별 적용 문제 30문항을 실었습니다.
-
-지문 해석과 핵심 어휘 목록을 함께 제공해, 해설을 따로 찾지 않아도 혼자 복습할 수 있습니다.', 'english', array['high2', 'high3']::text[], 'guide', 8900, 96,
-   array['들어가며: 간접 쓰기 3유형이 어려운 이유', 'Chapter 1. 연결 단서 체크리스트 (지시어·연결어·대명사·관사)', 'Chapter 2. 빈칸 추론 — 주제문 위치와 재진술 찾기', 'Chapter 3. 글의 순서 — 첫 단락 고르기와 연결 검증', 'Chapter 4. 문장 삽입 — 논리 단절 지점 찾기', 'Chapter 5. 유형별 적용 문제 30', '지문 해석 및 핵심 어휘']::text[],
-   array['해석은 되는데 빈칸·순서·삽입에서 자주 틀리는 고2·고3', '영어 3등급에서 2등급으로 올라가고 싶은 학생', '풀이 순서를 정해 시간을 줄이고 싶은 학생']::text[],
-   array['유형별 3단계 풀이 순서와 예제', '연결 단서 체크리스트 (1장 요약본 포함)', '적용 문제 30문항과 해설', '지문 해석 및 핵심 어휘 목록']::text[],
-   array['STEP 1. 단서 찾기', '주어진 문장의 ''This approach''가 가리키는 대상이 앞 문장에 있어야 합니다.', '→ ③ 앞 문장에서 처음으로 ''방법''이 구체적으로 제시됨 (✓ 후보)', 'STEP 2. 연결 확인 — ③ 뒤 문장의 ''however''가 대조를 이루는지 검증']::text[],
-   true, true)
-on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('self-study-12-week-planner', '자기주도학습 12주 플래너 & 오답 관리 시트', '목표 설정부터 주간 점검, 오답 정리까지 12주 동안 스스로 공부를 관리하는 인쇄용 플래너입니다.', '계획을 세우는 것보다 어려운 건, 계획이 틀어졌을 때 다시 조정하는 일입니다. 이 플래너는 12주를 하나의 학습 주기로 보고 ''목표 → 주간 계획 → 일일 기록 → 주말 점검''이 반복되도록 설계했습니다.
-
-주말 점검 페이지에서는 계획 대비 실행률을 직접 계산하고, 다음 주 계획을 어떻게 고칠지 적게 되어 있습니다. 과목에 상관없이 쓸 수 있는 오답 관리 시트는 ''틀린 이유''를 개념 부족·조건 누락·계산 실수·시간 부족 4가지로 분류해, 같은 실수가 반복되는지 확인할 수 있습니다.
-
-A4 인쇄용과 태블릿 필기용(하이퍼링크 포함) 두 가지 버전을 함께 제공합니다.', 'common', array['middle', 'high1', 'high2', 'high3']::text[], 'self-study', 5900, 64,
-   array['플래너 사용법 (작성 예시 포함)', '12주 목표 설정 시트', '주간 계획표 × 12', '일일 학습 기록 × 84', '주말 점검 시트 × 12', '과목 공통 오답 관리 시트', '시험 D-30 역산 계획표']::text[],
-   array['계획은 자주 세우지만 끝까지 지키기 어려운 학생', '방학·시험 기간에 공부 흐름을 스스로 관리하고 싶은 중·고등학생', '자녀와 함께 학습 습관을 점검하고 싶은 학부모']::text[],
-   array['A4 인쇄용 PDF', '태블릿 필기용 PDF (굿노트·노타빌리티 하이퍼링크)', '작성 예시 페이지', '오답 원인 4분류 시트']::text[],
-   array['WEEK 03 · 주말 점검', '계획한 학습량 ____ 시간 / 실제 학습량 ____ 시간 → 실행률 ____ %', '가장 잘 지킨 계획 / 지키지 못한 계획과 이유', '다음 주 조정: 줄일 것 · 유지할 것 · 새로 시작할 것']::text[],
-   true, true)
-on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('suneung-life-science1-genetics-past-exams', '수능 생명과학Ⅰ 유전 단원 기출+해설', '킬러 문항이 몰리는 유전 단원 기출을 풀이 전략별로 분류하고, 표·가계도 해석 순서를 단계별 해설로 정리했습니다.', '생명과학Ⅰ에서 등급을 가르는 유전 문항은 개념보다 ''어떤 정보부터 확정할지'' 순서를 아는 것이 중요합니다.
-
-이 자료는 최근 5개년 수능·평가원 모의평가의 유전 문항을 세포 분열과 DNA 상대량, 가계도 분석, 돌연변이, 복합 유전의 4개 전략군으로 나누었습니다. 해설은 정답 도출 과정뿐 아니라 ''첫 번째로 확정할 수 있는 정보''와 그 근거를 단계마다 표시해, 같은 순서를 새로운 문제에도 적용할 수 있도록 했습니다.
-
-각 전략군 끝에는 풀이 순서 요약 카드가 있어 시험 직전 점검용으로 쓸 수 있습니다.', 'inquiry', array['high3']::text[], 'past-exam', 11900, 158,
-   array['전략 0. 유전 문항을 푸는 공통 순서', '전략군 1. 세포 분열과 DNA 상대량 (17문항)', '전략군 2. 가계도 분석 (21문항)', '전략군 3. 돌연변이와 염색체 이상 (14문항)', '전략군 4. 복합 유전과 확률 (18문항)', '풀이 순서 요약 카드', '정답 및 단계별 해설']::text[],
-   array['생명과학Ⅰ 유전 문항에서 시간을 많이 쓰는 수험생', '1등급을 목표로 고난도 문항을 체계적으로 정리하고 싶은 학생', '가계도·표 해석의 시작점을 찾기 어려운 학생']::text[],
-   array['평가원 유전 기출 70문항 (출처 표기)', '단계별 해설과 ''첫 확정 정보'' 표시', '전략군별 풀이 순서 요약 카드', '오답 유형 체크리스트']::text[],
-   array['[가계도 08] 2024학년도 수능 17번', 'STEP 1. 첫 확정 정보: 3과 4는 정상인데 7이 발현 → (가)는 열성 형질', 'STEP 2. 1의 표현형과 성별을 이용해 X 염색체 유전 여부 판단', 'STEP 3. 표의 DNA 상대량으로 유전자형 확정 후 확률 계산']::text[],
-   true, true)
-on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('middle2-math-school-exam-guide', '중2 수학 내신 스터디가이드: 일차함수까지', '중2 1학기 범위 핵심 개념을 한 장씩 정리하고, 학교 시험에 자주 나오는 서술형 풀이 쓰는 법을 예시로 보여줍니다.', '중학교 수학 내신은 개념을 정확히 말로 설명할 수 있는지, 풀이를 빠짐없이 쓸 수 있는지가 점수로 이어집니다.
-
-이 스터디가이드는 유리수와 순환소수, 식의 계산, 일차부등식, 연립일차방정식, 일차함수를 개념 1장 + 확인 문제 1장 구성으로 정리했습니다. 서술형 파트에서는 같은 문제를 ''감점되는 풀이''와 ''만점 풀이''로 나란히 보여주어 무엇을 써야 하는지 분명히 알 수 있습니다.', 'math', array['middle']::text[], 'guide', 7900, 88,
-   array['1. 유리수와 순환소수', '2. 식의 계산', '3. 일차부등식', '4. 연립일차방정식', '5. 일차함수와 그래프', '서술형 만점 풀이 쓰기 12문항', '정답 및 해설']::text[],
-   array['중2 1학기 내신을 처음 준비하는 학생', '서술형에서 부분 점수를 자주 잃는 학생']::text[],
-   array['단원별 개념 정리와 확인 문제', '서술형 감점/만점 풀이 비교', '정답 및 해설']::text[],
-   array['[서술형 05] 연립일차방정식의 활용', '감점 풀이: 식만 쓰고 미지수 정의 없음 (−2점)', '만점 풀이: ''사과를 x개, 배를 y개라 하면'' → 식 세우기 → 해 구하기 → 답 확인']::text[],
-   false, true)
-on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('middle-english-grammar-guide', '중등 영어 문법 스터디가이드: 시제·조동사·to부정사', '중학교 내신에서 감점이 잦은 문법 단원을 개념 1장, 확인 문제 1장으로 정리하고 서술형 영작 틀을 함께 담았습니다.', '중학교 영어 내신은 문법 개념을 알고 있는지보다, 문장 안에서 정확히 쓸 수 있는지가 점수를 가릅니다.
-
-이 자료는 시제, 조동사, to부정사와 동명사, 비교급·최상급을 단원별로 정리하고 시험에 자주 나오는 어법 판단 문제와 서술형 영작 문제를 함께 연습하게 구성했습니다. 영작 문제에는 ''주어-동사-목적어'' 순서로 문장을 짜는 틀을 제공해, 틀린 이유를 스스로 찾을 수 있습니다.
-
-모든 문항에는 정답과 해설이 있고, 오답 원인을 개념 부족·어순·시제 일치 세 가지로 나눠 기록할 수 있는 체크표를 넣었습니다.', 'english', array['middle']::text[], 'guide', 7900, 92,
-   array['1. 시제 (현재완료 중심)', '2. 조동사', '3. to부정사와 동명사', '4. 비교급과 최상급', '5. 서술형 영작 틀 12가지', '6. 단원별 확인 문제와 정답·해설', '오답 원인 체크표']::text[],
-   array['문법은 외웠는데 서술형 영작에서 자주 감점되는 중학생', '시험 2~3주 전에 문법 단원을 빠르게 점검하려는 학생', '자녀의 영어 내신 준비를 돕고 싶은 학부모']::text[],
-   array['단원별 개념 정리와 확인 문제', '서술형 영작 틀과 감점 포인트', '정답 및 해설', '오답 원인 체크표']::text[],
-   array['[서술형 영작 03] 현재완료', '나는 3년 동안 영어를 공부해 왔다.', '틀: 주어 + have/has + p.p. + for + 기간', '감점 풀이: I studied English for three years. (기간이 이어짐을 나타내지 못함)']::text[],
-   true, true)
-on conflict (slug) do nothing;
-
-insert into public.products
-  (slug, title, summary, description, subject, grades, type, price, page_count, toc, targets, includes, sample_excerpt, is_featured, is_published)
-values
-  ('middle-korean-essay-variant-200', '중등 국어 문학·비문학 서술형 변형문제 200', '교과서 대표 작품과 설명문 지문으로, 서술형 답안을 쓰는 순서와 채점 기준을 연습하는 변형문제 200문항입니다.', '국어 서술형은 아는 내용을 어떻게 문장으로 옮기느냐에서 점수가 갈립니다.
-
-이 자료는 중학교 국어 교과서에서 자주 다루는 시, 소설, 수필과 설명문 지문을 바탕으로, 같은 작품도 질문 방식을 바꿔 다시 묻는 변형문제 200문항을 담았습니다. 각 문항은 ''근거 찾기 → 핵심어 고르기 → 문장으로 쓰기'' 3단계로 풀 수 있게 구성했고, 해설에는 만점 답안과 감점 답안을 나란히 보여 줍니다.
-
-작품 감상의 정답을 강요하지 않고, 지문에 근거한 답안인지를 기준으로 채점하는 방법을 안내합니다.', 'korean', array['middle']::text[], 'variant', 9900, 128,
-   array['서술형 답안 쓰는 3단계', 'Part 1. 시 (작품별 변형문제)', 'Part 2. 소설·수필', 'Part 3. 설명문·논설문', 'Part 4. 모의 서술형 시험 4회', '정답 및 채점 기준', '만점/감점 답안 비교']::text[],
-   array['서술형에서 부분 점수를 자주 잃는 중학생', '지문에 근거해 답을 쓰는 연습이 필요한 학생', '학교 시험 직전 변형문제로 점검하려는 학생']::text[],
-   array['변형문제 200문항', '3단계 풀이 틀', '만점/감점 답안 비교 해설', '모의 서술형 시험 4회']::text[],
-   array['[소설 변형 07] 인물의 심리 파악', 'STEP 1 근거 찾기: 인물이 ''말없이 창밖을 바라보았다''는 문장에 밑줄', 'STEP 2 핵심어: 망설임, 그리움 중 지문에 근거한 것 고르기', 'STEP 3 쓰기: ''~한 행동으로 보아 인물은 ~한 마음임을 알 수 있다.''']::text[],
-   false, true)
-on conflict (slug) do nothing;
-

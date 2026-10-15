@@ -44,7 +44,7 @@ export default function FaqPage() {
       <div className="mt-14 rounded-2xl bg-muted p-6 text-[15px]">
         <p className="font-bold">원하는 답을 찾지 못하셨나요?</p>
         <p className="mt-1 text-muted-foreground">
-          {siteConfig.supportEmail}로 문의해 주시면 영업일 기준 1일 이내에 답변드립니다. 환불 문의는{" "}
+          {siteConfig.supportContact}로 문의해 주시면 영업일 기준 1일 이내에 답변드립니다. 환불 문의는{" "}
           <Link href="/refund" className="text-primary underline">환불·교환 정책</Link>을 먼저 확인해 주세요.
         </p>
       </div>

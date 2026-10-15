@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useRef, useState, type ChangeEvent } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import dynamic from "next/dynamic";
 import { Camera, Copy, ImageOff, LoaderCircle, Sparkles, Square } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+
+const MarkdownView = dynamic(() => import("./markdown-view"), { ssr: false, loading: () => null });
 
 type Props = { enabled: boolean; dailyLimit: number; loginRequired: boolean; gptUrl: string; tutorName: string };
 
@@ -154,7 +155,7 @@ export function AiAnalyzer({ enabled, dailyLimit, loginRequired, gptUrl, tutorNa
             )}
           </div>
           <div className="prose-doc mt-2 overflow-x-auto">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{result}</ReactMarkdown>
+            <MarkdownView>{result}</MarkdownView>
           </div>
           {!loading && result && (
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">

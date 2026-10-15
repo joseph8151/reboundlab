@@ -1,11 +1,18 @@
+const env = (k: string) => (process.env[k] ?? "").trim();
+
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_BRAND_NAME || "멜리사 에듀",
-  nameEn: "Melissa Edu",
+  nameEn: "MELISA EDU",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
-  slogan: "필요한 만큼, 정확하게. 오늘 바로 시작하는 공부",
+  slogan: "공부의 기준을 다시 세우다.",
   description:
-    "수능·내신 대비 기출 분석, 변형문제, 스터디가이드, 자기주도학습 플래너를 PDF로. 샘플을 먼저 확인하고, 결제 후 바로 내려받으세요.",
-  supportEmail: "help@example.com",
+    "수능부터 학교 내신까지. 학습의 깊이를 더하는 전문 교재를 PDF로 펴내는 교육 출판 브랜드, 멜리사 에듀(MELISA EDU)입니다.",
+  // 고객지원 이메일. 설정 전에는 화면에 표시하지 않고 상담 신청 페이지로 안내합니다.
+  supportEmail: env("NEXT_PUBLIC_SUPPORT_EMAIL"),
+  /** 문장 안에서 "OOO로 문의" 형태로 쓰는 연락 수단 */
+  get supportContact() {
+    return this.supportEmail || "상담 신청 페이지";
+  },
   // 상담 신청이 전송되는 Formspree 엔드포인트 (공개되어도 되는 폼 주소). 환경 변수로 바꿀 수 있습니다.
   consultEndpoint: (process.env.NEXT_PUBLIC_FORMSPREE_URL || "https://formspree.io/f/mwlvwoev").trim(),
   // 2027학년도 대학수학능력시험 시행일. 평가원 시행계획 공고로 꼭 다시 확인하세요.
@@ -18,15 +25,15 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_AI_TUTOR_URL ||
       "https://chatgpt.com/g/g-67a758c27f2c8191a06378d09af69df7-ai-melrisayeongeo-suneunggiculmoyigosa-bunseog",
   },
-  // 통신판매업 신고 후 실제 정보로 교체하세요 (전자상거래법 제13조 표시 의무).
+  // 사업자 정보: 전자상거래법상 표시 의무 항목입니다. 값이 없으면 화면에 표시하지 않습니다(운영자 입력 필요).
   business: {
-    companyName: "[상호명]",
-    ceo: "[대표자명]",
-    registrationNumber: "[사업자등록번호]",
-    mailOrderNumber: "[통신판매업 신고번호]",
-    address: "[사업장 주소]",
-    phone: "[고객센터 전화번호]",
-    privacyOfficer: "[개인정보 보호책임자]",
+    companyName: env("NEXT_PUBLIC_BIZ_COMPANY"),
+    ceo: env("NEXT_PUBLIC_BIZ_CEO"),
+    registrationNumber: env("NEXT_PUBLIC_BIZ_REG_NO"),
+    mailOrderNumber: env("NEXT_PUBLIC_BIZ_MAIL_ORDER_NO"),
+    address: env("NEXT_PUBLIC_BIZ_ADDRESS"),
+    phone: env("NEXT_PUBLIC_BIZ_PHONE"),
+    privacyOfficer: env("NEXT_PUBLIC_BIZ_PRIVACY_OFFICER"),
   },
 };
 

@@ -1,96 +1,61 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookA, Camera, ExternalLink, FileSearch, Languages, ListTree, MessageSquareText, SpellCheck, Target } from "lucide-react";
 import { AiAnalyzer } from "@/components/study/ai-analyzer";
 import { StudyHeader } from "@/components/study/study-header";
-import { Button } from "@/components/ui/button";
 import { AI_DAILY_LIMIT, isAiConfigured } from "@/lib/ai";
 import { siteConfig } from "@/lib/site";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 const { aiTutor } = siteConfig;
-const description = `${aiTutor.name}는 ${aiTutor.author}이 만든 수능 영어 기출·모의고사 지문 분석 AI입니다. 지문 사진이나 텍스트를 넣으면 핵심 내용, 문장별 해석, 어휘, 문법, 글의 구조, 정답 근거까지 정리해 줍니다.`;
+const description = "영어 지문의 핵심 내용, 문장별 해석, 어휘, 문법, 글의 구조, 정답 근거를 정리해 주는 AI 멜리사 학습 도우미입니다.";
 
 export const metadata: Metadata = {
-  title: `${aiTutor.name} · 수능 영어 지문 분석 AI`,
+  title: `${aiTutor.name} 학습 도우미 · 영어 지문 분석`,
   description,
   alternates: { canonical: "/study/ai-melisa" },
-  openGraph: { title: `${aiTutor.name} · 수능 영어 지문 분석 AI`, description, url: "/study/ai-melisa" },
+  openGraph: { title: `${aiTutor.name} 학습 도우미`, description, url: "/study/ai-melisa" },
 };
 
-const FEATURES = [
-  { icon: Target, title: "핵심 내용", body: "지문이 결국 무슨 말을 하는지 한두 문장으로 요약" },
-  { icon: Languages, title: "문장별 해석", body: "한 문장씩 끊어 읽기 방식으로 직독직해" },
-  { icon: BookA, title: "어휘", body: "수능 빈출 어휘와 문맥 속 의미 정리" },
-  { icon: SpellCheck, title: "문법", body: "해석을 막는 구문(관계사, 분사구문, 도치 등) 설명" },
-  { icon: ListTree, title: "글의 구조", body: "통념-반박, 실험·연구 등 전개 방식과 주제문 위치" },
-  { icon: FileSearch, title: "정답 근거", body: "정답이 지문의 어느 문장에 근거하는지, 오답은 왜 틀렸는지" },
-];
+const FEATURES = ["핵심 내용", "글의 구조", "문장별 해석", "어휘", "문법·구문", "정답 근거"];
 
 export default function AiMelisaPage() {
+  const enabled = isAiConfigured();
   return (
     <div className="container-page max-w-4xl py-10 sm:py-14">
-      <StudyHeader eyebrow={aiTutor.name} title={`${aiTutor.name} · 수능 영어 지문 분석`} description={description} />
+      <StudyHeader eyebrow={aiTutor.name} title="AI 멜리사 학습 도우미" description={description} />
 
-      <h2 className="text-xl font-bold">사이트에서 바로 분석하기</h2>
-      <p className="mb-4 mt-1 text-sm text-muted-foreground">지문을 붙여넣거나 사진을 찍어 올리면 아래 6가지 항목으로 정리해 드려요.</p>
-      <AiAnalyzer
-        enabled={isAiConfigured()}
-        dailyLimit={AI_DAILY_LIMIT}
-        loginRequired={isSupabaseConfigured()}
-        gptUrl={aiTutor.url}
-        tutorName={aiTutor.name}
-      />
+      <p className="text-[13px] tracking-wide text-muted-foreground">분석 항목 · {FEATURES.join(" · ")}</p>
 
-      <div className="mt-10 flex flex-col gap-4 rounded-3xl bg-primary p-6 text-primary-foreground sm:flex-row sm:items-center sm:justify-between sm:p-8">
-        <div>
-          <p className="text-xl font-bold">대화하면서 더 물어보고 싶다면</p>
-          <p className="mt-1 text-sm text-primary-foreground/80">{aiTutor.author}의 GPT에서 이어서 질문할 수 있어요 · ChatGPT 계정 필요</p>
-        </div>
-        <Button asChild size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-          <a href={aiTutor.url} target="_blank" rel="noopener noreferrer">{aiTutor.name} GPT 열기 <ExternalLink /></a>
-        </Button>
-      </div>
+      {enabled ? (
+        <section className="mt-8" aria-label="지문 분석">
+          <h2 className="text-[20px] font-bold tracking-[-0.02em]">사이트에서 바로 분석하기</h2>
+          <p className="mb-5 mt-1 text-[14px] text-muted-foreground">지문을 붙여넣거나 사진을 올리면 위 항목으로 정리합니다. 로그인한 이용자에게 하루 {AI_DAILY_LIMIT}회까지 제공합니다.</p>
+          <AiAnalyzer enabled dailyLimit={AI_DAILY_LIMIT} loginRequired={isSupabaseConfigured()} gptUrl={aiTutor.url} tutorName={aiTutor.name} />
+        </section>
+      ) : (
+        <section className="mt-8 border-t border-border pt-8" aria-label="이용 방법">
+          <p className="max-w-xl text-[15px] leading-[1.8]">
+            사이트 안에서 바로 분석하는 기능은 아직 연결되지 않았습니다. 지금은 {aiTutor.author}이 만든 GPT(OpenAI ChatGPT, 외부 서비스)에서 같은 방식으로 분석할 수 있습니다. ChatGPT 계정이 필요합니다.
+          </p>
+          <a href={aiTutor.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block bg-primary px-6 py-3 text-[14px] font-semibold text-primary-foreground">{aiTutor.name} GPT 열기 (외부 서비스)</a>
+        </section>
+      )}
 
-      <h2 className="mt-12 text-xl font-bold">이렇게 분석해 줘요</h2>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {FEATURES.map(({ icon: Icon, title, body }) => (
-          <div key={title} className="rounded-2xl border border-border p-5">
-            <Icon className="size-5 text-primary" />
-            <p className="mt-3 font-bold">{title}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-          </div>
-        ))}
-      </div>
+      {enabled && (
+        <p className="mt-10 text-[14px] text-muted-foreground">
+          대화로 이어서 질문하고 싶다면 <a href={aiTutor.url} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4">{aiTutor.name} GPT(외부 서비스)</a>를 이용할 수 있습니다.
+        </p>
+      )}
 
-      <h2 className="mt-12 text-xl font-bold">사용 방법</h2>
-      <ol className="mt-5 grid gap-4 sm:grid-cols-3">
-        {[
-          { icon: Camera, title: "지문 사진 찍기", body: "모의고사·교재 지문을 반듯하게 찍거나, 텍스트를 복사해 둡니다." },
-          { icon: MessageSquareText, title: "AI 멜리사에 넣기", body: "사진을 올리거나 지문을 붙여넣고, 문항 번호와 선택지도 함께 넣어 주세요." },
-          { icon: Target, title: "내 풀이와 비교", body: "먼저 혼자 풀어 본 뒤 정답 근거를 확인해야 실력이 늡니다. 틀린 건 오답노트에 기록!" },
-        ].map(({ icon: Icon, title, body }, i) => (
-          <li key={title} className="rounded-2xl bg-muted p-5">
-            <span className="text-sm font-bold text-primary">STEP {i + 1}</span>
-            <p className="mt-2 flex items-center gap-2 font-bold"><Icon className="size-4" /> {title}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
-          </li>
-        ))}
-      </ol>
-
-      <div className="mt-12 rounded-2xl border border-border p-5 text-sm leading-relaxed text-muted-foreground">
+      <div className="mt-12 border-t border-border pt-6 text-[13px] leading-[1.85] text-muted-foreground">
         <p className="font-semibold text-foreground">이용 전 알아 두세요</p>
         <ul className="mt-2 space-y-1">
-          <li>· AI 분석은 틀릴 수 있어요. 정답·해설은 반드시 공식 해설과 함께 확인하세요.</li>
-          <li>· 사이트 안 분석은 Anthropic의 Claude로, GPT 버전은 OpenAI의 ChatGPT로 처리됩니다. 지문 외의 개인정보는 입력하지 마세요.</li>
+          <li>· AI 분석은 틀릴 수 있습니다. 정답과 해설은 공식 해설과 함께 확인하세요.</li>
+          <li>· 입력한 지문·사진은 처리를 위해 AI 서비스 제공사로 전송됩니다. 지문 외의 개인정보는 입력하지 마세요.</li>
           <li>· 분석 결과를 다른 사람에게 배포하거나 판매하는 것은 지문 저작권 문제로 삼가 주세요.</li>
         </ul>
+        <p className="mt-5">함께 쓰면 좋은 도구: <Link href="/study/speed-reading" className="underline underline-offset-4">독해 속도 훈련</Link> · <Link href="/study/structures" className="underline underline-offset-4">지문 구조 분석</Link> · <Link href="/study/wrong-notes" className="underline underline-offset-4">오답노트</Link></p>
       </div>
-
-      <p className="mt-8 text-sm text-muted-foreground">
-        함께 쓰면 좋은 도구: <Link href="/study/speed-reading" className="text-primary underline">지문 속독 훈련</Link> ·{" "}
-        <Link href="/study/structures" className="text-primary underline">지문 구조 10가지</Link> · <Link href="/study/wrong-notes" className="text-primary underline">오답노트</Link>
-      </p>
     </div>
   );
 }

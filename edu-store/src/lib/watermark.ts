@@ -1,6 +1,5 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { createAdminClient } from "./supabase/admin";
 import { STORAGE_BUCKETS } from "./supabase/env";
 
@@ -17,6 +16,8 @@ const ascii = (s: string) => s.replace(/[^\x20-\x7E]/g, "?");
  * 반환값: 서명 URL을 발급할 저장 경로
  */
 export async function getStampedPath(params: { filePath: string; orderUuid: string; orderId: string; email: string }) {
+  // pdf-lib는 크기가 커서 다운로드 때만 불러옵니다.
+  const { degrees, PDFDocument, rgb, StandardFonts } = await import("pdf-lib");
   const admin = createAdminClient();
   const bucket = admin.storage.from(STORAGE_BUCKETS.files);
   const hash = createHash("sha256").update(params.filePath).digest("hex").slice(0, 12);
@@ -30,7 +31,7 @@ export async function getStampedPath(params: { filePath: string; orderUuid: stri
 
   const pdf = await PDFDocument.load(await original.arrayBuffer(), { ignoreEncryption: true });
   const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const footer = ascii(`Melissa Edu | Licensed to ${params.email} | Order ${params.orderId} | Personal study use only - do not share`);
+  const footer = ascii(`MELISA EDU | Licensed to ${params.email} | Order ${params.orderId} | Personal study use only - do not share`);
   const diagonal = ascii(params.email);
 
   for (const page of pdf.getPages()) {
@@ -47,7 +48,7 @@ export async function getStampedPath(params: { filePath: string; orderUuid: stri
       rotate: degrees(35),
     });
   }
-  pdf.setProducer("Melissa Edu");
+  pdf.setProducer("MELISA EDU");
   const bytes = await pdf.save();
 
   const { error: upErr } = await bucket.upload(stampedPath, bytes, { contentType: "application/pdf", upsert: true });

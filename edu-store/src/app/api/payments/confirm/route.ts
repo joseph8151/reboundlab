@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   const admin = createAdminClient();
   const { data: order } = await admin
     .from("orders")
-    .select("id, user_id, amount, status, product_title, products(slug)")
+    .select("id, user_id, amount, status, product_title")
     .eq("order_id", orderId)
     .maybeSingle();
 
@@ -60,5 +60,7 @@ export async function POST(request: NextRequest) {
     })
     .eq("id", order.id);
 
-  return NextResponse.json({ ok: true, waitingForDeposit: !paid, productTitle: order.product_title });
+  const { data: bought } = await admin.from("order_items").select("products(slug)").eq("order_uuid", order.id);
+  const slugs = (bought ?? []).flatMap((r) => (Array.isArray(r.products) ? r.products : [r.products])).map((p) => (p as { slug: string } | null)?.slug).filter(Boolean);
+  return NextResponse.json({ ok: true, waitingForDeposit: !paid, productTitle: order.product_title, slugs });
 }

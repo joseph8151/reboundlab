@@ -1,47 +1,48 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-500-italic.css";
 
 /*
- * 컬러 팔레트 — 로즈 핑크 + 샴페인 골드
- *  Primary  #B8365E  로즈 핑크 (CTA, 링크)          · 흰 글자 5.6:1
- *  Plum     #2D1B26  본문 제목, 푸터               · 짙은 자두색
- *  Blush    #FCEBF0  강조 배경, 배지
- *  Gold     #D4A93C  포인트 (D-day, 구분선, 추천)   · 플럼 글자 8.7:1
- *  Gold soft #FBF1D6 골드 배지 배경
- *  Ivory    #FFFCF7  페이지 배경 (따뜻한 아이보리)
- *  Sand     #F8F3EE  섹션 배경
- *  Line     #EDE3DC  테두리
- *  Mauve    #7A6670  보조 텍스트
- *  Success  #0E9F6E  즉시 다운로드, 완료 상태
+ * MELISA EDU 팔레트 — 아이보리를 넓게, 딥 포레스트 그린은 로고·버튼·주요 인터랙션에만 씁니다.
+ *  Ivory      #F7F5F0  페이지 배경          · Charcoal  #222522  본문(14.2:1)
+ *  Forest     #243C35  브랜드 포인트         · Sage      #E7EBE4  보조 배경
+ *  Sandstone  #D9CCB8  베이지 포인트         · Line      #DDDCD5  구분선
+ *  Slate text #5E635E  보조 텍스트(5.6:1)
  */
 :root {
-  --radius: 0.75rem;
-  --background: #fffcf7;
-  --foreground: #2d1b26;
+  --radius: 0.25rem;
+  --background: #f7f5f0;
+  --foreground: #222522;
   --card: #ffffff;
-  --card-foreground: #2d1b26;
-  --primary: #b8365e;
-  --primary-foreground: #ffffff;
-  --secondary: #fcebf0;
-  --secondary-foreground: #8a2347;
-  --muted: #f8f3ee;
-  --muted-foreground: #7a6670;
-  --accent: #fcebf0;
-  --accent-foreground: #8a2347;
-  --gold: #d4a93c;
-  --gold-soft: #fbf1d6;
-  --gold-foreground: #6b4e0c;
-  --destructive: #d92d20;
-  --success: #0e9f6e;
-  --border: #ede3dc;
-  --input: #dccfc7;
-  --ring: #b8365e;
-  --navy: #3b1e2d;
+  --card-foreground: #222522;
+  --primary: #243c35;
+  --primary-foreground: #f7f5f0;
+  --secondary: #e7ebe4;
+  --secondary-foreground: #243c35;
+  --muted: #efece4;
+  --muted-foreground: #5e635e;
+  --accent: #e7ebe4;
+  --accent-foreground: #243c35;
+  /* 기존 컴포넌트가 쓰는 gold 토큰은 샌드스톤 베이지로 대응합니다. */
+  --gold: #d9ccb8;
+  --gold-soft: #efe7d9;
+  --gold-foreground: #5b4a2e;
+  --destructive: #a63a2b;
+  --success: #2e7d5b;
+  --border: #ddddd5;
+  --input: #cfcdc4;
+  --ring: #243c35;
+  --navy: #243c35;
+  --sand: #d9ccb8;
+  --sage: #e7ebe4;
 }
 
 @theme inline {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
     "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -63,10 +64,15 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-gold-foreground: var(--gold-foreground);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-sand: var(--sand);
+  --color-sage: var(--sage);
+  /* 모서리는 작게: 출판물 같은 절제된 인상을 위해 전체 반경을 줄입니다. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 5px;
+  --radius-2xl: 6px;
+  --radius-3xl: 8px;
 }
 
 @layer base {

@@ -63,7 +63,7 @@ export function ConsultForm({ track, trackLabel, endpoint, supportEmail }: Props
       setState("done");
     } catch (err) {
       setState("error");
-      setMessage(`${(err as Error).message} 잠시 후 다시 시도하거나 ${supportEmail}로 보내 주세요.`);
+      setMessage(`${(err as Error).message} 잠시 후 다시 시도해 주세요.${supportEmail ? ` 계속 안 되면 ${supportEmail}로 보내 주세요.` : ""}`);
     }
   }
 
@@ -108,7 +108,7 @@ export function ConsultForm({ track, trackLabel, endpoint, supportEmail }: Props
           {SUBJECTS.map((s) => (
             <label key={s} className="cursor-pointer">
               <input type="checkbox" name="subjects" value={s} className="peer sr-only" />
-              <span className="inline-block rounded-full border border-border px-3.5 py-1.5 text-sm peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring">{s}</span>
+              <span className="inline-block rounded-md border border-border px-3.5 py-1.5 text-sm peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring">{s}</span>
             </label>
           ))}
         </div>

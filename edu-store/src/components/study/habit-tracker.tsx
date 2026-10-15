@@ -62,7 +62,7 @@ export function HabitTracker() {
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {PRESETS.map((p) => (
-              <button key={p} type="button" onClick={() => setName(p)} className="rounded-full bg-muted px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">{p}</button>
+              <button key={p} type="button" onClick={() => setName(p)} className="rounded-md bg-muted px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground">{p}</button>
             ))}
           </div>
           <div className="mt-4"><SyncNote synced={synced} /></div>

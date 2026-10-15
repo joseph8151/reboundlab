@@ -81,9 +81,11 @@ export default async function ConsultPage({ searchParams }: { searchParams: Prom
 
       <div className="mt-10 rounded-2xl border border-border p-5 text-sm leading-relaxed">
         <p className="font-semibold">급하게 확인할 것이 있다면</p>
-        <p className="mt-2 flex items-center gap-2 text-muted-foreground">
-          <Mail className="size-4" /> {siteConfig.supportEmail} (주문번호를 함께 알려 주세요)
-        </p>
+        {siteConfig.supportEmail && (
+          <p className="mt-2 flex items-center gap-2 text-muted-foreground">
+            <Mail className="size-4" /> {siteConfig.supportEmail} (주문번호를 함께 알려 주세요)
+          </p>
+        )}
         <p className="mt-3 text-muted-foreground">
           <Link href="/faq" className="text-primary underline">자주 묻는 질문</Link>과 <Link href="/refund" className="text-primary underline">환불·교환 정책</Link>에서 답을 먼저 찾아보실 수 있어요.
           중등 학생이 직접 남기는 경우 보호자와 함께 작성해 주세요. 상담 내용에 카드번호·비밀번호 같은 민감한 정보는 적지 마세요.

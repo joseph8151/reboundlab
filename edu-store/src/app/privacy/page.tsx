@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="개인정보처리방침" effectiveDate="2026년 11월 1일">
       <p>
-        {b.companyName}(이하 &lsquo;회사&rsquo;)는 「개인정보 보호법」 등 관련 법령을 준수하며, 이용자의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.
+        {b.companyName || siteConfig.name}(이하 &lsquo;회사&rsquo;)는 「개인정보 보호법」 등 관련 법령을 준수하며, 이용자의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.
       </p>
 
       <h2>1. 처리하는 개인정보 항목과 목적</h2>
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
         </thead>
         <tbody>
           <tr><td>㈜토스페이먼츠</td><td>결제 처리, 결제 정보 관리</td><td>대한민국</td></tr>
-          <tr><td>Supabase, Inc.</td><td>회원 인증, 데이터베이스 및 파일 저장</td><td>[선택한 리전 국가 기재, 예: 대한민국(서울 리전)]</td></tr>
+          <tr><td>Supabase, Inc.</td><td>회원 인증, 데이터베이스 및 파일 저장</td><td>프로젝트 생성 시 선택한 리전(서울 리전 선택 시 대한민국)</td></tr>
           <tr><td>Vercel Inc.</td><td>웹사이트 호스팅</td><td>미국 등</td></tr>
           <tr><td>Formspree, Inc.</td><td>상담 신청 내용 수신 및 이메일 전달</td><td>미국</td></tr>
           <tr><td>Anthropic, PBC</td><td>AI 지문 분석 (이용자가 입력한 지문 텍스트·사진 처리)</td><td>미국</td></tr>
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
 
       <h2>7. 이용자의 권리와 행사 방법</h2>
       <p>
-        이용자(만 14세 미만은 법정대리인)는 언제든지 개인정보 열람, 정정, 삭제, 처리정지를 요구할 수 있으며, {siteConfig.supportEmail}로 요청하면 지체 없이 조치합니다.
+        이용자(만 14세 미만은 법정대리인)는 언제든지 개인정보 열람, 정정, 삭제, 처리정지를 요구할 수 있으며, {siteConfig.supportContact}로 요청하면 지체 없이 조치합니다.
       </p>
 
       <h2>8. 안전성 확보 조치</h2>
@@ -91,8 +91,8 @@ export default function PrivacyPage() {
 
       <h2>10. 개인정보 보호책임자</h2>
       <ul>
-        <li>성명: {b.privacyOfficer}</li>
-        <li>연락처: {siteConfig.supportEmail} / {b.phone}</li>
+        {b.privacyOfficer && <li>성명: {b.privacyOfficer}</li>}
+        <li>연락처: {[siteConfig.supportEmail, b.phone].filter(Boolean).join(" / ") || "상담 신청 페이지(/consult)"}</li>
       </ul>
       <p>
         개인정보 침해에 대한 신고나 상담은 개인정보침해신고센터(privacy.kisa.or.kr, 국번 없이 118), 개인정보분쟁조정위원회(www.kopico.go.kr, 1833-6972)에 문의할 수

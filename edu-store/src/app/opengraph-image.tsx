@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
 
-export const alt = `${siteConfig.name} | 수능·내신 PDF 학습자료`;
+export const alt = `${siteConfig.nameEn} | 수능·내신 전문 교재`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -18,16 +18,21 @@ export default async function OpengraphImage() {
   const font = await loadKoreanFont();
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 80, background: "linear-gradient(180deg, #FCEBF0 0%, #FFFCF7 100%)", fontFamily: "Pretendard" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 16, background: "linear-gradient(135deg, #B8365E 60%, #E3B94F 100%)" }} />
-          <div style={{ display: "flex", flexDirection: "column" }}><div style={{ fontSize: 40, color: "#2D1B26" }}>{siteConfig.name}</div><div style={{ fontSize: 20, color: "#8A6A12", letterSpacing: 6 }}>{siteConfig.nameEn.toUpperCase()}</div></div>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "72px 84px", background: "#F7F5F0", fontFamily: "Pretendard" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 44, letterSpacing: 14, color: "#243C35", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 600 }}>MELISA EDU</div>
+          <div style={{ marginTop: 10, fontSize: 20, letterSpacing: 10, color: "#5E635E" }}>멜리사 에듀</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 68, color: "#2D1B26", lineHeight: 1.2 }}>필요한 만큼, 정확하게.</div>
-          <div style={{ fontSize: 68, color: "#B8365E", lineHeight: 1.2 }}>오늘 바로 시작하는 공부 자료</div>
+        <div style={{ display: "flex", flexDirection: "column", color: "#222522", fontSize: 84, lineHeight: 1.14, letterSpacing: -3 }}>
+          <div>공부의 기준을</div>
+          <div>다시 세우다.</div>
         </div>
-        <div style={{ fontSize: 30, color: "#7A6670" }}>수능 · 내신 기출 분석 · 변형문제 · 스터디가이드 · 자기주도학습 PDF</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ fontSize: 26, color: "#5E635E" }}>수능 · 고등 내신 · 중등 내신 전문 교재</div>
+          <div style={{ display: "flex", gap: 10 }}>
+            {["#5B1F2C", "#1B2A45", "#2D4A3E", "#6B5442", "#44566F"].map((c) => <div key={c} style={{ width: 22, height: 64, background: c }} />)}
+          </div>
+        </div>
       </div>
     ),
     { ...size, fonts: font ? [{ name: "Pretendard", data: font, weight: 700, style: "normal" }] : undefined },

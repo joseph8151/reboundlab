@@ -116,7 +116,7 @@ export function WrongNotes() {
             {REASONS.map((r, i) => (
               <label key={r.id} className="cursor-pointer">
                 <input type="radio" name="reason" value={r.id} defaultChecked={i === 0} className="peer sr-only" />
-                <span className="inline-block rounded-full border border-border px-3 py-1.5 text-sm peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring">
+                <span className="inline-block rounded-md border border-border px-3 py-1.5 text-sm peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-foreground peer-focus-visible:ring-2 peer-focus-visible:ring-ring">
                   {r.label}
                 </span>
               </label>
@@ -138,7 +138,7 @@ export function WrongNotes() {
               key={t.id}
               onClick={() => setFilter(t.id)}
               aria-pressed={filter === t.id}
-              className={cn("h-9 shrink-0 rounded-full border px-4 text-sm font-medium", filter === t.id ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground")}
+              className={cn("h-9 shrink-0 rounded-md border px-4 text-sm font-medium", filter === t.id ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground")}
             >
               {t.label}
             </button>

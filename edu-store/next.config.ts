@@ -10,6 +10,13 @@ const nextConfig: NextConfig = {
       ? [{ protocol: "https", hostname: supabaseHost, pathname: "/storage/v1/object/public/**" }]
       : [],
   },
+  // 이전 주소(/products)를 새 교재 주소로 영구 이동합니다.
+  async redirects() {
+    return [
+      { source: "/products", destination: "/books", permanent: true },
+      { source: "/products/:slug", destination: "/books/:slug", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

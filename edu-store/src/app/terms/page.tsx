@@ -18,7 +18,7 @@ export default function TermsPage() {
     <LegalPage title="이용약관" effectiveDate="2026년 11월 1일">
       <h2>제1조 (목적)</h2>
       <p>
-        이 약관은 {b.companyName}(이하 &lsquo;회사&rsquo;)가 운영하는 {siteConfig.name}(이하 &lsquo;사이트&rsquo;)에서 제공하는 디지털 학습 콘텐츠 판매 및 관련 서비스(이하
+        이 약관은 {b.companyName || siteConfig.name}(이하 &lsquo;회사&rsquo;)가 운영하는 {siteConfig.name}(이하 &lsquo;사이트&rsquo;)에서 제공하는 디지털 학습 콘텐츠 판매 및 관련 서비스(이하
         &lsquo;서비스&rsquo;)의 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임 사항을 정하는 것을 목적으로 합니다.
       </p>
 
