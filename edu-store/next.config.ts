@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/products", destination: "/books", permanent: true },
       { source: "/products/:slug", destination: "/books/:slug", permanent: true },
+      // 결제·장바구니·주문 화면은 폐지되었습니다. 상담 신청으로 연결합니다.
+      { source: "/checkout", destination: "/consult", permanent: false },
+      { source: "/checkout/:slug*", destination: "/consult?product=:slug*", permanent: false },
+      { source: "/cart", destination: "/consult", permanent: false },
+      { source: "/mypage", destination: "/consult", permanent: false },
+      { source: "/category/material", destination: "/category/planner", permanent: true },
     ];
   },
   async headers() {

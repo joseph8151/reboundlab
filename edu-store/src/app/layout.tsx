@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MobileConsultBar } from "@/components/layout/mobile-consult-bar";
 import { SiteHeader } from "@/components/layout/site-header";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
@@ -28,7 +29,7 @@ const orgJsonLd = {
       "@type": "WebSite",
       name: siteConfig.nameEn,
       url: siteConfig.url,
-      potentialAction: { "@type": "SearchAction", target: `${siteConfig.url}/books?q={search_term_string}&status=all`, "query-input": "required name=search_term_string" },
+      potentialAction: { "@type": "SearchAction", target: `${siteConfig.url}/books?q={search_term_string}`, "query-input": "required name=search_term_string" },
     },
   ],
 };
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main" className="flex-1">{children}</main>
         <SiteFooter />
+        <MobileConsultBar />
       </body>
     </html>
   );

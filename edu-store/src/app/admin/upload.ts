@@ -3,7 +3,7 @@
 import { createClient } from "@/lib/supabase/client";
 
 /** 서명 업로드 URL을 받아 브라우저에서 Supabase Storage로 바로 올립니다. 반환값: 저장 경로와 공개 URL */
-export async function uploadFile(file: File, kind: "file" | "answer" | "preview" | "asset") {
+export async function uploadFile(file: File, kind: "preview" | "asset") {
   const res = await fetch("/api/admin/upload-url", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

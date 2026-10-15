@@ -1,4 +1,4 @@
-import type { AnswerMode, AreaId, CurriculumId, DifficultyId, KindId, LevelId, StatusId, TrackId } from "./catalog";
+import type { AnswerMode, DeliveryType, AreaId, CurriculumId, DifficultyId, KindId, LevelId, StatusId, TrackId } from "./catalog";
 
 /** 화면에 내려보내는 교재 정보. 구매 파일 경로(filePath 등)는 서버에서만 다루며 여기에 없습니다. */
 export type Product = {
@@ -37,8 +37,10 @@ export type Product = {
   seoTitle: string | null;
   seoDescription: string | null;
   keywords: string[];
-  /** 지금 장바구니에 담아 결제할 수 있는 상태(판매 중 + 가격 + 구매 파일 준비) */
-  purchasable: boolean;
+  /** 상담·구매 신청을 받을 수 있는 상태(판매 중 + 가격 등록) */
+  consultable: boolean;
+  deliveryType: DeliveryType;
+  weakTags: string[];
   /** 정답·해설 파일이 별도로 등록되어 있는지 */
   hasAnswerFile: boolean;
   createdAt: string;
@@ -75,6 +77,8 @@ export type ProductRow = {
   answer_mode: AnswerMode;
   has_answer_file: boolean;
   has_file: boolean;
+  delivery_type: DeliveryType | null;
+  weak_tags: string[] | null;
   edition: string | null;
   revision_notes: string[];
   release_date: string | null;
@@ -106,7 +110,8 @@ export type Bundle = {
   /** 실제 할인액 (패키지가 합계보다 쌀 때만) */
   discount: number | null;
   totalPages: number | null;
-  purchasable: boolean;
+  consultable: boolean;
+  deliveryType: DeliveryType;
 };
 
 export type BundleRow = {
@@ -121,18 +126,17 @@ export type BundleRow = {
   release_date: string | null;
   seo_title: string | null;
   seo_description: string | null;
+  delivery_type?: DeliveryType | null;
   bundle_items: { product_id: string; position: number }[] | null;
 };
-
-export type OrderStatus = "pending" | "paid" | "canceled" | "refunded" | "failed";
 
 export const effectivePrice = (p: Pick<Product, "price" | "salePrice">) =>
   p.price === null ? null : p.salePrice !== null && p.salePrice < p.price ? p.salePrice : p.price;
 
-export function rowToProduct(r: ProductRow, opts: { demo?: boolean } = {}): Product {
+export function rowToProduct(r: ProductRow): Product {
   const price = r.price;
   const status = r.status;
-  const purchasable = status === "on_sale" && price !== null && (opts.demo ? true : r.has_file);
+  const consultable = status === "on_sale" && price !== null;
   return {
     id: r.id,
     sku: r.sku ?? "",
@@ -169,7 +173,9 @@ export function rowToProduct(r: ProductRow, opts: { demo?: boolean } = {}): Prod
     seoTitle: r.seo_title,
     seoDescription: r.seo_description,
     keywords: r.keywords ?? [],
-    purchasable,
+    consultable,
+    deliveryType: r.delivery_type ?? (r.has_file ? "ready" : "custom"),
+    weakTags: r.weak_tags ?? [],
     hasAnswerFile: Boolean(r.has_answer_file),
     createdAt: r.created_at,
     updatedAt: r.updated_at,

@@ -14,7 +14,7 @@ export const siteConfig = {
     return this.supportEmail || "상담 신청 페이지";
   },
   // 상담 신청이 전송되는 Formspree 엔드포인트 (공개되어도 되는 폼 주소). 환경 변수로 바꿀 수 있습니다.
-  consultEndpoint: (process.env.NEXT_PUBLIC_FORMSPREE_URL || "https://formspree.io/f/mwlvwoev").trim(),
+  consultEndpoint: (process.env.PUBLIC_FORMSPREE_ENDPOINT || process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || process.env.NEXT_PUBLIC_FORMSPREE_URL || "https://formspree.io/f/mwlvwoev").trim(),
   // 2027학년도 대학수학능력시험 시행일. 평가원 시행계획 공고로 꼭 다시 확인하세요.
   suneungDate: process.env.NEXT_PUBLIC_SUNEUNG_DATE || "2026-11-19",
   aiTutor: {
@@ -35,10 +35,4 @@ export const siteConfig = {
     phone: env("NEXT_PUBLIC_BIZ_PHONE"),
     privacyOfficer: env("NEXT_PUBLIC_BIZ_PRIVACY_OFFICER"),
   },
-};
-
-export const downloadPolicy = {
-  validDays: Number(process.env.DOWNLOAD_VALID_DAYS ?? 365),
-  maxCount: Number(process.env.DOWNLOAD_MAX_COUNT ?? 5),
-  urlTtlSeconds: Number(process.env.DOWNLOAD_URL_TTL_SECONDS ?? 60),
 };

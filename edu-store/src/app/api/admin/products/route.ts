@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 
 function dbMessage(error: { code?: string; message: string }) {
   if (error.code === "23505") return error.message.includes("sku") ? "이미 사용 중인 상품 코드입니다." : "이미 사용 중인 슬러그입니다.";
-  if (error.code === "23514" && error.message.includes("on_sale_ready")) return "판매 중으로 바꾸려면 정상 판매가와 구매용 PDF가 모두 필요합니다.";
+  if (error.code === "23514" && error.message.includes("on_sale_ready")) return "판매 중으로 바꾸려면 판매가를 입력해야 합니다.";
   return error.message;
 }
 

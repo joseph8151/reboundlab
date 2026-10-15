@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BookCover } from "./book-cover";
-import { useShelf } from "@/lib/shelf";
+import { shelfActions, useShelf } from "@/lib/shelf";
 import type { Product } from "@/lib/types";
 
 type Mini = Pick<Product, "slug" | "title" | "series" | "area" | "course" | "levels" | "kind" | "curriculum" | "examYear" | "coverUrl">;
@@ -28,4 +28,10 @@ export function RecentBooks({ catalog, excludeSlug }: { catalog: Mini[]; exclude
       </ul>
     </section>
   );
+}
+
+/** 상세 페이지를 열면 최근 본 교재에 기록합니다. */
+export function RecentTracker({ slug }: { slug: string }) {
+  useEffect(() => shelfActions.pushRecent(slug), [slug]);
+  return null;
 }

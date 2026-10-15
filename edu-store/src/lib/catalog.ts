@@ -69,11 +69,10 @@ export type CurriculumId = (typeof CURRICULA)[number]["id"];
 
 export const STATUSES = [
   { id: "on_sale", label: "판매 중" },
-  { id: "coming_soon", label: "출시 예정" },
   { id: "sold_out", label: "품절" },
   { id: "discontinued", label: "판매 중단" },
 ] as const;
-export type StatusId = (typeof STATUSES)[number]["id"];
+export type StatusId = (typeof STATUSES)[number]["id"] | "coming_soon";
 
 export const ANSWER_MODES = [
   { id: "separate", label: "정답 및 해설 별도 PDF 제공" },
@@ -81,6 +80,41 @@ export const ANSWER_MODES = [
   { id: "none", label: "정답만 제공 또는 미제공" },
 ] as const;
 export type AnswerMode = (typeof ANSWER_MODES)[number]["id"];
+
+/** 납품 형태: custom = 주문 제작 상담(제작 가능 여부·납품 시점은 상담에서 안내), ready = 완성된 PDF 즉시 전달 */
+export const DELIVERY_TYPES = [
+  { id: "custom", label: "주문 제작 상담 가능" },
+  { id: "ready", label: "PDF 완성본" },
+] as const;
+export type DeliveryType = (typeof DELIVERY_TYPES)[number]["id"];
+
+/** 취약 유형 태그. 상품에 연결해 두면 진단·고민별 추천에 쓰입니다. 운영자는 상품마다 태그를 지정합니다. */
+export const WEAK_TAGS = [
+  { id: "kor-reading", area: "korean", label: "독서 지문 이해" },
+  { id: "kor-inference", area: "korean", label: "추론" },
+  { id: "kor-literature", area: "korean", label: "문학 표현·작품 감상" },
+  { id: "kor-choice", area: "korean", label: "선택지 판단" },
+  { id: "math-concept-apply", area: "math", label: "개념 적용·응용" },
+  { id: "math-function", area: "math", label: "함수" },
+  { id: "math-equation", area: "math", label: "방정식" },
+  { id: "math-counting", area: "math", label: "경우의 수" },
+  { id: "math-geometry", area: "math", label: "도형" },
+  { id: "math-calc", area: "math", label: "계산 실수" },
+  { id: "eng-blank", area: "english", label: "빈칸 추론" },
+  { id: "eng-order", area: "english", label: "순서 배열" },
+  { id: "eng-insert", area: "english", label: "문장 삽입" },
+  { id: "eng-grammar", area: "english", label: "어법" },
+  { id: "eng-vocab", area: "english", label: "어휘" },
+  { id: "eng-long", area: "english", label: "장문 독해" },
+  { id: "eng-writing", area: "english", label: "서술형" },
+  { id: "soc-apply", area: "social", label: "개념의 문제 적용" },
+  { id: "sci-data", area: "science", label: "자료 해석" },
+  { id: "time", area: "common", label: "시간 관리" },
+  { id: "school-score", area: "common", label: "내신 점수 관리" },
+  { id: "wrong-note", area: "common", label: "오답 관리" },
+] as const;
+export type WeakTagId = (typeof WEAK_TAGS)[number]["id"];
+export const weakTagLabel = (id: string) => WEAK_TAGS.find((t) => t.id === id)?.label ?? id;
 
 export const PRICE_BANDS = [
   { id: "under-20", label: "2만원 미만", min: 0, max: 19999 },
@@ -141,6 +175,8 @@ export function levelsText(levels: readonly string[]) {
   }
   return parts.join(" · ");
 }
+
+export const deliveryLabel = (id: string | null | undefined) => find(DELIVERY_TYPES, id)?.label ?? "";
 
 export const isOneOf = <T extends readonly { id: string }[]>(list: T, v: unknown): v is T[number]["id"] =>
   typeof v === "string" && list.some((x) => x.id === v);

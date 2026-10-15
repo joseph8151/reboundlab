@@ -97,7 +97,14 @@ alter table public.products add constraint products_status_check check (status i
 alter table public.products add constraint products_answer_mode_check check (answer_mode in ('separate','inline','none'));
 -- 판매 중인 교재에는 가격과 구매 파일이 반드시 있어야 합니다.
 alter table public.products drop constraint if exists products_on_sale_ready;
-alter table public.products add constraint products_on_sale_ready check (status <> 'on_sale' or (price is not null and file_path is not null));
+-- 상담 판매 전환: 판매 중은 가격만 있으면 됩니다(PDF 파일 연결 불필요).
+alter table public.products add constraint products_on_sale_ready check (status <> 'on_sale' or price is not null);
+
+-- 납품 형태(custom = 주문 제작 상담 가능 / ready = PDF 완성본)와 취약 유형 태그(추천 연결)
+alter table public.products add column if not exists delivery_type text not null default 'custom';
+alter table public.products drop constraint if exists products_delivery_type_check;
+alter table public.products add constraint products_delivery_type_check check (delivery_type in ('custom','ready'));
+alter table public.products add column if not exists weak_tags text[] not null default '{}';
 
 alter table public.products drop constraint if exists products_sale_below_price;
 alter table public.products add constraint products_sale_below_price check (sale_price is null or (price is not null and sale_price < price));
@@ -263,7 +270,7 @@ create policy "본인 학습 기록 수정" on public.study_progress for update 
 revoke select on public.products from anon, authenticated;
 grant select (id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty,
               curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets,
-              includes, preview_pdf_url, sample_images, answer_mode, has_file, has_answer_file, edition,
+              includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, has_answer_file, edition,
               revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords,
               created_at, updated_at, is_published)
   on public.products to anon, authenticated;

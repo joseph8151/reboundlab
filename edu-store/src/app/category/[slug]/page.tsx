@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/books/json-ld";
-import { PlannedList, ShelfItem } from "@/components/books/parts";
+import { ConsultLink, ShelfItem } from "@/components/books/parts";
 import { COURSE_PLAN, kindLabel } from "@/lib/catalog";
 import { CATEGORIES, getCategory } from "@/lib/categories";
 import { applyFilters, getCatalog, sortProducts } from "@/lib/products";
@@ -27,9 +27,8 @@ export default async function CategoryPage({ params }: { params: Params }) {
   const c = getCategory((await params).slug);
   if (!c) notFound();
   const catalog = await getCatalog();
-  const all = sortProducts(applyFilters(catalog, { ...c.filter, status: "all" }), "recommended");
+  const all = sortProducts(applyFilters(catalog, { ...c.filter, status: "on_sale" }), "recommended");
   const onSale = all.filter((p) => p.status === "on_sale");
-  const planned = all.filter((p) => p.status === "coming_soon");
   const parent = c.parent ? getCategory(c.parent) : null;
   const children = (c.children ?? []).map((s) => getCategory(s)!).filter(Boolean);
   const siblings = parent ? (parent.children ?? []).filter((s) => s !== c.slug).map((s) => getCategory(s)!) : [];
@@ -59,11 +58,9 @@ export default async function CategoryPage({ params }: { params: Params }) {
               {c.intro.map((t) => <p key={t}>{t}</p>)}
             </div>
           </div>
-          {(children.length > 0 || c.slug === "high-school" || c.slug === "middle-school") && (
+          {children.length > 0 && (
             <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-2 border-t border-border pt-5 text-[15px]">
               {children.map((k) => <li key={k.slug}><Link href={`/category/${k.slug}`} className="underline decoration-border underline-offset-[6px] hover:decoration-foreground">{k.short.replace("수능 ", "")}</Link></li>)}
-              {c.slug === "high-school" && ["high1", "high2", "high3"].map((l, i) => <li key={l}><Link href={`/books?level=${l}&status=all`} className="underline decoration-border underline-offset-[6px] hover:decoration-foreground">고{i + 1}</Link></li>)}
-              {c.slug === "middle-school" && ["middle1", "middle2", "middle3"].map((l, i) => <li key={l}><Link href={`/books?level=${l}&status=all`} className="underline decoration-border underline-offset-[6px] hover:decoration-foreground">중{i + 1}</Link></li>)}
             </ul>
           )}
         </div>
@@ -71,7 +68,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
 
       <section className="container-page py-14" aria-labelledby="on-sale">
         <div className="flex items-end justify-between">
-          <h2 id="on-sale" className="text-[22px] font-bold tracking-[-0.02em]">판매 중인 교재</h2>
+          <h2 id="on-sale" className="text-[22px] font-bold tracking-[-0.02em]">교재 {onSale.length}권</h2>
           {onSale.length > 0 && <Link href={`/books?${new URLSearchParams({ ...(c.filter.area ? { area: c.filter.area } : {}), ...(c.filter.kind ? { kind: c.filter.kind } : {}) }).toString()}`} className="border-b border-foreground/50 pb-0.5 text-[13px] font-medium">필터로 더 보기</Link>}
         </div>
         {onSale.length > 0 ? (
@@ -79,9 +76,10 @@ export default async function CategoryPage({ params }: { params: Params }) {
             {onSale.map((p, i) => <ShelfItem key={p.id} product={p} priority={i < 4} />)}
           </div>
         ) : (
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            이 분류에서 지금 구매할 수 있는 교재는 아직 없습니다. 아래 출시 예정 교재가 준비되는 대로 판매를 시작합니다.
-          </p>
+          <div className="mt-6 max-w-xl">
+            <p className="text-[15px] leading-relaxed text-muted-foreground">이 분류에는 아직 등록된 교재가 없습니다. 원하시는 과목·단원·유형을 알려 주시면 제작 가능 여부와 가격, 납품 일정을 상담으로 안내해 드립니다.</p>
+            <div className="mt-5 flex flex-wrap gap-3"><ConsultLink /><ConsultLink label="MELISA CUSTOM BOOK 구성 상담" variant="line" slug={undefined} className="hidden" /><Link href="/custom" className="inline-flex h-11 items-center border border-foreground/60 px-5 text-[14px] font-semibold hover:bg-foreground hover:text-background">나만의 구성 상담</Link></div>
+          </div>
         )}
       </section>
 
@@ -89,7 +87,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
         <section className="border-t border-border bg-sage/50 py-14" aria-labelledby="courses">
           <div className="container-page">
             <h2 id="courses" className="text-[22px] font-bold tracking-[-0.02em]">{plan.label} 과목별 시리즈</h2>
-            <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-muted-foreground">과목마다 개념 정리, 기출 분석, 고난도 문제, 실전 모의고사를 순서대로 준비합니다. 판매 중인 교재가 있는 칸만 링크로 연결됩니다.</p>
+            <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-muted-foreground">과목마다 개념 정리, 기출 분석, 고난도 문제, 실전 모의고사로 구성합니다. 등록된 교재가 있는 칸만 링크로 연결됩니다.</p>
             <div className="mt-6 overflow-x-auto">
               <table className="w-full min-w-[560px] border-collapse text-left text-[14px]">
                 <thead>
@@ -106,7 +104,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
                         const n = onSale.filter((p) => p.course?.startsWith(course) && p.kind === k).length;
                         return (
                           <td key={k} className="py-3 pr-4">
-                            {n > 0 ? <Link className="underline underline-offset-4" href={`/books?${new URLSearchParams({ area: c.filter.area!, kind: k }).toString()}`}>{n}권</Link> : <span className="text-muted-foreground">준비 중</span>}
+                            {n > 0 ? <Link className="underline underline-offset-4" href={`/books?${new URLSearchParams({ area: c.filter.area!, kind: k }).toString()}`}>{n}권</Link> : <span className="text-muted-foreground">상담 문의</span>}
                           </td>
                         );
                       })}
@@ -121,19 +119,6 @@ export default async function CategoryPage({ params }: { params: Params }) {
               </p>
             )}
           </div>
-        </section>
-      )}
-
-      {planned.length > 0 && (
-        <section className="container-page py-14" aria-labelledby="planned">
-          <details>
-            <summary className="flex cursor-pointer list-none items-baseline justify-between border-b border-foreground/30 pb-3">
-              <h2 id="planned" className="text-[18px] font-bold tracking-[-0.02em]">출시 예정 교재 <span className="ml-1 text-[14px] font-normal text-muted-foreground">{planned.length}권</span></h2>
-              <span className="text-[13px] text-muted-foreground">목록 보기</span>
-            </summary>
-            <p className="mt-4 max-w-xl text-[13px] leading-relaxed text-muted-foreground">준비 중인 교재입니다. 출시 일정과 교육과정·학년도는 확정되는 대로 각 교재 페이지에 안내합니다.</p>
-            <PlannedList items={planned} className="mt-4" />
-          </details>
         </section>
       )}
 

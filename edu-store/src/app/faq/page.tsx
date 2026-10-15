@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { FAQ_ITEMS } from "@/lib/faq";
 import { siteConfig } from "@/lib/site";
 
-const description = "결제, 다운로드, 환불, 자료 이용에 대해 자주 묻는 질문을 모았습니다.";
+const description = "구매 방법, PDF 전달, 환불, 교재 이용에 대해 자주 묻는 질문을 모았습니다.";
 
 export const metadata: Metadata = {
   title: "자주 묻는 질문",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: { title: "자주 묻는 질문", description, url: "/faq" },
 };
 
-const CATEGORIES = ["구매", "다운로드", "환불", "자료"] as const;
+const CATEGORIES = ["구매", "교재", "전달", "환불"] as const;
 
 export default function FaqPage() {
   const jsonLd = {
@@ -44,7 +44,7 @@ export default function FaqPage() {
       <div className="mt-14 rounded-2xl bg-muted p-6 text-[15px]">
         <p className="font-bold">원하는 답을 찾지 못하셨나요?</p>
         <p className="mt-1 text-muted-foreground">
-          {siteConfig.supportContact}로 문의해 주시면 영업일 기준 1일 이내에 답변드립니다. 환불 문의는{" "}
+          <Link href="/consult" className="text-primary underline">교재 상담 및 구매 문의</Link>를 남겨 주시면 문자 또는 전화로 안내해 드립니다. 환불 문의는{" "}
           <Link href="/refund" className="text-primary underline">환불·교환 정책</Link>을 먼저 확인해 주세요.
         </p>
       </div>

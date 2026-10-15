@@ -1,5 +1,5 @@
 import "server-only";
-import { AREAS, ANSWER_MODES, CURRICULA, DIFFICULTIES, KINDS, LEVELS, STATUSES, TRACKS, isOneOf } from "./catalog";
+import { AREAS, ANSWER_MODES, DELIVERY_TYPES, WEAK_TAGS, CURRICULA, DIFFICULTIES, KINDS, LEVELS, STATUSES, TRACKS, isOneOf } from "./catalog";
 
 const lines = (v: unknown) =>
   String(v ?? "")
@@ -46,6 +46,8 @@ export function buildProductRow(b: Record<string, unknown>, partial: boolean) {
   if (has("difficulty")) { row.difficulty = b.difficulty ? (isOneOf(DIFFICULTIES, b.difficulty) ? b.difficulty : (errors.push("난이도 값이 올바르지 않습니다."), null)) : null; }
   if (has("curriculum")) { row.curriculum = b.curriculum ? (isOneOf(CURRICULA, b.curriculum) ? b.curriculum : (errors.push("교육과정 값이 올바르지 않습니다."), null)) : null; }
   if (has("status")) { if (!isOneOf(STATUSES, b.status)) errors.push("판매 상태를 선택하세요."); row.status = b.status; }
+  if (has("deliveryType")) row.delivery_type = isOneOf(DELIVERY_TYPES, b.deliveryType) ? b.deliveryType : "custom";
+  if (has("weakTags")) row.weak_tags = Array.isArray(b.weakTags) ? b.weakTags.filter((t) => WEAK_TAGS.some((w) => w.id === t)) : [];
   if (has("answerMode")) { row.answer_mode = isOneOf(ANSWER_MODES, b.answerMode) ? b.answerMode : "none"; }
 
   for (const [key, col] of [["examYear", "exam_year"], ["pageCount", "page_count"], ["questionCount", "question_count"], ["price", "price"], ["salePrice", "sale_price"], ["featuredRank", "featured_rank"]] as const) {
@@ -60,7 +62,7 @@ export function buildProductRow(b: Record<string, unknown>, partial: boolean) {
     if (price !== undefined && sale !== undefined && sale !== null && (price === null || sale >= price)) errors.push("할인 판매가는 정상 판매가보다 낮아야 합니다.");
   }
 
-  for (const [key, col] of [["sku", "sku"], ["series", "series"], ["course", "course"], ["edition", "edition"], ["seoTitle", "seo_title"], ["seoDescription", "seo_description"], ["coverUrl", "cover_url"], ["previewPdfUrl", "preview_pdf_url"], ["filePath", "file_path"], ["answerPath", "answer_path"]] as const) {
+  for (const [key, col] of [["sku", "sku"], ["series", "series"], ["course", "course"], ["edition", "edition"], ["seoTitle", "seo_title"], ["seoDescription", "seo_description"], ["coverUrl", "cover_url"], ["previewPdfUrl", "preview_pdf_url"]] as const) {
     if (has(key)) row[col] = text(b[key]);
   }
   for (const [key, col] of [["summary", "summary"], ["description", "description"]] as const) if (has(key)) row[col] = String(b[key] ?? "").trim();

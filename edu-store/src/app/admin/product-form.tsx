@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NativeSelect } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ANSWER_MODES, AREAS, CURRICULA, DIFFICULTIES, KINDS, LEVELS, STATUSES, TRACKS } from "@/lib/catalog";
+import { ANSWER_MODES, AREAS, CURRICULA, DELIVERY_TYPES, DIFFICULTIES, KINDS, LEVELS, STATUSES, TRACKS, WEAK_TAGS } from "@/lib/catalog";
 import { uploadFile } from "./upload";
 
 export type ProductInit = {
@@ -18,14 +18,14 @@ export type ProductInit = {
   examYear: string; pageCount: string; questionCount: string; price: string; salePrice: string;
   toc: string; goals: string; targets: string; includes: string; keywords: string; edition: string; revisionNotes: string;
   releaseDate: string; status: string; featuredRank: string; seoTitle: string; seoDescription: string; answerMode: string;
-  hasFile: boolean; hasAnswer: boolean; previewPdfUrl: string; coverUrl: string; previewImages: string[];
+  deliveryType: string; weakTags: string[]; previewPdfUrl: string; coverUrl: string; previewImages: string[];
 };
 
 export const EMPTY_PRODUCT: ProductInit = {
   title: "", slug: "", sku: "", series: "", summary: "", description: "", track: "csat", area: "korean", course: "", grades: [], kind: "concept",
   difficulty: "", curriculum: "", examYear: "", pageCount: "", questionCount: "", price: "", salePrice: "", toc: "", goals: "", targets: "", includes: "",
-  keywords: "", edition: "", revisionNotes: "", releaseDate: "", status: "coming_soon", featuredRank: "", seoTitle: "", seoDescription: "", answerMode: "none",
-  hasFile: false, hasAnswer: false, previewPdfUrl: "", coverUrl: "", previewImages: [],
+  keywords: "", edition: "", revisionNotes: "", releaseDate: "", status: "on_sale", featuredRank: "", seoTitle: "", seoDescription: "", answerMode: "none",
+  deliveryType: "custom", weakTags: [], previewPdfUrl: "", coverUrl: "", previewImages: [],
 };
 
 function Field({ label, hint, children, className }: { label: string; hint?: string; children: React.ReactNode; className?: string }) {
@@ -59,13 +59,10 @@ export function ProductForm({ init }: { init: ProductInit }) {
     };
     try {
       const body: Record<string, unknown> = {};
-      for (const k of ["title", "slug", "sku", "series", "summary", "description", "track", "area", "course", "kind", "difficulty", "curriculum", "examYear", "pageCount", "questionCount", "price", "salePrice", "toc", "goals", "targets", "includes", "keywords", "edition", "revisionNotes", "releaseDate", "status", "featuredRank", "seoTitle", "seoDescription", "answerMode"]) body[k] = f.get(k);
+      for (const k of ["title", "slug", "sku", "series", "summary", "description", "track", "area", "course", "kind", "difficulty", "curriculum", "examYear", "pageCount", "questionCount", "price", "salePrice", "toc", "goals", "targets", "includes", "keywords", "edition", "revisionNotes", "releaseDate", "status", "featuredRank", "seoTitle", "seoDescription", "answerMode", "deliveryType"]) body[k] = f.get(k);
       body.grades = f.getAll("grades");
+      body.weakTags = f.getAll("weakTags");
 
-      const main = file("pdf");
-      if (main) { setStatus({ type: "busy", text: "구매용 PDF 업로드 중…" }); body.filePath = (await uploadFile(main, "file")).path; }
-      const answer = file("answer");
-      if (answer) { setStatus({ type: "busy", text: "정답·해설 PDF 업로드 중…" }); body.answerPath = (await uploadFile(answer, "answer")).path; }
       const preview = file("previewPdf");
       if (preview) { setStatus({ type: "busy", text: "미리보기 PDF 업로드 중…" }); body.previewPdfUrl = (await uploadFile(preview, "preview")).publicUrl; }
       const cover = file("cover");
@@ -131,23 +128,29 @@ export function ProductForm({ init }: { init: ProductInit }) {
         <Field label="이런 학습자에게" hint="한 줄에 하나씩"><Textarea name="targets" rows={4} defaultValue={init.targets} /></Field>
         <Field label="상세 목차" hint="한 줄에 하나씩" className="sm:col-span-2"><Textarea name="toc" rows={6} defaultValue={init.toc} /></Field>
         <Field label="포함 내용" hint="한 줄에 하나씩"><Textarea name="includes" rows={3} defaultValue={init.includes} /></Field>
+        <Field label="취약 유형 태그 (추천 연결)" hint="진단·고민별 추천에 쓰이는 연결 태그입니다." className="sm:col-span-2">
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            {WEAK_TAGS.map((t) => (
+              <label key={t.id} className="flex items-center gap-2 text-sm"><input type="checkbox" name="weakTags" value={t.id} defaultChecked={init.weakTags.includes(t.id)} className="size-4 accent-primary" /> {t.label}</label>
+            ))}
+          </div>
+        </Field>
         <Field label="검색 키워드" hint="쉼표 또는 줄바꿈으로 구분"><Textarea name="keywords" rows={3} defaultValue={init.keywords} /></Field>
         <Field label="정답·해설 제공 방식">{sel("answerMode", init.answerMode, ANSWER_MODES)}</Field>
         <Field label="개정판 표기"><Input name="edition" placeholder="예: 2027학년도 개정판" defaultValue={init.edition} /></Field>
-        <Field label="개정·정오표 이력" hint="한 줄에 하나씩 (날짜와 내용)" className="sm:col-span-2"><Textarea name="revisionNotes" rows={3} defaultValue={init.revisionNotes} /></Field>
+        <Field label="개정·정오표 이력" hint="한 줄에 하나씩 (날짜와 내용). 확인된 내용만 적으세요." className="sm:col-span-2"><Textarea name="revisionNotes" rows={3} defaultValue={init.revisionNotes} /></Field>
       </Group>
 
       <Group title="가격과 판매">
         <Field label="정상 판매가(원)"><Input name="price" type="number" min={0} step={100} defaultValue={init.price} /></Field>
         <Field label="할인 판매가(원)" hint="정상 판매가보다 낮을 때만 입력. 비우면 할인 표시가 없습니다."><Input name="salePrice" type="number" min={0} step={100} defaultValue={init.salePrice} /></Field>
-        <Field label="판매 상태 *" hint="‘판매 중’은 정상 판매가와 구매용 PDF가 모두 있어야 저장됩니다.">{sel("status", init.status, STATUSES)}</Field>
-        <Field label="출시일" hint="확정된 일정이 없으면 비워 두세요."><Input name="releaseDate" type="date" defaultValue={init.releaseDate} /></Field>
+        <Field label="판매 상태 *" hint="‘판매 중’은 정상 판매가가 있어야 저장됩니다. 가격을 바꾸면 모든 화면에 같은 값이 표시됩니다.">{sel("status", init.status, STATUSES)}</Field>
+        <Field label="납품 형태 *" hint="PDF가 아직 완성되지 않았으면 ‘주문 제작 상담 가능’으로 두세요. 완성된 PDF 교재만 ‘PDF 완성본’으로 바꿉니다.">{sel("deliveryType", init.deliveryType, DELIVERY_TYPES)}</Field>
+        <Field label="출시일 (선택)" hint="확정된 일정이 없으면 비워 두세요."><Input name="releaseDate" type="date" defaultValue={init.releaseDate} /></Field>
         <Field label="대표 노출 순서" hint="1~6처럼 숫자가 작을수록 먼저 노출. 비우면 일반 노출."><Input name="featuredRank" type="number" min={1} defaultValue={init.featuredRank} /></Field>
       </Group>
 
-      <Group title="파일">
-        <Field label="구매용 PDF" hint={init.hasFile ? "연결됨 · 새 파일을 올리면 교체됩니다 (이미 구매한 분의 다운로드도 새 파일로 제공)" : "아직 연결되지 않았습니다."}><Input name="pdf" type="file" accept="application/pdf" /></Field>
-        <Field label="정답·해설 PDF" hint={init.hasAnswer ? "연결됨" : "별도 파일이 있을 때만"}><Input name="answer" type="file" accept="application/pdf" /></Field>
+      <Group title="표지·미리보기 (공개 파일)">
         <Field label="미리보기 PDF (공개)" hint={init.previewPdfUrl ? "등록됨 · 워터마크가 들어간 일부 쪽만 올리세요." : "워터마크가 들어간 일부 쪽만 올리세요. 누구나 내려받을 수 있습니다."}><Input name="previewPdf" type="file" accept="application/pdf" /></Field>
         <Field label="표지 이미지 (3:4)" hint={init.coverUrl ? "등록됨 · 없으면 자동 표지가 쓰입니다." : "없으면 자동 생성 표지가 쓰입니다."}><Input name="cover" type="file" accept="image/png,image/jpeg,image/webp" /></Field>
         <Field label="미리보기 이미지 (여러 장)" hint={init.previewImages.length ? `${init.previewImages.length}장 등록됨 · 새로 올리면 교체됩니다. 이미지 자체에 워터마크를 넣어 올리세요.` : "이미지 자체에 워터마크를 넣어 올리세요."} className="sm:col-span-2"><Input name="previewImages" type="file" multiple accept="image/png,image/jpeg,image/webp" /></Field>

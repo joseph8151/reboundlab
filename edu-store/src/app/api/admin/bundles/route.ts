@@ -7,8 +7,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 export const runtime = "nodejs";
 
 /**
- * 패키지 등록·수정. 판매 중 패키지는 구성 교재가 2권 이상이고 모두 판매 중이며 패키지 가격이 있어야 합니다.
- * 준비되지 않은 교재를 패키지에 넣어 판매하는 일을 서버에서 막습니다.
+ * 패키지 등록·수정. 판매 중 패키지는 구성 교재가 2권 이상이고 모두 판매 중(가격 등록)이며 패키지 가격이 있어야 합니다.
  */
 async function save(request: NextRequest, mode: "create" | "update") {
   if (!(await getAdminUser())) return NextResponse.json({ message: "권한이 없습니다." }, { status: 403 });
@@ -29,12 +28,12 @@ async function save(request: NextRequest, mode: "create" | "update") {
 
   let productIds: string[] = [];
   if (itemSlugs.length) {
-    const { data } = await admin.from("products").select("id, slug, status, price, file_path").in("slug", itemSlugs);
+    const { data } = await admin.from("products").select("id, slug, status, price").in("slug", itemSlugs);
     if ((data?.length ?? 0) !== itemSlugs.length) errors.push("존재하지 않는 교재가 포함되어 있습니다.");
     productIds = itemSlugs.map((s) => data?.find((p) => p.slug === s)?.id).filter((x): x is string => Boolean(x));
     if (status === "on_sale") {
-      const notReady = data?.filter((p) => !(p.status === "on_sale" && p.price !== null && p.file_path)).map((p) => p.slug) ?? [];
-      if (notReady.length) errors.push(`판매 준비가 끝나지 않은 교재는 판매 중 패키지에 넣을 수 없습니다: ${notReady.join(", ")}`);
+      const notReady = data?.filter((p) => !(p.status === "on_sale" && p.price !== null)).map((p) => p.slug) ?? [];
+      if (notReady.length) errors.push(`판매 중이 아니거나 가격이 없는 교재는 판매 중 패키지에 넣을 수 없습니다: ${notReady.join(", ")}`);
     }
   }
   if (status === "on_sale" && (productIds.length < 2 || price === null)) errors.push("판매 중 패키지는 교재 2권 이상과 패키지 가격이 필요합니다.");

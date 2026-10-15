@@ -2,17 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BookCover } from "@/components/books/book-cover";
-import { BuyActions, RecentTracker } from "@/components/books/buy-panel";
 import { JsonLd } from "@/components/books/json-ld";
-import { Price, ShelfItem, StatusTag } from "@/components/books/parts";
-import { RecentBooks } from "@/components/books/recent-books";
+import { ConsultLink, DeliveryTag, Price, ShelfItem } from "@/components/books/parts";
+import { RecentBooks, RecentTracker } from "@/components/books/recent-books";
 import {
   ANSWER_MODES, areaLabel, curriculumLabel, difficultyLabel, kindLabel, levelsText, trackLabel,
 } from "@/lib/catalog";
 import { getCatalog, getProductBySlug, getRelated } from "@/lib/products";
 import { breadcrumbJsonLd, isIndexable, productDescription, productJsonLd } from "@/lib/seo";
-import { downloadPolicy } from "@/lib/site";
-import { effectivePrice } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -37,8 +34,6 @@ export default async function BookPage({ params }: { params: Params }) {
   const p = await getProductBySlug((await params).slug);
   if (!p) notFound();
   const [related, catalog] = await Promise.all([getRelated(p, 4), getCatalog()]);
-  const price = effectivePrice(p);
-  const onSale = p.status === "on_sale";
   const answer = ANSWER_MODES.find((a) => a.id === p.answerMode);
 
   const facts: [string, string | null][] = [
@@ -50,10 +45,10 @@ export default async function BookPage({ params }: { params: Params }) {
     ["적용 학년도", p.examYear ? `${p.examYear}학년도` : null],
     ["페이지", p.pageCount ? `${p.pageCount}쪽` : null],
     ["문항 수", p.questionCount ? `${p.questionCount}문항` : null],
-    ["정답·해설", p.hasAnswerFile ? "정답 및 해설 별도 PDF 제공" : p.answerMode !== "none" ? answer?.label ?? null : null],
-    ["판형", "PDF (A4 인쇄 가능)"],
+    ["정답·해설", p.hasAnswerFile ? "정답 및 해설 별도 PDF 제공" : p.answerMode !== "none" ? answer?.label ?? null : "제공 여부는 상담 시 안내"],
+    ["제공 형태", "PDF (A4 인쇄 가능)"],
+    ["교재 상태", p.deliveryType === "custom" ? "주문 제작 상담 가능" : "PDF 완성본"],
     ["개정", p.edition],
-    ["출시일", p.releaseDate ? formatDate(p.releaseDate) : null],
     ["상품 코드", p.sku || null],
   ];
 
@@ -78,7 +73,7 @@ export default async function BookPage({ params }: { params: Params }) {
 
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-2 text-[13px] text-muted-foreground">
-            {trackLabel(p.track)} · {areaLabel(p.area)}<StatusTag status={p.status} />
+            {trackLabel(p.track)} · {areaLabel(p.area)}<DeliveryTag type={p.deliveryType} />
           </p>
           <h1 className="mt-3 text-[28px] font-bold leading-[1.25] tracking-[-0.035em] md:text-[36px]">{p.title}</h1>
           {p.series && <p className="mt-2 text-[14px] text-muted-foreground">{p.series}</p>}
@@ -91,33 +86,19 @@ export default async function BookPage({ params }: { params: Params }) {
           </dl>
         </div>
 
-        {/* 구매 패널 (PC 우측 고정) */}
+        {/* 상담·구매 패널 (PC 우측 고정) */}
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <div className="border border-border bg-card p-6">
-            {onSale ? (
-              <>
-                <Price product={p} size="lg" />
-                <p className="mt-1 text-[12px] text-muted-foreground">PDF 교재 · 결제 후 내 자료함에서 바로 다운로드</p>
-                {p.purchasable ? (
-                  <div className="mt-5"><BuyActions slug={p.slug} purchasable /></div>
-                ) : (
-                  <p className="mt-5 text-[13px] text-muted-foreground">판매를 위한 파일 연결을 마치는 중입니다. 잠시 후 다시 확인해 주세요.</p>
-                )}
-              </>
-            ) : (
-              <>
-                <p className="text-[15px] font-semibold">{p.status === "coming_soon" ? "출시 예정" : p.status === "sold_out" ? "품절" : "판매 중단"}</p>
-                {price !== null && <p className="mt-2 text-[13px] text-muted-foreground">예정 판매가 <span className="font-semibold text-foreground">{price.toLocaleString("ko-KR")}원</span></p>}
-                <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-                  {p.status === "coming_soon" ? (p.releaseDate ? `출시일 ${formatDate(p.releaseDate)}` : "출시 일정은 확정되는 대로 안내합니다.") : "현재 구매할 수 없는 교재입니다."}
-                </p>
-                <Link href={`/consult?track=${p.track === "csat" ? "suneung" : "middle"}`} className="mt-5 inline-block border-b border-foreground pb-0.5 text-[14px] font-medium">출시 문의하기</Link>
-              </>
+            <Price product={p} size="lg" />
+            <p className="mt-1 text-[12px] text-muted-foreground">PDF 교재 · 상담 후 계좌이체로 구매</p>
+            {p.deliveryType === "custom" && (
+              <p className="mt-3 border-l-2 border-foreground/40 pl-3 text-[13px] leading-relaxed text-foreground/80">주문 제작 상담 가능 교재입니다. 제작 가능 여부와 납품 시점은 상담에서 안내해 드립니다.</p>
             )}
-            <ul className="mt-6 space-y-1.5 border-t border-border pt-4 text-[12px] leading-relaxed text-muted-foreground">
-              <li>다운로드 기간 {downloadPolicy.validDays}일 · 최대 {downloadPolicy.maxCount}회</li>
-              <li>다운로드 전 7일 이내 전액 환불</li>
-            </ul>
+            <ConsultLink slug={p.slug} className="mt-5 w-full" />
+            <ol className="mt-6 space-y-1 border-t border-border pt-4 text-[12px] leading-relaxed text-muted-foreground">
+              <li>① 상담 신청 → ② 문자·전화 안내</li>
+              <li>③ 계좌이체 → ④ 입금 확인 후 PDF 전달</li>
+            </ol>
           </div>
         </aside>
       </section>
@@ -129,7 +110,7 @@ export default async function BookPage({ params }: { params: Params }) {
             {p.description ? (
               <div className="max-w-2xl space-y-4 text-[15px] leading-[1.9]">{p.description.split(/\n{2,}/).map((t, i) => <p key={i}>{t}</p>)}</div>
             ) : (
-              <p className="text-[14px] text-muted-foreground">상세 소개는 교재 구성이 확정되면 공개됩니다.</p>
+              <p className="max-w-2xl text-[14px] leading-relaxed text-muted-foreground">이 교재의 상세 구성(쪽수·문항 수·목차)은 제작 상담에서 확정해 안내합니다. 확정되지 않은 내용은 게시하지 않습니다.</p>
             )}
             {p.targets.length > 0 && (
               <>
@@ -139,23 +120,23 @@ export default async function BookPage({ params }: { params: Params }) {
             )}
           </Block>
 
-          <Block title="학습 목표">
+          {p.goals.length > 0 && <Block title="학습 목표">
             {p.goals.length ? (
               <ol className="max-w-2xl space-y-3 text-[15px] leading-relaxed">
                 {p.goals.map((g, i) => <li key={g} className="grid grid-cols-[28px_1fr]"><span className="font-display text-[16px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>{g}</li>)}
               </ol>
-            ) : <p className="text-[14px] text-muted-foreground">학습 목표는 교재 구성이 확정되면 공개됩니다.</p>}
-          </Block>
+            ) : null}
+          </Block>}
 
-          <Block title="상세 목차">
+          {p.toc.length > 0 && <Block title="상세 목차">
             {p.toc.length ? (
               <ol className="max-w-2xl divide-y divide-border border-y border-border text-[15px]">
                 {p.toc.map((t, i) => <li key={t} className="grid grid-cols-[40px_1fr] py-3"><span className="font-display text-[15px] text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>{t}</li>)}
               </ol>
-            ) : <p className="text-[14px] text-muted-foreground">상세 목차는 교재 구성이 확정되면 공개됩니다.</p>}
-          </Block>
+            ) : null}
+          </Block>}
 
-          <Block title="PDF 미리보기" id="preview">
+          {(p.previewImages.length > 0 || p.previewPdfUrl) && <Block title="PDF 미리보기" id="preview">
             {p.previewImages.length > 0 && (
               <ul className="flex snap-x gap-4 overflow-x-auto pb-3">
                 {p.previewImages.map((src, i) => (
@@ -166,10 +147,8 @@ export default async function BookPage({ params }: { params: Params }) {
             )}
             {p.previewPdfUrl ? (
               <a href={p.previewPdfUrl} target="_blank" rel="noopener noreferrer" className="inline-block border-b border-foreground pb-0.5 text-[14px] font-semibold">미리보기 PDF 열기 (새 창)</a>
-            ) : p.previewImages.length === 0 ? (
-              <p className="text-[14px] text-muted-foreground">{onSale ? "이 교재의 미리보기 자료를 준비하고 있습니다." : "미리보기는 출시 시점에 공개됩니다."}</p>
             ) : null}
-          </Block>
+          </Block>}
 
           {(p.edition || p.revisionNotes.length > 0) && (
             <Block title="개정 이력">
@@ -178,16 +157,17 @@ export default async function BookPage({ params }: { params: Params }) {
             </Block>
           )}
 
-          <Block title="다운로드와 이용 안내">
+          <Block title="구매 방법과 환불 안내">
             <ol className="max-w-2xl space-y-2 text-[14px] leading-relaxed">
-              <li><span className="mr-2 text-muted-foreground">1.</span>결제가 완료되면 내 자료함에 교재가 추가됩니다.</li>
-              <li><span className="mr-2 text-muted-foreground">2.</span>내 자료함에서 PDF를 내려받습니다. 파일마다 구매자 정보가 표시된 개인용 사본으로 제공됩니다.</li>
-              <li><span className="mr-2 text-muted-foreground">3.</span>결제일로부터 {downloadPolicy.validDays}일, 교재당 최대 {downloadPolicy.maxCount}회까지 내려받을 수 있습니다.</li>
-              <li><span className="mr-2 text-muted-foreground">4.</span>구매한 교재는 본인 학습 목적으로만 이용할 수 있으며, 복제·공유·재판매는 금지됩니다.</li>
+              <li><span className="mr-2 text-muted-foreground">1.</span>‘교재 상담 및 구매 신청’으로 연락처를 남깁니다.</li>
+              <li><span className="mr-2 text-muted-foreground">2.</span>문자 또는 전화로 구매 방법, 제작 가능 여부, 납품 시점을 안내해 드립니다.</li>
+              <li><span className="mr-2 text-muted-foreground">3.</span>안내받은 계좌로 입금하면 확인 후 PDF 교재를 전달해 드립니다.</li>
+              <li><span className="mr-2 text-muted-foreground">4.</span>구매한 교재는 본인 학습 목적으로만 이용할 수 있으며 복제·공유·재판매는 금지됩니다.</li>
             </ol>
             <p className="mt-5 max-w-2xl text-[14px] leading-relaxed text-muted-foreground">
-              디지털 콘텐츠는 내려받은 이후 단순 변심에 의한 청약철회가 제한됩니다. 다운로드 전 결제일로부터 7일 이내에는 전액 환불할 수 있으며, 파일 오류나 내용상의 결함은 다운로드 여부와 관계없이 수정본 제공 또는 환불로 처리합니다.{" "}
-              <Link href="/refund" className="text-foreground underline underline-offset-4">환불·교환 정책 전문</Link>
+              디지털 콘텐츠는 PDF 전달 이후 단순 변심에 의한 청약철회가 제한될 수 있습니다. 전달 전에는 상담으로 취소할 수 있으며, 파일 오류나 내용상 결함은 수정본 제공 또는 환불로 처리합니다.{" "}
+              <Link href="/refund" className="text-foreground underline underline-offset-4">환불·교환 정책 전문</Link>{" · "}
+              <Link href="/errata" className="text-foreground underline underline-offset-4">오류 제보·정오표</Link>
             </p>
           </Block>
         </div>
@@ -204,15 +184,13 @@ export default async function BookPage({ params }: { params: Params }) {
 
       <RecentBooks catalog={catalog.map(({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl }) => ({ slug, title, series, area, course, levels, kind, curriculum, examYear, coverUrl }))} excludeSlug={p.slug} />
 
-      {/* 모바일 구매 바 */}
-      {onSale && p.purchasable && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background lg:hidden">
-          <div className="container-page flex items-center gap-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <Price product={p} size="md" className="shrink-0 !text-[15px]" />
-            <BuyActions slug={p.slug} purchasable compact />
-          </div>
+      {/* 모바일 상담 바 */}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background lg:hidden">
+        <div className="container-page flex items-center gap-3 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+          <Price product={p} size="md" className="shrink-0 !text-[15px]" />
+          <ConsultLink slug={p.slug} className="min-w-0 flex-1" />
         </div>
-      )}
+      </div>
     </div>
   );
 }

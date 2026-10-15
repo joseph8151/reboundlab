@@ -55,7 +55,7 @@ export const CATEGORIES: CategoryDef[] = [
     seoDescription: "수능 수학 공통 개념 정리부터 유형별 문제, 준킬러·고난도 훈련, 실전 모의고사 PDF 교재. 교육과정과 적용 학년도를 구분해 안내합니다. 멜리사 에듀(MELISA EDU).",
     lead: "개념의 연결에서 고난도 유형까지, 단계를 나누어.",
     intro: [
-      "수능 수학 교재는 공통 개념 정리와 과목별 교재, 고난도 유형 훈련, 실전 모의고사로 단계를 나눕니다. 계산 실수와 오답 유형을 따로 점검하는 학습 자료도 함께 제공할 계획입니다.",
+      "수능 수학 교재는 공통 개념 정리와 과목별 교재, 고난도 유형 훈련, 실전 모의고사로 단계를 나눕니다. 계산 실수와 오답 유형을 따로 점검하는 학습 자료도 함께 구성합니다.",
       SCOPE_NOTE,
     ],
     filter: { scope: "csat", area: "math" },
@@ -83,7 +83,7 @@ export const CATEGORIES: CategoryDef[] = [
     seoDescription: "생활과 윤리, 사회·문화, 한국지리, 세계지리, 동아시아사, 세계사, 정치와 법, 경제 등 수능 사회탐구 과목별 교재 시리즈. 멜리사 에듀(MELISA EDU).",
     lead: "과목마다 개념, 기출, 고난도 문제, 모의고사로 나누어.",
     intro: [
-      "사회탐구는 과목 단위로 시리즈를 구성하고, 각 과목을 개념 정리, 기출 분석, 고난도 문제, 실전 모의고사로 세분화합니다. 아래 표에서 과목별 교재 준비 상황을 확인할 수 있습니다.",
+      "사회탐구는 과목 단위로 시리즈를 구성하고, 각 과목을 개념 정리, 기출 분석, 고난도 문제, 실전 모의고사로 세분화합니다. 아래 표에서 과목별 등록 교재를 확인할 수 있습니다. 등록된 교재가 없는 칸은 상담으로 제작 가능 여부를 문의해 주세요.",
       SCOPE_NOTE,
     ],
     filter: { scope: "csat", area: "social" },
@@ -114,9 +114,10 @@ export const CATEGORIES: CategoryDef[] = [
     lead: "학교 시험의 문항 방식에 맞춰, 학기 단위로.",
     intro: [
       "고등 내신 교재는 고1, 고2, 고3으로 나누어 국어·수학·영어 교재와 중간·기말고사 대비, 서술형 훈련, 수행평가 준비 자료로 구성합니다.",
-      "학교별 교재는 자료의 정식 확보와 사용 권한이 확인된 경우에만 출시합니다.",
+      "학교별 교재는 자료의 정식 확보와 사용 권한이 확인된 경우에만 제작합니다.",
     ],
     filter: { scope: "high-school" },
+    children: ["high1", "high2", "high3"],
   },
   {
     slug: "middle-school",
@@ -126,10 +127,11 @@ export const CATEGORIES: CategoryDef[] = [
     seoDescription: "중1·중2·중3 국어 독해와 문법, 수학 개념과 유형별 문제, 영어 문법·독해·서술형, 중간·기말고사 대비 PDF 교재. 멜리사 에듀(MELISA EDU)의 중학교 내신 교재.",
     lead: "학습의 기초를, 학년의 속도에 맞추어.",
     intro: [
-      "중등 내신 교재는 중1, 중2, 중3으로 나누어 국어, 수학, 영어, 과학, 사회, 역사 교재와 시험 대비 자료를 구성합니다. 중3 학생을 위한 고등학교 선행 교재도 함께 준비합니다.",
+      "중등 내신 교재는 중1, 중2, 중3으로 나누어 국어, 수학, 영어, 과학, 사회, 역사 교재와 시험 대비 자료를 구성합니다. 중3 학생을 위한 고등학교 선행 교재도 함께 구성합니다.",
       "개념을 정확히 이해한 뒤 유형별 문제로 확인하는 순서를 기본으로 합니다.",
     ],
     filter: { scope: "middle-school" },
+    children: ["middle1", "middle2", "middle3"],
   },
   {
     slug: "mock",
@@ -144,18 +146,30 @@ export const CATEGORIES: CategoryDef[] = [
     filter: { kind: "mock" },
   },
   {
-    slug: "material",
-    title: "학습자료 · 플래너",
-    short: "학습자료",
+    slug: "planner",
+    title: "학습 플래너 · 오답노트",
+    short: "학습 플래너",
     seoTitle: "수능 공부 플래너 · 오답노트 · 학습 관리 PDF",
     seoDescription: "30일·100일 수능 학습 계획표, 내신 시험 4주 플래너, 오답노트, 회독 관리표, 영어 단어 암기장 등 학습 관리 PDF 자료. 멜리사 에듀(MELISA EDU).",
     lead: "계획하고, 기록하고, 다시 점검하는 도구.",
     intro: [
-      "학습자료는 교재와 함께 쓰는 관리 도구입니다. 학습 계획표와 플래너, 오답노트, 회독 관리표, 과목별 정리 노트를 PDF로 제공할 계획입니다.",
+      "학습자료는 교재와 함께 쓰는 관리 도구입니다. 학습 계획표와 플래너, 오답노트, 회독 관리표, 과목별 정리 노트를 PDF로 제공합니다.",
       "바로 사용할 수 있는 무료 학습 도구도 있습니다. 영단어 30일, 독해 속도 훈련, 오답노트, 공부 시간 기록은 무료 학습 도구에서 이용하세요.",
     ],
     filter: { kind: "material" },
   },
+  ...[1, 2, 3].map((n): CategoryDef => ({
+    slug: `high${n}`, title: `고${n} 내신 교재`, short: `고${n} 내신`, parent: "high-school",
+    seoTitle: `고${n} 내신 문제집`, seoDescription: `고${n} 내신 대비 PDF 교재. 멜리사 에듀(MELISA EDU)에서 상담 후 구매할 수 있습니다.`,
+    lead: `고${n} 학교 시험에 맞춘 교재.`, intro: [`고${n} 학생을 위한 국어·수학·영어 내신 교재입니다. 아래 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`],
+    filter: { scope: "high-school", level: `high${n}` },
+  })),
+  ...[1, 2, 3].map((n): CategoryDef => ({
+    slug: `middle${n}`, title: `중${n} 내신 교재`, short: `중${n} 내신`, parent: "middle-school",
+    seoTitle: `중${n} 내신 문제집`, seoDescription: `중${n} 내신 대비 PDF 교재. 멜리사 에듀(MELISA EDU)에서 상담 후 구매할 수 있습니다.`,
+    lead: `중${n} 학습의 기초를 학년의 속도에 맞추어.`, intro: [`중${n} 학생을 위한 내신 교재입니다. 아래 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`],
+    filter: { scope: "middle-school", level: `middle${n}` },
+  })),
 ];
 
 export const getCategory = (slug: string) => CATEGORIES.find((c) => c.slug === slug);

@@ -4,12 +4,12 @@ import {
   AREAS, DIFFICULTIES, KINDS, LEVEL_GROUPS, LEVELS, PRICE_BANDS,
   type AreaId, type CurriculumId, type DifficultyId, type KindId, type LevelGroupId, type PriceBandId, type StatusId,
 } from "./catalog";
-import { SEED_PRODUCTS, PRIORITY_PRODUCTS, type SeedProduct } from "./catalog-plan";
-import { createAdminClient, createPublicClient } from "./supabase/admin";
+import { SEED_PRODUCTS, type SeedProduct } from "./catalog-plan";
+import { createPublicClient } from "./supabase/admin";
 import { isSupabaseConfigured } from "./supabase/env";
 import { effectivePrice, rowToProduct, type Bundle, type BundleRow, type Product, type ProductRow } from "./types";
 
-export type SortId = "recommended" | "latest" | "price-asc" | "price-desc" | "title" | "popular";
+export type SortId = "recommended" | "latest" | "price-asc" | "price-desc" | "title";
 
 export type ProductFilters = {
   q?: string;
@@ -21,8 +21,12 @@ export type ProductFilters = {
   price?: PriceBandId;
   examYear?: number;
   curriculum?: CurriculumId;
-  /** 'on_sale' 판매 중 / 'coming_soon' 출시 예정 / 'all' 전체 */
-  status?: "on_sale" | "coming_soon" | "all";
+  /** 'on_sale' 판매 중 / 'all' 전체 */
+  status?: "on_sale" | "all";
+  /** 취약 유형 태그(WEAK_TAGS id) */
+  tag?: string;
+  /** 학습 목적(성적대) 분류: foundation / middle / upper / top */
+  band?: "foundation" | "middle" | "upper" | "top";
   scope?: "csat" | "high-school" | "middle-school";
   course?: string;
   sort?: SortId;
@@ -33,11 +37,10 @@ export const PAGE_SIZE = 24;
 
 // ── 상품 목록 로드 ─────────────────────────────────────────
 const COLUMNS =
-  "id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty, curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets, includes, preview_pdf_url, sample_images, answer_mode, has_file, has_answer_file, edition, revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords, created_at, updated_at";
+  "id, sku, slug, title, series, summary, description, track, area, course, grades, kind, difficulty, curriculum, exam_year, page_count, question_count, price, sale_price, cover_url, toc, goals, targets, includes, preview_pdf_url, sample_images, answer_mode, has_file, delivery_type, weak_tags, has_answer_file, edition, revision_notes, release_date, status, featured_rank, seo_title, seo_description, keywords, created_at, updated_at";
 
-/** 데모 모드(Supabase 미연결): 우선 출시 6종만 구매 UI를 확인할 수 있도록 '판매 중'으로 보이고, 나머지는 출시 예정입니다. */
+/** Supabase 미연결 시 사이트에 표시되는 상품: 모두 판매 중(상담 구매)이며 PDF 미완성 교재는 주문 제작 상담입니다. */
 function seedToRow(p: SeedProduct, index: number): ProductRow {
-  const demoSellable = PRIORITY_PRODUCTS.some((x) => x.slug === p.slug);
   const created = new Date(Date.UTC(2026, 9, 1) + (SEED_PRODUCTS.length - index) * 3600_000).toISOString();
   return {
     id: `seed-${p.sku || p.slug}`,
@@ -69,10 +72,12 @@ function seedToRow(p: SeedProduct, index: number): ProductRow {
     answer_mode: "none",
     has_answer_file: false,
     has_file: false,
+    delivery_type: p.deliveryType ?? "custom",
+    weak_tags: p.weakTags ?? [],
     edition: null,
     revision_notes: [],
     release_date: null,
-    status: demoSellable ? "on_sale" : "coming_soon",
+    status: "on_sale",
     featured_rank: p.featuredRank ?? null,
     seo_title: p.seoTitle ?? null,
     seo_description: p.seoDescription ?? null,
@@ -84,7 +89,7 @@ function seedToRow(p: SeedProduct, index: number): ProductRow {
 
 export const getCatalog = cache(async (): Promise<Product[]> => {
   if (!isSupabaseConfigured()) {
-    return SEED_PRODUCTS.map((p, i) => rowToProduct(seedToRow(p, i), { demo: true }));
+    return SEED_PRODUCTS.map((p, i) => rowToProduct(seedToRow(p, i)));
   }
   const { data, error } = await createPublicClient().from("products").select(COLUMNS).neq("status", "discontinued");
   if (error) {
@@ -153,7 +158,6 @@ export function applyFilters(list: Product[], input: ProductFilters): Product[] 
 
   return list.filter((p) => {
     if (status === "on_sale" && p.status !== "on_sale") return false;
-    if (status === "coming_soon" && p.status !== "coming_soon") return false;
     if (status === "all" && p.status === "discontinued") return false;
     if (f.scope === "csat" && p.track !== "csat") return false;
     if (f.scope === "high-school" && !(p.track === "school" && p.levels.some((l) => l.startsWith("high")))) return false;
@@ -165,6 +169,8 @@ export function applyFilters(list: Product[], input: ProductFilters): Product[] 
     if (f.curriculum && p.curriculum !== f.curriculum) return false;
     if (f.examYear && p.examYear !== f.examYear) return false;
     if (f.course && p.course !== f.course) return false;
+    if (f.tag && !p.weakTags.includes(f.tag)) return false;
+    if (f.band && !bandMatches(p, f.band)) return false;
     if (band) {
       const price = effectivePrice(p);
       if (price === null || price < band.min || price > band.max) return false;
@@ -177,11 +183,20 @@ export function applyFilters(list: Product[], input: ProductFilters): Product[] 
   });
 }
 
+export function bandMatches(p: Pick<Product, "difficulty" | "kind">, band: NonNullable<ProductFilters["band"]>) {
+  switch (band) {
+    case "foundation": return p.difficulty === "basic" || p.kind === "concept";
+    case "middle": return p.difficulty === "standard" || p.kind === "variant";
+    case "upper": return p.difficulty === "advanced" || p.kind === "past-exam";
+    case "top": return p.kind === "mock" || (p.difficulty === "advanced" && p.kind === "past-exam");
+  }
+}
+
 function stripUndefined<T extends object>(o: T): T {
   return Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== "")) as T;
 }
 
-export function sortProducts(list: Product[], sort: SortId = "recommended", popularity?: Map<string, number>): Product[] {
+export function sortProducts(list: Product[], sort: SortId = "recommended"): Product[] {
   const out = [...list];
   const priceOf = (p: Product) => effectivePrice(p);
   const byLatest = (a: Product, b: Product) => (b.releaseDate ?? b.createdAt).localeCompare(a.releaseDate ?? a.createdAt);
@@ -194,8 +209,6 @@ export function sortProducts(list: Product[], sort: SortId = "recommended", popu
       return out.sort((a, b) => (priceOf(b) ?? -1) - (priceOf(a) ?? -1));
     case "title":
       return out.sort((a, b) => a.title.localeCompare(b.title, "ko"));
-    case "popular":
-      return out.sort((a, b) => (popularity?.get(b.id) ?? 0) - (popularity?.get(a.id) ?? 0) || byLatest(a, b));
     default:
       return out.sort(
         (a, b) =>
@@ -206,28 +219,9 @@ export function sortProducts(list: Product[], sort: SortId = "recommended", popu
   }
 }
 
-/** 인기순은 실제 결제 완료 건수가 있을 때만 제공합니다. */
-export const getPopularity = cache(async (): Promise<Map<string, number> | null> => {
-  if (!isSupabaseConfigured()) return null;
-  try {
-    const { data } = await createAdminClient()
-      .from("order_items")
-      .select("product_id, orders!inner(status)")
-      .eq("orders.status", "paid")
-      .limit(5000);
-    if (!data?.length) return null;
-    const map = new Map<string, number>();
-    data.forEach((r) => map.set(r.product_id, (map.get(r.product_id) ?? 0) + 1));
-    return map;
-  } catch {
-    return null;
-  }
-});
-
 export async function getProducts(filters: ProductFilters = {}) {
   const all = await getCatalog();
-  const popularity = filters.sort === "popular" ? await getPopularity() : undefined;
-  const sorted = sortProducts(applyFilters(all, filters), popularity ? "popular" : filters.sort === "popular" ? "recommended" : filters.sort, popularity ?? undefined);
+  const sorted = sortProducts(applyFilters(all, filters), filters.sort);
   const page = Math.max(1, filters.page ?? 1);
   return { items: sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE), total: sorted.length, page, pageSize: PAGE_SIZE };
 }
@@ -253,7 +247,7 @@ export async function getRelated(product: Product, limit = 4) {
     (p.area === product.area ? 3 : 0) +
     (p.levels.some((l) => product.levels.includes(l)) ? 2 : 0) +
     (p.track === product.track ? 1 : 0) +
-    (p.status === "on_sale" ? 2 : 0);
+    0;
   return all
     .map((p) => ({ p, s: score(p) }))
     .filter((x) => x.s >= 4)
@@ -288,8 +282,9 @@ export function assembleBundle(row: BundleRow, catalog: Product[]): Bundle {
     listTotal,
     discount,
     totalPages: items.length && pages.every((n) => n !== null) ? (pages as number[]).reduce((a, b) => a + b, 0) : null,
-    // 모든 구성 교재가 지금 구매 가능할 때만 패키지를 판매합니다.
-    purchasable: row.status === "on_sale" && row.price !== null && items.length >= 2 && items.every((p) => p.purchasable),
+    // 구성 교재가 2권 이상이고 가격이 등록되어 있을 때만 상담을 받습니다. 하나라도 주문 제작이면 패키지도 주문 제작 상담입니다.
+    consultable: row.status === "on_sale" && row.price !== null && items.length >= 2 && items.every((p) => p.consultable),
+    deliveryType: items.every((p) => p.deliveryType === "ready") ? "ready" : "custom",
   };
 }
 
@@ -297,9 +292,14 @@ export const getBundles = cache(async (): Promise<Bundle[]> => {
   const catalog = await getCatalog();
   if (!isSupabaseConfigured()) {
     const { PLANNED_PACKAGES } = await import("./catalog-plan");
+    const bySlug = new Map(catalog.map((p) => [p.slug, p]));
     return PLANNED_PACKAGES.map((b) =>
       assembleBundle(
-        { id: `seed-${b.slug}`, slug: b.slug, title: b.title, summary: "구성 교재와 가격은 교재 출시 후 확정됩니다.", description: "", track: b.track, price: null, status: "coming_soon", release_date: null, seo_title: null, seo_description: null, bundle_items: [] },
+        {
+          id: `seed-${b.slug}`, slug: b.slug, title: b.title, summary: b.summary, description: "", track: b.track, price: b.price,
+          status: "on_sale", release_date: null, seo_title: null, seo_description: null,
+          bundle_items: b.items.map((slug, position) => ({ product_id: bySlug.get(slug)?.id ?? "", position })).filter((i) => i.product_id),
+        },
         catalog,
       ),
     );

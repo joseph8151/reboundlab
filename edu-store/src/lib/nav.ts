@@ -4,9 +4,12 @@ export const NAV = [
   { href: "/category/high-school", label: "고등 내신" },
   { href: "/category/middle-school", label: "중등 내신" },
   { href: "/category/mock", label: "모의고사" },
-  { href: "/category/material", label: "학습자료" },
+  { href: "/packages", label: "패키지" },
+  { href: "/diagnosis", label: "3분 학습 진단" },
+  { href: "/custom", label: "MELISA CUSTOM BOOK" },
+  { href: "/exam", label: "시험이 얼마 남지 않았다면" },
+  { href: "/parents", label: "우리 아이 교재 찾기" },
   { href: "/study", label: "무료 학습 도구" },
-  { href: "/support", label: "고객지원" },
 ] as const;
 
 export const SUBJECT_LINKS = [

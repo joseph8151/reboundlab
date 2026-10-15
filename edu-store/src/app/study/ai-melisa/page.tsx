@@ -19,7 +19,8 @@ export const metadata: Metadata = {
 const FEATURES = ["핵심 내용", "글의 구조", "문장별 해석", "어휘", "문법·구문", "정답 근거"];
 
 export default function AiMelisaPage() {
-  const enabled = isAiConfigured();
+  // 고객 로그인이 없으므로 사이트 안 분석은 제공하지 않고 외부 GPT 링크로 안내합니다.
+  const enabled = false as boolean;
   return (
     <div className="container-page max-w-4xl py-10 sm:py-14">
       <StudyHeader eyebrow={aiTutor.name} title="AI 멜리사 학습 도우미" description={description} />
@@ -35,7 +36,7 @@ export default function AiMelisaPage() {
       ) : (
         <section className="mt-8 border-t border-border pt-8" aria-label="이용 방법">
           <p className="max-w-xl text-[15px] leading-[1.8]">
-            사이트 안에서 바로 분석하는 기능은 아직 연결되지 않았습니다. 지금은 {aiTutor.author}이 만든 GPT(OpenAI ChatGPT, 외부 서비스)에서 같은 방식으로 분석할 수 있습니다. ChatGPT 계정이 필요합니다.
+            {aiTutor.author}이 만든 GPT(OpenAI ChatGPT, 외부 서비스)에서 영어 지문을 같은 방식으로 분석할 수 있습니다. ChatGPT 계정이 필요합니다.
           </p>
           <a href={aiTutor.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block bg-primary px-6 py-3 text-[14px] font-semibold text-primary-foreground">{aiTutor.name} GPT 열기 (외부 서비스)</a>
         </section>

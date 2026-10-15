@@ -28,7 +28,7 @@ export default function StudyHubPage() {
         <SuneungDday className="font-display text-[22px] font-semibold tracking-[0.12em]" />
       </div>
       <p className="mt-4 max-w-xl text-[15px] leading-[1.8] text-muted-foreground">
-        회원가입 없이 바로 쓸 수 있습니다. 기록은 이 브라우저에 저장되고, 로그인하면 계정에도 저장되어 다른 기기에서 이어서 사용할 수 있습니다.
+        회원가입 없이 바로 쓸 수 있습니다. 기록은 이 브라우저에만 저장되며 서버로 전송되지 않습니다.
       </p>
 
       <div className="mt-14 space-y-16">

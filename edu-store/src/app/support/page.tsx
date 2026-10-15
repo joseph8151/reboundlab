@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FAQ_ITEMS } from "@/lib/faq";
-import { downloadPolicy, siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "고객지원",
-  description: "멜리사 에듀(MELISA EDU) 교재의 구매, 다운로드, 환불·교환, 상담 문의를 안내합니다.",
+  description: "멜리사 에듀(MELISA EDU) 교재의 상담·구매 방법, PDF 전달, 환불·교환, 오류 제보를 안내합니다.",
   alternates: { canonical: "/support" },
 };
 
@@ -19,14 +19,15 @@ export default function SupportPage() {
         <div>
           <h2 className="border-b border-foreground/30 pb-2 text-[13px] font-semibold tracking-[0.1em] text-muted-foreground">문의하기</h2>
           <ul className="mt-2 text-[15px]">
-            <li className="border-b border-border py-4"><Link href="/consult" className="font-semibold underline underline-offset-4">상담 신청</Link><p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">교재 추천과 학습 순서 상담. 수능과 중등 상담을 나누어 접수합니다.</p></li>
-            <li className="border-b border-border py-4"><span className="font-semibold">주문·다운로드·환불 문의</span><p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">주문번호와 가입 이메일을 함께 알려 주세요. {siteConfig.supportEmail ? `${siteConfig.supportEmail}로도 접수할 수 있습니다.` : "상담 신청의 '구매·결제' 내용으로 접수해 주세요."}</p></li>
+            <li className="border-b border-border py-4"><Link href="/consult" className="font-semibold underline underline-offset-4">교재 상담 및 구매 문의</Link><p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">교재 추천, 구매 방법, 주문 제작 가능 여부를 문자 또는 전화로 안내해 드립니다.</p></li>
+            <li className="border-b border-border py-4"><Link href="/academy" className="font-semibold underline underline-offset-4">학원 및 교육기관 교재 문의</Link><p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">수업용 문제집, 맞춤형 PDF 교재, 단체 이용 상담.</p></li>
+            <li className="border-b border-border py-4"><Link href="/errata" className="font-semibold underline underline-offset-4">교재 오류 제보 · 해설 문의</Link><p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">교재명과 오류 내용을 알려 주세요. {siteConfig.supportEmail ? `${siteConfig.supportEmail}로도 접수할 수 있습니다.` : ""}</p></li>
           </ul>
 
-          <h2 className="mt-12 border-b border-foreground/30 pb-2 text-[13px] font-semibold tracking-[0.1em] text-muted-foreground">이용 안내</h2>
+          <h2 className="mt-12 border-b border-foreground/30 pb-2 text-[13px] font-semibold tracking-[0.1em] text-muted-foreground">구매 안내</h2>
           <ul className="mt-2 text-[14px] leading-relaxed">
-            <li className="border-b border-border py-3">다운로드 기간 {downloadPolicy.validDays}일, 교재당 최대 {downloadPolicy.maxCount}회</li>
-            <li className="border-b border-border py-3">다운로드 전 결제일로부터 7일 이내 전액 환불</li>
+            <li className="border-b border-border py-3">교재 선택 → 상담 신청 → 문자·전화 안내 → 계좌이체 → 입금 확인 → PDF 교재 전달</li>
+            <li className="border-b border-border py-3">결제는 계좌이체로 진행됩니다.</li>
             <li className="border-b border-border py-3"><Link href="/refund" className="underline underline-offset-4">환불·교환 정책</Link> · <Link href="/terms" className="underline underline-offset-4">이용약관</Link> · <Link href="/privacy" className="underline underline-offset-4">개인정보처리방침</Link></li>
           </ul>
         </div>

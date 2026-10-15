@@ -6,16 +6,12 @@ import { useEffect, useState, type FormEvent } from "react";
 import { Search, X } from "lucide-react";
 import { Wordmark } from "@/components/brand/wordmark";
 import { NAV, SUBJECT_LINKS } from "@/lib/nav";
-import { useShelf } from "@/lib/shelf";
-import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
-export function HeaderClient({ authEnabled }: { authEnabled: boolean }) {
+export function HeaderClient() {
   const pathname = usePathname();
   const router = useRouter();
-  const { cart } = useShelf();
   const [open, setOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -23,23 +19,14 @@ export function HeaderClient({ authEnabled }: { authEnabled: boolean }) {
     return () => void (document.body.style.overflow = "");
   }, [open]);
 
-  useEffect(() => {
-    if (!authEnabled) return;
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data }) => setLoggedIn(Boolean(data.session)));
-    const { data } = supabase.auth.onAuthStateChange((_e, session) => setLoggedIn(Boolean(session)));
-    return () => data.subscription.unsubscribe();
-  }, [authEnabled]);
-
   function onSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const q = String(new FormData(e.currentTarget).get("q") ?? "").trim();
     setOpen(false);
-    router.push(q ? `/books?q=${encodeURIComponent(q)}&status=all` : "/books");
+    router.push(q ? `/books?q=${encodeURIComponent(q)}` : "/books");
   }
 
   const isActive = (href: string) => (href === "/books" ? pathname === "/books" || pathname.startsWith("/books/") : pathname.startsWith(href.split("?")[0]));
-  const utility = "text-[13px] text-muted-foreground transition-colors hover:text-foreground";
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur print:hidden">
@@ -56,14 +43,9 @@ export function HeaderClient({ authEnabled }: { authEnabled: boolean }) {
           <input name="q" type="search" aria-label="교재 검색" placeholder="교재명, 학년, 과목 검색" className="w-full bg-transparent text-[14px] outline-none placeholder:text-muted-foreground/80" />
         </form>
 
-        <div className="hidden items-center gap-5 md:flex">
-          <Link href={loggedIn ? "/mypage" : "/login"} className={utility}>{loggedIn ? "내 자료함" : "로그인"}</Link>
-          <Link href="/cart" className={utility}>장바구니{cart.length > 0 && <span className="ml-1 font-semibold text-foreground">{cart.length}</span>}</Link>
-        </div>
+        <Link href="/consult" data-consult-button className="hidden h-9 items-center bg-primary px-4 text-[13px] font-semibold text-primary-foreground hover:bg-primary/90 md:inline-flex">교재 상담 신청</Link>
 
-        <div className="flex items-center gap-4 md:hidden">
-          <Link href="/cart" className="text-[13px] font-medium">장바구니{cart.length > 0 && <span className="ml-1">{cart.length}</span>}</Link>
-        </div>
+        <Link href="/consult" data-consult-button className="text-[13px] font-semibold md:hidden">상담 신청</Link>
       </div>
 
       <nav aria-label="주요 메뉴" className="hidden border-t border-border md:block">
@@ -79,9 +61,6 @@ export function HeaderClient({ authEnabled }: { authEnabled: boolean }) {
               </Link>
             </li>
           ))}
-          <li className="ml-auto shrink-0">
-            <Link href={loggedIn ? "/mypage" : "/login"} className="text-[14px] text-muted-foreground hover:text-foreground">{loggedIn ? "내 자료함" : "내 자료함"}</Link>
-          </li>
         </ul>
       </nav>
 
@@ -109,10 +88,9 @@ export function HeaderClient({ authEnabled }: { authEnabled: boolean }) {
               {SUBJECT_LINKS.map((s) => <li key={s.href}><Link href={s.href} className="underline decoration-border underline-offset-4">{s.label}</Link></li>)}
             </ul>
           </div>
-          <div className="mt-auto flex gap-6 border-t border-border px-5 py-5 text-[14px]">
-            <Link href={loggedIn ? "/mypage" : "/login"}>{loggedIn ? "내 자료함" : "로그인"}</Link>
-            <Link href="/mypage">내 자료함</Link>
-            <Link href="/cart">장바구니{cart.length > 0 ? ` (${cart.length})` : ""}</Link>
+          <div className="mt-auto border-t border-border px-5 py-5">
+            <Link href="/consult" data-consult-button className="flex h-12 items-center justify-center bg-primary text-[15px] font-semibold text-primary-foreground">교재 상담 및 구매 신청</Link>
+            <p className="mt-3 flex gap-5 text-[13px] text-muted-foreground"><Link href="/academy">학원·기관 문의</Link><Link href="/support">고객지원</Link></p>
           </div>
         </div>
       )}

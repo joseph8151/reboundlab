@@ -27,7 +27,7 @@ export default async function AdminProductPage({ params }: { params: Promise<{ i
       toc: join(data.toc), goals: join(data.goals), targets: join(data.targets), includes: join(data.includes), keywords: (data.keywords ?? []).join(", "),
       edition: str(data.edition), revisionNotes: join(data.revision_notes), releaseDate: str(data.release_date), status: data.status, featuredRank: str(data.featured_rank),
       seoTitle: str(data.seo_title), seoDescription: str(data.seo_description), answerMode: data.answer_mode ?? "none",
-      hasFile: Boolean(data.file_path), hasAnswer: Boolean(data.answer_path), previewPdfUrl: str(data.preview_pdf_url), coverUrl: str(data.cover_url), previewImages: data.sample_images ?? [],
+      deliveryType: data.delivery_type ?? "custom", weakTags: data.weak_tags ?? [], previewPdfUrl: str(data.preview_pdf_url), coverUrl: str(data.cover_url), previewImages: data.sample_images ?? [],
     };
   }
 

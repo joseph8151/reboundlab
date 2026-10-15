@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { areaLabel, difficultyLabel, kindLabel, levelsText, statusLabel } from "@/lib/catalog";
+import { areaLabel, deliveryLabel, difficultyLabel, kindLabel, levelsText } from "@/lib/catalog";
+import { CONSULT_COPY } from "@/lib/consult";
 import { effectivePrice, type Product } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
 import { BookCover } from "./book-cover";
 
 /** 정가·할인가·가격 미정을 한 곳에서 표기합니다. 할인 표시는 판매가가 정가보다 낮을 때만 나타납니다. */
-export function Price({ product, size = "md", className }: { product: Pick<Product, "price" | "salePrice" | "status">; size?: "sm" | "md" | "lg"; className?: string }) {
+export function Price({ product, size = "md", className }: { product: Pick<Product, "price" | "salePrice">; size?: "sm" | "md" | "lg"; className?: string }) {
   const now = effectivePrice(product);
   const sizeCls = { sm: "text-[14px]", md: "text-[16px]", lg: "text-[26px]" }[size];
-  if (now === null) return <span className={cn("text-[13px] text-muted-foreground", className)}>가격은 출시 시 공개</span>;
+  if (now === null) return <span className={cn("text-[13px] text-muted-foreground", className)}>가격 상담</span>;
   const discounted = product.price !== null && now < product.price;
   return (
     <span className={cn("inline-flex items-baseline gap-2 tabular-nums", className)}>
@@ -18,13 +19,21 @@ export function Price({ product, size = "md", className }: { product: Pick<Produ
   );
 }
 
-export function StatusTag({ status, className }: { status: Product["status"]; className?: string }) {
-  if (status === "on_sale") return null;
+/** 주문 제작 상담 표기. 완성된 PDF가 있는 교재에는 붙지 않습니다. */
+export function DeliveryTag({ type, className }: { type: Product["deliveryType"]; className?: string }) {
+  if (type !== "custom") return null;
   return (
     <span className={cn("inline-block border border-foreground/30 px-1.5 py-px text-[11px] font-medium tracking-wide text-foreground/80", className)}>
-      {statusLabel(status)}
+      {deliveryLabel(type)}
     </span>
   );
+}
+
+/** 상담·구매 신청 버튼: 상담 페이지로 이동하며 해당 교재가 자동 선택됩니다. */
+export function ConsultLink({ slug, label = CONSULT_COPY.button, className, variant = "solid" }: { slug?: string; label?: string; className?: string; variant?: "solid" | "line" | "text" }) {
+  const href = slug ? `/consult?product=${encodeURIComponent(slug)}` : "/consult";
+  const base = { solid: "inline-flex h-11 items-center justify-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground hover:bg-primary/90", line: "inline-flex h-10 items-center justify-center border border-foreground/60 px-4 text-[13px] font-semibold hover:bg-foreground hover:text-background", text: "text-[13px] font-semibold underline underline-offset-4" }[variant];
+  return <Link href={href} data-consult-button className={cn(base, className)}>{label}</Link>;
 }
 
 export function metaLine(p: Product) {
@@ -45,8 +54,9 @@ export function ShelfItem({ product, priority, className }: { product: Product; 
         </h3>
         <div className="mt-1.5 flex items-center gap-2">
           <Price product={product} size="sm" />
-          <StatusTag status={product.status} />
+          <DeliveryTag type={product.deliveryType} />
         </div>
+        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2 inline-block" />
       </div>
     </article>
   );
@@ -69,23 +79,9 @@ export function BookRow({ product, className }: { product: Product; className?: 
       </div>
       <div className="col-start-2 flex items-center gap-3 sm:col-start-3 sm:flex-col sm:items-end sm:justify-start">
         <Price product={product} />
-        <StatusTag status={product.status} />
+        <DeliveryTag type={product.deliveryType} />
+        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="line" className="max-sm:ml-auto" />
       </div>
     </article>
-  );
-}
-
-/** 출시 예정 교재는 표지 없이 제목만 가볍게 나열합니다. */
-export function PlannedList({ items, className }: { items: Product[]; className?: string }) {
-  if (!items.length) return null;
-  return (
-    <ul className={cn("grid gap-x-10 sm:grid-cols-2", className)}>
-      {items.map((p) => (
-        <li key={p.id} className="flex items-baseline justify-between gap-4 border-t border-border py-2.5 text-[14px]">
-          <Link href={`/books/${p.slug}`} className="hover:underline">{p.title}</Link>
-          <span className="shrink-0 text-[12px] text-muted-foreground">{levelsText(p.levels)}</span>
-        </li>
-      ))}
-    </ul>
   );
 }

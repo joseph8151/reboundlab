@@ -3,11 +3,13 @@ import Link from "next/link";
 import { Pager } from "@/components/books/pager";
 import { ShelfItem } from "@/components/books/parts";
 import {
-  AREAS, CURRICULA, DIFFICULTIES, KINDS, LEVEL_GROUPS, LEVELS, PRICE_BANDS,
+  AREAS, WEAK_TAGS, CURRICULA, DIFFICULTIES, KINDS, LEVEL_GROUPS, LEVELS, PRICE_BANDS,
   isOneOf, type AreaId,
 } from "@/lib/catalog";
 import { CATEGORIES } from "@/lib/categories";
-import { getCatalog, getPopularity, getProducts, PAGE_SIZE, parseSearchQuery, type ProductFilters, type SortId } from "@/lib/products";
+import { LEVEL_BANDS } from "@/lib/guide";
+import { getCatalog } from "@/lib/products";
+import { getProducts, PAGE_SIZE, parseSearchQuery, type ProductFilters, type SortId } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -24,10 +26,9 @@ const SORTS: { id: SortId; label: string }[] = [
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
 
-function readFilters(sp: Record<string, string | string[] | undefined>, onSaleCount: number): ProductFilters & { statusRaw?: string } {
+function readFilters(sp: Record<string, string | string[] | undefined>): ProductFilters & { statusRaw?: string } {
   const g = (k: string) => first(sp[k]);
   const level = g("level");
-  const status = g("status");
   return {
     q: g("q")?.slice(0, 60),
     level: level && (LEVEL_GROUPS.some((x) => x.id === level) || LEVELS.some((x) => x.id === level)) ? level : undefined,
@@ -37,9 +38,10 @@ function readFilters(sp: Record<string, string | string[] | undefined>, onSaleCo
     price: isOneOf(PRICE_BANDS, g("price")) ? (g("price") as ProductFilters["price"]) : undefined,
     curriculum: isOneOf(CURRICULA, g("curriculum")) ? (g("curriculum") as ProductFilters["curriculum"]) : undefined,
     examYear: Number(g("year")) || undefined,
-    // 판매 중인 교재가 하나도 없으면 빈 화면 대신 전체를 보여 줍니다.
-    status: status === "coming_soon" || status === "all" || status === "on_sale" ? status : onSaleCount === 0 ? "all" : "on_sale",
-    sort: SORTS.some((s) => s.id === g("sort")) || g("sort") === "popular" ? (g("sort") as SortId) : "recommended",
+    tag: WEAK_TAGS.some((t) => t.id === g("tag")) ? g("tag") : undefined,
+    band: LEVEL_BANDS.some((b) => b.id === g("band")) ? (g("band") as ProductFilters["band"]) : undefined,
+    status: "all",
+    sort: SORTS.some((s) => s.id === g("sort")) ? (g("sort") as SortId) : "recommended",
     page: Math.max(1, Number(g("page")) || 1),
   };
 }
@@ -49,7 +51,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   const filtered = Object.keys(sp).length > 0;
   return {
     title: "전체 교재 · 수능 문제집, 내신 문제집 PDF",
-    description: "멜리사 에듀(MELISA EDU)의 수능·고등 내신·중등 내신 교재를 학년, 과목, 유형, 난이도, 가격대로 찾아보세요. 모든 교재는 PDF로 제공됩니다.",
+    description: "멜리사 에듀(MELISA EDU)의 수능·고등 내신·중등 내신 교재를 학년, 과목, 유형, 난이도, 가격대로 찾아보세요. 모든 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.",
     alternates: { canonical: "/books" },
     // 필터·검색·페이지 조합이 색인에 중복 등록되지 않도록 합니다.
     robots: filtered ? { index: false, follow: true } : undefined,
@@ -59,9 +61,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
 export default async function BooksPage({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams;
   const catalog = await getCatalog();
-  const onSaleCount = catalog.filter((p) => p.status === "on_sale").length;
-  const f = readFilters(sp, onSaleCount);
-  const popularity = await getPopularity();
+  const f = readFilters(sp);
   const { items, total, page } = await getProducts(f);
   const parsed = f.q ? parseSearchQuery(f.q) : null;
 
@@ -69,7 +69,7 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
   const put = (k: string, v: unknown) => v !== undefined && v !== "" && void (base[k] = String(v));
   put("q", f.q); put("level", f.level); put("area", f.area); put("kind", f.kind); put("difficulty", f.difficulty);
   put("price", f.price); put("curriculum", f.curriculum); put("year", f.examYear);
-  put("status", first(sp.status)); put("sort", first(sp.sort));
+  put("tag", f.tag); put("band", f.band); put("sort", first(sp.sort));
   const href = (patch: Record<string, string | null>) => {
     const next = { ...base };
     for (const [k, v] of Object.entries(patch)) v === null ? delete next[k] : (next[k] = v);
@@ -118,6 +118,14 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
         {opt("전체", !f.difficulty, href({ difficulty: null, page: null }))}
         {DIFFICULTIES.map((d) => opt(d.label, f.difficulty === d.id, href({ difficulty: d.id, page: null })))}
       </>)}
+      {group("학습 목적", <>
+        {opt("전체", !f.band, href({ band: null, page: null }))}
+        {LEVEL_BANDS.map((b) => opt(b.label, f.band === b.id, href({ band: b.id, page: null })))}
+      </>)}
+      {group("취약 유형", <>
+        {opt("전체", !f.tag, href({ tag: null, page: null }))}
+        {WEAK_TAGS.filter((t) => !f.area || t.area === f.area || t.area === "common").map((t) => opt(t.label, f.tag === t.id, href({ tag: t.id, page: null })))}
+      </>)}
       {group("가격대", <>
         {opt("전체", !f.price, href({ price: null, page: null }))}
         {PRICE_BANDS.map((b) => opt(b.label, f.price === b.id, href({ price: b.id, page: null })))}
@@ -133,14 +141,8 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
     </>
   );
 
-  const activeFilterCount = [f.level, f.area, f.kind, f.difficulty, f.price, f.curriculum, f.examYear].filter(Boolean).length;
-  const sorts = popularity ? [...SORTS, { id: "popular" as SortId, label: "인기순" }] : SORTS;
-  const statusTabs: { id: "on_sale" | "coming_soon" | "all"; label: string }[] = [
-    { id: "on_sale", label: "판매 중" },
-    { id: "coming_soon", label: "출시 예정" },
-    { id: "all", label: "전체" },
-  ];
-
+  const activeFilterCount = [f.level, f.area, f.kind, f.difficulty, f.price, f.curriculum, f.examYear, f.tag, f.band].filter(Boolean).length;
+  const sorts = SORTS;
   return (
     <div className="container-page py-10 md:py-14">
       <header className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -150,8 +152,7 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
         </div>
         <form action="/books" role="search" className="flex w-full items-center gap-3 border-b border-foreground pb-2 md:w-[360px]">
           <input name="q" defaultValue={f.q ?? ""} type="search" aria-label="교재 검색" placeholder="교재명, 학년, 과목, 키워드 (예: 고1 수학)" className="w-full bg-transparent text-[15px] outline-none placeholder:text-muted-foreground/80" />
-          <input type="hidden" name="status" value="all" />
-          <button type="submit" className="shrink-0 text-[14px] font-semibold">검색</button>
+                    <button type="submit" className="shrink-0 text-[14px] font-semibold">검색</button>
         </form>
       </header>
 
@@ -168,11 +169,7 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
 
         <section aria-label="교재 목록">
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-border pb-3 text-[14px]">
-            <div className="flex gap-5">
-              {statusTabs.map((t) => (
-                <Link key={t.id} href={href({ status: t.id, page: null })} aria-current={f.status === t.id ? "true" : undefined} className={cn("pb-1", f.status === t.id ? "border-b border-foreground font-semibold" : "text-muted-foreground hover:text-foreground")}>{t.label}</Link>
-              ))}
-            </div>
+            <p className="text-[13px] text-muted-foreground">PDF 완성 전 교재는 ‘주문 제작 상담 가능’으로 표시됩니다.</p>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-muted-foreground">
               {sorts.map((s) => (
                 <Link key={s.id} href={href({ sort: s.id === "recommended" ? null : s.id, page: null })} className={cn(f.sort === s.id ? "font-semibold text-foreground underline underline-offset-4" : "hover:text-foreground")}>{s.label}</Link>
@@ -196,7 +193,7 @@ export default async function BooksPage({ searchParams }: { searchParams: SP }) 
             <div className="mt-10 border-t border-border pt-10">
               <p className="text-[18px] font-semibold">조건에 맞는 교재를 찾지 못했습니다.</p>
               <ul className="mt-4 list-disc space-y-1.5 pl-5 text-[14px] leading-relaxed text-muted-foreground">
-                <li>필터를 줄이거나 ‘전체’ 탭에서 출시 예정 교재까지 함께 확인해 보세요.</li>
+                <li>필터를 줄여서 다시 확인해 보세요.</li>
                 <li>학년과 과목으로 검색할 수 있습니다. 예: ‘고1 수학’, ‘수능 영어 빈칸’, ‘중등 문법’</li>
                 <li>찾는 교재가 없다면 <Link href="/consult" className="text-foreground underline underline-offset-4">상담 신청</Link>으로 알려 주세요.</li>
               </ul>

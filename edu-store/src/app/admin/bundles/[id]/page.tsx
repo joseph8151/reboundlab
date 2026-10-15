@@ -13,7 +13,7 @@ export default async function AdminBundlePage({ params }: { params: Promise<{ id
   if (!isSupabaseConfigured() || !(await getAdminUser())) notFound();
   const { id } = await params;
   const admin = createAdminClient();
-  const { data: sellable } = await admin.from("products").select("slug, title, price").eq("status", "on_sale").not("file_path", "is", null).not("price", "is", null).order("title");
+  const { data: sellable } = await admin.from("products").select("slug, title, price").eq("status", "on_sale").not("price", "is", null).order("title");
 
   let init: BundleInit = EMPTY_BUNDLE;
   if (id !== "new") {
