@@ -5,6 +5,11 @@ export const siteConfig = {
   description:
     "수능·내신 대비 기출 분석, 변형문제, 스터디가이드, 자기주도학습 플래너를 PDF로. 샘플을 먼저 확인하고, 결제 후 바로 내려받으세요.",
   supportEmail: "help@example.com",
+  // 폼트리(Formtree) 상담 폼의 공유 주소. 수능용·중등용을 따로 만들면 각각, 하나만 있으면 공통 주소를 씁니다.
+  consult: {
+    suneung: (process.env.NEXT_PUBLIC_FORMTREE_URL_SUNEUNG || process.env.NEXT_PUBLIC_FORMTREE_URL || "").trim(),
+    middle: (process.env.NEXT_PUBLIC_FORMTREE_URL_MIDDLE || process.env.NEXT_PUBLIC_FORMTREE_URL || "").trim(),
+  },
   // 2027학년도 대학수학능력시험 시행일. 평가원 시행계획 공고로 꼭 다시 확인하세요.
   suneungDate: process.env.NEXT_PUBLIC_SUNEUNG_DATE || "2026-11-19",
   aiTutor: {

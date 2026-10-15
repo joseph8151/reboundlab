@@ -15,6 +15,8 @@ export function SiteFooter() {
         <div>
           <p className="text-sm font-semibold">자료</p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <li><Link href="/products?grade=high3" className="hover:text-foreground">수능 관련</Link></li>
+            <li><Link href="/products?grade=middle" className="hover:text-foreground">중등 관련</Link></li>
             <li><Link href="/products?subject=korean" className="hover:text-foreground">국어</Link></li>
             <li><Link href="/products?subject=math" className="hover:text-foreground">수학</Link></li>
             <li><Link href="/products?subject=english" className="hover:text-foreground">영어</Link></li>
@@ -25,6 +27,7 @@ export function SiteFooter() {
         <div>
           <p className="text-sm font-semibold">고객 지원</p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <li><Link href="/consult" className="hover:text-foreground">상담 신청</Link></li>
             <li><Link href="/faq" className="hover:text-foreground">자주 묻는 질문</Link></li>
             <li><Link href="/refund" className="hover:text-foreground">환불·교환 정책</Link></li>
             <li><Link href="/terms" className="hover:text-foreground">이용약관</Link></li>

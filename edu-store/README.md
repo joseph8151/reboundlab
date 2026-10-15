@@ -122,7 +122,7 @@ npm run dev                  # http://localhost:3000
 
 1. Workers & Pages → 프로젝트 `melisaedu` → Settings → Build: 저장소 `joseph8151/melisaedu`, 브랜치 `main`, 루트 디렉터리 `/`, 배포 명령 `npx wrangler deploy`.
 2. **Build variables**(빌드 때 화면에 박히는 공개 값)에 아래를 넣습니다. 없으면 사이트는 데모 모드로 뜹니다.
-   - `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BRAND_NAME`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_TOSS_CLIENT_KEY`, `NEXT_PUBLIC_SUNEUNG_DATE`
+   - `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BRAND_NAME`, `NEXT_PUBLIC_FORMTREE_URL_SUNEUNG`·`NEXT_PUBLIC_FORMTREE_URL_MIDDLE`(폼트리 상담 폼 주소, 폼이 하나면 `NEXT_PUBLIC_FORMTREE_URL`), `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_TOSS_CLIENT_KEY`, `NEXT_PUBLIC_SUNEUNG_DATE`
 3. **Variables and Secrets**(런타임, 서버 전용)에 **Secret**으로 넣습니다: `SUPABASE_SERVICE_ROLE_KEY`, `TOSS_SECRET_KEY`, `ANTHROPIC_API_KEY`, `ADMIN_EMAILS`, (선택) `AI_DAILY_LIMIT`, `DOWNLOAD_*`, `PDF_WATERMARK`.
 4. 도메인: Settings → Domains에서 연결한 뒤 `NEXT_PUBLIC_SITE_URL`, Supabase Auth의 Site URL·Redirect URL, 토스 웹훅 URL(`/api/payments/webhook`)을 그 주소로 맞춥니다.
 5. 로컬 Workers 미리보기: `npm run preview:cf` (`.dev.vars.example` 참고). 수동 배포: `npm run deploy:cf`.

@@ -28,6 +28,7 @@ export default function PrivacyPage() {
           <tr><td>회원가입·로그인</td><td>이메일, 비밀번호(암호화 저장)</td><td>회원 식별, 구매 자료 보관, 고객 문의 응대</td></tr>
           <tr><td>구매·결제</td><td>주문번호, 상품명, 결제 금액, 결제 수단, 결제 일시</td><td>계약 이행, 콘텐츠 제공, 환불 처리</td></tr>
           <tr><td>다운로드</td><td>다운로드 일시, 접속 IP, 브라우저 정보</td><td>다운로드 횟수 관리, 청약철회 가능 여부 확인, 부정 이용 방지</td></tr>
+          <tr><td>상담 신청</td><td>이름·연락처·상담 내용 (폼에 입력한 항목)</td><td>상담 응대, 답변 안내</td></tr>
           <tr><td>AI 지문 분석</td><td>입력한 지문 텍스트·사진, 일별 사용 횟수</td><td>분석 결과 제공, 사용량 제한</td></tr>
           <tr><td>학습 도구</td><td>단어·속독·습관·순공 시간·오답 기록 (로그인 시)</td><td>기기 간 학습 기록 동기화</td></tr>
           <tr><td>자동 수집</td><td>로그인 유지용 쿠키</td><td>로그인 상태 유지</td></tr>
@@ -61,6 +62,7 @@ export default function PrivacyPage() {
           <tr><td>㈜토스페이먼츠</td><td>결제 처리, 결제 정보 관리</td><td>대한민국</td></tr>
           <tr><td>Supabase, Inc.</td><td>회원 인증, 데이터베이스 및 파일 저장</td><td>[선택한 리전 국가 기재, 예: 대한민국(서울 리전)]</td></tr>
           <tr><td>Vercel Inc.</td><td>웹사이트 호스팅</td><td>미국 등</td></tr>
+          <tr><td>폼트리(Formtree)</td><td>상담 신청 폼 수집·저장</td><td>[폼트리 서비스 약관의 저장 국가 확인 후 기재]</td></tr>
           <tr><td>Anthropic, PBC</td><td>AI 지문 분석 (이용자가 입력한 지문 텍스트·사진 처리)</td><td>미국</td></tr>
         </tbody>
       </table>

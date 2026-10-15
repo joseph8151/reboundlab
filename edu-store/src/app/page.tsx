@@ -149,6 +149,25 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 1-1. 수능 / 중등 두 갈래 */}
+      <section className="container-page pt-14">
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            { key: "suneung", grade: "high3", title: "수능 관련 전자책", body: "기출 분석, 변형문제, 영역별 스터디가이드. 지금 등급에서 한 단계 올리는 데 필요한 자료만 골라요.", cta: "수능 자료 보기", consult: "수능 상담하기" },
+            { key: "middle", grade: "middle", title: "중등 관련 전자책", body: "학교 내신 개념 정리와 서술형, 자기주도학습 플래너. 처음 혼자 공부하는 습관을 잡아 줘요.", cta: "중등 자료 보기", consult: "중등 상담하기" },
+          ].map((c) => (
+            <div key={c.key} className="rounded-3xl border border-border p-7">
+              <h2 className="text-xl font-bold">{c.title}</h2>
+              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{c.body}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Button asChild><Link href={`/products?grade=${c.grade}`}>{c.cta} <ArrowRight /></Link></Button>
+                <Button asChild variant="outline"><Link href={`/consult?track=${c.key}`}>{c.consult}</Link></Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* 2. 카테고리 바로가기 */}
       <section className="container-page py-16 sm:py-20">
         <SectionHeading
