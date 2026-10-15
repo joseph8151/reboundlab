@@ -15,12 +15,16 @@ import {
   Timer,
 } from "lucide-react";
 import { ProductCard } from "@/components/product-card";
+import { PainPoints } from "@/components/study/pain-points";
+import { SuneungDday } from "@/components/study/suneung-dday";
+import { ToolIcon } from "@/components/study/tool-icon";
 import { SectionHeading } from "@/components/section-heading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { GRADES, TYPES } from "@/lib/catalog";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { getFeaturedProducts } from "@/lib/products";
+import { STUDY_TOOLS } from "@/lib/study/tools";
 import { downloadPolicy } from "@/lib/site";
 
 export const revalidate = 300;
@@ -70,9 +74,12 @@ export default async function HomePage() {
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-accent/70 to-background">
         <div className="container-page grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_1fr]">
           <div>
-            <p className="inline-flex items-center gap-1.5 rounded-full bg-background px-3 py-1 text-[13px] font-semibold text-primary ring-1 ring-primary/15">
-              수능 · 내신 · 자기주도학습 PDF
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="inline-flex items-center gap-1.5 rounded-full bg-background px-3 py-1 text-[13px] font-semibold text-primary ring-1 ring-primary/15">
+                수능 · 내신 · 자기주도학습 PDF
+              </p>
+              <SuneungDday className="rounded-full bg-primary px-3 py-1 text-[13px] font-bold text-primary-foreground" />
+            </div>
             <h1 className="mt-5 text-[32px] font-extrabold leading-[1.25] sm:text-5xl sm:leading-[1.2] lg:text-[44px]">
               필요한 만큼, 정확하게.
               <br />
@@ -197,6 +204,28 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+
+      {/* 3-1. 공감 체크리스트 + 무료 학습 도구 */}
+      <section className="container-page py-16 sm:py-24">
+        <SectionHeading
+          eyebrow="무료 학습 도구"
+          title="이런 고민, 혼자 해결할 수 있게 도와 드려요"
+          description="자료를 사지 않아도 쓸 수 있는 트레이닝·관리 도구입니다. 고민을 누르면 맞는 도구로 바로 이동해요."
+        />
+        <div className="mt-8"><PainPoints /></div>
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {STUDY_TOOLS.map((t) => (
+            <Link key={t.href} href={t.href} className="flex items-center gap-3 rounded-xl bg-muted p-4 text-sm font-semibold transition-colors hover:bg-accent hover:text-primary">
+              <ToolIcon name={t.icon} className="size-5 shrink-0 text-primary" />
+              {t.short}
+            </Link>
+          ))}
+        </div>
+        <Link href="/study" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+          무료 학습 도구 전체 보기 <ArrowRight className="size-4" />
+        </Link>
       </section>
 
       {/* 4. 차별점 */}

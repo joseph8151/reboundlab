@@ -7,6 +7,7 @@ import { Logo } from "./logo";
 export const NAV_ITEMS = [
   { href: "/products", label: "전체 자료" },
   { href: "/products?grade=high3", label: "수능 대비" },
+  { href: "/study", label: "무료 학습 도구" },
   { href: "/products?type=self-study", label: "자기주도학습" },
   { href: "/faq", label: "자주 묻는 질문" },
 ];

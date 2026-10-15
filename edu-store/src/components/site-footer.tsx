@@ -19,6 +19,7 @@ export function SiteFooter() {
             <li><Link href="/products?subject=math" className="hover:text-foreground">수학</Link></li>
             <li><Link href="/products?subject=english" className="hover:text-foreground">영어</Link></li>
             <li><Link href="/products?subject=inquiry" className="hover:text-foreground">탐구</Link></li>
+            <li><Link href="/study" className="hover:text-foreground">무료 학습 도구</Link></li>
           </ul>
         </div>
         <div>

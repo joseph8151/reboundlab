@@ -126,3 +126,28 @@ on conflict (id) do update set public = true;
 
 -- storage.objects에는 별도 정책을 만들지 않습니다.
 -- → 비공개 버킷의 파일은 service_role로 발급한 서명 URL로만 내려받을 수 있습니다.
+
+-- ---------------------------------------------------------------------
+-- 무료 학습 도구 기록 (영단어 챌린지, 속독, 66일 습관, 순공 시간, 오답노트)
+-- 로그인한 사용자는 브라우저 기록이 이 테이블과 동기화됩니다.
+-- 이미 위 내용을 실행했다면 이 블록만 실행해도 됩니다. (전체 재실행도 안전합니다)
+-- ---------------------------------------------------------------------
+create table if not exists public.study_progress (
+  user_id    uuid not null references auth.users (id) on delete cascade,
+  key        text not null check (char_length(key) <= 64),
+  data       jsonb not null default '{}'::jsonb,
+  updated_at timestamptz not null default now(),
+  primary key (user_id, key)
+);
+
+alter table public.study_progress enable row level security;
+
+drop policy if exists "본인 학습 기록 조회" on public.study_progress;
+create policy "본인 학습 기록 조회" on public.study_progress
+  for select using (auth.uid() = user_id);
+drop policy if exists "본인 학습 기록 생성" on public.study_progress;
+create policy "본인 학습 기록 생성" on public.study_progress
+  for insert with check (auth.uid() = user_id);
+drop policy if exists "본인 학습 기록 수정" on public.study_progress;
+create policy "본인 학습 기록 수정" on public.study_progress
+  for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
