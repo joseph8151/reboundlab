@@ -1,5 +1,6 @@
 export const siteConfig = {
-  name: process.env.NEXT_PUBLIC_BRAND_NAME || "[브랜드명]",
+  name: process.env.NEXT_PUBLIC_BRAND_NAME || "멜리사 에듀",
+  nameEn: "Melissa Edu",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
   slogan: "필요한 만큼, 정확하게. 오늘 바로 시작하는 공부",
   description:

@@ -1,4 +1,4 @@
-# [브랜드명] 수능·내신 PDF 학습자료 스토어
+# 멜리사 에듀 수능·내신 PDF 학습자료 스토어
 
 Next.js 15(App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui + Supabase + 토스페이먼츠 결제위젯으로 만든 디지털 상품(PDF) 판매 사이트입니다.
 

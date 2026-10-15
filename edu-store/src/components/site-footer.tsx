@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-border bg-muted print:hidden">
       <div className="container-page grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="text-base font-bold">{siteConfig.name}</p>
+          <p className="text-base font-bold">{siteConfig.name} <span className="ml-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold-foreground">{siteConfig.nameEn}</span></p>
           <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
             검수한 학습 자료를 PDF로. 필요한 만큼 고르고, 결제 후 바로 내려받아 오늘 공부에 쓰세요.
           </p>

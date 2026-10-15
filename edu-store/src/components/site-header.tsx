@@ -19,7 +19,10 @@ export function SiteHeader() {
       <div className="container-page flex h-16 items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2 font-bold" aria-label={`${siteConfig.name} 홈`}>
           <Logo />
-          <span className="text-[17px]">{siteConfig.name}</span>
+          <span className="flex flex-col leading-none">
+            <span className="text-[17px]">{siteConfig.name}</span>
+            <span className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-foreground">{siteConfig.nameEn}</span>
+          </span>
         </Link>
         <nav className="hidden flex-1 items-center gap-1 md:flex" aria-label="주요 메뉴">
           {NAV_ITEMS.map((item) => (

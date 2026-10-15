@@ -30,7 +30,7 @@ export async function getStampedPath(params: { filePath: string; orderUuid: stri
 
   const pdf = await PDFDocument.load(await original.arrayBuffer(), { ignoreEncryption: true });
   const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const footer = ascii(`Licensed to ${params.email} | Order ${params.orderId} | Personal study use only - do not share`);
+  const footer = ascii(`Melissa Edu | Licensed to ${params.email} | Order ${params.orderId} | Personal study use only - do not share`);
   const diagonal = ascii(params.email);
 
   for (const page of pdf.getPages()) {
@@ -47,7 +47,7 @@ export async function getStampedPath(params: { filePath: string; orderUuid: stri
       rotate: degrees(35),
     });
   }
-  pdf.setProducer("[brand] study store");
+  pdf.setProducer("Melissa Edu");
   const bytes = await pdf.save();
 
   const { error: upErr } = await bucket.upload(stampedPath, bytes, { contentType: "application/pdf", upsert: true });

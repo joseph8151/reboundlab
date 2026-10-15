@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["수능 기출", "내신 대비", "변형문제", "스터디가이드", "자기주도학습", "학습 플래너", "PDF 학습자료"],
+  keywords: [siteConfig.name, siteConfig.nameEn, "수능 기출", "내신 대비", "변형문제", "스터디가이드", "자기주도학습", "학습 플래너", "PDF 학습자료"],
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    siteName: siteConfig.name,
+    siteName: `${siteConfig.name} (${siteConfig.nameEn})`,
     title: `${siteConfig.name} | 수능·내신 PDF 학습자료`,
     description: siteConfig.description,
     url: "/",

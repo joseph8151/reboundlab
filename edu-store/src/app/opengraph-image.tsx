@@ -21,7 +21,7 @@ export default async function OpengraphImage() {
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 80, background: "linear-gradient(180deg, #FCEBF0 0%, #FFFCF7 100%)", fontFamily: "Pretendard" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 64, height: 64, borderRadius: 16, background: "linear-gradient(135deg, #B8365E 60%, #E3B94F 100%)" }} />
-          <div style={{ fontSize: 40, color: "#2D1B26" }}>{siteConfig.name}</div>
+          <div style={{ display: "flex", flexDirection: "column" }}><div style={{ fontSize: 40, color: "#2D1B26" }}>{siteConfig.name}</div><div style={{ fontSize: 20, color: "#8A6A12", letterSpacing: 6 }}>{siteConfig.nameEn.toUpperCase()}</div></div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 68, color: "#2D1B26", lineHeight: 1.2 }}>필요한 만큼, 정확하게.</div>
