@@ -1,0 +1,2 @@
+# `npm run preview:cf` (로컬 Workers 미리보기)에서 쓰는 값입니다. 복사해서 .dev.vars로 저장하세요.
+NEXTJS_ENV=development

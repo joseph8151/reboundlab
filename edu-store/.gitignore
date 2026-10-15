@@ -1,8 +1,11 @@
 node_modules
 .next
+.open-next
+.wrangler
 out
 .env
 .env*.local
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+.dev.vars

@@ -116,7 +116,20 @@ npm run dev                  # http://localhost:3000
   → /mypage → POST /api/download/[orderId] → 60초 서명 URL로 리다이렉트
 ```
 
-## Vercel 배포
+## Cloudflare Workers 배포 (이 저장소 기본 설정)
+
+`@opennextjs/cloudflare`로 Next.js를 Workers에서 실행합니다. 대시보드의 **배포 명령이 `npx wrangler deploy`뿐이어도** 동작하도록, `wrangler.jsonc`의 `build.command`가 배포 직전에 `opennextjs-cloudflare build`를 실행합니다(빌드 명령은 비워 둬도 됩니다).
+
+1. Workers & Pages → 프로젝트 `melisaedu` → Settings → Build: 저장소 `joseph8151/melisaedu`, 브랜치 `main`, 루트 디렉터리 `/`, 배포 명령 `npx wrangler deploy`.
+2. **Build variables**(빌드 때 화면에 박히는 공개 값)에 아래를 넣습니다. 없으면 사이트는 데모 모드로 뜹니다.
+   - `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_BRAND_NAME`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_TOSS_CLIENT_KEY`, `NEXT_PUBLIC_SUNEUNG_DATE`
+3. **Variables and Secrets**(런타임, 서버 전용)에 **Secret**으로 넣습니다: `SUPABASE_SERVICE_ROLE_KEY`, `TOSS_SECRET_KEY`, `ANTHROPIC_API_KEY`, `ADMIN_EMAILS`, (선택) `AI_DAILY_LIMIT`, `DOWNLOAD_*`, `PDF_WATERMARK`.
+4. 도메인: Settings → Domains에서 연결한 뒤 `NEXT_PUBLIC_SITE_URL`, Supabase Auth의 Site URL·Redirect URL, 토스 웹훅 URL(`/api/payments/webhook`)을 그 주소로 맞춥니다.
+5. 로컬 Workers 미리보기: `npm run preview:cf` (`.dev.vars.example` 참고). 수동 배포: `npm run deploy:cf`.
+
+참고: 번들은 gzip 약 2.6MB로 무료 플랜 한도(3MB) 안이지만 여유가 적습니다. 기능을 더하다 한도를 넘으면 유료 플랜(10MB)이 필요합니다.
+
+## Vercel 배포 (대안)
 
 1. 이 저장소를 Vercel에 Import하고 **Root Directory를 `edu-store`** 로 지정합니다.
 2. Environment Variables에 `.env.example`의 모든 키를 입력합니다. `NEXT_PUBLIC_SITE_URL`은 실제 도메인(예: `https://example.com`)으로 설정합니다.
