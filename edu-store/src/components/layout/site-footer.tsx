@@ -25,10 +25,11 @@ export function SiteFooter() {
           <p className="text-[12px] font-semibold tracking-[0.12em] text-background/60">교재</p>
           <ul className={`mt-3 ${col}`}>
             <li><Link className={link} href="/category/suneung">수능</Link></li>
-            <li><Link className={link} href="/category/high-school">고등 내신</Link></li>
-            <li><Link className={link} href="/category/middle-school">중등 내신</Link></li>
+            <li><Link className={link} href="/category/self-study">자기주도학습</Link></li>
+            <li><Link className={link} href="/category/study-method">공부법·학습 전략</Link></li>
+            <li><Link className={link} href="/category/parent-guide">학부모 가이드</Link></li>
             <li><Link className={link} href="/category/mock">모의고사</Link></li>
-            <li><Link className={link} href="/category/planner">학습 플래너</Link></li>
+            <li><Link className={link} href="/category/study-planner">학습 플래너</Link></li>
             <li><Link className={link} href="/packages">패키지</Link></li>
           </ul>
         </div>

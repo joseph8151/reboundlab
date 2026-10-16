@@ -53,7 +53,7 @@ export default async function BookPage({ params }: { params: Params }) {
     ["상품 코드", p.sku || null],
   ];
 
-  const category = p.collection ? { name: collectionLabel(p.collection), path: `/category/${p.collection}` } : p.track === "csat" ? { name: "수능", path: "/category/suneung" } : p.levels.some((l) => l.startsWith("middle")) ? { name: "중등 내신", path: "/category/middle-school" } : { name: "고등 내신", path: "/category/high-school" };
+  const category = p.collection ? { name: collectionLabel(p.collection), path: `/category/${p.collection}` } : p.track === "csat" ? { name: "수능", path: "/category/suneung" } : { name: "전체 교재", path: "/books" };
 
   return (
     <div className="pb-28 lg:pb-0">

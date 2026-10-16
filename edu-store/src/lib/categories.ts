@@ -106,34 +106,6 @@ export const CATEGORIES: CategoryDef[] = [
     courseTable: "science",
   },
   {
-    slug: "high-school",
-    title: "고등 내신 교재",
-    short: "고등 내신",
-    seoTitle: "고등학교 내신 문제집 · 고1 고2 고3 시험 대비",
-    seoDescription: "고1·고2·고3 국어·수학·영어 내신 대비 문제집과 서술형, 중간·기말고사 대비, 수행평가 준비 PDF 교재. 멜리사 에듀(MELISSA EDU)의 고등 내신 교재.",
-    lead: "학교 시험의 문항 방식에 맞춰, 학기 단위로.",
-    intro: [
-      "고등 내신 교재는 고1, 고2, 고3으로 나누어 국어·수학·영어 교재와 중간·기말고사 대비, 서술형 훈련, 수행평가 준비 자료로 구성합니다.",
-      "학교별 교재는 자료의 정식 확보와 사용 권한이 확인된 경우에만 제작합니다.",
-    ],
-    filter: { scope: "high-school" },
-    children: ["high1", "high2", "high3"],
-  },
-  {
-    slug: "middle-school",
-    title: "중등 내신 교재",
-    short: "중등 내신",
-    seoTitle: "중학교 내신 문제집 · 중등 영어 문법·수학·국어",
-    seoDescription: "중1·중2·중3 국어 독해와 문법, 수학 개념과 유형별 문제, 영어 문법·독해·서술형, 중간·기말고사 대비 PDF 교재. 멜리사 에듀(MELISSA EDU)의 중학교 내신 교재.",
-    lead: "학습의 기초를, 학년의 속도에 맞추어.",
-    intro: [
-      "중등 내신 교재는 중1, 중2, 중3으로 나누어 국어, 수학, 영어, 과학, 사회, 역사 교재와 시험 대비 자료를 구성합니다. 중3 학생을 위한 고등학교 선행 교재도 함께 구성합니다.",
-      "개념을 정확히 이해한 뒤 유형별 문제로 확인하는 순서를 기본으로 합니다.",
-    ],
-    filter: { scope: "middle-school" },
-    children: ["middle1", "middle2", "middle3"],
-  },
-  {
     slug: "mock",
     title: "모의고사 · 실전 문제집",
     short: "모의고사",
@@ -186,18 +158,6 @@ export const CATEGORIES: CategoryDef[] = [
     intro: ["자녀의 공부를 돕고 싶은 보호자를 위한 MELISSA PARENT GUIDE 시리즈입니다. 지도 방법, 내신 구조 이해, 가정 학습 설계, 방학 계획을 다룹니다.", "학부모 상담은 보호자 연락처로 진행되며 만 14세 미만 자녀의 개인정보는 받지 않습니다."],
     filter: { collection: "parent-guide" },
   },
-  ...[1, 2, 3].map((n): CategoryDef => ({
-    slug: `high${n}`, title: `고${n} 내신 교재`, short: `고${n} 내신`, parent: "high-school",
-    seoTitle: `고${n} 내신 문제집`, seoDescription: `고${n} 내신 대비 PDF 교재. 멜리사 에듀(MELISSA EDU)에서 상담 후 구매할 수 있습니다.`,
-    lead: `고${n} 학교 시험에 맞춘 교재.`, intro: [`고${n} 학생을 위한 국어·수학·영어 내신 교재입니다. 아래 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`],
-    filter: { scope: "high-school", level: `high${n}` },
-  })),
-  ...[1, 2, 3].map((n): CategoryDef => ({
-    slug: `middle${n}`, title: `중${n} 내신 교재`, short: `중${n} 내신`, parent: "middle-school",
-    seoTitle: `중${n} 내신 문제집`, seoDescription: `중${n} 내신 대비 PDF 교재. 멜리사 에듀(MELISSA EDU)에서 상담 후 구매할 수 있습니다.`,
-    lead: `중${n} 학습의 기초를 학년의 속도에 맞추어.`, intro: [`중${n} 학생을 위한 내신 교재입니다. 아래 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`],
-    filter: { scope: "middle-school", level: `middle${n}` },
-  })),
 ];
 
 export const getCategory = (slug: string) => CATEGORIES.find((c) => c.slug === slug);

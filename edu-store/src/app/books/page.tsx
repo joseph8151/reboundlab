@@ -51,7 +51,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SP }): 
   const filtered = Object.keys(sp).length > 0;
   return {
     title: "전체 교재 · 수능 문제집, 내신 문제집 PDF",
-    description: "멜리사 에듀(MELISSA EDU)의 수능·고등 내신·중등 내신 교재를 학년, 과목, 유형, 난이도, 가격대로 찾아보세요. 모든 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.",
+    description: "멜리사 에듀(MELISSA EDU)의 수능 교재와 학습 전략·자기주도학습 교재를 학년, 과목, 유형, 난이도, 가격대로 찾아보세요. 모든 교재는 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.",
     alternates: { canonical: "/books" },
     // 필터·검색·페이지 조합이 색인에 중복 등록되지 않도록 합니다.
     robots: filtered ? { index: false, follow: true } : undefined,

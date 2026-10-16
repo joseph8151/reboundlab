@@ -28,7 +28,7 @@ export default async function OpengraphImage() {
           <div>다시 세우다.</div>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ fontSize: 26, color: "#6B6B6B" }}>수능 · 고등 내신 · 중등 내신 전문 교재</div>
+          <div style={{ fontSize: 26, color: "#6B6B6B" }}>수능 · 학습 전략 · 자기주도학습 전문 교재</div>
           <div style={{ display: "flex", gap: 10 }}>
             {["#6E2132", "#4A1D28", "#D88FA0", "#C97B8D", "#F2C94C"].map((c) => <div key={c} style={{ width: 22, height: 64, background: c }} />)}
           </div>

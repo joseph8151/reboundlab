@@ -1,8 +1,6 @@
 export const NAV = [
   { href: "/books", label: "전체 교재" },
   { href: "/category/suneung", label: "수능" },
-  { href: "/category/high-school", label: "고등 내신" },
-  { href: "/category/middle-school", label: "중등 내신" },
   { href: "/category/mock", label: "모의고사" },
   { href: "/category/self-study", label: "자기주도학습" },
   { href: "/category/study-method", label: "공부법·학습 전략" },

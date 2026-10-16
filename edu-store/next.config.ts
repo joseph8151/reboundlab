@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
       { source: "/checkout/:slug*", destination: "/consult?product=:slug*", permanent: false },
       { source: "/cart", destination: "/consult", permanent: false },
       { source: "/mypage", destination: "/consult", permanent: false },
+      // 내신 카테고리는 제외되었습니다.
+      { source: "/category/high-school", destination: "/books", permanent: true },
+      { source: "/category/middle-school", destination: "/books", permanent: true },
+      { source: "/category/high:n(1|2|3)", destination: "/books", permanent: true },
+      { source: "/category/middle:n(1|2|3)", destination: "/books", permanent: true },
       { source: "/category/material", destination: "/category/planner", permanent: true },
     ];
   },
