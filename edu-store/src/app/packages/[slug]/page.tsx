@@ -36,7 +36,7 @@ export default async function PackagePage({ params }: { params: Params }) {
 
       {b.items.length > 0 ? (
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_320px]">
-          <section aria-label="포함 교재">
+          <section aria-label="포함 교재" className="min-w-0">
             <h2 className="pb-3 text-[13px] font-semibold tracking-[0.1em] text-muted-foreground">포함 교재 {b.items.length}권</h2>
             {b.items.map((p) => <BookRow key={p.id} product={p} />)}
           </section>

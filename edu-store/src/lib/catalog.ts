@@ -164,6 +164,7 @@ export const areaInfo = (id: string) => AREAS.find((a) => a.id === id) ?? AREAS[
 /** 학년 배열을 화면 문구로: [middle1,middle2,middle3] → "중1–중3", [high1] → "고1" */
 export function levelsText(levels: readonly string[]) {
   const order = LEVELS.map((l) => l.id as string);
+  if (LEVELS.every((l) => levels.includes(l.id))) return "전 학년";
   const sorted = [...levels].sort((a, b) => order.indexOf(a) - order.indexOf(b));
   if (!sorted.length) return "";
   const groups = new Map<string, string[]>();

@@ -31,7 +31,7 @@ export function HeaderClient() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur print:hidden">
       <div className="container-page flex h-14 items-center justify-between gap-4 md:h-[68px]">
-        <button type="button" className="-ml-2 px-2 py-2 text-[13px] font-medium md:hidden" aria-expanded={open} aria-controls="mobile-panel" onClick={() => setOpen(true)}>
+        <button type="button" className="-ml-2 min-h-11 px-2 text-[14px] font-medium md:hidden" aria-expanded={open} aria-controls="mobile-panel" onClick={() => setOpen(true)}>
           메뉴
         </button>
         <Link href="/" aria-label="MELISSA EDU 홈" className="max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
@@ -45,7 +45,7 @@ export function HeaderClient() {
 
         <Link href="/consult" data-consult-button className="hidden h-9 items-center bg-primary px-4 text-[13px] font-semibold text-primary-foreground hover:bg-primary-hover md:inline-flex">교재 상담 신청</Link>
 
-        <Link href="/consult" data-consult-button className="text-[13px] font-semibold md:hidden">상담 신청</Link>
+        <Link href="/consult" data-consult-button className="-mr-1 inline-flex min-h-11 items-center border border-primary px-3 text-[13px] font-semibold text-primary md:hidden">상담 신청</Link>
       </div>
 
       <nav aria-label="주요 메뉴" className="hidden border-t border-border md:block">
@@ -83,10 +83,11 @@ export function HeaderClient() {
             <input name="q" type="search" aria-label="교재 검색" placeholder="교재명, 학년, 과목 검색 (예: 고1 수학)" className="w-full bg-transparent text-[16px] outline-none" />
             <button type="submit" className="text-[14px] font-semibold">검색</button>
           </form>
-          <ul className="mt-4 px-5">
+          <p className="mt-6 px-5 text-[12px] font-semibold tracking-wide text-primary">교재</p>
+          <ul className="mt-1 px-5">
             {NAV.map((n) => (
               <li key={n.href} className="border-b border-border">
-                <Link href={n.href} className={cn("flex items-center justify-between py-4 text-[17px]", isActive(n.href) && "font-semibold")}>{n.label}<span className="text-muted-foreground" aria-hidden>→</span></Link>
+                <Link href={n.href} className={cn("flex items-center justify-between py-3.5 text-[17px]", isActive(n.href) ? "font-semibold text-primary" : "text-foreground")}>{n.label}<span className="text-muted-foreground" aria-hidden>→</span></Link>
               </li>
             ))}
           </ul>

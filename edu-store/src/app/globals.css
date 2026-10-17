@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/noto-serif-kr/wght.css";
 @import "@fontsource/cormorant-garamond/latin-500.css";
 @import "@fontsource/cormorant-garamond/latin-600.css";
 @import "@fontsource/cormorant-garamond/latin-500-italic.css";
@@ -42,11 +43,13 @@
   --navy: #4a1d28;
   --sand: #e7d5b7;
   --sage: #f7ece8;
+  --font-heading: "Noto Serif KR Variable", "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
 }
 
 @theme inline {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
     "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --font-heading: "Noto Serif KR Variable", "Noto Serif KR", "Nanum Myeongjo", "Apple SD Gothic Neo", serif;
   --font-display: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -99,8 +102,39 @@
     overflow-wrap: break-word;
     letter-spacing: -0.01em;
   }
-  h1, h2, h3 {
-    letter-spacing: -0.025em;
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--blush);
+    color: var(--navy);
+  }
+  /* 대제목은 명조 계열로 출판물 같은 인상을, 본문과 UI는 Pretendard로 가독성을 맞춥니다. */
+  h1, h2 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em !important;
+    line-height: 1.32;
+    text-wrap: balance;
+  }
+  h3 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  /* 큰 제목의 굵기는 명조에서 과해 보이지 않도록 한 단계 낮춥니다. */
+  h1.font-extrabold, h1.font-bold, h2.font-extrabold, h2.font-bold {
+    font-weight: 600;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--dusty-rose);
+    outline-offset: 2px;
+  }
+  /* 터치 기기에서 링크와 버튼이 쉽게 눌리도록 최소 높이를 확보합니다. */
+  @media (pointer: coarse) {
+    button, [role="button"], summary { min-height: 44px; }
   }
 }
 

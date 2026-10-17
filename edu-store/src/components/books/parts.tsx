@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { areaLabel, deliveryLabel, difficultyLabel, kindLabel, levelsText } from "@/lib/catalog";
+import { collectionLabel } from "@/lib/catalog-guides";
 import { CONSULT_COPY } from "@/lib/consult";
 import { effectivePrice, type Product } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
@@ -23,7 +24,7 @@ export function Price({ product, size = "md", className }: { product: Pick<Produ
 export function DeliveryTag({ type, className }: { type: Product["deliveryType"]; className?: string }) {
   if (type !== "custom") return null;
   return (
-    <span className={cn("inline-block border border-dusty-rose/70 bg-light-pink px-1.5 py-px text-[11px] font-medium tracking-wide text-secondary-foreground", className)}>
+    <span className={cn("inline-block whitespace-nowrap border border-dusty-rose/70 bg-light-pink px-1.5 py-px text-[11px] font-medium tracking-wide text-secondary-foreground", className)}>
       {deliveryLabel(type)}
     </span>
   );
@@ -43,27 +44,28 @@ export function FeaturedTag({ rank, className }: { rank: number | null; classNam
 }
 
 export function metaLine(p: Product) {
+  if (p.collection) return [collectionLabel(p.collection), levelsText(p.levels)].filter(Boolean).join(" · ");
   return [levelsText(p.levels), areaLabel(p.area), kindLabel(p.kind), difficultyLabel(p.difficulty)].filter(Boolean).join(" · ");
 }
 
 /** 서가형: 표지 아래에 짧은 캡션. 카드 테두리 없이 표지 자체가 주인공입니다. */
 export function ShelfItem({ product, priority, className }: { product: Product; priority?: boolean; className?: string }) {
   return (
-    <article className={cn("group", className)}>
+    <article className={cn("group [&_img]:transition-transform", className)}>
       <Link href={`/books/${product.slug}`} className="block" aria-label={product.title}>
-        <BookCover product={product} priority={priority} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
+        <BookCover product={product} priority={priority} className="transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_28px_-16px_rgba(74,29,40,0.5)]" />
       </Link>
       <div className="mt-3">
         <p className="text-[12px] text-muted-foreground">{metaLine(product)}</p>
         <h3 className="mt-1 text-[15px] font-semibold leading-snug text-secondary-foreground">
           <Link href={`/books/${product.slug}`} className="hover:underline">{product.title}</Link>
         </h3>
-        <div className="mt-1.5 flex items-center gap-2">
+        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1">
           <Price product={product} size="sm" />
           <FeaturedTag rank={product.featuredRank} />
           <DeliveryTag type={product.deliveryType} />
         </div>
-        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2 inline-block" />
+        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2.5 inline-block max-md:flex max-md:h-10 max-md:w-full max-md:items-center max-md:justify-center max-md:border max-md:border-dusty-rose/70 max-md:bg-card max-md:no-underline" />
       </div>
     </article>
   );
@@ -72,7 +74,7 @@ export function ShelfItem({ product, priority, className }: { product: Product; 
 /** 목록형: 작은 표지 + 서지 정보 + 가격. 고등·중등 내신 구역과 검색 결과에 씁니다. */
 export function BookRow({ product, className }: { product: Product; className?: string }) {
   return (
-    <article className={cn("grid grid-cols-[76px_1fr] gap-4 border-t border-border py-5 sm:grid-cols-[92px_1fr_auto] sm:gap-6", className)}>
+    <article className={cn("grid grid-cols-[76px_minmax(0,1fr)] gap-4 border-t border-border py-5 sm:grid-cols-[92px_minmax(0,1fr)_auto] sm:gap-6", className)}>
       <Link href={`/books/${product.slug}`} aria-label={product.title} className="row-span-2 sm:row-span-1">
         <BookCover product={product} sizes="92px" />
       </Link>
@@ -84,11 +86,11 @@ export function BookRow({ product, className }: { product: Product; className?: 
         {product.summary && <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">{product.summary}</p>}
         {product.series && <p className="mt-1.5 text-[12px] text-muted-foreground">{product.series}</p>}
       </div>
-      <div className="col-start-2 flex items-center gap-3 sm:col-start-3 sm:flex-col sm:items-end sm:justify-start">
+      <div className="col-start-2 flex flex-wrap items-center gap-x-3 gap-y-2 sm:col-start-3 sm:flex-col sm:items-end sm:justify-start">
         <Price product={product} />
         <FeaturedTag rank={product.featuredRank} />
         <DeliveryTag type={product.deliveryType} />
-        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="line" className="max-sm:ml-auto" />
+        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="line" className="max-sm:w-full" />
       </div>
     </article>
   );

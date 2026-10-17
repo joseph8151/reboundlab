@@ -68,7 +68,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
             <p className="mt-[4cqw] text-[4.4cqw] font-medium opacity-90">{subject}</p>
           </div>
           <div>
-            <h3 className="font-bold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
+            <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
             {product.series && <p className="mt-[3cqw] text-[3.8cqw] opacity-80">{product.series}</p>}
             <div className="mt-[5cqw] flex items-end justify-between gap-[2cqw] text-[3.6cqw] opacity-85">
               <span>{level}</span>
@@ -86,7 +86,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
             <div>
               <p className="text-[4.2cqw] font-semibold" style={{ color: text }}>{subject}</p>
               <div className="mt-[3cqw] h-[0.6cqw] w-[10cqw]" style={{ background: accent === "#faf6f2" ? text : accent }} />
-              <h3 className="mt-[5cqw] font-bold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs * 0.96}cqw` }}>{product.title}</h3>
+              <h3 className="mt-[5cqw] font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs * 0.96}cqw` }}>{product.title}</h3>
             </div>
             <div className="text-[3.7cqw]">
               {product.series && <p className="mb-[2.5cqw] font-medium">{product.series}</p>}
@@ -101,7 +101,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
           <div className="absolute inset-x-0 top-0 h-[58%]" style={{ background: color, color: ink }}>
             <div className="flex h-full flex-col justify-between p-[9cqw] pl-[11cqw]">
               <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melissa Edu</p>
-              <h3 className="font-bold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
+              <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
             </div>
           </div>
           <div className="absolute inset-x-0 bottom-0 h-[42%] p-[9cqw] pl-[11cqw]" style={{ background: tint, color: "#4a1d28" }}>
@@ -150,7 +150,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
         <div className={cn("absolute inset-0 flex flex-col justify-between p-[9cqw] pl-[11cqw]", v ? "pr-[26cqw]" : "pl-[30cqw]")}>
           <p className={cn(label, "text-[3.6cqw] text-[#6e2132]")}>Melissa<br />{seriesName}</p>
           <div>
-            <h3 className="font-bold leading-[1.2] tracking-[-0.035em] text-[#6e2132]" style={{ fontSize: `${fs * 1.02}cqw` }}>{product.title}</h3>
+            <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.2] tracking-[-0.035em] text-[#6e2132]" style={{ fontSize: `${fs * 1.02}cqw` }}>{product.title}</h3>
             <p className="mt-[4cqw] text-[3.6cqw] opacity-70">{level}</p>
           </div>
         </div>
@@ -167,7 +167,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
           <p className={cn(label, "text-[3.6cqw] text-[#f3d5dc]")}>Melissa {seriesName}</p>
           <div>
             <div className="mb-[4cqw] h-[0.7cqw] w-[12cqw] bg-[#d9a63a]" />
-            <h3 className="font-bold leading-[1.2] tracking-[-0.035em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
+            <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.2] tracking-[-0.035em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
             <p className="mt-[4cqw] text-[3.6cqw] text-[#f3d5dc]/85">{level}</p>
           </div>
         </div>
@@ -181,7 +181,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
       <>
         <div className={cn("absolute inset-x-[9cqw] bg-[#faf6f2] p-[6cqw]", v ? "top-[16cqw]" : "bottom-[18cqw]")} style={{ marginLeft: "3cqw" }}>
           <p className={cn(label, "text-[3.4cqw] text-[#c97b8d]")}>Melissa {seriesName}</p>
-          <h3 className="mt-[3cqw] font-bold leading-[1.22] tracking-[-0.03em] text-[#6e2132]" style={{ fontSize: `${fs * 0.92}cqw` }}>{product.title}</h3>
+          <h3 className="mt-[3cqw] font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em] text-[#6e2132]" style={{ fontSize: `${fs * 0.92}cqw` }}>{product.title}</h3>
           <div className="mt-[3.5cqw] h-[1.6cqw] w-[22cqw] bg-[#f2c94c]/80" />
         </div>
         <p className="absolute bottom-[8cqw] left-[14cqw] text-[3.6cqw] font-medium text-[#6e2132]">{level}</p>
@@ -197,7 +197,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
       </div>
       <span className="absolute right-[9cqw] size-[10cqw] rounded-full bg-[#d88fa0]" style={{ top: v ? "40%" : "32%" }} aria-hidden />
       <div className="absolute inset-x-0 bottom-0 p-[9cqw] pl-[11cqw]" style={{ top: v ? "52%" : "44%" }}>
-        <h3 className="font-bold leading-[1.2] tracking-[-0.035em] text-[#6e2132]" style={{ fontSize: `${fs * 0.96}cqw` }}>{product.title}</h3>
+        <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.2] tracking-[-0.035em] text-[#6e2132]" style={{ fontSize: `${fs * 0.96}cqw` }}>{product.title}</h3>
         <p className="mt-[3.5cqw] text-[3.6cqw] opacity-70">보호자를 위한 안내 · {level}</p>
       </div>
     </>

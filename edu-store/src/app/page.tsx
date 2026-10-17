@@ -35,14 +35,14 @@ export default async function HomePage() {
     <>
       {/* 1. 브랜드 배너 */}
       <section className="border-b border-border bg-muted">
-        <div className="container-page grid items-end gap-14 pb-16 pt-14 md:grid-cols-[1fr_minmax(0,520px)] md:pb-24 md:pt-24">
+        <div className="container-page grid items-end gap-10 pb-12 pt-10 md:grid-cols-[1fr_minmax(0,520px)] md:gap-14 md:pb-24 md:pt-24">
           <div className="max-w-xl">
             <p className="flex items-center gap-3 font-display text-[15px] font-semibold tracking-[0.3em] text-primary">MELISSA EDU<span aria-hidden className="h-[2px] w-8 bg-mustard" /></p>
-            <h1 className="mt-6 text-[44px] font-extrabold leading-[1.12] tracking-[-0.05em] text-secondary-foreground md:text-[68px]">공부의 기준을<br /><span className="text-primary">다시 세우다.</span></h1>
-            <p className="mt-7 max-w-md text-[17px] leading-[1.75] text-muted-foreground">필요한 교재를 함께 찾아드립니다. 수능부터 학교 내신까지, 학습의 깊이를 더하는 전문 교재 멜리사 에듀.</p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild size="lg"><Link href="/consult" data-consult-button>교재 구성 및 구매 상담</Link></Button>
-              <Button asChild size="lg" variant="outline"><Link href="/diagnosis">3분 학습 진단</Link></Button>
+            <h1 className="mt-5 text-[36px] leading-[1.22] text-secondary-foreground sm:text-[48px] md:mt-6 md:text-[62px] md:leading-[1.18]">공부의 기준을<br /><span className="text-primary">다시 세우다.</span></h1>
+            <p className="mt-5 max-w-md text-[16px] leading-[1.8] text-muted-foreground md:mt-7 md:text-[17px]">필요한 교재를 함께 찾아드립니다. 수능 교재부터 자기주도학습과 공부법까지, 학습의 깊이를 더하는 멜리사 에듀의 교재.</p>
+            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap md:mt-10">
+              <Button asChild size="lg" className="w-full sm:w-auto"><Link href="/consult" data-consult-button>교재 구성 및 구매 상담</Link></Button>
+              <Button asChild size="lg" variant="outline" className="w-full sm:w-auto"><Link href="/diagnosis">3분 학습 진단</Link></Button>
             </div>
           </div>
           <div>
@@ -66,8 +66,21 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* 구매 절차 한눈에 */}
+      <section aria-label="구매 절차" className="border-b border-border bg-card">
+        <ol className="container-page grid grid-cols-2 divide-x divide-y divide-border md:grid-cols-5 md:divide-y-0">
+          {[["01", "교재 선택", "진단·검색으로 찾기"], ["02", "상담 신청", "연락처와 문의 남기기"], ["03", "문자·전화 안내", "구성과 일정 확인"], ["04", "계좌이체", "안내받은 계좌로 입금"], ["05", "PDF 전달", "입금 확인 후 전달"]].map(([n, t, d], i) => (
+            <li key={n} className={"px-4 py-4 odd:pl-0 md:py-5 md:odd:pl-4 md:first:pl-0 " + (i === 4 ? "col-span-2 md:col-span-1" : "")}>
+              <span className="font-display text-[15px] text-dusty-rose">{n}</span>
+              <p className="mt-0.5 text-[14px] font-semibold text-secondary-foreground">{t}</p>
+              <p className="mt-0.5 text-[12px] leading-snug text-muted-foreground">{d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       {/* 학습 고민으로 교재 찾기 */}
-      <section className="bg-light-pink py-20 md:py-24" aria-labelledby="concerns">
+      <section className="bg-light-pink py-14 md:py-24" aria-labelledby="concerns">
         <div className="container-page grid gap-10 md:grid-cols-[280px_1fr] md:gap-16">
           <div>
             <SectionHead eyebrow="FIND BY CONCERN" title="어떤 문제가 가장 어렵나요?" className="[&_h2]:text-[26px]" />
@@ -84,7 +97,7 @@ export default async function HomePage() {
       </section>
 
       {/* 2. 수능 주요 교재 */}
-      <section className="container-page py-20 md:py-28" aria-labelledby="csat-core">
+      <section className="container-page py-14 md:py-28" aria-labelledby="csat-core">
         <SectionHead no="01" eyebrow="수능" title="수능 주요 교재" href="/category/suneung" />
         <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
           {csat.map((p, i) => <ShelfItem key={p.id} product={p} priority={i < 2} />)}
@@ -92,7 +105,7 @@ export default async function HomePage() {
       </section>
 
       {/* 자기주도학습 */}
-      <section className="container-page py-20 md:py-28" aria-labelledby="self-study">
+      <section className="container-page py-14 md:py-28" aria-labelledby="self-study">
         <SectionHead no="02" eyebrow="SELF STUDY" title="혼자 공부하는 힘을 기르다." href="/category/self-study" />
         <div id="self-study" className="mt-10 grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-4">
           {selfStudy.map((p) => <ShelfItem key={p.id} product={p} />)}
@@ -100,7 +113,7 @@ export default async function HomePage() {
       </section>
 
       {/* 공부법·학습 전략 */}
-      <section className="bg-muted py-20 md:py-28" aria-labelledby="method">
+      <section className="bg-muted py-14 md:py-28" aria-labelledby="method">
         <div className="container-page grid gap-12 md:grid-cols-[300px_1fr] md:gap-16">
           <div className="md:sticky md:top-40 md:self-start">
             <SectionHead no="03" eyebrow="STUDY METHOD" title="방법을 바꾸면 공부가 달라집니다." />
@@ -114,7 +127,7 @@ export default async function HomePage() {
       </section>
 
       {/* 학습 플래너 */}
-      <section className="bg-card py-20 md:py-28" aria-labelledby="planner">
+      <section className="bg-card py-14 md:py-28" aria-labelledby="planner">
         <div className="container-page">
           <SectionHead no="04" eyebrow="STUDY PLANNER" title="계획부터 실천까지, 매일의 공부를 기록하다." href="/category/study-planner" />
           <div id="planner" className="mt-8 border-b border-border">{planners.map((p) => <BookRow key={p.id} product={p} />)}</div>
@@ -122,7 +135,7 @@ export default async function HomePage() {
       </section>
 
       {/* 학부모 가이드 */}
-      <section className="bg-light-pink py-20 md:py-28" aria-labelledby="parent">
+      <section className="bg-light-pink py-14 md:py-28" aria-labelledby="parent">
         <div className="container-page">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <SectionHead no="05" eyebrow="PARENT GUIDE" title="자녀의 학습을 이해하고 지원하는 방법." />
@@ -156,7 +169,7 @@ export default async function HomePage() {
       </section>
 
       {/* 6. 과목별 교재 */}
-      <section className="container-page py-20 md:py-28" aria-labelledby="by-subject">
+      <section className="container-page py-14 md:py-28" aria-labelledby="by-subject">
         <SectionHead no="07" eyebrow="과목" title="과목별 교재" />
         <ul id="by-subject" className="mt-10 grid grid-cols-5 gap-1.5 md:gap-2">
           {AREAS.filter((a) => a.id !== "common").map((a, i) => (
@@ -171,7 +184,7 @@ export default async function HomePage() {
       </section>
 
       {/* 7. 패키지 */}
-      <section className="border-y border-border bg-card py-20 md:py-24" aria-labelledby="packages">
+      <section className="border-y border-border bg-card py-14 md:py-24" aria-labelledby="packages">
         <div className="container-page">
           <SectionHead no="08" eyebrow="PACKAGES" title="약점에 맞춘 패키지" href="/packages" />
           <ul id="packages" className="mt-8 divide-y divide-border border-y border-border">
@@ -189,7 +202,7 @@ export default async function HomePage() {
       </section>
 
       {/* 8. 무료 학습 자료 */}
-      <section className="bg-card" aria-labelledby="free"><div className="container-page py-20 md:py-28">
+      <section className="bg-card" aria-labelledby="free"><div className="container-page py-14 md:py-28">
         <SectionHead no="09" eyebrow="FREE TOOLS" title="무료 학습 자료와 도구" />
         <div id="free" className="mt-10 grid gap-14 md:grid-cols-2 md:gap-20">
           <div>
@@ -222,7 +235,7 @@ export default async function HomePage() {
       </div></section>
 
       {/* 9. 교재 구매 상담 안내 */}
-      <section className="bg-blush/55 py-20 md:py-28" aria-labelledby="consult-guide">
+      <section className="bg-blush/55 py-14 md:py-28" aria-labelledby="consult-guide">
         <div className="container-page grid gap-12 md:grid-cols-[1fr_1.1fr] md:gap-20">
           <div>
             <p className="font-display text-[15px] font-semibold tracking-[0.3em] text-primary">CONSULTATION</p>
