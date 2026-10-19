@@ -5,6 +5,7 @@ import { BookCover } from "@/components/books/book-cover";
 import { JsonLd } from "@/components/books/json-ld";
 import { ConsultLink, DeliveryTag, Price, ShelfItem } from "@/components/books/parts";
 import { collectionLabel } from "@/lib/catalog-guides";
+import { getSample } from "@/lib/samples";
 import { RecentBooks, RecentTracker } from "@/components/books/recent-books";
 import {
   ANSWER_MODES, areaLabel, curriculumLabel, difficultyLabel, kindLabel, levelsText, trackLabel,
@@ -35,6 +36,7 @@ export default async function BookPage({ params }: { params: Params }) {
   const p = await getProductBySlug((await params).slug);
   if (!p) notFound();
   const [related, catalog] = await Promise.all([getRelated(p, 4), getCatalog()]);
+  const sample = getSample(p.slug);
   const answer = ANSWER_MODES.find((a) => a.id === p.answerMode);
 
   const facts: [string, string | null][] = [
@@ -152,6 +154,14 @@ export default async function BookPage({ params }: { params: Params }) {
               )}
             </div>
           </Block>
+
+          {sample && (
+            <Block title="샘플 페이지" id="sample">
+              <p className="max-w-2xl text-[15px] leading-[1.85]">{sample.summary}</p>
+              <p className="mt-2 max-w-2xl text-[12.5px] leading-relaxed text-muted-foreground">예시 구성 {sample.pages.length}쪽입니다. 새로 작성한 예시이며 최종 교재의 문항과 구성은 상담 후 확정되는 원고에서 달라질 수 있습니다.</p>
+              <Link href={`/books/${p.slug}/sample`} className="mt-4 inline-flex h-11 items-center border border-primary bg-card px-5 text-[14px] font-semibold text-primary hover:bg-blush/50">샘플 페이지 보기</Link>
+            </Block>
+          )}
 
           {p.toc.length > 0 && <Block title="상세 목차">
             {p.toc.length ? (

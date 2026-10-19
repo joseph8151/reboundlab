@@ -1,0 +1,728 @@
+{
+  "csat-english-blank-inference-100": {
+    "summary": "빈칸 추론 한 유형만으로 구성되는 방식을 보여 줍니다. 문항마다 빈칸 문장의 역할을 먼저 판단하고, 근거 문장과 오답 배제 이유를 해설에서 확인하는 흐름입니다.",
+    "pages": [
+      {
+        "heading": "빈칸 추론 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "풀이 순서: ① 빈칸 문장이 주제문인지, 재진술인지, 대조인지 판단 ② 근거 문장에 밑줄 ③ 선지를 근거와 하나씩 대응."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "빈칸 추론",
+            "passage": "Cartographers have long faced a quiet dilemma: a map that shows everything is a map nobody can read. A street plan that included every lamppost, bench, and mailbox would be so crowded that a traveler could not find the nearest station. Good mapmakers therefore decide what to leave out. They remove detail not because it is false, but because it would hide what the user needs. In this sense, the usefulness of a map comes from its ______. A reader who understands this will not complain that a hiking map omits the shops in the valley; she will ask instead what purpose the map was drawn to serve.",
+            "question": "다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "careful omission",
+              "complete coverage",
+              "decorative style",
+              "historical origin",
+              "physical size"
+            ],
+            "answer": "① careful omission",
+            "explain": "빈칸 문장은 앞 내용의 재진술입니다. 모든 것을 담은 지도는 읽을 수 없고, 좋은 제작자는 '무엇을 뺄지 결정한다'(leave out, remove detail)고 했으므로 지도의 유용성은 신중한 생략에서 나옵니다. 마지막 문장도 빠진 정보를 탓하지 말라는 내용으로 이를 뒷받침합니다.",
+            "wrong": [
+              "② complete coverage는 첫 두 문장에서 오히려 읽을 수 없는 지도의 원인으로 제시됨",
+              "③·④·⑤는 지도의 유용성과 관련된 근거가 지문에 없음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "빈칸 추론",
+            "passage": "When a team wins a game, fans often credit the final goal. Yet most of what decided the match happened earlier: a defender who closed a gap, a midfielder who chose a short pass instead of a risky one. These actions rarely appear in the highlights because they do not look dramatic. Their effect is nevertheless real, since each one ______. Understanding this changes how we judge any success, whether in sport or in work: the visible result is only the last link in a chain of quiet choices.",
+            "question": "다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "makes the next good action possible",
+              "encourages fans to leave early",
+              "reduces the need for practice",
+              "attracts more attention than the goal",
+              "depends on the referee's decision"
+            ],
+            "answer": "① makes the next good action possible",
+            "explain": "'chain of quiet choices'와 'last link'가 단서입니다. 눈에 띄지 않는 행동이 이후의 성공으로 이어지는 연결 고리라는 뜻이므로, 각 행동이 다음의 좋은 행동을 가능하게 한다는 ①이 맞습니다.",
+            "wrong": [
+              "④는 'do not look dramatic'과 정반대",
+              "③·⑤는 지문에 근거가 없음"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-order-insertion-100": {
+    "summary": "글의 순서와 문장 삽입 두 유형을 한 교재에서 번갈아 다루는 구성을 보여 줍니다. 지시어·연결어·관사 같은 단서를 확인하는 순서가 해설에 문장 단위로 적혀 있습니다.",
+    "pages": [
+      {
+        "heading": "순서·삽입 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "단서 확인 순서: 지시어(it, this) → 연결어(therefore, however) → 정관사와 반복 명사. 주어진 글에서 소개된 것이 다음 글에서 어떻게 받아지는지 봅니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "글의 순서",
+            "passage": "Last spring, our school library started a seed exchange shelf.\n(A) The next week, a student brought tomato seeds in a labeled envelope, and soon the shelf held herbs, beans, and flowers too.\n(B) It began as a small experiment: a single box with a note asking readers to take what they needed and leave what they could spare.\n(C) By summer, several classes were growing the borrowed plants on the roof, and the librarian had to ask for a bigger box.",
+            "question": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "(A) - (C) - (B)",
+              "(B) - (A) - (C)",
+              "(B) - (C) - (A)",
+              "(C) - (A) - (B)",
+              "(C) - (B) - (A)"
+            ],
+            "answer": "② (B) - (A) - (C)",
+            "explain": "(B)의 It은 주어진 글의 seed exchange shelf를 가리키며 a single box로 시작 상황을 소개합니다. (A)의 The next week는 그 시작 다음 주이고, (C)의 a bigger box는 (B)의 a single box와 대응하며 By summer로 가장 나중입니다.",
+            "wrong": [
+              "(A)가 먼저 오면 The next week의 기준 시점이 없음",
+              "(C)가 먼저 오면 the borrowed plants가 소개된 적 없음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "문장 삽입",
+            "passage": "Sleep researchers often compare the brain at night to a night-shift crew. ( ① ) While the body lies still, the brain is busy sorting the day's experiences. ( ② ) Important memories are strengthened, and trivial details are quietly discarded. ( ③ ) A student who studies late and then sleeps normally often remembers more than one who studies all night. ( ④ ) Without enough sleep, new information piles up like unsorted mail. ( ⑤ ) Sleep, in other words, is part of learning, not a break from it.\n\n[주어진 문장] Such selective editing is what makes the stored version of a day more useful than the original.",
+            "question": "글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.",
+            "choices": [
+              "the 1st gap",
+              "the 2nd gap",
+              "the 3rd gap",
+              "the 4th gap",
+              "the 5th gap"
+            ],
+            "answer": "③ the 3rd gap",
+            "explain": "주어진 문장의 Such selective editing은 '중요한 기억은 강화하고 사소한 것은 버린다'는 직전 내용을 가리킵니다. 따라서 그 문장 바로 뒤인 ③에 들어가야 하며, 이어지는 학생의 예는 편집된 기억이 더 유용하다는 말의 사례가 됩니다.",
+            "wrong": [
+              "② 앞에는 아직 editing에 해당하는 설명이 없어 Such가 받을 대상이 없음"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-reading-basic": {
+    "summary": "독해 기본서가 개념 요약 뒤에 바로 확인 문항을 붙이는 구성을 보여 줍니다. 글의 중심 내용과 세부 내용을 구분해 읽는 연습을 합니다.",
+    "pages": [
+      {
+        "heading": "독해 기본 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "개념 요약: 중심 내용은 글 전체를 아우르는 문장이고, 세부 내용은 그 중심을 뒷받침하는 예·이유입니다. 첫 문장과 마지막 문장, 'however' 같은 전환어 뒤를 먼저 확인합니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "글의 요지",
+            "passage": "Many towns now have 'libraries of things' where residents can borrow items other than books: ladders, sewing machines, camping stoves, even karaoke sets. The idea is simple. Most household tools are used only a few hours a year, yet each family buys its own and stores it in a closet. By sharing, a neighborhood can reduce spending and clutter at the same time. Supporters add that the arrangement has a social benefit. A person who comes to borrow a drill often stays to chat with a volunteer or a neighbor, and these small conversations help strangers become familiar faces. Critics worry that popular items may be unavailable when needed, but organizers answer that a reservation system solves most of these problems.",
+            "question": "윗글의 요지로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "Libraries of things lower costs and clutter while connecting neighbors.",
+              "Households should stop buying tools altogether.",
+              "Reservation systems are too complex for small towns.",
+              "Books are becoming less popular than tools.",
+              "Volunteers need training to repair borrowed items."
+            ],
+            "answer": "① Libraries of things lower costs and clutter while connecting neighbors.",
+            "explain": "지문은 물건 도서관의 아이디어(비용·물건 절약), 사회적 이점(이웃 간 교류), 우려에 대한 답을 차례로 제시합니다. 이를 모두 담은 것은 ①입니다.",
+            "wrong": [
+              "② 'altogether'는 과한 일반화",
+              "③·④·⑤는 지문에 근거 없음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "내용 일치",
+            "question": "윗글에 관한 내용으로 가장 적절한 것은? (윗글 참고)",
+            "choices": [
+              "Karaoke sets cannot be borrowed.",
+              "Most household tools are used only a few hours a year.",
+              "Borrowers pay a monthly fee.",
+              "Volunteers must be trained electricians.",
+              "Organizers rejected the idea of reservations."
+            ],
+            "answer": "② Most household tools are used only a few hours a year.",
+            "explain": "두 번째·세 번째 문장에서 대부분의 가정용 도구가 일 년에 몇 시간만 쓰인다고 했습니다.",
+            "wrong": [
+              "①은 karaoke sets가 빌릴 수 있는 물건으로 언급됨",
+              "⑤는 예약 시스템이 해결책으로 제시됨"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-order": {
+    "summary": "순서 배열만 모은 교재의 구성을 보여 줍니다. 첫 문장 단서와 연결 검증으로 순서를 확정하는 풀이가 해설에 그대로 나옵니다.",
+    "pages": [
+      {
+        "heading": "순서 배열 샘플",
+        "blocks": [
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "글의 순서",
+            "passage": "Ms. Han ran a small bakery, and for years she sold only plain bread.\n(A) Customers began asking for it, and within a month the sesame loaf outsold every other item on the shelf.\n(B) One morning, she ran out of flour for her usual recipe and mixed in some toasted sesame seeds she had been saving.\n(C) Surprised by how good the loaf smelled, she put a few on the counter with a handwritten sign: 'Today's experiment.'",
+            "question": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "(A) - (B) - (C)",
+              "(A) - (C) - (B)",
+              "(B) - (A) - (C)",
+              "(B) - (C) - (A)",
+              "(C) - (B) - (A)"
+            ],
+            "answer": "④ (B) - (C) - (A)",
+            "explain": "(B)의 One morning이 사건의 시작이고 참깨를 섞은 빵이 처음 나옵니다. (C)의 the loaf는 (B)에서 만든 빵을 정관사로 받고, (A)의 it은 (C)에서 진열된 빵을 가리키며 결과를 말합니다.",
+            "wrong": [
+              "(C)가 (B)보다 앞서면 the loaf가 소개되지 않음",
+              "(A)가 (C)보다 앞서면 'Today's experiment' 진열 이후의 결과가 먼저 나오는 모순"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "글의 순서",
+            "passage": "Scientists who study bird migration face a practical problem: birds travel at night, when they are almost impossible to watch.\n(A) Researchers therefore turned to radar, which can detect flocks moving through the dark even when no one can see them.\n(B) The combined data surprised them: on some nights, millions of birds, representing dozens of species, crossed a single region.\n(C) Radar images, however, show only moving shapes, so the team also recorded the birds' calls to identify the species.",
+            "question": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "(A) - (B) - (C)",
+              "(A) - (C) - (B)",
+              "(B) - (A) - (C)",
+              "(B) - (C) - (A)",
+              "(C) - (B) - (A)"
+            ],
+            "answer": "② (A) - (C) - (B)",
+            "explain": "(A)는 therefore로 주어진 글의 문제에 대한 해결책(radar)을 제시합니다. (C)의 Radar images는 (A)를 받고 however로 한계를 말하며 울음소리 기록을 추가합니다. (B)의 The combined data는 레이더와 울음소리 데이터를 합친 것이므로 마지막입니다.",
+            "wrong": [
+              "(B)가 (C)보다 앞서면 species 식별과 combined data의 근거가 없음"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-insertion": {
+    "summary": "문장 삽입만 모은 교재의 구성을 보여 줍니다. 주어진 문장 속 지시어·연결어가 가리키는 대상을 지문에서 찾아 위치를 확정하는 풀이를 연습합니다.",
+    "pages": [
+      {
+        "heading": "문장 삽입 샘플",
+        "blocks": [
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "문장 삽입",
+            "passage": "Many people picture inventors as lone geniuses working in silence. ( ① ) The history of everyday objects tells a different story. ( ② ) Most useful devices were improved step by step by many hands, each person fixing a flaw the last had left. ( ③ ) The bicycle, for instance, went through several odd forms before the familiar chain-driven design appeared. ( ④ ) Invention, then, is usually a shared and gradual effort. ( ⑤ )\n\n[주어진 문장] Many of them never met one another, yet each learned from the mistakes of those before.",
+            "question": "글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.",
+            "choices": [
+              "the 1st gap",
+              "the 2nd gap",
+              "the 3rd gap",
+              "the 4th gap",
+              "the 5th gap"
+            ],
+            "answer": "④ the 4th gap",
+            "explain": "주어진 문장의 Many of them은 자전거의 여러 이상한 형태를 만든 설계자들을 가리킵니다. 자전거 예시 바로 뒤인 ④에 놓으면 다음 문장의 결론 Invention, then, ...으로 자연스럽게 이어집니다.",
+            "wrong": [
+              "③ 앞에는 them이 가리킬 복수 대상이 'many hands'뿐이고, 뒤에 for instance 예시가 와서 흐름이 어색함",
+              "⑤는 결론 뒤라서 them이 받을 대상이 부적절함"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "문장 삽입",
+            "passage": "Cities are often noisier than people realize. ( ① ) Traffic, construction, and sirens blend into a constant background that residents learn to ignore. ( ② ) Yet the body does not fully ignore it. ( ③ ) Sleep experiments suggest that sudden sounds can raise the heart rate even when the sleeper does not wake. ( ④ ) Planners are therefore paying more attention to quiet spaces such as courtyards and tree-lined streets. ( ⑤ )\n\n[주어진 문장] In other words, getting used to noise is not the same as being unaffected by it.",
+            "question": "글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.",
+            "choices": [
+              "the 1st gap",
+              "the 2nd gap",
+              "the 3rd gap",
+              "the 4th gap",
+              "the 5th gap"
+            ],
+            "answer": "③ the 3rd gap",
+            "explain": "In other words는 직전 문장을 풀어 말할 때 쓰입니다. 'the body does not fully ignore it'을 '익숙해지는 것과 영향을 받지 않는 것은 다르다'로 바꿔 말한 것이므로 ③이 맞고, 뒤의 수면 실험이 그 근거가 됩니다.",
+            "wrong": [
+              "② 앞의 'learn to ignore'는 주어진 문장의 내용과 같은 말이 아님"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-grammar": {
+    "summary": "어법 교재가 한 지문 안에서 밑줄 친 다섯 곳의 문법을 판단하는 수능식 문항과, 짝 지어 고르는 문항을 함께 다루는 구성을 보여 줍니다. 해설은 틀린 곳의 문법 규칙을 밝힙니다.",
+    "pages": [
+      {
+        "heading": "어법 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "점검 순서: 주어와 동사의 수일치 → 준동사(to부정사·동명사·분사) → 관계사 → 시제·태. 괄호 속 번호는 어법 판단 대상입니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "어법성 판단",
+            "passage": "Many students think that memory [① improves] by simply reading a text again and again. However, testing yourself is far more effective, because it forces the brain [② to retrieve] information rather than just recognize it. A student [③ who] practices recalling the main points without looking at the notes [④ find] it easier to remember them later. This is why many teachers now [⑤ encourage] short quizzes in class.",
+            "question": "윗글의 밑줄 친 부분 중, 어법상 틀린 것은?",
+            "choices": [
+              "improves",
+              "to retrieve",
+              "who",
+              "find",
+              "encourage"
+            ],
+            "answer": "④ find",
+            "explain": "주어는 단수인 A student이고 who ... notes는 이를 꾸미는 관계절입니다. 따라서 동사는 단수형 finds여야 합니다.",
+            "wrong": [
+              "② force + 목적어 + to부정사 구문이 맞음",
+              "⑤ many teachers가 복수 주어라 encourage가 맞음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "어법 선택",
+            "passage": "The report suggests that the number of people (A)[who / which] cycle to work has doubled. City officials, (B)[pleasing / pleased] by the change, plan to build more bike lanes. They hope that traffic jams, (C)[that / which] have troubled the downtown area for years, will become less frequent.",
+            "question": "(A), (B), (C)의 각 네모 안에서 어법에 맞는 표현으로 가장 적절한 것은?",
+            "choices": [
+              "which - pleasing - that",
+              "who - pleasing - that",
+              "who - pleased - that",
+              "who - pleased - which",
+              "which - pleased - which"
+            ],
+            "answer": "④ who - pleased - which",
+            "explain": "(A) 선행사가 사람(people)이므로 who. (B) 관리들이 기뻐함을 당하는 감정이므로 과거분사 pleased. (C) 쉼표 뒤의 계속적 용법에는 that을 쓸 수 없고 which를 씁니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-vocabulary": {
+    "summary": "어휘 개념서가 핵심 요령을 요약한 뒤 문맥 속 어휘 판단 문항으로 확인하는 구성을 보여 줍니다. 단어 뜻만이 아니라 문장 흐름 속에서 쓰임을 가리는 연습입니다.",
+    "pages": [
+      {
+        "heading": "어휘 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "요령: 선택지의 두 단어가 서로 반대 의미라면 앞뒤의 대조어(while, but, yet)가 어느 쪽을 요구하는지 확인합니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "문맥 속 어휘",
+            "passage": "A good traveler knows that rules about politeness differ widely. In some countries, looking directly at an elder is a sign of (A)[respect / disrespect], while in others it is considered rude. A visitor who ignores such differences may cause (B)[offense / pleasure] without intending to. The wise approach is to observe local habits first and then (C)[adjust / ignore] one's own behavior accordingly.",
+            "question": "(A), (B), (C)의 각 네모 안에서 문맥에 맞는 낱말로 가장 적절한 것은?",
+            "choices": [
+              "disrespect - offense - adjust",
+              "respect - offense - adjust",
+              "respect - pleasure - adjust",
+              "respect - offense - ignore",
+              "disrespect - pleasure - ignore"
+            ],
+            "answer": "② respect - offense - adjust",
+            "explain": "(A) 뒤의 while in others it is considered rude가 대조이므로 앞은 긍정적인 respect. (B) 차이를 무시하면 의도하지 않게 상대를 불쾌하게 하므로 offense. (C) 관찰한 뒤 행동을 맞추어야 하므로 adjust입니다."
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "어휘 의미",
+            "passage": "Although the manager was reluctant to approve the plan, she finally agreed after seeing the revised budget.",
+            "question": "밑줄 친 reluctant의 의미와 가장 가까운 것은?",
+            "choices": [
+              "unwilling",
+              "eager",
+              "careless",
+              "generous",
+              "confident"
+            ],
+            "answer": "① unwilling",
+            "explain": "Although가 이끄는 양보절이므로 '결국 동의했다'와 대조되는 뜻이 필요합니다. reluctant는 '꺼리는'이므로 unwilling과 가깝습니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-listening": {
+    "summary": "듣기 교재가 음성으로 읽힐 대본과 문항을 함께 보여 주는 방식입니다. 대본의 단서를 짚으며 대화와 담화의 목적·할 일을 판단하는 연습을 합니다. 음원은 샘플에 포함되지 않습니다.",
+    "pages": [
+      {
+        "heading": "듣기 샘플 (대본 형태)",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "아래 대본은 음원으로 읽힐 내용을 글로 옮긴 것입니다. 실제 풀이에서는 대본을 보지 않고 듣고 풉니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "대화 듣기",
+            "passage": "M: Hi, Jiwoo. Did you finish the poster for the science fair?\nW: Yes, it's ready. I only need to print it, but the printer room closes at five today.\nM: Then you'd better hurry. By the way, did you book a table for our group?\nW: I did it yesterday online. Table number twelve, near the entrance.\nM: Great. Oh, and Mr. Park said everyone must bring their own tape to fix the poster.\nW: Right, I have some at home. I'll also bring a spare roll for you.\nM: Thanks! Then I'll bring the extra batteries for the projector.\nW: Perfect. I'll go to the printer room now.",
+            "question": "대화를 듣고, 여자가 대화 직후에 할 일로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "book a table",
+              "buy tape",
+              "print the poster",
+              "bring batteries",
+              "call Mr. Park"
+            ],
+            "answer": "③ print the poster",
+            "explain": "여자는 포스터를 인쇄만 하면 되는데 인쇄실이 5시에 닫는다고 했고, 마지막에 'I'll go to the printer room now'라고 말합니다. 테이블은 이미 예약했고 테이프는 집에 있습니다.",
+            "wrong": [
+              "① 이미 어제 예약함",
+              "④ 건전지는 남자가 가져옴"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "담화 듣기",
+            "passage": "W: Good afternoon, students. This is Ms. Lee from the school library. As you know, the library will be closed for floor repairs from next Monday to Wednesday. During this time, you will not be able to borrow or return books at the desk. However, a return box will be placed in front of the main entrance, and books returned there will be counted as on time. The reading room on the second floor will stay open as usual. If you have any questions, please visit the library website. Thank you.",
+            "question": "다음을 듣고, 여자가 하는 말의 목적으로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "to announce a library closing and how to return books",
+              "to ask students to donate used books",
+              "to introduce a new reading program",
+              "to explain how to renew a library card",
+              "to recruit student library volunteers"
+            ],
+            "answer": "① to announce a library closing and how to return books",
+            "explain": "공사로 인한 휴관 기간을 알리고, 그동안 반납함으로 기한 내 반납이 인정된다는 방법을 안내하므로 ①입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-long-reading": {
+    "summary": "긴 지문 한 편에 제목 추론과 세부 내용 문항을 함께 묻는 장문 독해 구성을 보여 줍니다. 문단의 흐름을 따라 읽으며 중심 내용과 세부 사실을 구분합니다.",
+    "pages": [
+      {
+        "heading": "장문 독해 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "긴 글은 처음부터 세세히 해석하기보다, 소개 → 전개 → 결과의 흐름을 먼저 잡고 문항이 묻는 부분으로 돌아가 근거를 확인합니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "제목 추론",
+            "passage": "In many parks, you can find narrow dirt trails cutting across the grass where no path was ever planned. Landscape designers call them desire paths, because they show where people actually want to walk. A paved route might curve politely around a lawn, but pedestrians in a hurry will choose the shortest line to the gate, and after a few weeks of footsteps, the grass gives way to bare earth. Some planners once treated these trails as a problem and put up fences. Others have learned to treat them as free information. By watching where the ground wears away, they can see what no survey has captured: the routes that people find natural. A few universities now wait a season before laying their walkways, then pave over the paths students have already drawn with their feet. The result is a network that looks less tidy on a plan, but that fits daily life far better.",
+            "question": "윗글의 제목으로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "Footprints as Guides: Learning from Desire Paths",
+              "Why Fences Protect Public Lawns",
+              "The Cost of Paving Campus Walkways",
+              "Tidy Maps and the Beauty of Parks",
+              "How Grass Recovers from Heavy Use"
+            ],
+            "answer": "① Footprints as Guides: Learning from Desire Paths",
+            "explain": "지문 전체가 사람들이 만든 길(desire paths)을 설계의 정보로 활용한다는 내용이므로 ①이 가장 적절합니다.",
+            "wrong": [
+              "② 울타리는 과거의 대응으로만 언급됨",
+              "③·④·⑤는 글의 중심과 맞지 않음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "내용 일치",
+            "question": "윗글의 내용과 일치하는 것을 고르시오. (윗글 참고)",
+            "choices": [
+              "Some universities fence off every lawn to keep students on paved routes.",
+              "Some universities wait a season and then pave the trails students have worn.",
+              "Students vote on the shape of campus walkways.",
+              "Designers plant extra grass along the shortest line to the gate.",
+              "Curved routes are repaved to remove trails."
+            ],
+            "answer": "② Some universities wait a season and then pave the trails students have worn.",
+            "explain": "지문의 'A few universities now wait a season ... then pave over the paths students have already drawn'과 일치합니다.",
+            "wrong": [
+              "①은 울타리가 과거 일부 계획자의 대응이었음",
+              "③·④·⑤는 지문에 없음"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-grade1-practice": {
+    "summary": "상위 난도 문항의 구성을 보여 줍니다. 추상적인 지문의 빈칸 추론과 흐름과 관계없는 문장 찾기를 통해, 그럴듯한 오답이 왜 배제되는지 해설로 확인합니다.",
+    "pages": [
+      {
+        "heading": "고난도 실전 샘플",
+        "blocks": [
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "고난도 빈칸 추론",
+            "passage": "Economists sometimes say that a price is a message. When a harvest fails and the price of grain rises, the increase is not only a cost; it is a signal telling every buyer, in a single number, that grain has become scarcer. No one has to explain the shortage, and no central office has to coordinate the response. Bakers use less, some farmers plant more, and distant traders look for new supplies. Because the message is so compact, however, it carries no explanation of why the grain is scarce, and a buyer who forgets this may blame the seller. A price, in other words, ______.",
+            "question": "다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "coordinates behavior efficiently but hides the reasons behind it",
+              "reflects the cost of production more than demand",
+              "matters less than the quality of the product",
+              "rises only when sellers agree to raise it",
+              "should be explained by a central authority before it changes"
+            ],
+            "answer": "① coordinates behavior efficiently but hides the reasons behind it",
+            "explain": "앞부분은 가격이 중앙의 조정 없이 행동을 조율한다는 점, however 뒤는 이유를 설명하지 않는다는 한계를 말합니다. 두 내용을 모두 담은 것은 ①입니다.",
+            "wrong": [
+              "② 지문은 생산비가 아니라 희소성을 다룸",
+              "④ 가격은 흉작으로 오른 것이지 판매자 합의가 아님",
+              "⑤ 'no central office'와 정반대"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "무관한 문장",
+            "passage": "Language learners often plateau after the first year. ① At that stage, simple conversations no longer feel difficult, so the sense of progress fades. ② Many learners respond by studying harder, but more of the same practice rarely helps. ③ Some languages use tones to distinguish words, while others rely on word order. ④ What helps more is a change in kind, such as reading longer texts or speaking with people outside the classroom. ⑤ Such challenges bring unfamiliar words and speeds, which restart the learning process.",
+            "question": "다음 글에서 전체 흐름과 관계 없는 문장을 고르시오.",
+            "choices": [
+              "At that stage, simple conversations no longer feel difficult, so the sense of progress fades.",
+              "Many learners respond by studying harder, but more of the same practice rarely helps.",
+              "Some languages use tones to distinguish words, while others rely on word order.",
+              "What helps more is a change in kind, such as reading longer texts or speaking with people outside the classroom.",
+              "Such challenges bring unfamiliar words and speeds, which restart the learning process."
+            ],
+            "answer": "③ Some languages use tones to distinguish words, while others rely on word order.",
+            "explain": "글은 학습 정체기와 그 해결책을 다룹니다. ③은 언어의 구조 차이를 말해 주제와 무관합니다. ⑤의 Such challenges는 ④의 변화를 받으므로 흐름이 이어집니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-mock-exam": {
+    "summary": "실전 모의고사가 서로 다른 유형의 문항을 한 회분 안에 섞어 구성하는 방식을 보여 줍니다. 글의 목적, 안내문 일치, 빈칸 추론을 예로 들었으며, 실제 회차 구성은 샘플과 다를 수 있습니다.",
+    "pages": [
+      {
+        "heading": "모의고사 구성 샘플",
+        "blocks": [
+          {
+            "t": "note",
+            "text": "한 회분 안에서 유형이 섞여 나오므로 문항마다 유형을 먼저 판단하고 풀이 방식을 바꾸는 연습을 합니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "글의 목적",
+            "passage": "Dear Mr. Collins,\nI am writing on behalf of the Greenfield Neighborhood Association. Our community garden has grown quickly, and we now have more members than plots. The empty lot behind your hardware store has been unused for several years, and we wonder whether you would allow us to use a part of it for additional vegetable beds. We would be responsible for cleaning the site, and we would remove everything if you needed the space back. I would be glad to show you our plan in person at your convenience.\nSincerely,\nDana Weller",
+            "question": "다음 글의 목적으로 가장 적절한 것은?",
+            "choices": [
+              "to request permission to use an empty lot for a garden",
+              "to complain about unused property",
+              "to invite him to a gardening workshop",
+              "to apologize for damage to his store",
+              "to ask for a donation of gardening tools"
+            ],
+            "answer": "① to request permission to use an empty lot for a garden",
+            "explain": "'we wonder whether you would allow us to use a part of it'에서 빈 땅 사용 허락을 요청함을 알 수 있습니다."
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "안내문 일치",
+            "passage": "Riverside Night Market\nEvery Friday in June, 6 p.m. to 10 p.m., at Riverside Park.\n- Local food stalls and handmade crafts\n- Live music begins at 7 p.m. on the main stage\n- Entrance is free, but parking at the north lot costs 2,000 won per hour\n- Bring your own bag; plastic bags will not be provided\n- If it rains heavily, the market will move to the following Saturday",
+            "question": "Riverside Night Market에 관한 안내문의 내용과 일치하는 것은?",
+            "choices": [
+              "It opens every day in June.",
+              "Live music starts at 6 p.m.",
+              "Entering the market costs money.",
+              "Plastic bags are provided at stalls.",
+              "Heavy rain would move it to Saturday."
+            ],
+            "answer": "⑤ Heavy rain would move it to Saturday.",
+            "explain": "마지막 항목에서 폭우 시 다음 토요일로 옮긴다고 했습니다.",
+            "wrong": [
+              "① 6월 매주 금요일만 열림",
+              "② 음악은 7시 시작",
+              "③ 입장은 무료",
+              "④ 비닐봉지는 제공하지 않음"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 3,
+            "label": "빈칸 추론",
+            "passage": "People often assume that being busy and being productive are the same. A full calendar gives a feeling of importance, yet it says nothing about whether the work mattered. Someone who answers forty messages but never begins the report that the team needs has been active, not effective. The real measure of a working day is not how much time was filled but ______.",
+            "question": "다음 빈칸에 들어갈 말로 가장 적절한 것은?",
+            "choices": [
+              "how many people were consulted",
+              "what was actually accomplished",
+              "when the first task began",
+              "how quickly messages were answered",
+              "whether the calendar was shared"
+            ],
+            "answer": "② what was actually accomplished",
+            "explain": "바쁨(time filled)과 생산성(effective)을 구분하는 글이므로, 시간을 채운 양과 대비되는 실제 성과가 빈칸에 들어갑니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-essential-vocabulary-2000": {
+    "summary": "필수 어휘서가 단어 표(품사·뜻·예문)와 확인 문항으로 구성되는 방식을 보여 줍니다. 아래 단어는 구성을 보이기 위한 예시이며 실제 수록 단어와 다를 수 있습니다.",
+    "pages": [
+      {
+        "heading": "어휘 표와 확인 문항",
+        "blocks": [
+          {
+            "t": "sheet",
+            "title": "어휘 표 예시",
+            "columns": [
+              "단어",
+              "품사",
+              "뜻",
+              "예문"
+            ],
+            "rows": [
+              [
+                "abundant",
+                "형",
+                "풍부한",
+                "Wild berries are abundant in the northern forest."
+              ],
+              [
+                "contribute",
+                "동",
+                "기여하다, 기부하다",
+                "Each member contributed an idea to the project."
+              ],
+              [
+                "hesitate",
+                "동",
+                "망설이다",
+                "Do not hesitate to ask if you need help."
+              ],
+              [
+                "reveal",
+                "동",
+                "드러내다, 밝히다",
+                "The survey revealed a change in reading habits."
+              ],
+              [
+                "maintain",
+                "동",
+                "유지하다",
+                "It takes effort to maintain a healthy routine."
+              ],
+              [
+                "essential",
+                "형",
+                "필수적인",
+                "Clear goals are essential for steady progress."
+              ]
+            ],
+            "note": "예문은 쓰임을 보이기 위해 새로 쓴 문장입니다. 뜻은 문장 속 용법 위주로 정리합니다."
+          },
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "확인 문항 1",
+            "passage": "The detective was careful not to ______ any details of the case to reporters.",
+            "question": "빈칸에 들어갈 말로 가장 적절한 것은?",
+            "choices": [
+              "reveal",
+              "maintain",
+              "hesitate",
+              "contribute",
+              "wander"
+            ],
+            "answer": "① reveal",
+            "explain": "빈칸 뒤에 목적어 any details가 오므로 타동사가 필요하고, '기자들에게 밝히지 않으려고 조심했다'는 의미에 맞는 것은 reveal입니다.",
+            "wrong": [
+              "③ hesitate와 ⑤ wander는 자동사로 목적어를 바로 취하지 못함",
+              "④ contribute는 to가 필요함"
+            ]
+          },
+          {
+            "t": "problem",
+            "no": 2,
+            "label": "확인 문항 2",
+            "passage": "Fruit is abundant in this region, so prices stay low.",
+            "question": "밑줄 친 abundant와 의미가 가장 가까운 것은?",
+            "choices": [
+              "rare",
+              "plentiful",
+              "expensive",
+              "fresh",
+              "imported"
+            ],
+            "answer": "② plentiful",
+            "explain": "'so prices stay low'에서 공급이 많다는 뜻을 알 수 있으므로 abundant는 plentiful과 같은 의미입니다."
+          }
+        ]
+      }
+    ]
+  },
+  "csat-english-error-intensive": {
+    "summary": "오답 집중 훈련이 문제를 푼 뒤 틀린 이유를 유형별로 기록하게 하는 구성을 보여 줍니다. 문항 뒤에 오답 분석 기록 양식과 작성 예시를 이어서 제시합니다.",
+    "pages": [
+      {
+        "heading": "오답 분석 샘플",
+        "blocks": [
+          {
+            "t": "problem",
+            "no": 1,
+            "label": "빈칸 추론",
+            "passage": "The new city rule bans cars from the old town on weekends. At first, shop owners feared that fewer customers would visit. Instead, the narrow streets filled with walkers, and many shops reported that people stayed longer and browsed more. The ban did not reduce visits; it changed how visitors ______.",
+            "question": "다음 빈칸에 들어갈 말로 가장 적절한 것을 고르시오.",
+            "choices": [
+              "experienced the area",
+              "paid for parking",
+              "reached the highway",
+              "avoided the shops",
+              "counted the vehicles"
+            ],
+            "answer": "① experienced the area",
+            "explain": "차량이 금지되자 사람들이 더 오래 머물고 둘러보았다는 내용이 근거이므로, 방문 횟수가 아니라 방문하는 방식이 바뀌었다는 ①이 맞습니다.",
+            "wrong": [
+              "④ avoided the shops는 'browsed more'와 정반대",
+              "②·③·⑤는 차량이 금지된 상황과 맞지 않거나 근거가 없음"
+            ]
+          },
+          {
+            "t": "sheet",
+            "title": "오답 분석 기록 예시",
+            "columns": [
+              "내가 고른 답",
+              "오답 유형",
+              "근거 문장",
+              "다음에 할 일"
+            ],
+            "rows": [
+              [
+                "④ avoided the shops",
+                "지문 내용을 반대로 이해",
+                "people stayed longer and browsed more",
+                "빈칸 선지가 지문과 모순되는지 근거 문장으로 먼저 확인한다"
+              ]
+            ],
+            "note": "위 행은 작성 예시입니다. 오답 유형은 '근거를 못 찾음', '반대로 이해', '어휘를 몰라서', '시간 부족'처럼 직접 이름을 붙입니다."
+          },
+          {
+            "t": "fill",
+            "title": "직접 쓰는 오답 분석",
+            "lines": [
+              "문항과 내가 고른 답",
+              "정답과 근거 문장",
+              "틀린 이유(유형 이름)",
+              "다음에 같은 유형을 풀 때 바꿀 점"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

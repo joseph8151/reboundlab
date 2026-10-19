@@ -1,0 +1,871 @@
+{
+ "high1-common-math1-variant-300": {
+  "summary": "원유형 표시, 조건만 바꾼 변형문제, 풀이 구조 해설로 이어지는 문항 구성을 보여 주는 샘플입니다. 샘플 문항만 실었습니다.",
+  "pages": [
+   {
+    "heading": "공통수학1 변형문제 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "각 문항 위의 라벨은 '원유형'입니다. 틀린 문제는 라벨의 유형으로 돌아가 같은 풀이 구조를 다시 확인합니다."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "원유형: 근과 계수의 관계 (합과 곱의 변형)",
+      "question": "이차방정식 x² − 6x + k = 0의 두 근을 α, β라 하자. α² + β² = 20일 때, 상수 k의 값은?",
+      "choices": [
+       "4",
+       "6",
+       "8",
+       "10",
+       "12"
+      ],
+      "answer": "③ 8",
+      "explain": "근과 계수의 관계로 α+β=6, αβ=k이다. α²+β²=(α+β)²−2αβ=36−2k=20이므로 k=8이다. k=8이면 판별식은 36−32=4>0이어서 서로 다른 두 실근을 가지므로 조건에 맞는다.",
+      "wrong": [
+       "k=6이면 36−12=24로 20이 되지 않는다.",
+       "k=10이면 36−20=16으로 20이 되지 않는다."
+      ]
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "원유형: 나머지정리 (이차식으로 나눈 나머지)",
+      "question": "다항식 f(x)를 x − 1로 나눈 나머지가 3, x + 2로 나눈 나머지가 −3이다. f(x)를 (x − 1)(x + 2)로 나눈 나머지를 R(x)라 할 때, R(5)의 값은?",
+      "choices": [
+       "5",
+       "7",
+       "9",
+       "11",
+       "13"
+      ],
+      "answer": "④ 11",
+      "explain": "나머지는 일차 이하이므로 R(x)=ax+b로 놓는다. 나머지정리에서 f(1)=R(1)=a+b=3, f(−2)=R(−2)=−2a+b=−3이다. 두 식을 빼면 3a=6이므로 a=2, b=1이고 R(x)=2x+1이다. 따라서 R(5)=11이다."
+     },
+     {
+      "t": "problem",
+      "no": 3,
+      "label": "원유형: 이차부등식의 정수해 (경계 포함 여부 변형)",
+      "question": "이차부등식 x² − 3x − 10 < 0을 만족시키는 정수 x의 개수는?",
+      "choices": [
+       "5",
+       "6",
+       "7",
+       "8",
+       "9"
+      ],
+      "answer": "② 6",
+      "explain": "x²−3x−10=(x−5)(x+2)<0에서 −2<x<5이다. 부등호에 등호가 없으므로 양 끝은 제외하고, 정수는 −1, 0, 1, 2, 3, 4의 6개이다.",
+      "wrong": [
+       "양 끝 −2와 5를 포함해 8개로 세면 등호가 없는 부등식에서 오답이 된다."
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "high-english-descriptive-writing-intensive": {
+  "summary": "어법 오류 수정, 문장 전환, 조건 영작 세 유형을 한 문항씩 싣고 채점 기준과 감점 지점을 함께 보여 주는 샘플입니다.",
+  "pages": [
+   {
+    "heading": "서술형 유형별 샘플과 채점 기준",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "어법 오류 수정",
+      "question": "다음 문장에서 어법상 틀린 부분 하나를 찾아 바르게 고쳐 문장 전체를 다시 쓰시오.\nThe books which she recommended to me was more interesting than I had expected.",
+      "answer": "The books which she recommended to me were more interesting than I had expected.",
+      "explain": "주어의 핵심 명사는 복수인 The books이고 which she recommended to me는 이를 꾸미는 관계사절이므로 동사는 복수형 were가 되어야 한다. 채점 기준: 틀린 부분(was)을 were로 고치면 2점, 문장 전체를 오류 없이 옮겨 쓰면 1점. 고친 곳 외의 철자를 틀리면 1점 감점."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "조건 영작",
+      "question": "다음 우리말과 같은 뜻이 되도록 [조건]에 맞게 영작하시오.\n[조건] ① so ... that 구문을 사용할 것 ② heavy, lift, by myself를 모두 사용할 것 ③ 과거 시제로 쓸 것\n그 상자는 너무 무거워서 나는 혼자 들 수 없었다.",
+      "answer": "The box was so heavy that I could not lift it by myself.",
+      "explain": "so 뒤에 형용사 heavy, that 뒤에 결과절을 쓴다. 과거 시제 조건이므로 was와 could not(couldn't)을 쓴다. 채점 기준: so heavy that 구조 1점, 결과절 주어·동사 could not lift 1점, it by myself 1점. 감점 지점: so와 that 중 하나를 빠뜨리면 구문 점수가 없고, lift 뒤 목적어 it을 빠뜨리면 1점 감점."
+     },
+     {
+      "t": "problem",
+      "no": 3,
+      "label": "문장 전환",
+      "question": "다음 문장을 Because of로 시작하는 문장으로 바꿔 쓰시오.\nBecause it rained heavily, we canceled the picnic.",
+      "answer": "Because of the heavy rain, we canceled the picnic.",
+      "explain": "접속사 Because 뒤의 절(it rained heavily)을 Because of 뒤의 명사구(the heavy rain)로 바꾼다. 부사 heavily는 명사를 꾸미는 형용사 heavy로 바뀐다. 채점 기준: the heavy rain 2점, 나머지 부분 유지 1점. 감점 지점: Because of 뒤에 절(it rained)을 그대로 쓰면 구조 점수가 없다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-high1-common-korean": {
+  "summary": "새로 쓴 비문학 지문 하나에 내용 이해 문항과 보기 적용 문항을 붙여, 지문 근거로 정답을 확정하는 내신형 구성을 보여 줍니다.",
+  "pages": [
+   {
+    "heading": "독서(설명문) 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "내용 일치",
+      "passage": "여론조사는 전체 집단을 일일이 조사하지 않고 일부를 뽑아 전체의 생각을 추정하는 방법이다. 이때 뽑힌 일부를 표본이라 하고, 추정의 대상이 되는 전체를 모집단이라 한다. 표본이 모집단의 특징을 고르게 반영해야 추정을 믿을 수 있다. 가령 평일 낮에 유선전화로만 조사하면 그 시간에 전화를 받기 어려운 사람들의 의견이 빠지기 쉽다.\n이를 피하려고 조사 기관은 연령, 성별, 지역별 비율을 모집단에 맞추어 표본을 구성하거나, 응답 결과에 가중치를 주어 보정한다. 그러나 표본의 크기를 늘린다고 해서 이런 편향이 저절로 사라지는 것은 아니다. 뽑는 방식이 치우쳐 있으면 많이 뽑아도 같은 방향으로 치우친 결과가 쌓일 뿐이다.",
+      "question": "윗글의 내용과 일치하는 것은?",
+      "choices": [
+       "표본은 조사 대상이 되는 전체 집단을 가리킨다.",
+       "표본의 크기를 늘리면 표본의 편향은 저절로 사라진다.",
+       "응답 결과에 가중치를 주는 방법으로 표본의 치우침을 보정할 수 있다.",
+       "유선전화 조사는 모든 연령층의 의견을 고르게 반영한다.",
+       "연령·성별·지역별 비율은 조사가 끝난 뒤에만 맞출 수 있다."
+      ],
+      "answer": "③ 응답 결과에 가중치를 주는 방법으로 표본의 치우침을 보정할 수 있다.",
+      "explain": "근거: 두 번째 문단에서 '응답 결과에 가중치를 주어 보정한다'고 했으므로 ③이 일치한다. ①은 전체 집단이 모집단이며 표본은 그 일부이다. ②는 마지막 문단에서 크기를 늘려도 편향이 저절로 사라지지 않는다고 했다. ④는 전화를 받기 어려운 사람의 의견이 빠진다고 했다. ⑤는 표본을 구성할 때 비율을 맞추는 방법이 먼저 제시되었다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "보기 적용",
+      "question": "윗글을 바탕으로 〈보기〉의 조사 방식을 평가한 내용으로 가장 적절한 것은?\n〈보기〉 어느 기관이 평일 낮 시간에 온라인 설문 사이트에 접속한 사람만을 대상으로 설문을 실시하고, 응답자 수가 매우 많다는 점을 근거로 결과를 전체 시민의 의견이라고 발표했다.",
+      "choices": [
+       "응답자 수가 많으므로 모집단의 특징이 충분히 반영되었다.",
+       "접속 시간대에 따라 빠지는 집단이 생길 수 있어 결과를 전체 의견으로 보기 어렵다.",
+       "온라인 조사는 유선전화 조사와 달리 편향이 발생하지 않는다.",
+       "가중치를 적용하면 응답자 수가 적어도 편향이 모두 사라진다.",
+       "평일 낮 조사는 모든 연령층이 고르게 접속하므로 타당하다."
+      ],
+      "answer": "② 접속 시간대에 따라 빠지는 집단이 생길 수 있어 결과를 전체 의견으로 보기 어렵다.",
+      "explain": "지문은 뽑는 방식이 치우치면 표본이 커도 편향이 쌓인다고 했다. 〈보기〉는 평일 낮에 접속한 사람만 대상으로 했으므로 그 시간에 접속하기 어려운 사람이 빠질 수 있다. 따라서 ②가 적절하다. ①은 크기와 대표성을 혼동했고, ③·⑤는 근거가 없으며, ④는 지문에 가중치가 편향을 모두 없앤다는 내용이 없다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-high1-common-english": {
+  "summary": "새로 쓴 영어 지문 하나에 주제 파악과 빈칸 추론을 묻는 문항을 붙여, 지문 근거로 답을 고르는 내신형 독해 구성을 보여 줍니다.",
+  "pages": [
+   {
+    "heading": "독해 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "요지 파악",
+      "passage": "Many students think that making a mistake means they are not good at a subject. However, a mistake shows exactly where understanding is incomplete. A student who simply erases a wrong answer loses this information. In contrast, a student who writes down why the mistake happened can avoid it the next time. In this way, the same mistake that once caused a loss becomes a useful guide for studying.",
+      "question": "윗글의 요지로 가장 적절한 것은?",
+      "choices": [
+       "Students should avoid difficult subjects to prevent mistakes.",
+       "Mistakes are useful when learners examine why they happened.",
+       "Erasing wrong answers quickly helps students focus.",
+       "Teachers should correct every mistake immediately.",
+       "A good student rarely makes the same type of mistake."
+      ],
+      "answer": "② Mistakes are useful when learners examine why they happened.",
+      "explain": "글은 실수가 이해가 부족한 곳을 보여 주며, 틀린 답을 지우기만 하면 그 정보를 잃고 실수의 원인을 적어 두면 다음에 피할 수 있다고 말한다. 따라서 요지는 ②이다. ①·③은 글의 주장과 반대이거나 언급되지 않았고, ④의 교사 교정과 ⑤의 우수 학생은 글에 나오지 않는다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "빈칸 추론",
+      "question": "윗글의 빈칸에 들어갈 말로 가장 적절한 것은?\nA mistake is most helpful when we ______ it instead of hiding it.",
+      "choices": [
+       "ignore the cause of",
+       "compare the result of",
+       "examine the cause of",
+       "forget the answer to",
+       "repeat the process of"
+      ],
+      "answer": "③ examine the cause of",
+      "explain": "글에서 도움이 되는 학생은 '실수가 왜 일어났는지' 적어 두는 사람이다. 즉 실수를 숨기는 대신 원인을 살펴보는 것이므로 examine the cause of가 알맞다. ignore와 forget은 글의 내용과 반대이다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-math-midterm": {
+  "summary": "중간고사 범위의 기본 개념(곱셈공식, 복소수, 항등식)을 시험 형식의 문항과 단계별 풀이로 점검하는 구성을 보여 줍니다. 범위는 학교 진도에 맞게 확인합니다.",
+  "pages": [
+   {
+    "heading": "중간고사 대비 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "시험 범위는 학교마다 다를 수 있으므로 단원 진도표와 비교해 해당 범위의 문항만 풀어 보세요."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "다항식: 곱셈공식의 변형",
+      "question": "x + y = 4, xy = 1일 때, x³ + y³의 값은?",
+      "choices": [
+       "40",
+       "44",
+       "48",
+       "52",
+       "56"
+      ],
+      "answer": "④ 52",
+      "explain": "곱셈공식의 변형 x³+y³=(x+y)³−3xy(x+y)를 쓴다. 4³−3·1·4=64−12=52이다.",
+      "wrong": [
+       "(x+y)³만 계산하면 64가 되어 보기에 없는 값이 나온다."
+      ]
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "복소수의 사칙연산",
+      "question": "복소수 z = (3 + i)/(1 − i)에 대하여 z²의 실수 부분과 허수 부분의 합은? (단, i² = −1)",
+      "choices": [
+       "−3",
+       "−1",
+       "0",
+       "1",
+       "3"
+      ],
+      "answer": "④ 1",
+      "explain": "분모를 켤레복소수로 유리화하면 z=(3+i)(1+i)/2=(2+4i)/2=1+2i이다. z²=1+4i+4i²=−3+4i이므로 실수 부분 −3과 허수 부분 4의 합은 1이다."
+     },
+     {
+      "t": "problem",
+      "no": 3,
+      "label": "항등식: 수치대입법",
+      "question": "x에 대한 항등식 a(x − 1)² + b(x − 1) + c = x² + 3x + 2에서 a + b + c의 값은?",
+      "choices": [
+       "8",
+       "10",
+       "12",
+       "14",
+       "16"
+      ],
+      "answer": "③ 12",
+      "explain": "양변에 x=2를 대입하면 a+b+c=4+6+2=12이다. 전개해 확인하면 a=1, b=5, c=6으로 합이 12이다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-math-final": {
+  "summary": "기말고사 범위의 이차함수 최대·최소, 경우의 수, 연립부등식을 시험 형식으로 묶어 풀이 순서와 실수하기 쉬운 지점을 보여 주는 샘플입니다.",
+  "pages": [
+   {
+    "heading": "기말고사 대비 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "범위는 학교 진도에 따라 다르므로 단원명이 일치하는 문항부터 풀어 보세요."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "이차함수의 최대·최소 (제한된 범위)",
+      "question": "x의 값의 범위가 0 ≤ x ≤ 3일 때, 이차함수 y = −x² + 4x + k의 최솟값이 1이다. 이 함수의 최댓값은?",
+      "choices": [
+       "3",
+       "4",
+       "5",
+       "6",
+       "7"
+      ],
+      "answer": "③ 5",
+      "explain": "y=−(x−2)²+4+k로 꼭짓점 x=2는 범위 안에 있어 최댓값은 4+k이다. 위로 볼록하므로 꼭짓점에서 먼 x=0에서 최솟값 k를 갖는다. x=3에서는 3+k이므로 더 크다. 최솟값이 1이면 k=1이고 최댓값은 5이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "경우의 수: 합의 법칙",
+      "question": "서로 다른 두 개의 주사위를 동시에 던질 때, 나오는 눈의 수의 합이 5의 배수인 경우의 수는?",
+      "choices": [
+       "6",
+       "7",
+       "8",
+       "9",
+       "10"
+      ],
+      "answer": "② 7",
+      "explain": "합이 5인 경우는 (1,4),(2,3),(3,2),(4,1)의 4가지, 합이 10인 경우는 (4,6),(5,5),(6,4)의 3가지이다. 두 사건은 동시에 일어나지 않으므로 합의 법칙으로 4+3=7이다."
+     },
+     {
+      "t": "problem",
+      "no": 3,
+      "label": "연립부등식",
+      "question": "연립부등식 x² − x − 6 ≤ 0, |x − 1| > 1을 만족시키는 정수 x의 개수는?",
+      "choices": [
+       "2",
+       "3",
+       "4",
+       "5",
+       "6"
+      ],
+      "answer": "② 3",
+      "explain": "x²−x−6=(x−3)(x+2)≤0에서 −2≤x≤3이다. |x−1|>1에서 x<0 또는 x>2이다. 공통부분은 −2≤x<0, 2<x≤3이므로 정수는 −2, −1, 3의 3개이다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-korean-literature-by-work": {
+  "summary": "새로 쓴 짧은 시 한 편을 갈래·화자·정서·표현·주제 틀로 분석한 뒤 감상 문항을 푸는 작품별 분석 구성을 보여 줍니다. 지문은 직접 창작한 것입니다.",
+  "pages": [
+   {
+    "heading": "작품 분석 샘플: 창작 시",
+    "blocks": [
+     {
+      "t": "sheet",
+      "title": "작품 분석 틀 (작성 예시)",
+      "columns": [
+       "항목",
+       "분석 내용"
+      ],
+      "rows": [
+       [
+        "갈래",
+        "현대시(서정시), 2연으로 구성"
+       ],
+       [
+        "화자·상황",
+        "밤 정류장에서 오지 않는 버스를 기다리는 화자"
+       ],
+       [
+        "정서",
+        "쓸쓸함과, 기다림에 익숙해진 체념 섞인 수용"
+       ],
+       [
+        "표현",
+        "가로등의 의인화, 미래를 추측하는 어미 사용"
+       ],
+       [
+        "주제",
+        "반복되는 기다림 속에서 형성된 일상과 정착"
+       ]
+      ],
+      "note": "근거가 되는 시구에 밑줄을 긋고 '표현 → 효과' 순서로 적어 봅니다."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "표현상 특징",
+      "passage": "밤 열한 시, 버스 정류장\n막차를 놓친 가로등이 혼자 켜져 있다\n아무도 내리지 않는 문 앞에\n나는 오래 서서\n식은 손을 주머니에 넣는다\n\n내일도 이 자리에서\n같은 번호가 지나가리라\n그 번호를 기다리는 일이\n어느새 나를\n이 동네에 붙잡아 두었다",
+      "question": "윗글의 표현상 특징으로 가장 적절한 것은?",
+      "choices": [
+       "명령형 어조로 청자의 행동을 촉구한다.",
+       "색채어의 대비로 계절의 변화를 드러낸다.",
+       "사물을 사람처럼 표현하여 정류장의 쓸쓸한 분위기를 강조한다.",
+       "과거와 현재의 장면을 번갈아 배치하여 시간의 역전을 드러낸다.",
+       "같은 후렴구를 반복하여 운율을 형성한다."
+      ],
+      "answer": "③ 사물을 사람처럼 표현하여 정류장의 쓸쓸한 분위기를 강조한다.",
+      "explain": "'막차를 놓친 가로등이 혼자 켜져 있다'에서 가로등을 사람처럼 표현했다. 이 의인화가 비어 있는 정류장의 쓸쓸함을 강조한다. 명령형, 색채어 대비, 시간 역전, 후렴구는 작품에 나타나지 않는다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "화자의 태도",
+      "question": "2연에 드러난 화자의 태도로 가장 적절한 것은?",
+      "choices": [
+       "기다림을 끝내려고 정류장을 떠나기로 결심하고 있다.",
+       "기다림이 반복되는 일상을 자신이 머무는 이유로 받아들이고 있다.",
+       "버스 운행 방식을 바꾸자고 주장하고 있다.",
+       "지난 기다림의 실패를 후회하며 자책하고 있다.",
+       "낯선 동네에 대한 두려움을 숨기고 있다."
+      ],
+      "answer": "② 기다림이 반복되는 일상을 자신이 머무는 이유로 받아들이고 있다.",
+      "explain": "2연에서 화자는 내일도 같은 번호가 지나갈 것이라고 말하며 '기다리는 일이 나를 이 동네에 붙잡아 두었다'고 한다. 반복되는 기다림이 자신을 머물게 한 이유임을 받아들이는 태도이다. 떠나려는 결심, 주장, 자책, 두려움은 시구에서 확인되지 않는다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-grade1-practice": {
+  "summary": "한 문항 안에서 여러 조건을 동시에 따져야 하는 상위권형 수학 문항과 어법 판단 문항을 싣고, 함정 선지를 해설에서 분석하는 구성을 보여 줍니다.",
+  "pages": [
+   {
+    "heading": "상위권 실전 문항 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "조건 3개를 동시에 만족 (판별식·합·곱)",
+      "question": "x에 대한 이차방정식 x² − 2(k − 1)x + k² − 5 = 0이 서로 다른 두 양의 실근을 가질 때, 실수 k의 값의 범위는?",
+      "choices": [
+       "1 < k < 3",
+       "√5 < k < 3",
+       "k > √5",
+       "1 < k < √5",
+       "k < 3"
+      ],
+      "answer": "② √5 < k < 3",
+      "explain": "판별식 D/4=(k−1)²−(k²−5)=−2k+6>0에서 k<3이다. 두 근의 합 2(k−1)>0에서 k>1, 두 근의 곱 k²−5>0에서 k>√5(k<−√5는 k>1과 모순)이다. 세 조건의 공통 범위는 √5<k<3이다.",
+      "wrong": [
+       "① 합의 조건 k>1만 고려하면 곱의 조건을 놓친다.",
+       "③ 판별식 조건 k<3을 빠뜨린 경우이다."
+      ]
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "어법 판단 (도치·가정법 현재)",
+      "question": "다음 중 어법상 틀린 문장은?",
+      "choices": [
+       "The research suggests that sleeping less than six hours affects memory.",
+       "Not only she finished the report, but she also helped her colleagues.",
+       "The committee insisted that the schedule be revised before the next meeting.",
+       "Having been warned about the storm, the sailors stayed in the harbor.",
+       "The tickets, most of which were sold online, ran out within an hour."
+      ],
+      "answer": "② Not only she finished the report, but she also helped her colleagues.",
+      "explain": "②는 부정어 Not only가 문두에 오면 주어와 조동사가 도치되어야 하므로 Not only did she finish the report가 되어야 한다. ③은 insist 뒤 that절에 동사원형(가정법 현재)이 쓰인 맞는 문장이고, ④는 완료 수동 분사구문, ⑤는 most of which 구문으로 모두 맞다."
+     }
+    ]
+   }
+  ]
+ },
+ "hs-performance-assessment": {
+  "summary": "수행평가 계획표 양식과 작성 예시, 점검 순서를 보여 주는 샘플입니다. 문제 풀이가 아니라 직접 작성하는 양식으로 구성됩니다. 예시는 가상의 사례입니다.",
+  "pages": [
+   {
+    "heading": "수행평가 계획 양식과 작성 예시",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "아래 예시는 사용법을 보여 주기 위한 가상의 사례입니다. 실제 평가 영역, 반영 비율, 기한은 학교 안내문에 따라 직접 적어 넣습니다."
+     },
+     {
+      "t": "sheet",
+      "title": "수행평가 계획표 (작성 예시)",
+      "columns": [
+       "과목",
+       "과제",
+       "제출·수행 시기",
+       "평가 기준(안내문 기준)",
+       "내가 할 일",
+       "상태"
+      ],
+      "rows": [
+       [
+        "국어",
+        "모둠 발표",
+        "○월 둘째 주",
+        "내용 구성, 자료 활용",
+        "주제 정하기 → 자료 3개 찾기 → 대본 쓰기",
+        "자료 수집 중"
+       ],
+       [
+        "영어",
+        "에세이 쓰기",
+        "○월 셋째 주",
+        "주제 일관성, 어법",
+        "개요 작성 → 초고 → 어법 점검",
+        "미시작"
+       ],
+       [
+        "수학",
+        "탐구 보고서",
+        "○월 넷째 주",
+        "탐구 과정, 계산의 정확성",
+        "주제 후보 정하기 → 계산 → 결론 정리",
+        "주제 고민 중"
+       ]
+      ],
+      "note": "'상태'는 미시작 / 진행 중 / 완료로 간단히 적고 매주 갱신합니다."
+     },
+     {
+      "t": "steps",
+      "title": "제출 전 점검 순서",
+      "items": [
+       "안내문의 평가 기준과 분량·형식 조건을 다시 읽는다.",
+       "기준 항목마다 내 결과물의 해당 부분에 표시한다.",
+       "빠진 기준이 있으면 보완한다.",
+       "제출 방식과 기한을 확인하고 하루 전에 완성본을 만든다."
+      ]
+     },
+     {
+      "t": "fill",
+      "title": "이번 과제 계획 쓰기",
+      "lines": [
+       "과목 / 과제명",
+       "제출 기한",
+       "평가 기준 3가지",
+       "오늘 할 일 한 가지"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "hs-semester-concept-summary": {
+  "summary": "학기 단원의 핵심 개념을 짧은 요약으로 정리하고 확인 문항으로 점검하는 개념 정리형 구성을 보여 줍니다. 단원 구성은 학교 진도에 맞게 확인합니다.",
+  "pages": [
+   {
+    "heading": "개념 요약과 확인 문항 샘플",
+    "blocks": [
+     {
+      "t": "sheet",
+      "title": "핵심 개념 요약 (공통수학1 예시)",
+      "columns": [
+       "개념",
+       "핵심 정리",
+       "주의할 점"
+      ],
+      "rows": [
+       [
+        "나머지정리",
+        "다항식 f(x)를 x−a로 나눈 나머지는 f(a)",
+        "나누는 식이 x+2이면 a=−2"
+       ],
+       [
+        "인수정리",
+        "f(a)=0이면 f(x)는 x−a로 나누어떨어진다",
+        "역도 성립함을 함께 기억"
+       ],
+       [
+        "복소수의 거듭제곱",
+        "i²=−1, i⁴=1이므로 4개 단위로 반복",
+        "(1+i)²=2i를 활용"
+       ]
+      ]
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "확인 문항 1: 인수정리",
+      "question": "다항식 f(x) = x³ + ax² + 2x − 8이 x − 2로 나누어떨어질 때, 상수 a의 값은?",
+      "choices": [
+       "−2",
+       "−1",
+       "0",
+       "1",
+       "2"
+      ],
+      "answer": "② −1",
+      "explain": "인수정리에 의해 f(2)=0이다. f(2)=8+4a+4−8=4a+4=0이므로 a=−1이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "확인 문항 2: 복소수의 거듭제곱",
+      "question": "(1 + i)⁴의 값은? (단, i² = −1)",
+      "choices": [
+       "−4",
+       "−2",
+       "0",
+       "2",
+       "4"
+      ],
+      "answer": "① −4",
+      "explain": "(1+i)²=1+2i+i²=2i이므로 (1+i)⁴=(2i)²=4i²=−4이다."
+     }
+    ]
+   }
+  ]
+ },
+ "mock-high1-nationwide": {
+  "summary": "고1 전국 단위 연합 모의고사 형식에 익숙해지도록 수학·영어 문항을 시험 형식으로 구성하는 방식을 보여 줍니다. 출제 범위는 해마다 달라질 수 있어 안내문을 확인합니다.",
+  "pages": [
+   {
+    "heading": "고1 모의고사형 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "시험 범위와 문항 수는 해마다 다를 수 있습니다. 이 샘플은 형식을 보여 주는 문항입니다."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "수학",
+      "question": "두 실수 x, y가 x + y = 6, x² + y² = 20을 만족시킬 때, x³ + y³의 값은?",
+      "choices": [
+       "56",
+       "64",
+       "72",
+       "80",
+       "88"
+      ],
+      "answer": "③ 72",
+      "explain": "x²+y²=(x+y)²−2xy에서 20=36−2xy이므로 xy=8이다. x³+y³=(x+y)³−3xy(x+y)=216−3·8·6=72이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "영어: 글의 목적",
+      "passage": "Dear students,\nOur school library is looking for volunteers to read picture books aloud to younger children every Wednesday afternoon. No experience is needed, and we will hold a short practice session before the first reading. If you are interested, please sign up at the library desk by this Friday.\nThank you,\nThe Library Club",
+      "question": "다음 글의 목적으로 가장 적절한 것은?",
+      "choices": [
+       "to announce a change in the library's opening hours",
+       "to ask students to join a volunteer reading program",
+       "to apologize for a late delivery of books",
+       "to introduce a new school cafeteria menu",
+       "to report the results of a science contest"
+      ],
+      "answer": "② to ask students to join a volunteer reading program",
+      "explain": "글은 독서 봉사 프로그램의 참가자를 모집하며 신청 방법을 안내하므로 목적은 ②이다."
+     }
+    ]
+   }
+  ]
+ },
+ "mock-high2-nationwide": {
+  "summary": "고2 전국 단위 연합 모의고사 형식으로 수학과 영어 문항을 구성하고, 선지 판단 근거를 해설에 적는 방식을 보여 줍니다. 출제 범위는 해마다 달라질 수 있습니다.",
+  "pages": [
+   {
+    "heading": "고2 모의고사형 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "수학: 로그의 밑 변환",
+      "question": "log₂ 3 = a일 때, log₃ 12를 a로 나타낸 것은?",
+      "choices": [
+       "(a + 2)/a",
+       "(a + 1)/a",
+       "2a",
+       "a + 2",
+       "2/a"
+      ],
+      "answer": "① (a + 2)/a",
+      "explain": "log₃12=log₂12/log₂3로 밑을 2로 바꾼다. log₂12=log₂(4·3)=2+a이므로 log₃12=(a+2)/a이다. 수치로 확인하면 a≈1.585일 때 log₃12≈2.262이고 (1.585+2)/1.585≈2.262로 일치한다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "영어: 빈칸 추론",
+      "passage": "Scientists often say that a good experiment is one that can fail. If every possible result would support the idea, the experiment tells us nothing new. An experiment becomes valuable only when its outcome could ______ the idea being tested.",
+      "question": "다음 빈칸에 들어갈 말로 가장 적절한 것은?",
+      "choices": [
+       "confirm",
+       "contradict",
+       "ignore",
+       "repeat",
+       "simplify"
+      ],
+      "answer": "② contradict",
+      "explain": "첫 문장에서 좋은 실험은 '실패할 수 있는' 실험이라고 했다. 따라서 결과가 시험하는 생각과 모순될 수 있어야 가치가 있으므로 contradict가 알맞다. confirm은 모든 결과가 생각을 뒷받침하면 새로운 정보가 없다는 내용과 반대이다."
+     }
+    ]
+   }
+  ]
+ },
+ "mock-high3-kice-mock-prep": {
+  "summary": "고3 평가원 모의평가 형식에 익숙해지도록 수학과 국어 독서 문항을 시험 형식으로 구성하는 방식을 보여 줍니다. 출제 범위와 유형은 해마다 달라질 수 있어 최신 공고를 확인해야 합니다.",
+  "pages": [
+   {
+    "heading": "고3 모의평가형 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "출제 범위와 문항 형식은 해마다 달라질 수 있습니다. 샘플은 형식을 연습하기 위한 창작 문항입니다."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "수학: 극값",
+      "question": "함수 f(x) = x³ − 6x² + 9x + 1의 극댓값과 극솟값의 차는?",
+      "choices": [
+       "2",
+       "3",
+       "4",
+       "5",
+       "6"
+      ],
+      "answer": "③ 4",
+      "explain": "f'(x)=3x²−12x+9=3(x−1)(x−3)이다. x=1 앞뒤에서 f'의 부호가 +에서 −로 바뀌어 극대이고 f(1)=5, x=3에서 −에서 +로 바뀌어 극소이고 f(3)=1이다. 차는 5−1=4이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "국어: 독서",
+      "passage": "보험은 많은 사람이 소액의 보험료를 모아 일부에게 발생한 큰 손실을 보상하는 제도이다. 개별 가입자에게 사고가 언제 일어날지는 알 수 없지만, 가입자가 충분히 많으면 전체에서 사고가 일어나는 비율은 일정한 범위에 모인다. 보험사는 이 비율을 근거로 보험료를 정한다.\n그런데 사고 위험이 높은 사람만 가입하려는 경향이 강해지면 가입자 집단의 평균 위험이 높아져 보험료가 올라가고, 위험이 낮은 사람은 가입을 포기하여 집단의 위험이 더 높아지는 악순환이 생길 수 있다.",
+      "question": "윗글의 내용으로 적절한 것은?",
+      "choices": [
+       "보험료는 가입자의 개별 사고 시점을 예측하여 정해진다.",
+       "가입자가 충분히 많으면 사고 발생 비율이 일정한 범위에 모인다.",
+       "위험이 낮은 사람의 가입 포기는 집단의 평균 위험을 낮춘다.",
+       "보험은 손실을 한 사람에게 집중시키는 제도이다.",
+       "사고 위험이 높은 사람의 가입이 늘면 보험료가 내려간다."
+      ],
+      "answer": "② 가입자가 충분히 많으면 사고 발생 비율이 일정한 범위에 모인다.",
+      "explain": "2문장에서 가입자가 충분히 많으면 전체 사고 비율이 일정한 범위에 모인다고 했다. ①은 개별 사고 시점은 알 수 없다고 했고, ③은 위험이 낮은 사람이 빠지면 집단 위험이 더 높아진다고 했다. ④는 손실을 여러 사람이 나누는 제도이고, ⑤는 보험료가 올라간다고 했다."
+     }
+    ]
+   }
+  ]
+ },
+ "mock-subject-mini-mock": {
+  "summary": "한 과목씩 짧게 풀고 시간과 오답 원인을 기록하는 미니 모의고사 구성을 보여 줍니다. 풀이 문항과 기록 양식을 함께 실었습니다.",
+  "pages": [
+   {
+    "heading": "수학 미니 모의고사 샘플",
+    "blocks": [
+     {
+      "t": "note",
+      "text": "한 회차를 풀기 전에 시계를 맞추고, 끝난 뒤 아래 기록표를 채웁니다."
+     },
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "수열: 등차수열의 합",
+      "question": "첫째항이 3이고 공차가 4인 등차수열의 첫째항부터 제10항까지의 합은?",
+      "choices": [
+       "180",
+       "190",
+       "200",
+       "210",
+       "220"
+      ],
+      "answer": "④ 210",
+      "explain": "제10항은 3+9·4=39이다. 합은 10·(3+39)/2=210이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "지수와 로그: 로그의 값",
+      "question": "log₂ 8 + log₃ 9의 값은?",
+      "choices": [
+       "3",
+       "4",
+       "5",
+       "6",
+       "7"
+      ],
+      "answer": "③ 5",
+      "explain": "log₂8=log₂2³=3이고 log₃9=log₃3²=2이므로 두 값의 합은 3+2=5이다."
+     },
+     {
+      "t": "sheet",
+      "title": "회차 기록표 (작성 예시)",
+      "columns": [
+       "문항",
+       "걸린 시간",
+       "결과",
+       "틀린 원인"
+      ],
+      "rows": [
+       [
+        "1번",
+        "1분 30초",
+        "정답",
+        "-"
+       ],
+       [
+        "2번",
+        "2분",
+        "오답",
+        "로그 정의를 잘못 적용 → 개념 재확인"
+       ]
+      ],
+      "note": "원인은 '개념 부족 / 계산 실수 / 문제 해석 오류 / 시간 부족' 중에서 고릅니다."
+     }
+    ]
+   }
+  ]
+ },
+ "mock-unit-diagnostic-test": {
+  "summary": "단원별로 소수 문항을 풀어 약한 유형을 찾아내는 진단 구성을 보여 줍니다. 점수가 아니라 틀린 유형 기준으로 복습 계획을 세웁니다.",
+  "pages": [
+   {
+    "heading": "경우의 수 단원 진단 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "진단 A: 곱의 법칙",
+      "question": "남학생 3명, 여학생 2명 중에서 대표 2명을 뽑을 때, 남학생 1명과 여학생 1명으로 구성하는 방법의 수는?",
+      "choices": [
+       "5",
+       "6",
+       "8",
+       "10",
+       "12"
+      ],
+      "answer": "② 6",
+      "explain": "남학생 1명을 고르는 방법 3가지와 여학생 1명을 고르는 방법 2가지를 곱의 법칙으로 곱하면 3×2=6이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "진단 B: 이웃하는 순열",
+      "question": "5명이 한 줄로 설 때, 두 사람 A, B가 이웃하여 서는 경우의 수는?",
+      "choices": [
+       "24",
+       "36",
+       "48",
+       "72",
+       "120"
+      ],
+      "answer": "③ 48",
+      "explain": "A, B를 한 묶음으로 보면 4개를 일렬로 세우는 4!=24가지이고, 묶음 안에서 A, B의 순서가 2가지이므로 24×2=48이다."
+     },
+     {
+      "t": "sheet",
+      "title": "진단 결과 해석표 (작성 예시)",
+      "columns": [
+       "틀린 유형",
+       "확인할 것",
+       "복습 방법"
+      ],
+      "rows": [
+       [
+        "진단 A",
+        "합의 법칙과 곱의 법칙을 구분했는지",
+        "같은 단계의 선택인지, 따로 일어나는 경우인지 문장으로 적기"
+       ],
+       [
+        "진단 B",
+        "묶음 안의 순서를 곱했는지",
+        "묶음의 경우의 수와 내부 순서를 따로 쓰기"
+       ]
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "mock-final-mock-exam": {
+  "summary": "시험 직전에 실제 시험처럼 풀어 보는 종합 모의고사 구성과, 시험 당일 점검 순서를 보여 줍니다. 범위는 각자의 시험 범위에 맞게 확인합니다.",
+  "pages": [
+   {
+    "heading": "파이널 모의고사 샘플",
+    "blocks": [
+     {
+      "t": "problem",
+      "no": 1,
+      "label": "수학: 이차함수와 직선의 위치 관계",
+      "question": "이차함수 y = x² − 4x + 3의 그래프와 직선 y = x + k가 접할 때, 상수 k의 값은?",
+      "choices": [
+       "−13/4",
+       "−3",
+       "−11/4",
+       "−5/2",
+       "−9/4"
+      ],
+      "answer": "① −13/4",
+      "explain": "x²−4x+3=x+k에서 x²−5x+3−k=0이다. 접하려면 판별식이 0이어야 하므로 25−4(3−k)=13+4k=0이고 k=−13/4이다."
+     },
+     {
+      "t": "problem",
+      "no": 2,
+      "label": "영어: 어법 선택",
+      "question": "다음 글의 (A), (B), (C)의 각 네모 안에서 어법에 맞는 표현을 바르게 짝지은 것은?\nThe idea (A)[that / what] she suggested was practical. The students were encouraged (B)[explain / to explain] their answers. She is the only one of the members who (C)[has / have] visited the site twice.",
+      "choices": [
+       "what - explain - have",
+       "what - to explain - has",
+       "that - explain - has",
+       "that - to explain - has",
+       "that - to explain - have"
+      ],
+      "answer": "④ that - to explain - has",
+      "explain": "(A)는 선행사 The idea를 꾸미는 관계대명사 that이 알맞고, what은 선행사를 포함하므로 쓸 수 없다. (B)는 be encouraged 뒤에 to부정사가 온다. (C)는 선행사가 the only one이므로 단수 동사 has를 쓴다."
+     },
+     {
+      "t": "steps",
+      "title": "시험 당일 점검 순서",
+      "items": [
+       "시험 범위와 준비물을 확인한다.",
+       "오답 노트에서 반복해서 틀린 유형만 훑는다.",
+       "시험 중에는 모르는 문항에 표시하고 넘어간 뒤 마지막에 돌아온다.",
+       "시험 후 틀린 문항의 원인을 한 줄로 기록한다."
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}
