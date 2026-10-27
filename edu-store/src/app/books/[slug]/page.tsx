@@ -98,6 +98,7 @@ export default async function BookPage({ params }: { params: Params }) {
               <p className="mt-3 border-l-2 border-foreground/40 pl-3 text-[13px] leading-relaxed text-foreground/80">주문 제작 상담 가능 교재입니다. 제작 가능 여부와 납품 시점은 상담에서 안내해 드립니다.</p>
             )}
             <ConsultLink slug={p.slug} className="mt-5 w-full" />
+            {sample && <Link href={`/books/${p.slug}/sample`} className="mt-2.5 inline-flex h-11 w-full items-center justify-center border border-dusty-rose/70 bg-card text-[14px] font-semibold text-secondary-foreground hover:bg-blush/50">샘플 페이지 보기</Link>}
             <ol className="mt-6 space-y-1 border-t border-border pt-4 text-[12px] leading-relaxed text-muted-foreground">
               <li>① 상담 신청 → ② 문자·전화 안내</li>
               <li>③ 계좌이체 → ④ 입금 확인 후 PDF 전달</li>

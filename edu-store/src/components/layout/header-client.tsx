@@ -12,8 +12,9 @@ export function HeaderClient() {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [tools, setTools] = useState(false);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => { setOpen(false); setTools(false); }, [pathname]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => void (document.body.style.overflow = "");
@@ -49,7 +50,7 @@ export function HeaderClient() {
       </div>
 
       <nav aria-label="주요 메뉴" className="hidden border-t border-border md:block">
-        <ul className="container-page flex items-center gap-7 overflow-x-auto">
+        <ul className="container-page flex flex-wrap items-center gap-x-5 lg:gap-x-7">
           {NAV.map((n) => (
             <li key={n.href} className="shrink-0">
               <Link
@@ -61,14 +62,18 @@ export function HeaderClient() {
               </Link>
             </li>
           ))}
-        </ul>
-      </nav>
-      <nav aria-label="교재 찾기 도구" className="hidden border-t border-border bg-muted/60 md:block">
-        <ul className="container-page flex items-center gap-6 overflow-x-auto py-2 text-[13px]">
-          <li className="shrink-0 font-display text-[12px] tracking-[0.2em] text-dusty-rose">FIND</li>
-          {TOOLS_NAV.map((n) => (
-            <li key={n.href} className="shrink-0"><Link href={n.href} className={cn("transition-colors hover:text-primary", pathname.startsWith(n.href) ? "font-semibold text-primary" : "text-muted-foreground")}>{n.label}</Link></li>
-          ))}
+          <li className="relative ml-auto shrink-0" onMouseLeave={() => setTools(false)}>
+            <button type="button" aria-expanded={tools} aria-haspopup="true" onClick={() => setTools((v) => !v)} onMouseEnter={() => setTools(true)} className={cn("-mb-px inline-flex items-center gap-1.5 border-b py-3 text-[14px] font-medium transition-colors", TOOLS_NAV.some((n) => pathname.startsWith(n.href)) || tools ? "border-primary text-primary" : "border-transparent text-secondary-foreground hover:text-primary")}>
+              교재 찾기·학습 도구<span aria-hidden className={cn("text-[10px] transition-transform", tools && "rotate-180")}>▾</span>
+            </button>
+            {tools && (
+              <ul className="absolute right-0 top-full z-50 w-64 border border-border bg-card py-2 shadow-[0_18px_30px_-18px_rgba(74,29,40,0.45)]">
+                {TOOLS_NAV.map((n) => (
+                  <li key={n.href}><Link href={n.href} onClick={() => setTools(false)} className={cn("block px-5 py-2.5 text-[14px] hover:bg-light-pink hover:text-primary", pathname.startsWith(n.href) ? "font-semibold text-primary" : "text-foreground")}>{n.label}</Link></li>
+                ))}
+              </ul>
+            )}
+          </li>
         </ul>
       </nav>
 

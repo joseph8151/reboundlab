@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { areaLabel, deliveryLabel, difficultyLabel, kindLabel, levelsText } from "@/lib/catalog";
 import { collectionLabel } from "@/lib/catalog-guides";
+import { getSample } from "@/lib/samples";
 import { CONSULT_COPY } from "@/lib/consult";
 import { effectivePrice, type Product } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
@@ -65,7 +66,8 @@ export function ShelfItem({ product, priority, className }: { product: Product; 
           <FeaturedTag rank={product.featuredRank} />
           <DeliveryTag type={product.deliveryType} />
         </div>
-        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2.5 inline-block max-md:flex max-md:h-10 max-md:w-full max-md:items-center max-md:justify-center max-md:border max-md:border-dusty-rose/70 max-md:bg-card max-md:no-underline" />
+        {getSample(product.slug) && <Link href={`/books/${product.slug}/sample`} className="mt-2 inline-block text-[12.5px] text-muted-foreground underline decoration-border underline-offset-4 hover:text-primary max-md:flex max-md:h-9 max-md:items-center max-md:justify-center">샘플 보기</Link>}
+        <ConsultLink slug={product.slug} label="구매 상담 신청" variant="text" className="mt-2 inline-block max-md:flex max-md:h-10 max-md:w-full max-md:items-center max-md:justify-center max-md:border max-md:border-dusty-rose/70 max-md:bg-card max-md:no-underline" />
       </div>
     </article>
   );
@@ -90,6 +92,7 @@ export function BookRow({ product, className }: { product: Product; className?: 
         <Price product={product} />
         <FeaturedTag rank={product.featuredRank} />
         <DeliveryTag type={product.deliveryType} />
+        {getSample(product.slug) && <Link href={`/books/${product.slug}/sample`} className="text-[12.5px] text-muted-foreground underline decoration-border underline-offset-4 hover:text-primary">샘플 보기</Link>}
         <ConsultLink slug={product.slug} label="구매 상담 신청" variant="line" className="max-sm:w-full" />
       </div>
     </article>

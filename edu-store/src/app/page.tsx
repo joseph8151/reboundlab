@@ -70,7 +70,7 @@ export default async function HomePage() {
       <section aria-label="구매 절차" className="border-b border-border bg-card">
         <ol className="container-page grid grid-cols-2 divide-x divide-y divide-border md:grid-cols-5 md:divide-y-0">
           {[["01", "교재 선택", "진단·검색으로 찾기"], ["02", "상담 신청", "연락처와 문의 남기기"], ["03", "문자·전화 안내", "구성과 일정 확인"], ["04", "계좌이체", "안내받은 계좌로 입금"], ["05", "PDF 전달", "입금 확인 후 전달"]].map(([n, t, d], i) => (
-            <li key={n} className={"px-4 py-4 odd:pl-0 md:py-5 md:odd:pl-4 md:first:pl-0 " + (i === 4 ? "col-span-2 md:col-span-1" : "")}>
+            <li key={n} className={"px-4 py-4 odd:pl-0 md:py-5 md:pl-4 md:first:pl-0 " + (i === 4 ? "col-span-2 md:col-span-1" : "")}>
               <span className="font-display text-[15px] text-dusty-rose">{n}</span>
               <p className="mt-0.5 text-[14px] font-semibold text-secondary-foreground">{t}</p>
               <p className="mt-0.5 text-[12px] leading-snug text-muted-foreground">{d}</p>
