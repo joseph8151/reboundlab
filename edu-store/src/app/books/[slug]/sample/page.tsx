@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SampleSheet } from "@/components/books/sample-sheet";
+import { SampleCover, SampleSheet } from "@/components/books/sample-sheet";
 import { PrintButton } from "@/components/books/print-button";
 import { ConsultLink } from "@/components/books/parts";
 import { getProductBySlug } from "@/lib/products";
@@ -30,7 +30,8 @@ export default async function SamplePage({ params }: { params: Params }) {
         <div className="mt-5 flex flex-wrap gap-3"><PrintButton /><ConsultLink slug={p.slug} /></div>
       </div>
       <div className="container-page mt-8 max-w-3xl space-y-8 print:mt-0 print:max-w-none print:space-y-0 print:p-0">
-        {sample.pages.map((pg, i) => <SampleSheet key={i} productTitle={p.title} page={pg} no={i + 1} total={sample.pages.length} />)}
+        <SampleCover product={p} summary={sample.summary} />
+        {sample.pages.map((pg, i) => <SampleSheet key={i} product={p} page={pg} no={i + 2} />)}
       </div>
     </div>
   );

@@ -16,7 +16,11 @@ export type SampleBlock =
   | { t: "sheet"; title: string; columns?: string[]; rows: string[][]; note?: string }
   | { t: "steps"; title: string; items: string[] }
   | { t: "fill"; title: string; lines: string[] }
-  | { t: "note"; text: string };
+  | { t: "note"; text: string }
+  /** 직독직해형 본문: 문장마다 영어(또는 국어 본문)와 번역을 짝지어 보여 줍니다. en 안의 {{단어|태그}} 는 굵게 표시되고 [태그]가 붙습니다. */
+  | { t: "read"; no: number; question: string; sentences: { en: string; ko: string; lead?: string }[]; note?: string }
+  /** 지문 분석: 본문·글의 구성·제목·주제·요지·요약과 분석 요약을 ■ 항목으로 보여 줍니다. */
+  | { t: "analysis"; sections: { h: string; en?: string; ko?: string; lines?: string[] }[]; summary?: { structure?: string; theme?: string } };
 
 export type SamplePage = { heading: string; blocks: SampleBlock[] };
 export type Sample = { summary: string; pages: SamplePage[] };
