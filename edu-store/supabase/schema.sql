@@ -292,3 +292,17 @@ on conflict (id) do update set public = false;
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('product-assets', 'product-assets', true, 31457280, array['image/png','image/jpeg','image/webp','application/pdf'])
 on conflict (id) do update set public = true, allowed_mime_types = excluded.allowed_mime_types, file_size_limit = excluded.file_size_limit;
+
+-- ── 수능 영어 지문 분석 시스템 ─────────────────────────────────────
+-- 분석 전체(A~H·변형문제)는 data(jsonb) 하나에 저장합니다. 공개는 approved/on_sale만.
+create table if not exists public.analysis_passages (
+  slug       text primary key,
+  title      text not null,
+  status     text not null default 'draft' check (status in ('draft','in_review','approved','on_sale')),
+  data       jsonb not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.analysis_passages enable row level security;
+drop policy if exists "analysis public read approved" on public.analysis_passages;
+create policy "analysis public read approved" on public.analysis_passages
+  for select using (status in ('approved','on_sale'));

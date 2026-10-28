@@ -16,6 +16,7 @@ export const TOOLS_NAV = [
   { href: "/custom", label: "MELISSA CUSTOM BOOK" },
   { href: "/parents", label: "우리 아이 교재 찾기" },
   { href: "/study", label: "무료 학습 도구" },
+  { href: "/analysis", label: "수능 영어 지문 분석" },
 ] as const;
 
 export const SUBJECT_LINKS = [

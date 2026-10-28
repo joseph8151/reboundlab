@@ -41,6 +41,7 @@ export function SiteFooter() {
             <li><Link className={link} href="/custom">MELISSA CUSTOM BOOK</Link></li>
             <li><Link className={link} href="/schedule">학습 일정 만들기</Link></li>
             <li><Link className={link} href="/study">무료 학습 도구</Link></li>
+            <li><Link className={link} href="/analysis">수능 영어 지문 분석</Link></li>
           </ul>
         </div>
         <div>

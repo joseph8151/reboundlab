@@ -29,6 +29,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
     <>
       <div className="flex items-end justify-between gap-4">
         <div><h1 className="text-[28px] font-bold tracking-[-0.03em]">관리자</h1><p className="mt-1 text-[13px] text-muted-foreground">{admin.email}</p></div>
+        <Link href="/admin/analysis" className="border-b border-foreground pb-0.5 text-[14px] font-semibold">지문 분석</Link>
         <Link href="/admin/products/new" className="border-b border-foreground pb-0.5 text-[14px] font-semibold">교재 등록</Link>
       </div>
 
