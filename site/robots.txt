@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin
-Sitemap: https://afterline.site/sitemap.xml
+Sitemap: https://www.afterline.site/sitemap.xml

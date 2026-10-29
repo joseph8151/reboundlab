@@ -16,9 +16,10 @@ from pathlib import Path
 
 from columns_data import ALL as COLUMNS, CATEGORIES
 from legal_data import PRIVACY, TERMS
+import guide_data as G
 
 ROOT = Path(__file__).parent
-DOMAIN = "https://afterline.site"
+DOMAIN = "https://www.afterline.site"
 CAT = dict(CATEGORIES)
 
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
@@ -26,9 +27,35 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "font-family='Georgia,serif' font-size='34' fill='%23F6F3EE'%3EA%3C/text%3E%3C/svg%3E")
 
 
-def head(title, desc, p, path, active="", image=None, robots=None):
+# 검색 키워드: 화면에 나열하지 않고 제목, 설명, 구조화 데이터에만 자연스럽게 씁니다.
+CAT_KW = {
+    "block": ("차단 후 재회", ["차단 후 재회", "카톡 차단 재회", "차단 해제 후 연락", "차단 풀렸는데 연락 없음", "인스타 차단 재회"]),
+    "contact": ("이별 후 연락", ["이별 후 연락", "헤어진 후 연락", "먼저 연락해도 될까", "전남친 연락", "전여친 연락"]),
+    "gap": ("재회 공백기", ["재회 공백기", "공백기 기간", "재회 한달 공백기", "헤어진 후 기다리기", "공백기 연락"]),
+    "last-talk": ("마지막 카톡 분석", ["마지막 카톡 분석", "이별 마지막 대화", "카톡 답장 분석", "이별 카톡 분석", "읽씹 재회"]),
+    "sns": ("SNS와 재회 신호", ["인스타 스토리 재회", "전남친 스토리 보는 이유", "전여친 스토리 보는 이유", "재회 신호", "SNS 재회"]),
+    "reconnect": ("재접촉 시기", ["재접촉 시기", "재회 첫 연락", "재회 첫 메시지", "헤어진 후 첫 연락", "재접촉 방법"]),
+    "repeat": ("반복 이별과 재회", ["반복 이별", "반복 재회", "세번째 재회", "헤어졌다 다시 만남", "재회 후 다시 이별"]),
+    "after-reunion": ("재회 후 관계", ["재회 후 관계", "재회 후 관계 회복", "재회 후 같은 문제", "재회 후 연락 문제", "재회 후 상담"]),
+    "first-days": ("이별 직후 행동", ["이별 직후 행동", "헤어진 직후 해야 할 일", "이별 직후 연락 금지", "이별 후 매달림", "이별 후 사과"]),
+}
+BRAND_KW = ["애프터라인", "AFTERLINE", "재회상담", "이별상담"]
+TODAY = __import__("datetime").date.today().isoformat()
+ORG = {"@type": "ProfessionalService", "@id": "https://www.afterline.site/#org", "name": "AFTERLINE",
+       "alternateName": ["애프터라인", "애프터라인 재회상담"], "url": "https://www.afterline.site/"}
+
+
+def ld(obj):
+    return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def head(title, desc, p, path, active="", image=None, robots=None, keywords=None, jsonld=None):
     meta = f'<meta name="robots" content="{robots}">' if robots else f'<link rel="canonical" href="{DOMAIN}/{path}">'
-    og_img = f'\n<meta property="og:image" content="{DOMAIN}/{image}">' if image else ""
+    if keywords:
+        meta += f'\n<meta name="keywords" content="{escape(", ".join(keywords))}">'
+    if jsonld:
+        meta += "\n" + "\n".join(ld(x) for x in jsonld)
+    og_img = f'\n<meta property="og:image" content="{DOMAIN}/{image or "images/hero.webp"}">\n<meta name="twitter:card" content="summary_large_image">' 
     cur = lambda k: ' aria-current="page"' if k == active else ""  # noqa: E731
     return f"""<!doctype html>
 <html lang="ko">
@@ -39,7 +66,9 @@ def head(title, desc, p, path, active="", image=None, robots=None):
 <meta name="description" content="{desc}">
 {meta}
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="AFTERLINE">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="AFTERLINE 애프터라인">
+<meta property="og:url" content="{DOMAIN}/{path}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">{og_img}
 <link rel="icon" href="{FAVICON}">
@@ -93,11 +122,13 @@ def foot(p, extra_js=""):
         <li><a href="{p}index.html#services">Consultation</a></li>
         <li><a href="{p}index.html#approach">Approach</a></li>
         <li><a href="{p}column/index.html">Column</a></li>
+        <li><a href="{p}guide/index.html">재회상담 안내</a></li>
         <li><a href="{p}privacy.html">개인정보처리방침</a></li>
         <li><a href="{p}terms.html">이용약관 및 환불 규정</a></li>
       </ul>
     </div>
     <div class="legal">
+      <p>애프터라인(AFTERLINE)은 재회상담, 이별상담, 재접촉 상담, 카톡 대화 분석을 전화로 진행하는 관계 컨설팅입니다.</p>
       <p>AFTERLINE은 재회를 보장하지 않으며, 상대의 차단과 거절 의사를 존중합니다.</p>
       <p>[상호] · [대표자] · [사업자등록번호] · [통신판매업 신고번호] · [문의 연락처]</p>
     </div>
@@ -203,8 +234,21 @@ def column_page(c):
   </section>
 </main>
 """
-    title = f'{escape(c["title"])} | AFTERLINE Column'
-    return head(title, escape(c["lead"]), "../", f'column/{c["slug"]}.html', "column", c["image"]) + html + foot("../")
+    kw_label, kws = CAT_KW[c["cat"]]
+    title = f'{escape(c["title"])} | {kw_label} · AFTERLINE'
+    url = f'{DOMAIN}/column/{c["slug"]}.html'
+    article = {"@context": "https://schema.org", "@type": "Article", "headline": c["title"], "description": c["lead"],
+               "keywords": ", ".join(kws), "articleSection": CAT[c["cat"]], "inLanguage": "ko-KR",
+               "mainEntityOfPage": url, "image": f"{DOMAIN}/images/hero.webp",
+               "author": {"@type": "Organization", "name": "AFTERLINE"},
+               "publisher": {"@type": "Organization", "name": "AFTERLINE", "alternateName": "애프터라인"},
+               "dateModified": TODAY}
+    crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "AFTERLINE", "item": f"{DOMAIN}/"},
+        {"@type": "ListItem", "position": 2, "name": "Column", "item": f"{DOMAIN}/column/index.html"},
+        {"@type": "ListItem", "position": 3, "name": c["title"], "item": url}]}
+    return head(title, escape(c["lead"]), "../", f'column/{c["slug"]}.html', "column", c["image"],
+                keywords=kws + ["재회상담", "애프터라인"], jsonld=[article, crumbs]) + html + foot("../")
 
 
 FILTER_JS = """
@@ -248,8 +292,9 @@ def column_index():
   </section>
 </main>
 """
-    return head("Column | AFTERLINE", "이별 이후 자주 마주치는 장면을 하나씩 기록하는 AFTERLINE의 칼럼입니다.",
-                "../", "column/index.html", "column", "images/hero.webp") + html + foot("../", FILTER_JS)
+    return head("재회·이별 칼럼 | AFTERLINE Column", "차단 후 재회, 이별 후 연락, 재회 공백기, 마지막 카톡 분석처럼 이별 이후 자주 마주치는 장면을 하나씩 기록하는 애프터라인(AFTERLINE)의 칼럼입니다.",
+                "../", "column/index.html", "column", "images/hero.webp",
+                keywords=["재회 칼럼", "이별 후 연락", "차단 후 재회", "재회 공백기", "카톡 분석", "전남친 재회", "전여친 재회", "애프터라인"]) + html + foot("../", FILTER_JS)
 
 
 def doc_page(path, title, lead, sections):
@@ -298,6 +343,46 @@ def not_found_page():
     return head("페이지를 찾을 수 없습니다 | AFTERLINE", "요청하신 페이지를 찾을 수 없습니다.", "/", "404.html", robots="noindex") + html + foot("/")
 
 
+def guide_page():
+    body = "\n        ".join(render(x) for x in G.BODY)
+    faq = "".join(f'<details><summary>{escape(q)}</summary><p class="answer">{escape(a)}</p></details>' for q, a in G.FAQ)
+    html = f"""
+<main>
+  <section class="article-head">
+    <div class="wrap">
+      <p class="crumbs"><a href="../index.html">AFTERLINE</a><span aria-hidden="true">/</span><span>재회상담 안내</span></p>
+      <h1>{escape(G.TITLE)}</h1>
+      <p class="lead">{escape(G.LEAD)}</p>
+    </div>
+  </section>
+  <section class="article-body">
+    <div class="wrap">
+      <article class="prose">
+        {body}
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">{faq}</div>
+      </article>
+      <div class="article-end">
+        <p>지금 필요한 건 더 많은 연락이 아니라, 다음 행동을 정하는 일일 수 있습니다.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="../index.html#apply">상담 시작하기 <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="../check/index.html">재회 가능성 진단</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+"""
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in G.FAQ]}
+    service = {"@context": "https://schema.org", "@type": "Service", "name": "재회상담 · 이별상담",
+               "serviceType": ["재회상담", "이별상담", "재접촉 상담", "카톡 대화 분석", "재회 후 관계 상담"],
+               "provider": ORG, "areaServed": "KR", "availableChannel": {"@type": "ServiceChannel", "name": "전화상담"},
+               "description": G.META_DESC}
+    return head(G.META_TITLE, G.META_DESC, "../", "guide/index.html", "", "images/hero.webp",
+                keywords=G.KEYWORDS, jsonld=[service, faq_ld]) + html + foot("../")
+
+
 def check_page():
     cols = {c["slug"]: [c["title"], CAT[c["cat"]]] for c in COLUMNS}
     data = json.dumps(cols, ensure_ascii=False).replace("</", "<\\/")
@@ -314,15 +399,21 @@ def check_page():
 <script type="application/json" id="col-data">{data}</script>
 <script src="check.js" defer></script>
 """
-    page = head("재회 가능성 진단 | AFTERLINE", "몇 가지 질문을 통해 현재 관계의 상태를 먼저 확인합니다. 미래 예측이나 재회 보장이 아닌, 현재 재접촉 여건을 정리하는 자가진단입니다.",
-                "../", "check/index.html", "check", "images/hero.webp") + html + foot("../")
+    app = {"@context": "https://schema.org", "@type": "WebApplication", "name": "재회 가능성 진단", "alternateName": "Relationship Status Check",
+           "applicationCategory": "LifestyleApplication", "operatingSystem": "Web", "inLanguage": "ko-KR",
+           "url": f"{DOMAIN}/check/index.html", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"},
+           "provider": {"@type": "Organization", "name": "AFTERLINE"}}
+    page = head("재회 가능성 진단 · 무료 자가진단 | AFTERLINE 애프터라인", "28개 질문으로 이별 원인, 마지막 대화, 차단 여부, 이별 후 연락 흐름을 보고 현재 재접촉 여건을 정리하는 무료 자가진단입니다. 재회 확률 예측이 아닌 참고 지표이며, 개인정보 없이 진행합니다.",
+                "../", "check/index.html", "check", "images/hero.webp",
+                keywords=["재회 가능성 진단", "재회 가능성 테스트", "재회 가능성", "재회 가능할까", "다시 만날 가능성", "재접촉 시기", "연락할지 기다릴지", "애프터라인"],
+                jsonld=[app]) + html + foot("../")
     # 진단 화면에서는 하단 고정 상담 버튼을 숨깁니다(진행 버튼과 겹치지 않도록).
     return page.replace('<div class="bottom-bar" id="bottom-bar">', '<div class="bottom-bar" id="bottom-bar" hidden>')
 
 
 def sitemap():
-    urls = ["", "check/index.html", "column/index.html", "privacy.html", "terms.html"] + [f'column/{c["slug"]}.html' for c in COLUMNS]
-    rows = "\n".join(f"  <url><loc>{DOMAIN}/{u}</loc></url>" for u in urls)
+    urls = ["", "guide/index.html", "check/index.html", "column/index.html", "privacy.html", "terms.html"] + [f'column/{c["slug"]}.html' for c in COLUMNS]
+    rows = "\n".join(f"  <url><loc>{DOMAIN}/{u}</loc><lastmod>{TODAY}</lastmod></url>" for u in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}\n</urlset>\n'
 
 
@@ -400,6 +491,8 @@ if __name__ == "__main__":
     (ROOT / "terms.html").write_text(doc_page(
         "terms.html", "이용약관 및 환불 규정", "상담 신청부터 결제, 일정 변경, 환불까지의 기준입니다.", TERMS), encoding="utf-8")
     (ROOT / "404.html").write_text(not_found_page(), encoding="utf-8")
+    (ROOT / "guide").mkdir(exist_ok=True)
+    (ROOT / "guide" / "index.html").write_text(guide_page(), encoding="utf-8")
     (ROOT / "check").mkdir(exist_ok=True)
     (ROOT / "check" / "index.html").write_text(check_page(), encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")

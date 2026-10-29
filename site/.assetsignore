@@ -4,3 +4,4 @@ columns_data.py
 legal_data.py
 __pycache__
 .assetsignore
+guide_data.py

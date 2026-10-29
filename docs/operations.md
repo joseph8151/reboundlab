@@ -153,3 +153,23 @@
 - 계산은 브라우저에서만 합니다. 답변은 서버로 보내지 않고, 진행 중에만 브라우저(localStorage)에 임시 저장합니다.
 - 점수 축 5개(관계 기반 15%, 연락의 여지 15%, 현재 반응 25%, 변화 가능성 25%, 재접촉 준비도 20%)를 0~100으로 정규화해 합칩니다. SNS는 ±3점까지만 반영하고, 최종 지표는 95를 넘지 않습니다.
 - 반드시 지키는 조건: 안전 문제 → 점수 없이 안전 안내만 / 명확한 연락 거부 → 24 이하, WAIT / 반복 연락과 무응답 → 44 이하, WAIT / 상대의 새 연애 → 44 이하(거절 신호가 있으면 24 이하), 개입 전략 제안 없음
+
+---
+
+## 6. 검색 노출(SEO)
+
+키워드는 화면에 나열하지 않습니다. 검색엔진이 읽는 곳과 실제 문장 안에만 씁니다.
+
+| 위치 | 내용 |
+|---|---|
+| 페이지 제목·설명 | 홈 "재회상담 · 이별상담 \| AFTERLINE 애프터라인", 칼럼은 카테고리 키워드(예: 차단 후 재회) 포함 |
+| 구조화 데이터(JSON-LD) | 홈: 상담 서비스(ProfessionalService)·웹사이트·FAQ / 칼럼: Article·Breadcrumb / 안내 페이지: Service·FAQ / 진단: WebApplication |
+| 재회상담 안내 (`/guide/`) | 비용, 전화상담, 후기, 남녀, 오래된 이별 등 자주 찾는 질문에 답하는 페이지. 원고: `site/guide_data.py` |
+| 칼럼 키워드 | `site/build.py`의 `CAT_KW` (카테고리별 5개) |
+| 대표 주소 | `https://www.afterline.site` (`build.py`의 `DOMAIN`) |
+| 사이트맵 | `site/sitemap.xml` (빌드할 때 날짜 갱신) |
+
+**등록할 곳 (직접 해야 함)**
+1. Google Search Console: `https://www.afterline.site` 속성 추가 → 소유 확인 → Sitemaps에 `sitemap.xml` 제출
+2. 네이버 서치어드바이저: 사이트 등록 → 소유 확인 → 요청 > 사이트맵 제출에 `https://www.afterline.site/sitemap.xml`
+3. 소유 확인에서 HTML 태그 방식을 고르면 받은 `<meta ...>` 코드를 알려 주세요. `site/index.html`과 `build.py`에 넣겠습니다.
