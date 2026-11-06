@@ -8,10 +8,11 @@ import { isPublicStatus, type AnalysisPassage } from "./types";
  * 저장소: Supabase가 연결되면 analysis_passages 테이블, 아니면 코드에 들어 있는 샘플만 사용합니다.
  * 공개 화면은 승인(approved)·판매 중(on_sale) 상태만 보여 줍니다. (미연결 데모는 미리보기로 전부 표시)
  */
+const SHOW_SAMPLES = process.env.SHOW_SAMPLES === "1";
 export const analysisDemoMode = () => !isSupabaseConfigured();
 
 export async function listPassages(opts: { all?: boolean } = {}): Promise<AnalysisPassage[]> {
-  if (analysisDemoMode()) return [SAMPLE_PASSAGE];
+  if (analysisDemoMode()) return opts.all || SHOW_SAMPLES ? [SAMPLE_PASSAGE] : [];
   let q = createAdminClient().from("analysis_passages").select("data").order("updated_at", { ascending: false });
   if (!opts.all) q = q.in("status", ["approved", "on_sale"]);
   const { data } = await q;
@@ -19,7 +20,7 @@ export async function listPassages(opts: { all?: boolean } = {}): Promise<Analys
 }
 
 export async function getPassage(slug: string, opts: { all?: boolean } = {}): Promise<AnalysisPassage | null> {
-  if (analysisDemoMode()) return slug === SAMPLE_PASSAGE.slug ? SAMPLE_PASSAGE : null;
+  if (analysisDemoMode()) return slug === SAMPLE_PASSAGE.slug && (opts.all || SHOW_SAMPLES) ? SAMPLE_PASSAGE : null;
   const { data } = await createAdminClient().from("analysis_passages").select("data").eq("slug", slug).maybeSingle();
   const p = (data?.data as AnalysisPassage | undefined) ?? null;
   if (!p) return null;

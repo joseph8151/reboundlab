@@ -27,5 +27,7 @@ export type Sample = { summary: string; pages: SamplePage[] };
 
 const ALL = { ...csatKorean, ...csatMath, ...csatEnglish, ...highMock, ...middle, ...plannerSelf, ...method, ...plannerParent } as unknown as Record<string, Sample>;
 
-export const getSample = (slug: string): Sample | null => ALL[slug] ?? null;
+/** 샘플 공개 스위치: 데이터는 그대로 두고, 켜면(SHOW_SAMPLES=1) 링크·페이지가 다시 나타납니다. */
+const SHOW = process.env.SHOW_SAMPLES === "1";
+export const getSample = (slug: string): Sample | null => (SHOW ? ALL[slug] ?? null : null);
 export const sampleSlugs = () => Object.keys(ALL);
