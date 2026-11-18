@@ -35,7 +35,7 @@ export function HeaderClient() {
         <button type="button" className="-ml-2 min-h-11 px-2 text-[14px] font-medium md:hidden" aria-expanded={open} aria-controls="mobile-panel" onClick={() => setOpen(true)}>
           메뉴
         </button>
-        <Link href="/" aria-label="MELISSA EDU 홈" className="max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
+        <Link href="/" aria-label="박선생 홈" className="max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2">
           <Wordmark size="md" className="max-md:[&>span:first-child]:text-[18px]" />
         </Link>
 

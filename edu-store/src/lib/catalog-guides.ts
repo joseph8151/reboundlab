@@ -8,10 +8,10 @@ import type { LevelId } from "./catalog";
 import type { SeedProduct } from "./catalog-plan";
 
 export const COLLECTIONS = [
-  { id: "self-study", label: "자기주도학습", series: "MELISSA SELF STUDY", skuCode: "SELF" },
-  { id: "study-method", label: "공부법·학습 전략", series: "MELISSA STUDY METHOD", skuCode: "METH" },
-  { id: "study-planner", label: "학습 플래너·시험 관리", series: "MELISSA STUDY PLANNER", skuCode: "PLAN" },
-  { id: "parent-guide", label: "학부모 가이드", series: "MELISSA PARENT GUIDE", skuCode: "PARN" },
+  { id: "self-study", label: "자기주도학습", series: "박선생 SELF STUDY", skuCode: "SELF" },
+  { id: "study-method", label: "공부법·학습 전략", series: "박선생 STUDY METHOD", skuCode: "METH" },
+  { id: "study-planner", label: "학습 플래너·시험 관리", series: "박선생 STUDY PLANNER", skuCode: "PLAN" },
+  { id: "parent-guide", label: "학부모 가이드", series: "박선생 PARENT GUIDE", skuCode: "PARN" },
 ] as const;
 export type CollectionId = (typeof COLLECTIONS)[number]["id"];
 export const collectionLabel = (id: string | null | undefined) => COLLECTIONS.find((c) => c.id === id)?.label ?? "";
@@ -33,7 +33,7 @@ const make = (collection: CollectionId, code: string, rows: G[]): SeedProduct[] 
     summary: r.summary, description: r.description, track: "common", area: "common", levels: r.levels, kind: "material",
     price: r.price, deliveryType: "custom", weakTags: r.tags ?? [], goals: r.goals, includes: r.includes, method: r.method,
     targets: r.targets, keywords: r.keywords, collection,
-    seoTitle: r.title, seoDescription: `${r.summary} 멜리사 에듀(MELISSA EDU) ${collectionSeries(collection)} 시리즈. 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`,
+    seoTitle: r.title, seoDescription: `${r.summary} 박선생(박선생) ${collectionSeries(collection)} 시리즈. 상담 후 계좌이체로 구매하며 PDF로 전달됩니다.`,
   }));
 
 // ── ① 자기주도학습 (8) ──────────────────────────────────────

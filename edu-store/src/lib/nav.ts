@@ -13,7 +13,7 @@ export const NAV = [
 export const TOOLS_NAV = [
   { href: "/diagnosis", label: "3분 학습 진단" },
   { href: "/exam", label: "시험이 얼마 남지 않았다면" },
-  { href: "/custom", label: "MELISSA CUSTOM BOOK" },
+  { href: "/custom", label: "박선생 CUSTOM BOOK" },
   { href: "/parents", label: "우리 아이 교재 찾기" },
   { href: "/study", label: "무료 학습 도구" },
 ] as const;

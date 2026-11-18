@@ -172,7 +172,7 @@ export function ConsultForm({ mode, options, initialSlugs, endpoint = CONSULT_EN
       <div role="status" className="border border-blush bg-blush/60 p-6 sm:p-8">
         <CircleCheckBig className="size-6 text-success" aria-hidden />
         <p className="mt-3 text-[19px] font-semibold leading-snug">교재 상담 신청이 접수되었습니다.</p>
-        <p className="mt-2 text-[14px] leading-relaxed text-foreground/80">멜리사 에듀 담당자가 남겨주신 연락처로 교재 구성과 계좌이체 방법을 안내해 드리겠습니다.</p>
+        <p className="mt-2 text-[14px] leading-relaxed text-foreground/80">박선생 담당자가 남겨주신 연락처로 교재 구성과 계좌이체 방법을 안내해 드리겠습니다.</p>
         <div className="mt-6 flex flex-wrap gap-3">
           <a href="/books" className="inline-flex h-11 items-center bg-primary px-5 text-[14px] font-semibold text-primary-foreground hover:bg-primary-hover">다른 교재 둘러보기</a>
           <a href="/" className="inline-flex h-11 items-center border border-dusty-rose/70 bg-card px-5 text-[14px] font-semibold text-secondary-foreground hover:bg-blush/50">홈페이지로 돌아가기</a>

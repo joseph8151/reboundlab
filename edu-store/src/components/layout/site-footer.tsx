@@ -18,7 +18,7 @@ export function SiteFooter() {
         <div>
           <Wordmark size="lg" korean={false} className="[&_*]:text-background" />
           <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-background/75">
-            수능과 학교 내신을 위한 전문 교재를 PDF로 펴내는 교육 출판 브랜드, 멜리사 에듀입니다. 구매는 상담 후 계좌이체로 진행됩니다.
+            수능과 학교 내신을 위한 전문 교재를 PDF로 펴내는 교육 출판 브랜드, 박선생입니다. 구매는 상담 후 계좌이체로 진행됩니다.
           </p>
         </div>
         <div>
@@ -38,7 +38,7 @@ export function SiteFooter() {
           <ul className={`mt-3 ${col}`}>
             <li><Link className={link} href="/diagnosis">3분 학습 진단</Link></li>
             <li><Link className={link} href="/exam">시험이 얼마 남지 않았다면</Link></li>
-            <li><Link className={link} href="/custom">MELISSA CUSTOM BOOK</Link></li>
+            <li><Link className={link} href="/custom">박선생 CUSTOM BOOK</Link></li>
             <li><Link className={link} href="/schedule">학습 일정 만들기</Link></li>
             <li><Link className={link} href="/study">무료 학습 도구</Link></li>
           </ul>

@@ -7,23 +7,23 @@ import { siteConfig } from "@/lib/site";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 const { aiTutor } = siteConfig;
-const description = "영어 지문의 핵심 내용, 문장별 해석, 어휘, 문법, 글의 구조, 정답 근거를 정리해 주는 AI 멜리사 학습 도우미입니다.";
+const description = "영어 지문의 핵심 내용, 문장별 해석, 어휘, 문법, 글의 구조, 정답 근거를 정리해 주는 AI 박선생 학습 도우미입니다.";
 
 export const metadata: Metadata = {
   title: `${aiTutor.name} 학습 도우미 · 영어 지문 분석`,
   description,
-  alternates: { canonical: "/study/ai-melisa" },
-  openGraph: { title: `${aiTutor.name} 학습 도우미`, description, url: "/study/ai-melisa" },
+  alternates: { canonical: "/study/ai-tutor" },
+  openGraph: { title: `${aiTutor.name} 학습 도우미`, description, url: "/study/ai-tutor" },
 };
 
 const FEATURES = ["핵심 내용", "글의 구조", "문장별 해석", "어휘", "문법·구문", "정답 근거"];
 
-export default function AiMelissaPage() {
+export default function AiTutorPage() {
   // 고객 로그인이 없으므로 사이트 안 분석은 제공하지 않고 외부 GPT 링크로 안내합니다.
   const enabled = false as boolean;
   return (
     <div className="container-page max-w-4xl py-10 sm:py-14">
-      <StudyHeader eyebrow={aiTutor.name} title="AI 멜리사 학습 도우미" description={description} />
+      <StudyHeader eyebrow={aiTutor.name} title="AI 박선생 학습 도우미" description={description} />
 
       <p className="text-[13px] tracking-wide text-muted-foreground">분석 항목 · {FEATURES.join(" · ")}</p>
 

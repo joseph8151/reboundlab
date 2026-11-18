@@ -139,7 +139,7 @@ export function AiAnalyzer({ enabled, dailyLimit, loginRequired, gptUrl, tutorNa
 
       {error && (
         <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-destructive">
-          {error} {error.includes("로그인") && <Link href="/login?next=/study/ai-melisa" className="font-semibold underline">로그인하기</Link>}
+          {error} {error.includes("로그인") && <Link href="/login?next=/study/ai-tutor" className="font-semibold underline">로그인하기</Link>}
         </p>
       )}
 

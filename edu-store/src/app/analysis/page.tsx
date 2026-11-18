@@ -4,7 +4,7 @@ import { analysisDemoMode, listPassages } from "@/lib/analysis/repo";
 import { statusLabel } from "@/lib/analysis/types";
 import { Tag } from "@/components/analysis/common";
 
-export const metadata: Metadata = { title: "수능 영어 프리미엄 지문 분석", description: "문장별 해석부터 논리 구조, 정답 근거, 패러프레이징, 변형문제까지 한 지문을 끝까지 파고드는 멜리사 에듀 분석 자료." };
+export const metadata: Metadata = { title: "수능 영어 프리미엄 지문 분석", description: "문장별 해석부터 논리 구조, 정답 근거, 패러프레이징, 변형문제까지 한 지문을 끝까지 파고드는 박선생 분석 자료." };
 export const dynamic = "force-dynamic";
 
 export default async function AnalysisIndex() {

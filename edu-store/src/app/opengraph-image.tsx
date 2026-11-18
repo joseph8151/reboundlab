@@ -20,8 +20,8 @@ export default async function OpengraphImage() {
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "72px 84px", background: "#F7ECE8", fontFamily: "Pretendard" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 44, letterSpacing: 14, color: "#6E2132", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 600 }}>MELISSA EDU</div>
-          <div style={{ marginTop: 10, fontSize: 20, letterSpacing: 10, color: "#6B6B6B" }}>멜리사 에듀</div>
+          <div style={{ fontSize: 44, letterSpacing: 14, color: "#6E2132", fontFamily: "Georgia, 'Times New Roman', serif", fontWeight: 600 }}>박선생</div>
+          <div style={{ marginTop: 10, fontSize: 20, letterSpacing: 10, color: "#6B6B6B" }}>박선생</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", color: "#4A1D28", fontSize: 84, lineHeight: 1.14, letterSpacing: -3 }}>
           <div>공부의 기준을</div>

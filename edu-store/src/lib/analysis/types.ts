@@ -15,7 +15,7 @@ export const statusLabel = (id: string) => STATUSES.find((s) => s.id === id)?.la
 export const isPublicStatus = (s: string) => s === "approved" || s === "on_sale";
 
 export const RIGHTS = [
-  { id: "original", label: "멜리사 에듀 창작 지문" },
+  { id: "original", label: "박선생 창작 지문" },
   { id: "licensed", label: "이용 허락 확인됨" },
   { id: "pending", label: "이용 허락 확인 중" },
   { id: "unknown", label: "미확인" },

@@ -126,11 +126,11 @@ function Frame({ product, sub, no, children }: { product: Product; sub?: string;
       <header className="border-b border-primary pb-2">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
           <p className="font-display text-[15px] font-semibold text-primary">{levelLabel(product.levels)}</p>
-          <p className="text-[12.5px] font-medium text-secondary-foreground">{product.series ?? "MELISSA EDU"} · {product.title}</p>
+          <p className="text-[12.5px] font-medium text-secondary-foreground">{product.series ?? "박선생"} · {product.title}</p>
         </div>
         <div className="mt-0.5 flex flex-wrap items-baseline justify-between gap-x-4 text-[12px] text-muted-foreground">
           <p>{sub ?? "샘플 페이지"}</p>
-          <p className="font-display text-[13px] font-semibold text-secondary-foreground">Made by <span className="italic text-dusty-rose">Melissa Edu</span></p>
+          <p className="font-display text-[13px] font-semibold text-secondary-foreground">Made by <span className="italic text-dusty-rose">박선생</span></p>
         </div>
       </header>
       <div className="min-w-0 flex-1">{children}</div>
@@ -144,10 +144,10 @@ export function SampleCover({ product, summary }: { product: Product; summary: s
     <Frame product={product} sub="표지" no={1}>
       <div className="mx-auto mt-6 flex max-w-[360px] flex-col items-center text-center">
         <p className="font-display text-[44px] italic leading-none tracking-[0.04em] text-primary sm:text-[56px]">Sample</p>
-        <p className="mt-2 text-[11.5px] tracking-[0.3em] text-dusty-rose">MELISSA EDU</p>
+        <p className="mt-2 text-[11.5px] tracking-[0.3em] text-dusty-rose">박선생</p>
         <div className="mt-6 w-[200px] sm:w-[240px]"><BookCover product={product} sizes="240px" /></div>
         <p className="mt-6 text-[13px] leading-[1.75] text-muted-foreground">{summary}</p>
-        <p className="mt-3 text-[11.5px] leading-relaxed text-muted-foreground">멜리사 에듀가 새로 작성한 예시 페이지입니다. 최종 교재의 문항·쪽수·구성은 상담 후 확정되는 원고에서 달라질 수 있습니다.</p>
+        <p className="mt-3 text-[11.5px] leading-relaxed text-muted-foreground">박선생가 새로 작성한 예시 페이지입니다. 최종 교재의 문항·쪽수·구성은 상담 후 확정되는 원고에서 달라질 수 있습니다.</p>
       </div>
     </Frame>
   );

@@ -12,7 +12,7 @@ function Page({ children, title, n, mode, d }: { children: ReactNode; title?: st
     <section className="a4 relative mx-auto mb-6 w-[210mm] max-w-full bg-white px-[16mm] py-[14mm] shadow-sm print:mb-0 print:w-auto print:max-w-none print:break-after-page print:px-0 print:py-0 print:shadow-none" style={{ minHeight: "297mm" }}>
       {title && <header className="mb-4 flex items-baseline justify-between border-b-2 border-primary pb-1.5"><h2 className="text-[15pt] text-secondary-foreground">{title}</h2><span className="text-[8.5pt] text-muted-foreground">{d.title} · {mode === "teacher" ? "교사용" : "학생용"}</span></header>}
       {children}
-      <footer className="absolute inset-x-[16mm] bottom-[8mm] flex justify-between text-[8pt] text-muted-foreground print:hidden"><span>MELISSA EDU</span>{n && <span>{n}</span>}</footer>
+      <footer className="absolute inset-x-[16mm] bottom-[8mm] flex justify-between text-[8pt] text-muted-foreground print:hidden"><span>박선생</span>{n && <span>{n}</span>}</footer>
     </section>
   );
 }
@@ -29,7 +29,7 @@ export function PrintView({ data: base, mode, demo }: { data: AnalysisPassage; m
 
   pages.push({ body: (
     <div className="flex min-h-[250mm] flex-col justify-center border-y-4 border-primary text-center">
-      <p className="font-display text-[11pt] tracking-[0.3em] text-primary">MELISSA EDU</p>
+      <p className="font-display text-[11pt] tracking-[0.3em] text-primary">박선생</p>
       <h1 className="mt-6 text-[30pt] leading-tight text-secondary-foreground">{d.title}</h1>
       <p className="mt-2 text-[14pt] text-muted-foreground">{o.titleKo}</p>
       <p className="mt-10 text-[11pt]">수능 영어 프리미엄 지문 분석 · {t ? "교사용 해설지" : "학생용 문제지"}</p>

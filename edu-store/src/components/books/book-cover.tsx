@@ -63,7 +63,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
       {variant === 0 && (
         <div className="absolute inset-0 flex flex-col justify-between p-[9cqw] pl-[11cqw]">
           <div>
-            <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melissa Edu</p>
+            <p className={cn(label, "text-[4.2cqw] opacity-90")}>박선생</p>
             <div className="mt-[3.5cqw] h-[0.6cqw] w-[14cqw]" style={{ background: accent }} />
             <p className="mt-[4cqw] text-[4.4cqw] font-medium opacity-90">{subject}</p>
           </div>
@@ -81,7 +81,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
       {variant === 1 && (
         <>
           <span className="absolute inset-y-0 left-0 w-[16cqw]" style={{ background: color }} aria-hidden />
-          <span className={cn(label, "absolute bottom-[8cqw] left-[3.2cqw] text-[3.6cqw] [writing-mode:vertical-rl] rotate-180")} style={{ color: ink }}>Melissa Edu</span>
+          <span className={cn(label, "absolute bottom-[8cqw] left-[3.2cqw] text-[3.6cqw] [writing-mode:vertical-rl] rotate-180")} style={{ color: ink }}>박선생</span>
           <div className="absolute inset-0 flex flex-col justify-between py-[9cqw] pl-[22cqw] pr-[8cqw]">
             <div>
               <p className="text-[4.2cqw] font-semibold" style={{ color: text }}>{subject}</p>
@@ -100,7 +100,7 @@ export function BookCover({ product, className, priority = false, sizes = "(min-
         <>
           <div className="absolute inset-x-0 top-0 h-[58%]" style={{ background: color, color: ink }}>
             <div className="flex h-full flex-col justify-between p-[9cqw] pl-[11cqw]">
-              <p className={cn(label, "text-[4.2cqw] opacity-90")}>Melissa Edu</p>
+              <p className={cn(label, "text-[4.2cqw] opacity-90")}>박선생</p>
               <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
             </div>
           </div>
@@ -133,7 +133,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
   const level = levelsText(product.levels);
   const fs = titleSize(product.title);
   const label = "font-display uppercase tracking-[0.26em] font-semibold";
-  const seriesName = (product.series ?? "").replace("MELISSA ", "");
+  const seriesName = (product.series ?? "").replace("박선생 ", "");
   const wrap = (style: React.CSSProperties, children: React.ReactNode) => (
     <div role="img" aria-label={`${product.title} 표지`} className={cn(frame, "[container-type:inline-size]", className)} style={style}>
       <span className="pointer-events-none absolute inset-y-0 left-[3.5cqw] w-px bg-black/10" aria-hidden />
@@ -148,7 +148,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
         <span className="absolute top-0 h-full w-px bg-[#d88fa0]" style={{ left: v ? "78%" : "24%" }} aria-hidden />
         <span className="absolute size-[4.2cqw] bg-[#f2c94c]" style={{ top: "9cqw", [v ? "left" : "right"]: "9cqw" } as React.CSSProperties} aria-hidden />
         <div className={cn("absolute inset-0 flex flex-col justify-between p-[9cqw] pl-[11cqw]", v ? "pr-[26cqw]" : "pl-[30cqw]")}>
-          <p className={cn(label, "text-[3.6cqw] text-[#6e2132]")}>Melissa<br />{seriesName}</p>
+          <p className={cn(label, "text-[3.6cqw] text-[#6e2132]")}>박선생<br />{seriesName}</p>
           <div>
             <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.2] tracking-[-0.035em] text-[#6e2132]" style={{ fontSize: `${fs * 1.02}cqw` }}>{product.title}</h3>
             <p className="mt-[4cqw] text-[3.6cqw] opacity-70">{level}</p>
@@ -164,7 +164,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
       <>
         <span className="font-display pointer-events-none absolute -right-[6cqw] text-[34cqw] italic leading-none text-[#d88fa0]/20" style={{ top: v ? "14%" : "36%" }} aria-hidden>Method</span>
         <div className="absolute inset-0 flex flex-col justify-between p-[9cqw] pl-[11cqw]">
-          <p className={cn(label, "text-[3.6cqw] text-[#f3d5dc]")}>Melissa {seriesName}</p>
+          <p className={cn(label, "text-[3.6cqw] text-[#f3d5dc]")}>박선생 {seriesName}</p>
           <div>
             <div className="mb-[4cqw] h-[0.7cqw] w-[12cqw] bg-[#d9a63a]" />
             <h3 className="font-[family-name:var(--font-heading)] font-semibold leading-[1.2] tracking-[-0.035em]" style={{ fontSize: `${fs}cqw` }}>{product.title}</h3>
@@ -180,7 +180,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
     return wrap({ background: "#f3d5dc", color: "#4a1d28", backgroundImage: "repeating-linear-gradient(to bottom, transparent 0, transparent 6.2cqw, rgba(201,123,141,0.35) 6.2cqw, rgba(201,123,141,0.35) 6.5cqw)" }, (
       <>
         <div className={cn("absolute inset-x-[9cqw] bg-[#faf6f2] p-[6cqw]", v ? "top-[16cqw]" : "bottom-[18cqw]")} style={{ marginLeft: "3cqw" }}>
-          <p className={cn(label, "text-[3.4cqw] text-[#c97b8d]")}>Melissa {seriesName}</p>
+          <p className={cn(label, "text-[3.4cqw] text-[#c97b8d]")}>박선생 {seriesName}</p>
           <h3 className="mt-[3cqw] font-[family-name:var(--font-heading)] font-semibold leading-[1.22] tracking-[-0.03em] text-[#6e2132]" style={{ fontSize: `${fs * 0.92}cqw` }}>{product.title}</h3>
           <div className="mt-[3.5cqw] h-[1.6cqw] w-[22cqw] bg-[#f2c94c]/80" />
         </div>
@@ -193,7 +193,7 @@ function SeriesCover({ product, className, frame }: { product: CoverData; classN
   return wrap({ background: "#faf6f2", color: "#4a1d28" }, (
     <>
       <div className="absolute inset-x-0 top-0" style={{ height: v ? "46%" : "38%", background: "#7b263b" }}>
-        <p className={cn(label, "p-[9cqw] pl-[11cqw] text-[3.6cqw] text-[#f3d5dc]")}>Melissa {seriesName}</p>
+        <p className={cn(label, "p-[9cqw] pl-[11cqw] text-[3.6cqw] text-[#f3d5dc]")}>박선생 {seriesName}</p>
       </div>
       <span className="absolute right-[9cqw] size-[10cqw] rounded-full bg-[#d88fa0]" style={{ top: v ? "40%" : "32%" }} aria-hidden />
       <div className="absolute inset-x-0 bottom-0 p-[9cqw] pl-[11cqw]" style={{ top: v ? "52%" : "44%" }}>

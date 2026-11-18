@@ -37,9 +37,9 @@ export default async function HomePage() {
       <section className="border-b border-border bg-muted">
         <div className="container-page grid items-end gap-10 pb-12 pt-10 md:grid-cols-[1fr_minmax(0,520px)] md:gap-14 md:pb-24 md:pt-24">
           <div className="max-w-xl">
-            <p className="flex items-center gap-3 font-display text-[15px] font-semibold tracking-[0.3em] text-primary">MELISSA EDU<span aria-hidden className="h-[2px] w-8 bg-mustard" /></p>
+            <p className="flex items-center gap-3 font-display text-[15px] font-semibold tracking-[0.3em] text-primary">박선생<span aria-hidden className="h-[2px] w-8 bg-mustard" /></p>
             <h1 className="mt-5 text-[36px] leading-[1.22] text-secondary-foreground sm:text-[48px] md:mt-6 md:text-[62px] md:leading-[1.18]">공부의 기준을<br /><span className="text-primary">다시 세우다.</span></h1>
-            <p className="mt-5 max-w-md text-[16px] leading-[1.8] text-muted-foreground md:mt-7 md:text-[17px]">필요한 교재를 함께 찾아드립니다. 수능 교재부터 자기주도학습과 공부법까지, 학습의 깊이를 더하는 멜리사 에듀의 교재.</p>
+            <p className="mt-5 max-w-md text-[16px] leading-[1.8] text-muted-foreground md:mt-7 md:text-[17px]">필요한 교재를 함께 찾아드립니다. 수능 교재부터 자기주도학습과 공부법까지, 학습의 깊이를 더하는 박선생의 교재.</p>
             <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap md:mt-10">
               <Button asChild size="lg" className="w-full sm:w-auto"><Link href="/consult" data-consult-button>교재 구성 및 구매 상담</Link></Button>
               <Button asChild size="lg" variant="outline" className="w-full sm:w-auto"><Link href="/diagnosis">3분 학습 진단</Link></Button>
@@ -243,7 +243,7 @@ export default async function HomePage() {
             <p className="mt-5 max-w-md text-[15px] leading-[1.85] text-foreground/80">현재 학습 상황에 맞는 교재를 문의해 주세요. 원하는 단원과 유형을 선택해 나만의 구성을 상담받을 수도 있습니다.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><Link href="/consult" data-consult-button>교재 상담 및 구매 신청</Link></Button>
-              <Button asChild size="lg" variant="outline"><Link href="/custom">MELISSA CUSTOM BOOK</Link></Button>
+              <Button asChild size="lg" variant="outline"><Link href="/custom">박선생 CUSTOM BOOK</Link></Button>
             </div>
           </div>
           <ol className="border-t border-primary/40">

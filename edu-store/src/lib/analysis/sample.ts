@@ -1,6 +1,6 @@
 import type { AnalysisPassage, VariantQuestion } from "./types";
 
-/** 개발 샘플: 멜리사 에듀가 새로 쓴 창작 지문. A~H 분석과 변형문제를 모두 담았습니다. */
+/** 개발 샘플: 박선생가 새로 쓴 창작 지문. A~H 분석과 변형문제를 모두 담았습니다. */
 const PASSAGE_FULL =
   "Many students believe that making mistakes is a sign of poor learning. As a result, they often avoid challenging tasks and choose activities they can complete easily. However, research on learning suggests that errors can provide valuable information about what a learner has not yet understood. When students examine why an answer was incorrect, they can identify gaps in their knowledge and adjust their strategies. Therefore, effective learning depends not on avoiding mistakes but on using errors as opportunities for improvement.";
 
@@ -197,7 +197,7 @@ export const SAMPLE_PASSAGE: AnalysisPassage = {
   slug: "the-hidden-value-of-mistakes",
   title: "The Hidden Value of Mistakes",
   status: "in_review",
-  source: { origin: "멜리사 에듀 창작 지문(개발 샘플)", year: "", rights: "original", rightsNote: "멜리사 에듀가 새로 작성한 지문과 문항입니다. 외부 기출·교재 문장을 사용하지 않았습니다.", verifiedBy: "", verifiedAt: "" },
+  source: { origin: "박선생 창작 지문(개발 샘플)", year: "", rights: "original", rightsNote: "박선생가 새로 작성한 지문과 문항입니다. 외부 기출·교재 문장을 사용하지 않았습니다.", verifiedBy: "", verifiedAt: "" },
   meta: { questionType: "빈칸 추론", difficulty: "중상", topicTag: "학습과 실수" },
   passage: {
     sentences: [

@@ -42,7 +42,7 @@ export function NewPassageForm({ demo }: { demo: boolean }) {
       <label className="block text-[12px] font-semibold text-muted-foreground">주소(영문 소문자·하이픈)<input name="slug" className={field} placeholder="my-passage-01" /></label>
       <label className="block text-[12px] font-semibold text-muted-foreground">문제 유형<select name="questionType" className={field}>{QUESTION_TYPES.map((t) => <option key={t}>{t}</option>)}</select></label>
       <label className="block text-[12px] font-semibold text-muted-foreground">난이도<select name="difficulty" className={field} defaultValue="중">{["하", "중하", "중", "중상", "상"].map((t) => <option key={t}>{t}</option>)}</select></label>
-      <label className="block text-[12px] font-semibold text-muted-foreground">출처<input name="origin" className={field} defaultValue="멜리사 에듀 창작" /></label>
+      <label className="block text-[12px] font-semibold text-muted-foreground">출처<input name="origin" className={field} defaultValue="박선생 창작" /></label>
       <label className="block text-[12px] font-semibold text-muted-foreground">연도<input name="year" className={field} /></label>
       <label className="block text-[12px] font-semibold text-muted-foreground">저작권 상태<select name="rights" className={field} defaultValue="pending">{RIGHTS.map((r) => <option key={r.id} value={r.id}>{r.label}</option>)}</select></label>
       <label className="block text-[12px] font-semibold text-muted-foreground">저작권·창작 메모<input name="rightsNote" className={field} /></label>

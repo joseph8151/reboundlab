@@ -4,7 +4,7 @@ import { SuneungDday } from "@/components/study/suneung-dday";
 import { isAiConfigured } from "@/lib/ai";
 import { STUDY_TOOLS } from "@/lib/study/tools";
 
-const description = "영어 단어 학습, 독해 속도 훈련, 지문 구조 분석, 오답노트, 공부 시간 기록, 학습 플래너, 학습 리포트. 멜리사 에듀의 무료 학습 도구를 회원가입 없이 이용할 수 있습니다.";
+const description = "영어 단어 학습, 독해 속도 훈련, 지문 구조 분석, 오답노트, 공부 시간 기록, 학습 플래너, 학습 리포트. 박선생의 무료 학습 도구를 회원가입 없이 이용할 수 있습니다.";
 
 export const metadata: Metadata = {
   title: "무료 학습 도구",
